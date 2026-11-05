@@ -9,7 +9,18 @@ using UnityEngine.UI;
 public class DialogueLine
 {
     public string speaker;
+
+    [Tooltip("Versión en inglés (la que dice con fluidez).")]
     [TextArea] public string text;
+
+    [Tooltip("Solo para Andrés: cómo suena con pocos recuerdos (español entrecortado). Vacío = usa el inglés.")]
+    [TextArea] public string spanish;
+
+    [Tooltip("Solo para Andrés: mezcla de español e inglés. Las palabras entre {llaves} son las que ya recuperó. Vacío = usa el inglés.")]
+    [TextArea] public string mixed;
+
+    [Tooltip("Si está activo, Andrés habla bien en esta línea sin importar sus recuerdos (por ejemplo, antes del accidente).")]
+    public bool fluent;
 
     public DialogueLine() { }
 
@@ -17,6 +28,15 @@ public class DialogueLine
     {
         this.speaker = speaker;
         this.text = text;
+    }
+
+    /// <summary>Línea de Andrés en sus tres etapas del habla: inglés, mezcla (palabras en {llaves}) y español.</summary>
+    public DialogueLine(string speaker, string text, string mixed, string spanish)
+    {
+        this.speaker = speaker;
+        this.text = text;
+        this.mixed = mixed;
+        this.spanish = spanish;
     }
 }
 
@@ -38,10 +58,11 @@ public class DialoguePanel : MonoBehaviour
 
     CanvasGroup group;
     Image portraitFrame, portraitFill;
-    TextMeshProUGUI nameLabel, bodyLabel, initialLabel, hint;
+    TextMeshProUGUI nameLabel, bodyLabel, initialLabel, hint, speechLabel;
     float shown;
     bool lineComplete;
     int startFrame;
+    int visibleLength;
 
     static DialoguePanel current;
 
@@ -101,6 +122,10 @@ public class DialoguePanel : MonoBehaviour
         bodyLabel.textWrappingMode = TextWrappingModes.Normal;
         PixelUi.Place(bodyLabel.rectTransform, new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(200f, -66f), new Vector2(880f, 140f));
 
+        // Estado del habla de Andrés (arriba a la derecha): solo aparece mientras todavía no habla con fluidez
+        speechLabel = PixelUi.NewLabel("Habla", box.transform, "", 22, Vector2.zero, new Vector2(420f, 30f), FontStyles.Bold, TextAlignmentOptions.Right);
+        PixelUi.Place(speechLabel.rectTransform, new Vector2(1f, 1f), new Vector2(1f, 1f), new Vector2(-28f, -20f), new Vector2(420f, 30f));
+
         hint = PixelUi.NewLabel("Aviso", box.transform, "E / click to continue", 20, Vector2.zero, new Vector2(400f, 30f), FontStyles.Italic, TextAlignmentOptions.Right);
         hint.color = Muted;
         PixelUi.Place(hint.rectTransform, new Vector2(1f, 0f), new Vector2(1f, 0f), new Vector2(-28f, 14f), new Vector2(400f, 30f));
@@ -114,7 +139,16 @@ public class DialoguePanel : MonoBehaviour
 
         nameLabel.text = line.speaker;
         nameLabel.color = color;
-        bodyLabel.text = line.text;
+
+        // Andrés habla distinto según los recuerdos que lleva: español entrecortado, mezcla o inglés fluido
+        var stage = SpeechRecovery.Stage;
+        bool speechApplies = SpeechRecovery.IsAndres(line) && !line.fluent && stage != SpeechStage.Fluent;
+        string content = SpeechRecovery.Resolve(line, stage);
+        bodyLabel.text = content;
+        bodyLabel.fontStyle = speechApplies && stage == SpeechStage.Confused ? FontStyles.Italic : FontStyles.Normal;
+        visibleLength = SpeechRecovery.VisibleLength(content);
+        speechLabel.text = speechApplies ? $"SPEECH: {SpeechRecovery.StageName(stage).ToUpper()}" : "";
+        speechLabel.color = SpeechRecovery.StageColor(stage);
         bodyLabel.maxVisibleCharacters = 0;
         portraitFrame.color = color;
         portraitFill.color = color * 0.35f;
@@ -141,7 +175,7 @@ public class DialoguePanel : MonoBehaviour
             shown += CharsPerSecond * dt;
             int visible = Mathf.FloorToInt(shown);
             bodyLabel.maxVisibleCharacters = visible;
-            if (visible >= lines[index].text.Length) CompleteLine();
+            if (visible >= visibleLength) CompleteLine();
         }
 
         if (Time.frameCount <= startFrame || !AdvancePressed()) return;
