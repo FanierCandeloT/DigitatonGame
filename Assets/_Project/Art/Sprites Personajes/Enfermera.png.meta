@@ -1,0 +1,897 @@
+fileFormatVersion: 2
+guid: 4bf90c101ea197740b67d206678919b5
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 1648640205929273192
+    second: Hoja de sprites de enfermera pixel art(1)_0
+  - first:
+      213: -4428216746632743325
+    second: Hoja de sprites de enfermera pixel art(1)_1
+  - first:
+      213: -1360632729094980162
+    second: Hoja de sprites de enfermera pixel art(1)_2
+  - first:
+      213: -2685829745382115373
+    second: Hoja de sprites de enfermera pixel art(1)_3
+  - first:
+      213: -7239938495111979155
+    second: Hoja de sprites de enfermera pixel art(1)_4
+  - first:
+      213: 2899619468229231490
+    second: Hoja de sprites de enfermera pixel art(1)_5
+  - first:
+      213: -5388172772871855664
+    second: Hoja de sprites de enfermera pixel art(1)_6
+  - first:
+      213: 6994089761173399178
+    second: Hoja de sprites de enfermera pixel art(1)_7
+  - first:
+      213: -2402196590996171359
+    second: Hoja de sprites de enfermera pixel art(1)_8
+  - first:
+      213: 8163504220238617226
+    second: Hoja de sprites de enfermera pixel art(1)_9
+  - first:
+      213: -3663151057338818283
+    second: Hoja de sprites de enfermera pixel art(1)_10
+  - first:
+      213: 6757625909980554820
+    second: Hoja de sprites de enfermera pixel art(1)_11
+  - first:
+      213: 5188207483559358513
+    second: Hoja de sprites de enfermera pixel art(1)_12
+  - first:
+      213: 5314407503796975511
+    second: Hoja de sprites de enfermera pixel art(1)_13
+  - first:
+      213: -7573140591798250506
+    second: Hoja de sprites de enfermera pixel art(1)_14
+  - first:
+      213: -780418238130448240
+    second: Hoja de sprites de enfermera pixel art(1)_15
+  - first:
+      213: -979168621362296094
+    second: Hoja de sprites de enfermera pixel art(1)_16
+  - first:
+      213: 3719932791997837385
+    second: Hoja de sprites de enfermera pixel art(1)_17
+  - first:
+      213: 3040988499277454065
+    second: Hoja de sprites de enfermera pixel art(1)_18
+  - first:
+      213: -6514415596084550358
+    second: Hoja de sprites de enfermera pixel art(1)_19
+  - first:
+      213: 7082771025108181391
+    second: Hoja de sprites de enfermera pixel art(1)_20
+  - first:
+      213: -3742586378540658786
+    second: Hoja de sprites de enfermera pixel art(1)_21
+  - first:
+      213: -2524445802453590229
+    second: Hoja de sprites de enfermera pixel art(1)_22
+  - first:
+      213: 7505903022191802155
+    second: Hoja de sprites de enfermera pixel art(1)_23
+  - first:
+      213: -7490743070991385923
+    second: Hoja de sprites de enfermera pixel art(1)_24
+  - first:
+      213: -2854169679276922993
+    second: Hoja de sprites de enfermera pixel art(1)_25
+  - first:
+      213: 8473808261036910582
+    second: Hoja de sprites de enfermera pixel art(1)_26
+  - first:
+      213: 1738801086851523540
+    second: Hoja de sprites de enfermera pixel art(1)_27
+  - first:
+      213: 1546606445412730277
+    second: Hoja de sprites de enfermera pixel art(1)_28
+  - first:
+      213: -3409964593172315886
+    second: Hoja de sprites de enfermera pixel art(1)_29
+  - first:
+      213: 382444989770327818
+    second: Hoja de sprites de enfermera pixel art(1)_30
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationMethod: 0
+  spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Hoja de sprites de enfermera pixel art(1)_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1106
+        width: 179
+        height: 184
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 86757dc488521e610800000000000000
+      internalID: 1648640205929273192
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hoja de sprites de enfermera pixel art(1)_1
+      rect:
+        serializedVersion: 2
+        x: 179
+        y: 1106
+        width: 179
+        height: 184
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 366f484a450db82c0800000000000000
+      internalID: -4428216746632743325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hoja de sprites de enfermera pixel art(1)_2
+      rect:
+        serializedVersion: 2
+        x: 358
+        y: 1106
+        width: 179
+        height: 184
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ebdf588edbf0e1de0800000000000000
+      internalID: -1360632729094980162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hoja de sprites de enfermera pixel art(1)_3
+      rect:
+        serializedVersion: 2
+        x: 537
+        y: 1106
+        width: 179
+        height: 184
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d73253a3140abad0800000000000000
+      internalID: -2685829745382115373
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hoja de sprites de enfermera pixel art(1)_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 922
+        width: 179
+        height: 184
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d6f9c2b2c42968b90800000000000000
+      internalID: -7239938495111979155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hoja de sprites de enfermera pixel art(1)_5
+      rect:
+        serializedVersion: 2
+        x: 179
+        y: 922
+        width: 179
+        height: 184
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2834c932b848d3820800000000000000
+      internalID: 2899619468229231490
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hoja de sprites de enfermera pixel art(1)_6
+      rect:
+        serializedVersion: 2
+        x: 358
+        y: 922
+        width: 179
+        height: 184
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0d1aa8c296d5935b0800000000000000
+      internalID: -5388172772871855664
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hoja de sprites de enfermera pixel art(1)_7
+      rect:
+        serializedVersion: 2
+        x: 537
+        y: 922
+        width: 179
+        height: 184
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a86efedd49fff0160800000000000000
+      internalID: 6994089761173399178
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hoja de sprites de enfermera pixel art(1)_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 738
+        width: 179
+        height: 184
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a5d4098deea9aed0800000000000000
+      internalID: -2402196590996171359
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hoja de sprites de enfermera pixel art(1)_9
+      rect:
+        serializedVersion: 2
+        x: 179
+        y: 738
+        width: 179
+        height: 184
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a8a99b116d79a4170800000000000000
+      internalID: 8163504220238617226
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hoja de sprites de enfermera pixel art(1)_10
+      rect:
+        serializedVersion: 2
+        x: 358
+        y: 738
+        width: 179
+        height: 184
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 51129b4858fd92dc0800000000000000
+      internalID: -3663151057338818283
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hoja de sprites de enfermera pixel art(1)_11
+      rect:
+        serializedVersion: 2
+        x: 537
+        y: 738
+        width: 179
+        height: 184
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 446ed5136f8e7cd50800000000000000
+      internalID: 6757625909980554820
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hoja de sprites de enfermera pixel art(1)_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 554
+        width: 179
+        height: 184
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 130349ec737300840800000000000000
+      internalID: 5188207483559358513
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hoja de sprites de enfermera pixel art(1)_13
+      rect:
+        serializedVersion: 2
+        x: 179
+        y: 554
+        width: 179
+        height: 184
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7973d7fb77190c940800000000000000
+      internalID: 5314407503796975511
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hoja de sprites de enfermera pixel art(1)_14
+      rect:
+        serializedVersion: 2
+        x: 358
+        y: 554
+        width: 179
+        height: 184
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6f316c781ccc6e690800000000000000
+      internalID: -7573140591798250506
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hoja de sprites de enfermera pixel art(1)_15
+      rect:
+        serializedVersion: 2
+        x: 537
+        y: 554
+        width: 179
+        height: 184
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0989ffb4fb56b25f0800000000000000
+      internalID: -780418238130448240
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hoja de sprites de enfermera pixel art(1)_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 401
+        width: 145
+        height: 153
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2eacd74a35b4962f0800000000000000
+      internalID: -979168621362296094
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hoja de sprites de enfermera pixel art(1)_17
+      rect:
+        serializedVersion: 2
+        x: 179
+        y: 399
+        width: 179
+        height: 155
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 940bb5f4a2bdf9330800000000000000
+      internalID: 3719932791997837385
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hoja de sprites de enfermera pixel art(1)_18
+      rect:
+        serializedVersion: 2
+        x: 358
+        y: 400
+        width: 179
+        height: 154
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1fa1b71ade2c33a20800000000000000
+      internalID: 3040988499277454065
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hoja de sprites de enfermera pixel art(1)_19
+      rect:
+        serializedVersion: 2
+        x: 537
+        y: 401
+        width: 179
+        height: 153
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a25ad1cb7852895a0800000000000000
+      internalID: -6514415596084550358
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hoja de sprites de enfermera pixel art(1)_20
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 209
+        width: 179
+        height: 184
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f81a001a8be0b4260800000000000000
+      internalID: 7082771025108181391
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hoja de sprites de enfermera pixel art(1)_21
+      rect:
+        serializedVersion: 2
+        x: 187
+        y: 206
+        width: 179
+        height: 184
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e9f4edd8489af0cc0800000000000000
+      internalID: -3742586378540658786
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hoja de sprites de enfermera pixel art(1)_22
+      rect:
+        serializedVersion: 2
+        x: 378
+        y: 210
+        width: 159
+        height: 182
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b2f1702faed57fcd0800000000000000
+      internalID: -2524445802453590229
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hoja de sprites de enfermera pixel art(1)_23
+      rect:
+        serializedVersion: 2
+        x: 563
+        y: 203
+        width: 153
+        height: 193
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b27f54cd7035a2860800000000000000
+      internalID: 7505903022191802155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hoja de sprites de enfermera pixel art(1)_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 17
+        width: 179
+        height: 184
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dbaf6d55dd88b0890800000000000000
+      internalID: -7490743070991385923
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hoja de sprites de enfermera pixel art(1)_25
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 19
+        width: 179
+        height: 184
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f87220a7cc3f368d0800000000000000
+      internalID: -2854169679276922993
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hoja de sprites de enfermera pixel art(1)_26
+      rect:
+        serializedVersion: 2
+        x: 359
+        y: 19
+        width: 179
+        height: 184
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6f720ed97b3099570800000000000000
+      internalID: 8473808261036910582
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hoja de sprites de enfermera pixel art(1)_27
+      rect:
+        serializedVersion: 2
+        x: 538
+        y: 22
+        width: 179
+        height: 184
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4d329dc3066712810800000000000000
+      internalID: 1738801086851523540
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: cfefaf88a321c6945a34fed08736724d
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":4.0,"y":7.0},"gridSpriteSize":{"x":179.0,"y":184.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      Hoja de sprites de enfermera pixel art(1)_0: 1648640205929273192
+      Hoja de sprites de enfermera pixel art(1)_1: -4428216746632743325
+      Hoja de sprites de enfermera pixel art(1)_10: -3663151057338818283
+      Hoja de sprites de enfermera pixel art(1)_11: 6757625909980554820
+      Hoja de sprites de enfermera pixel art(1)_12: 5188207483559358513
+      Hoja de sprites de enfermera pixel art(1)_13: 5314407503796975511
+      Hoja de sprites de enfermera pixel art(1)_14: -7573140591798250506
+      Hoja de sprites de enfermera pixel art(1)_15: -780418238130448240
+      Hoja de sprites de enfermera pixel art(1)_16: -979168621362296094
+      Hoja de sprites de enfermera pixel art(1)_17: 3719932791997837385
+      Hoja de sprites de enfermera pixel art(1)_18: 3040988499277454065
+      Hoja de sprites de enfermera pixel art(1)_19: -6514415596084550358
+      Hoja de sprites de enfermera pixel art(1)_2: -1360632729094980162
+      Hoja de sprites de enfermera pixel art(1)_20: 7082771025108181391
+      Hoja de sprites de enfermera pixel art(1)_21: -3742586378540658786
+      Hoja de sprites de enfermera pixel art(1)_22: -2524445802453590229
+      Hoja de sprites de enfermera pixel art(1)_23: 7505903022191802155
+      Hoja de sprites de enfermera pixel art(1)_24: -7490743070991385923
+      Hoja de sprites de enfermera pixel art(1)_25: -2854169679276922993
+      Hoja de sprites de enfermera pixel art(1)_26: 8473808261036910582
+      Hoja de sprites de enfermera pixel art(1)_27: 1738801086851523540
+      Hoja de sprites de enfermera pixel art(1)_3: -2685829745382115373
+      Hoja de sprites de enfermera pixel art(1)_4: -7239938495111979155
+      Hoja de sprites de enfermera pixel art(1)_5: 2899619468229231490
+      Hoja de sprites de enfermera pixel art(1)_6: -5388172772871855664
+      Hoja de sprites de enfermera pixel art(1)_7: 6994089761173399178
+      Hoja de sprites de enfermera pixel art(1)_8: -2402196590996171359
+      Hoja de sprites de enfermera pixel art(1)_9: 8163504220238617226
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

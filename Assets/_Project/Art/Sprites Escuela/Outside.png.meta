@@ -412,6 +412,138 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: deco_tree_a
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 209
+        width: 142
+        height: 230
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a390f4043417534d9dc0191a426e301
+      internalID: 1179735798
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deco_tree_b
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 0
+        width: 134
+        height: 194
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5aa6c5ae1cf80eb429b9d862d22a3af3
+      internalID: -1272607754
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deco_bush_leaf
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 342
+        width: 35
+        height: 51
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c89edf9ce2ed7648975864c7c8f86ec
+      internalID: 1777027029
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deco_bush_vine
+      rect:
+        serializedVersion: 2
+        x: 439
+        y: 312
+        width: 41
+        height: 121
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff02b1185c374fd4cacde70e78836e20
+      internalID: -1817694644
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deco_bush_small
+      rect:
+        serializedVersion: 2
+        x: 440
+        y: 241
+        width: 37
+        height: 28
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3846c19e1eb971f468ed480b470635a0
+      internalID: 1607718378
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deco_flower_red
+      rect:
+        serializedVersion: 2
+        x: 451
+        y: 150
+        width: 15
+        height: 26
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df6f7f97d2c3e324dae31df46befcc78
+      internalID: -999303831
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -437,6 +569,12 @@ TextureImporter:
       Outside_7: 6819689233237992783
       Outside_8: 1009713400768470790
       Outside_9: 1852295513140887114
+      deco_bush_leaf: 1777027029
+      deco_bush_small: 1607718378
+      deco_bush_vine: -1817694644
+      deco_flower_red: -999303831
+      deco_tree_a: 1179735798
+      deco_tree_b: -1272607754
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

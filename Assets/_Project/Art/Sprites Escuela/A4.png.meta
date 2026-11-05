@@ -213,6 +213,116 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
+      name: face_brick
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 272
+        width: 48
+        height: 48
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 99682ce21359bb94980817a08826353e
+      internalID: 937521795
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: face_brick_grey
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 176
+        width: 48
+        height: 48
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5b883154586deb643a484a82634f6885
+      internalID: 137081218
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: face_beige
+      rect:
+        serializedVersion: 2
+        x: 310
+        y: 280
+        width: 48
+        height: 48
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b7a91f122416e1542a2cf05d41f3e261
+      internalID: 1826959144
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: roof_green
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 280
+        width: 48
+        height: 48
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 77d8f0eff4049c84b80a713592f1e0be
+      internalID: 22925100
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: roof_blue
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 182
+        width: 48
+        height: 48
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce54f015f7d87074ca7235fd7355d71e
+      internalID: -1066894306
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
       name: tile_wall_beige
       rect:
         serializedVersion: 2
@@ -228,7 +338,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d8728db588ba79a488bb5a95cf42b524
+      spriteID: a2cecf65298d8d241b3b2e9a5bdcea5c
       internalID: 718363930
       vertices: []
       indices: 
@@ -250,7 +360,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ccf0828050e30ec41b136fe9ed5be88e
+      spriteID: 737e08def75de2241ad385f1692db9ea
       internalID: -1831687004
       vertices: []
       indices: 
@@ -275,6 +385,11 @@ TextureImporter:
       A4_2: 8658131705614044622
       door_double_red: -891057095
       door_single_window: 1167508390
+      face_beige: 1826959144
+      face_brick: 937521795
+      face_brick_grey: 137081218
+      roof_blue: -1066894306
+      roof_green: 22925100
       tile_wall_beige: 718363930
       tile_wall_brick: -1831687004
   mipmapLimitGroupName: 

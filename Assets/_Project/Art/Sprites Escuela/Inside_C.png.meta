@@ -3437,6 +3437,886 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: deco_win_beige
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 693
+        width: 64
+        height: 54
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 431f2d869aaad4545bd5f8d575057e34
+      internalID: 1672507984
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deco_win_yellow
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 693
+        width: 64
+        height: 54
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5ee1c2123f96944392f31a4973c4c62
+      internalID: -1616461799
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deco_win_dark
+      rect:
+        serializedVersion: 2
+        x: 205
+        y: 693
+        width: 64
+        height: 54
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3261fddca714a3a42833d225e4b55a94
+      internalID: 123264430
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deco_win_pair_blue
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 590
+        width: 45
+        height: 68
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: afc35265464cc5d40a9bcebfc8c4af95
+      internalID: -875755838
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deco_win_pair_yellow
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 590
+        width: 40
+        height: 68
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 01e097002f35f054f884cbbbd88fe097
+      internalID: 241709643
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deco_win_big
+      rect:
+        serializedVersion: 2
+        x: 115
+        y: 585
+        width: 154
+        height: 78
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b3c6167864ad98e498f6e65e4d49e409
+      internalID: 1084631850
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deco_win_glass
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 496
+        width: 113
+        height: 70
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d4db15820f69c0140af12f8b4898be35
+      internalID: 298585502
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deco_win_arch
+      rect:
+        serializedVersion: 2
+        x: 629
+        y: 723
+        width: 39
+        height: 45
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fbaffff57c6939649b45e6b96efe9f08
+      internalID: 1687787817
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deco_win_arch_curtain
+      rect:
+        serializedVersion: 2
+        x: 723
+        y: 717
+        width: 44
+        height: 51
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e318783e6b251f4a85829eb5b198817
+      internalID: -726418879
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deco_wardrobe
+      rect:
+        serializedVersion: 2
+        x: 445
+        y: 653
+        width: 71
+        height: 98
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 15818a57f7bf9e542b48673bd44d6b4b
+      internalID: -638633290
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deco_cabinet
+      rect:
+        serializedVersion: 2
+        x: 443
+        y: 503
+        width: 71
+        height: 106
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c71256a69167bcc4cad109269ee09c2c
+      internalID: -1000281888
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deco_drawers_a
+      rect:
+        serializedVersion: 2
+        x: 586
+        y: 575
+        width: 61
+        height: 55
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f9089fb146b75bf498635039f8ba3ec8
+      internalID: -1967529421
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deco_drawers_b
+      rect:
+        serializedVersion: 2
+        x: 691
+        y: 575
+        width: 61
+        height: 50
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 65c89f9e70a5c5640bab216fcb84241c
+      internalID: 688235159
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deco_clock
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 425
+        width: 32
+        height: 43
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd6f3885ae2aac747ba49bf6d6c6ce85
+      internalID: 507550819
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deco_bin_purple
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 390
+        width: 19
+        height: 31
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c018606b1064aa4c889350a1c2c8eb2
+      internalID: 967900861
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deco_bin_green
+      rect:
+        serializedVersion: 2
+        x: 107
+        y: 386
+        width: 21
+        height: 39
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b79c511150c439d469f4698ed3db7e90
+      internalID: -1601776915
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deco_bin_grey
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 390
+        width: 21
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b35f9a9f1fda25e4e9623efac563c734
+      internalID: 282330381
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deco_bench_red
+      rect:
+        serializedVersion: 2
+        x: 243
+        y: 432
+        width: 117
+        height: 25
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f1c0727db25804448a679cc8c5300069
+      internalID: -1232948988
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deco_statue
+      rect:
+        serializedVersion: 2
+        x: 690
+        y: 335
+        width: 55
+        height: 98
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 65a80b9b31853864aaa742bc65dbf8b8
+      internalID: 767269687
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deco_plant_a
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 306
+        width: 37
+        height: 56
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 93b9e246369b31b41bef3dc4f2897479
+      internalID: 177357010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deco_plant_b
+      rect:
+        serializedVersion: 2
+        x: 340
+        y: 285
+        width: 34
+        height: 62
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6862d2710004b5845995856d7faa8db8
+      internalID: 392496733
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deco_plant_c
+      rect:
+        serializedVersion: 2
+        x: 378
+        y: 287
+        width: 41
+        height: 84
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 812a5f24e0340d043ae12bfe5c406f45
+      internalID: 1967759704
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deco_plant_d
+      rect:
+        serializedVersion: 2
+        x: 430
+        y: 289
+        width: 35
+        height: 68
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a67374165677c2b4096d245a7a8f6391
+      internalID: 121711836
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deco_plant_e
+      rect:
+        serializedVersion: 2
+        x: 481
+        y: 291
+        width: 37
+        height: 52
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b0afb4f6d330424289aa252403d6c6f
+      internalID: 2047887075
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deco_plant_f
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 222
+        width: 27
+        height: 65
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a35670b9336eac64ab68abe67a3b81e2
+      internalID: -583675831
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deco_plant_big
+      rect:
+        serializedVersion: 2
+        x: 397
+        y: 383
+        width: 35
+        height: 51
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed7319e4bb94eaf4e8c58b2dfc9169a5
+      internalID: -749828564
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deco_cork
+      rect:
+        serializedVersion: 2
+        x: 687
+        y: 245
+        width: 65
+        height: 40
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 859ac7a7b1196b347a9b4d2cea08506f
+      internalID: 13993324
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deco_frame_a
+      rect:
+        serializedVersion: 2
+        x: 579
+        y: 200
+        width: 39
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf4c4ad2c966961409ceeeec0c613b36
+      internalID: -1967751734
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deco_frame_b
+      rect:
+        serializedVersion: 2
+        x: 628
+        y: 199
+        width: 44
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d02632918bb455443b6f66ee014aa6df
+      internalID: -1339096888
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deco_pc_desk
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 253
+        width: 31
+        height: 36
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d4bfdc36a38e12f4ca0ed502848f647d
+      internalID: -21271166
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deco_books_color
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 216
+        width: 29
+        height: 11
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 150b0457ad0d1914bbd9f06e3f75d157
+      internalID: -603294800
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deco_shelf_a
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 20
+        width: 34
+        height: 57
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 88e3e9e2b30864d4fbb57347b0e204e1
+      internalID: -524679690
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deco_shelf_b
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 20
+        width: 34
+        height: 57
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6bcec8bf18de22e48b10d77d15216d94
+      internalID: -1246402679
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deco_shelf_c
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 20
+        width: 34
+        height: 57
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 27c3f882a28032c448379c429a669a86
+      internalID: -1547462605
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deco_shelf_d
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 13
+        width: 34
+        height: 70
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a52f07c7020dff44cb136c38c1f8a0d0
+      internalID: 483845621
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deco_chair_a
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 173
+        width: 29
+        height: 56
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 17baeaece699dee4d9087281964f47e3
+      internalID: 837785289
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deco_chair_b
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 169
+        width: 35
+        height: 60
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 28641705273b3974585b0e54d0070be8
+      internalID: -304173899
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deco_stool
+      rect:
+        serializedVersion: 2
+        x: 254
+        y: 176
+        width: 31
+        height: 52
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7101f33cf5002344fbc833065eadf7e9
+      internalID: 1680306964
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deco_bed_red
+      rect:
+        serializedVersion: 2
+        x: 389
+        y: 199
+        width: 87
+        height: 72
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a49aebfa267f3d439cc3f06e7e6522d
+      internalID: 474019506
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deco_table_low
+      rect:
+        serializedVersion: 2
+        x: 395
+        y: 2
+        width: 74
+        height: 45
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 94f8ba3d4892c9842a418187783cb94a
+      internalID: 1053614537
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -3583,6 +4463,46 @@ TextureImporter:
       Inside_C_97: 1262720876328747117
       Inside_C_98: 6725844267607205791
       Inside_C_99: -5510302605692118522
+      deco_bed_red: 474019506
+      deco_bench_red: -1232948988
+      deco_bin_green: -1601776915
+      deco_bin_grey: 282330381
+      deco_bin_purple: 967900861
+      deco_books_color: -603294800
+      deco_cabinet: -1000281888
+      deco_chair_a: 837785289
+      deco_chair_b: -304173899
+      deco_clock: 507550819
+      deco_cork: 13993324
+      deco_drawers_a: -1967529421
+      deco_drawers_b: 688235159
+      deco_frame_a: -1967751734
+      deco_frame_b: -1339096888
+      deco_pc_desk: -21271166
+      deco_plant_a: 177357010
+      deco_plant_b: 392496733
+      deco_plant_big: -749828564
+      deco_plant_c: 1967759704
+      deco_plant_d: 121711836
+      deco_plant_e: 2047887075
+      deco_plant_f: -583675831
+      deco_shelf_a: -524679690
+      deco_shelf_b: -1246402679
+      deco_shelf_c: -1547462605
+      deco_shelf_d: 483845621
+      deco_statue: 767269687
+      deco_stool: 1680306964
+      deco_table_low: 1053614537
+      deco_wardrobe: -638633290
+      deco_win_arch: 1687787817
+      deco_win_arch_curtain: -726418879
+      deco_win_beige: 1672507984
+      deco_win_big: 1084631850
+      deco_win_dark: 123264430
+      deco_win_glass: 298585502
+      deco_win_pair_blue: -875755838
+      deco_win_pair_yellow: 241709643
+      deco_win_yellow: -1616461799
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
