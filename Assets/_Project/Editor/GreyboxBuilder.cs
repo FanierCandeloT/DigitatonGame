@@ -19,7 +19,7 @@ public static class GreyboxBuilder
     const string PlayerPrefabPath = Root + "/Prefabs/Andres.prefab";
     const string CameraPrefabPath = Root + "/Prefabs/CameraRig.prefab";
 
-    static readonly string[] SceneOrder = { "MainMenu", "Intro", "Bienestar", "Campus", "SalaProfesores", "Agora", "Tutorial" };
+    static readonly string[] SceneOrder = { "MainMenu", "Campus", "Aulas1", "Aulas2", "Aulas3", "Aulas4", "EdificioCentral", "Sotanos", "Bienestar", "Cafeteria", "SalaProfesores", "TechoAulas3", "MuseoLili", "Tutorial" };
 
     // ───────────────────────── Menús ─────────────────────────
 
@@ -244,11 +244,9 @@ public static class GreyboxBuilder
     {
         // Solo se crean las escenas que faltan: nunca se pisa el trabajo ya hecho en una escena existente.
         if (!SceneExists("MainMenu")) BuildMenuScene("MainMenu");
-        if (!SceneExists("Intro")) BuildMenuScene("Intro");
         if (!SceneExists("Campus")) BuildCampus(sprite);
         if (!SceneExists("Bienestar")) BuildBienestar(sprite);
         if (!SceneExists("SalaProfesores")) BuildRoomScene("SalaProfesores", "Sala de profesores", sprite);
-        if (!SceneExists("Agora")) BuildRoomScene("Agora", "Ágora", sprite);
 
         // Las escenas de plantilla ya no sirven: no tienen nada importante.
         foreach (var old in new[] { "Assets/Scenes/SampleScene.unity", "Assets/New Scene.unity" })

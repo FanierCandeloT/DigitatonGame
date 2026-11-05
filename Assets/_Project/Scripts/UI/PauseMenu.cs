@@ -39,7 +39,7 @@ public class PauseMenu : MonoBehaviour
         if (kb == null || !kb.escapeKey.wasPressedThisFrame) return;
 
         var gm = GameManager.Instance;
-        if (gm.IsTransitioning) return;
+        if (gm.IsTransitioning || gm.ResultsOpen) return;
 
         if (notebook != null && notebook.IsOpen) { notebook.Close(); return; }
         if (settingsPanel.gameObject.activeSelf) { settingsPanel.Back(); return; }

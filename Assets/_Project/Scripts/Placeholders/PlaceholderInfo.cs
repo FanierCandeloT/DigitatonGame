@@ -77,7 +77,8 @@ public class PlaceholderInfo : MonoBehaviour
         if (applyKindColor && TryGetComponent(out SpriteRenderer sr))
             sr.color = PlaceholderPalette.GetColor(kind);
 
-        EnsureLabel();
+        // El texto solo se crea si se va a mostrar (así los muros y objetos sin etiqueta no cuestan nada).
+        if (showLabel) EnsureLabel();
         UpdateLabel();
     }
 

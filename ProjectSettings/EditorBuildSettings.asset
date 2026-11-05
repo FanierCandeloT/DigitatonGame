@@ -9,20 +9,41 @@ EditorBuildSettings:
     path: Assets/_Project/Scenes/MainMenu.unity
     guid: 01caadb6567c9914aac8d2e8c44ac14d
   - enabled: 1
-    path: Assets/_Project/Scenes/Intro.unity
-    guid: b6329260408312a4e9718221daec9e05
+    path: Assets/_Project/Scenes/Campus.unity
+    guid: a37c570a62a86d147b190c91bbb42a25
+  - enabled: 1
+    path: Assets/_Project/Scenes/Aulas1.unity
+    guid: 72398a98a26ed0346afe19abf912e603
+  - enabled: 1
+    path: Assets/_Project/Scenes/Aulas2.unity
+    guid: 55858cf01981f2f4a8cbad5cd0bcb666
+  - enabled: 1
+    path: Assets/_Project/Scenes/Aulas3.unity
+    guid: 99ffc6b8992ee77468786fcec513ce31
+  - enabled: 1
+    path: Assets/_Project/Scenes/Aulas4.unity
+    guid: fd88d03d6cd5e784287e8c27d45e6769
+  - enabled: 1
+    path: Assets/_Project/Scenes/EdificioCentral.unity
+    guid: e5ab9f1264fccbd4ba168440783c3767
+  - enabled: 1
+    path: Assets/_Project/Scenes/Sotanos.unity
+    guid: b2fc32a2b0ccd8f4d93b67c0e4cad519
   - enabled: 1
     path: Assets/_Project/Scenes/Bienestar.unity
     guid: c23ad73ac99a97b42924fedf8bbf55b1
   - enabled: 1
-    path: Assets/_Project/Scenes/Campus.unity
-    guid: a37c570a62a86d147b190c91bbb42a25
+    path: Assets/_Project/Scenes/Cafeteria.unity
+    guid: 209c11e971eede34abbc33b492c00bee
   - enabled: 1
     path: Assets/_Project/Scenes/SalaProfesores.unity
     guid: 27d917ce175cd1347973fe97ac6152a6
   - enabled: 1
-    path: Assets/_Project/Scenes/Agora.unity
-    guid: f9dd214bf148993488f275e73025174f
+    path: Assets/_Project/Scenes/TechoAulas3.unity
+    guid: 907a98591f7e1a74ea2fc5269d28436b
+  - enabled: 1
+    path: Assets/_Project/Scenes/MuseoLili.unity
+    guid: ce937283ed96ee047b8e0fee1be19117
   - enabled: 1
     path: Assets/_Project/Scenes/Tutorial.unity
     guid: 863de3b1344a27548bb6a9ed174a98cf

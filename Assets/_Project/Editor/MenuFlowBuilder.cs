@@ -122,7 +122,7 @@ public static class MenuFlowBuilder
         return t;
     }
 
-    static void LayoutSize(GameObject go, float width, float height)
+    public static void LayoutSize(GameObject go, float width, float height)
     {
         var le = go.GetComponent<LayoutElement>();
         if (le == null) le = go.AddComponent<LayoutElement>();
@@ -131,7 +131,7 @@ public static class MenuFlowBuilder
     }
 
     /// <summary>Panel centrado con layout vertical.</summary>
-    static RectTransform VerticalPanel(string name, Transform parent, Vector2 size, Color bg, float spacing = 16f, int padding = 30)
+    public static RectTransform VerticalPanel(string name, Transform parent, Vector2 size, Color bg, float spacing = 16f, int padding = 30)
     {
         var img = NewImage(name, parent, bg);
         var rt = img.rectTransform;
@@ -162,7 +162,7 @@ public static class MenuFlowBuilder
         s.colors = c;
     }
 
-    static Button MakeButton(Transform parent, string text, float width = 360f, float height = 56f)
+    public static Button MakeButton(Transform parent, string text, float width = 360f, float height = 56f)
     {
         var go = TMP_DefaultControls.CreateButton(Res());
         go.name = text + " Button";
@@ -343,7 +343,7 @@ public static class MenuFlowBuilder
 
         PrefabUtility.SaveAsPrefabAsset(root, GameManagerPrefabPath);
         Object.DestroyImmediate(root);
-        CampusBuilder.EnsureToast();
+        StoryUiBuilder.EnsureAll();
     }
 
     // ───────────────────────── Escena MainMenu ─────────────────────────
@@ -401,7 +401,8 @@ public static class MenuFlowBuilder
         menu.settingsButton = settings;
         menu.buttonsRoot = buttonsRt.gameObject;
         menu.settingsPanel = settingsInstance.GetComponent<SettingsPanel>();
-        menu.playScene = "Campus";
+        menu.startScene = "Aulas2";
+        menu.startSpawn = "Aulas2_Intro";
         menu.tutorialScene = "Tutorial";
 
         GreyboxBuilder.SaveScene(scene, "MainMenu");

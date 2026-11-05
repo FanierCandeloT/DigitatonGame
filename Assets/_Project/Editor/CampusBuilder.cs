@@ -54,6 +54,7 @@ public static class CampusBuilder
         BuildWellbeingAndCafeteria();
         BuildGatesAndEntrances();
         BuildEastCourtyard();
+        BuildStoryObjects();
 
         // Puntos de aparición: el de por defecto en la portería oeste; el de Bienestar frente a su puerta (se conserva el id).
         var def = W(75f, 296f);
@@ -70,7 +71,7 @@ public static class CampusBuilder
 
     // ───────────────────────── Sprites ─────────────────────────
 
-    static void EnsureSprites()
+    public static void EnsureSprites()
     {
         square = MakeSprite("Square", false, SpriteAlignment.Center);
         squareBase = MakeSprite("SquareBase", false, SpriteAlignment.BottomCenter);
@@ -255,20 +256,34 @@ public static class CampusBuilder
     }
 
     /// <summary>Puerta amarilla. Si targetScene está vacío, muestra "Coming soon".</summary>
-    static GameObject Door(string name, Vector2 pos, Vector2 size, string description, string targetScene = "", string targetSpawn = "")
+    static GameObject Door(string name, Vector2 pos, Vector2 size, string description, string targetScene = "", string targetSpawn = "",
+        bool lockUntilBienestar = false)
     {
         var go = GreyboxBuilder.MakeDoor(name, pos, size, square, targetScene, targetSpawn);
         var info = go.GetComponent<PlaceholderInfo>();
         info.finalAssetDescription = description;
         info.labelFontSize = 4f;
+        if (lockUntilBienestar)
+        {
+            // Los edificios se abren después de Bienestar (preguntas 1-4); en modo desarrollo se abren solos.
+            var door = go.GetComponent<Door>();
+            door.requiredFlag = GameManager.FlagBienestarDone;
+            door.lockedMessage = "Locked for now.";
+            door.devBypass = true;
+        }
         return go;
     }
 
-    /// <summary>Puerta frontal de un edificio: en el borde sur de su base.</summary>
-    static GameObject FrontDoor(string name, float xPx, float basePx, string description, string targetScene = "", string targetSpawn = "")
+    /// <summary>
+    /// Puerta frontal de un edificio: en el borde sur de su base. Si returnSpawn no es nulo, crea ese SpawnPoint
+    /// frente a la puerta (a donde vuelve Andrés al salir del interior).
+    /// </summary>
+    static GameObject FrontDoor(string name, float xPx, float basePx, string description, string targetScene = "", string targetSpawn = "",
+        string returnSpawn = null, bool locked = true)
     {
         var b = W(xPx, basePx);
-        return Door(name, new Vector2(b.x, b.y - 0.5f), new Vector2(3f, 1.5f), description, targetScene, targetSpawn);
+        if (!string.IsNullOrEmpty(returnSpawn)) MakeSpawn(returnSpawn, new Vector2(b.x, b.y - 2.2f), false);
+        return Door(name, new Vector2(b.x, b.y - 0.5f), new Vector2(3f, 1.5f), description, targetScene, targetSpawn, locked && !string.IsNullOrEmpty(targetScene));
     }
 
     static void MakeSpawn(string id, Vector2 pos, bool isDefault) => GreyboxBuilder.MakeSpawn(id, pos, isDefault);
@@ -331,13 +346,13 @@ public static class CampusBuilder
     {
         var north = Building("Edificio Central - ala norte", PlaceholderKind.AdminBuilding, 100, 140, 305, 205,
             "Ala norte del Edificio Central: Recepción e información y bloque D2. Fachada de ladrillo con techo verde azulado, vista 3/4.");
-        FrontDoor("Puerta Recepción e información", 140, 205, "Puerta de la Recepción e información (Edificio Central, ala norte).");
-        FrontDoor("Puerta bloque D2", 217, 205, "Puerta del bloque D2 (Edificio Central, ala norte).");
+        FrontDoor("Puerta Recepción e información", 140, 205, "Puerta de la Recepción e información (Edificio Central, ala norte).", "EdificioCentral", "EC_Recepcion", "Campus_EC_Recepcion");
+        FrontDoor("Puerta bloque D2", 217, 205, "Puerta del bloque D2 (Edificio Central, ala norte).", "EdificioCentral", "EC_D2", "Campus_EC_D2");
 
         Building("Edificio Central - centro (Salón Lili y Auditorio Quincha)", PlaceholderKind.AdminBuilding, 100, 217, 200, 258,
             "Centro del Edificio Central: Salón Lili y Auditorio Quincha. Fachada de ladrillo, vista 3/4.");
-        FrontDoor("Puerta Salón Lili", 125, 258, "Puerta del Salón Lili.");
-        FrontDoor("Puerta Auditorio Quincha", 175, 258, "Puerta del Auditorio Quincha.");
+        FrontDoor("Puerta Salón Lili", 125, 258, "Puerta del Salón Lili.", "EdificioCentral", "EC_SalonLili", "Campus_EC_SalonLili");
+        FrontDoor("Puerta Auditorio Quincha", 175, 258, "Puerta del Auditorio Quincha.", "EdificioCentral", "EC_Quincha", "Campus_EC_Quincha");
 
         // Domo blanco al lado este del centro
         var domePos = W(280, 275);
@@ -351,12 +366,12 @@ public static class CampusBuilder
         col.offset = new Vector2(0f, col.size.y / 2f);
         Tag(dome, PlaceholderKind.AdminBuilding, "Domo (Edificio Central)",
             "Domo blanco con forma de cúpula acanalada, al lado este del centro del Edificio Central.", new Vector2(95 * S, 62 * S), true, 7f, false);
-        FrontDoor("Entrada al Domo", 280, 275, "Entrada al domo.");
+        FrontDoor("Entrada al Domo", 280, 275, "Entrada al domo.", "EdificioCentral", "EC_Domo", "Campus_EC_Domo");
 
         Building("Edificio Central - ala sur", PlaceholderKind.AdminBuilding, 100, 318, 305, 372,
             "Ala sur del Edificio Central: Biblioteca y Auditorio Yquinde. Fachada de ladrillo con techo verde azulado, vista 3/4.");
-        FrontDoor("Puerta Biblioteca", 140, 372, "Puerta de la Biblioteca (Edificio Central, ala sur).");
-        FrontDoor("Puerta Auditorio Yquinde", 250, 372, "Puerta del Auditorio Yquinde (Edificio Central, ala sur).");
+        FrontDoor("Puerta Biblioteca", 140, 372, "Puerta de la Biblioteca (Edificio Central, ala sur).", "EdificioCentral", "EC_Biblioteca", "Campus_EC_Biblioteca");
+        FrontDoor("Puerta Auditorio Yquinde", 250, 372, "Puerta del Auditorio Yquinde (Edificio Central, ala sur).", "EdificioCentral", "EC_Yquinde", "Campus_EC_Yquinde");
     }
 
     static void BuildAgora()
@@ -394,23 +409,23 @@ public static class CampusBuilder
         const string aulas = "Edificio de aulas: techo verde azulado con paneles solares, fachada de ladrillo y torre de escaleras, vista 3/4.";
 
         Building("Aulas 1", PlaceholderKind.ClassroomBuilding, 478, 315, 640, 395, aulas);
-        FrontDoor("Puerta Aulas 1 (A)", 520, 395, "Puerta de Aulas 1.");
-        FrontDoor("Puerta Aulas 1 (B)", 600, 395, "Puerta de Aulas 1.");
+        FrontDoor("Puerta Aulas 1 (A)", 520, 395, "Puerta de Aulas 1.", "Aulas1", "Aulas1_A", "Campus_Aulas1_A");
+        FrontDoor("Puerta Aulas 1 (B)", 600, 395, "Puerta de Aulas 1.", "Aulas1", "Aulas1_B", "Campus_Aulas1_B");
         Building("Museo Lili", PlaceholderKind.AdminBuilding, 445, 318, 478, 395,
             "Museo Lili, en el extremo oeste de Aulas 1. Fachada de ladrillo con torre, vista 3/4.");
-        FrontDoor("Puerta Museo Lili", 461, 395, "Puerta del Museo Lili.");
+        FrontDoor("Puerta Museo Lili", 461, 395, "Puerta del Museo Lili.", "MuseoLili", "MuseoLili_Entrance", "Campus_MuseoLili");
 
         Building("Aulas 2", PlaceholderKind.ClassroomBuilding, 505, 200, 730, 270, aulas);
-        FrontDoor("Puerta Aulas 2 (A)", 560, 270, "Puerta de Aulas 2.");
-        FrontDoor("Puerta Aulas 2 (B)", 680, 270, "Puerta de Aulas 2.");
+        FrontDoor("Puerta Aulas 2 (A)", 560, 270, "Puerta de Aulas 2.", "Aulas2", "Aulas2_A", "Campus_Aulas2_A", false);
+        FrontDoor("Puerta Aulas 2 (B)", 680, 270, "Puerta de Aulas 2.", "Aulas2", "Aulas2_B", "Campus_Aulas2_B", false);
 
         Building("Aulas 3", PlaceholderKind.ClassroomBuilding, 600, 115, 830, 185, aulas);
-        FrontDoor("Puerta Aulas 3 (A)", 655, 185, "Puerta de Aulas 3.");
-        FrontDoor("Puerta Aulas 3 (B)", 775, 185, "Puerta de Aulas 3.");
+        FrontDoor("Puerta Aulas 3 (A)", 655, 185, "Puerta de Aulas 3.", "Aulas3", "Aulas3_A", "Campus_Aulas3_A");
+        FrontDoor("Puerta Aulas 3 (B)", 775, 185, "Puerta de Aulas 3.", "Aulas3", "Aulas3_B", "Campus_Aulas3_B");
 
         Building("Aulas 4", PlaceholderKind.ClassroomBuilding, 740, 40, 950, 110, aulas);
-        FrontDoor("Puerta Aulas 4 (A)", 795, 110, "Puerta de Aulas 4.");
-        FrontDoor("Puerta Aulas 4 (B)", 895, 110, "Puerta de Aulas 4.");
+        FrontDoor("Puerta Aulas 4 (A)", 795, 110, "Puerta de Aulas 4.", "Aulas4", "Aulas4_A", "Campus_Aulas4_A");
+        FrontDoor("Puerta Aulas 4 (B)", 895, 110, "Puerta de Aulas 4.", "Aulas4", "Aulas4_B", "Campus_Aulas4_B");
     }
 
     static void BuildWellbeingAndCafeteria()
@@ -419,13 +434,15 @@ public static class CampusBuilder
         Building("Cafetería UAO", PlaceholderKind.Food, 845, 195, 960, 305,
             "Cafetería UAO: barra vertical del edificio en L, techo verde azulado con paneles solares, vista 3/4.");
         var cafeDoorPos = W(842, 250);
-        Door("Puerta Cafetería", cafeDoorPos, new Vector2(1.5f, 3f), "Puerta de la Cafetería UAO (lado oeste).");
+        Door("Puerta Cafetería", cafeDoorPos, new Vector2(1.5f, 3f), "Puerta de la Cafetería UAO (lado oeste).",
+            "Cafeteria", "Cafeteria_Entrance", true);
+        MakeSpawn("Campus_Cafeteria", new Vector2(cafeDoorPos.x - 1.9f, cafeDoorPos.y), false);   // frente a la puerta, al oeste
 
         Building("Bienestar Universitario", PlaceholderKind.Health, 780, 305, 960, 385,
             "Bienestar Universitario y enfermería: barra horizontal del edificio en L, vista 3/4. Su puerta lleva a la escena Bienestar.");
         var b = W(870, 385);
         Door("Puerta a Bienestar", new Vector2(b.x, b.y - 0.5f), new Vector2(3f, 1.5f),
-            "Puerta de Bienestar Universitario. Lleva a la escena Bienestar.", "Bienestar", "Bienestar_Entrance");
+            "Puerta de Bienestar Universitario. Lleva a la escena Bienestar.", "Bienestar", "Bienestar_Entrance", true);
         // Aparece frente a la puerta (hacia el sur), dentro del alcance de "Press E"
         BienestarSpawn = new Vector2(b.x, b.y - 2.2f);
     }
@@ -438,8 +455,10 @@ public static class CampusBuilder
             "Entrada vehicular norte hacia el parqueadero norte (barrera y caseta).");
         Door("Portería vehicular sur", W(220, 431), new Vector2(3f, 1.5f),
             "Entrada vehicular sur hacia el parqueadero sur (barrera y caseta).");
-        Door("Entrada a sótanos", W(345, 350), new Vector2(3f, 1.5f),
-            "Rampa de entrada a los sótanos, al este del Edificio Central.");
+        var sot = W(345, 350);
+        Door("Entrada a sótanos", sot, new Vector2(3f, 1.5f),
+            "Rampa de entrada a los sótanos, al este del Edificio Central.", "Sotanos", "Sotanos_FromCampus", true);
+        MakeSpawn("Campus_Sotanos", new Vector2(sot.x, sot.y - 2.2f), false);
         Door("Entrada a almacén", W(590, 421), new Vector2(3f, 1.5f),
             "Entrada al almacén, al sur, cerca de Aulas 1.");
     }
@@ -465,5 +484,34 @@ public static class CampusBuilder
         toast.message = "Don Jairo: Welcome to UAO!";
         Tag(jairo, PlaceholderKind.NPC, "Don Jairo",
             "Sprite de Don Jairo, el portero de la entrada este (NPC, vista 3/4, 16x32 px).", new Vector2(1, 2), true, 5f);
+    }
+
+    /// <summary>Objetos del guion en el campus: disparador del Ágora y retos de las preguntas 5, 7 y 12.</summary>
+    static void BuildStoryObjects()
+    {
+        // Escena 5: al entrar por primera vez al círculo del Ágora, Andrés pierde la memoria y despierta en Bienestar.
+        var trigger = new GameObject("Disparador del Ágora");
+        trigger.transform.position = W(410, 250);
+        var circleCol = trigger.AddComponent<CircleCollider2D>();
+        circleCol.isTrigger = true;
+        circleCol.radius = 10f;
+        trigger.AddComponent<AgoraTrigger>();
+        Tag(trigger, PlaceholderKind.Interactive, "Disparador del Ágora (Escena 5)",
+            "Zona invisible del círculo del Ágora: la primera vez que Andrés entra se pierde la memoria y se carga Bienestar.", new Vector2(20, 20), false);
+
+        // Pregunta 5: candado en la portería este, junto a Don Jairo
+        InteriorsBuilder.Challenge("Candado (Question 5)", W(956, 160), new Vector2(1.2f, 1.2f), "q5", "Question 5 – Padlock", 1,
+            "Candado de la portería este, junto a Don Jairo (sprite de candado, vista 3/4). Reto de la pregunta 5.");
+
+        // Pregunta 7: canecas junto a Aulas 1, con Valentina
+        InteriorsBuilder.Challenge("Canecas (Question 7)", W(653, 371), new Vector2(2f, 1.4f), "q7", "Question 7 – Trash bins", 1,
+            "Canecas de reciclaje junto a Aulas 1 (sprite de canecas de colores, vista 3/4). Reto de la pregunta 7.");
+        InteriorsBuilder.Npc("Valentina (canecas)", W(666, 377), "Valentina: (dialogue pending)",
+            "Sprite de Valentina junto a las canecas de Aulas 1 (NPC, vista 3/4, 16x32 px).");
+
+        // Pregunta 12: las 8 palmas del Ágora (solo se activa con 11 recuerdos)
+        InteriorsBuilder.Challenge("Palmas del Ágora (Question 12)", W(436, 205), new Vector2(1.6f, 1.6f), "q12", "Question 12 – Agora palms", 1,
+            "Marcador de las 8 palmas del Ágora (se activa con 11 recuerdos). Reto final de la pregunta 12.",
+            required: 11, locked: "Something is still missing... (needs 11 memories)", ends: true);
     }
 }
