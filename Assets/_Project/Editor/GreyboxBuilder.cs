@@ -300,10 +300,10 @@ public static class GreyboxBuilder
     public static void AddBounds(Vector2 size)
     {
         var go = new GameObject("MapBounds");
-        var box = go.AddComponent<BoxCollider2D>();
+        go.AddComponent<MapBounds>();                    // su Reset() fija un tamaño por defecto: va primero
+        var box = go.GetComponent<BoxCollider2D>();
         box.isTrigger = true;
         box.size = size;
-        go.AddComponent<MapBounds>();
     }
 
     /// <summary>Muros negros alrededor de un rectángulo (centrado en el origen).</summary>

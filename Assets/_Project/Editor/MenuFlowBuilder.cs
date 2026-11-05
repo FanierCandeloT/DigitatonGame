@@ -69,7 +69,7 @@ public static class MenuFlowBuilder
         mask = AssetDatabase.GetBuiltinExtraResource<Sprite>("UI/Skin/UIMask.psd"),
     };
 
-    static GameObject MakeCanvas(string name, int sortingOrder, bool raycaster = true)
+    public static GameObject MakeCanvas(string name, int sortingOrder, bool raycaster = true)
     {
         var go = new GameObject(name, typeof(RectTransform), typeof(Canvas), typeof(CanvasScaler));
         var canvas = go.GetComponent<Canvas>();
@@ -84,14 +84,14 @@ public static class MenuFlowBuilder
         return go;
     }
 
-    static RectTransform NewRect(string name, Transform parent)
+    public static RectTransform NewRect(string name, Transform parent)
     {
         var go = new GameObject(name, typeof(RectTransform));
         go.transform.SetParent(parent, false);
         return (RectTransform)go.transform;
     }
 
-    static void Stretch(RectTransform r)
+    public static void Stretch(RectTransform r)
     {
         r.anchorMin = Vector2.zero;
         r.anchorMax = Vector2.one;
@@ -99,7 +99,7 @@ public static class MenuFlowBuilder
         r.offsetMax = Vector2.zero;
     }
 
-    static Image NewImage(string name, Transform parent, Color color)
+    public static Image NewImage(string name, Transform parent, Color color)
     {
         var rt = NewRect(name, parent);
         var img = rt.gameObject.AddComponent<Image>();
@@ -107,7 +107,7 @@ public static class MenuFlowBuilder
         return img;
     }
 
-    static TMP_Text NewText(string name, Transform parent, string text, float size,
+    public static TMP_Text NewText(string name, Transform parent, string text, float size,
         TextAlignmentOptions align = TextAlignmentOptions.Center, FontStyles style = FontStyles.Normal)
     {
         var rt = NewRect(name, parent);
@@ -343,6 +343,7 @@ public static class MenuFlowBuilder
 
         PrefabUtility.SaveAsPrefabAsset(root, GameManagerPrefabPath);
         Object.DestroyImmediate(root);
+        CampusBuilder.EnsureToast();
     }
 
     // ───────────────────────── Escena MainMenu ─────────────────────────
