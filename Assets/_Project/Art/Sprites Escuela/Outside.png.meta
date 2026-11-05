@@ -171,234 +171,256 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: tree_green_a
+      name: Outside_0
       rect:
         serializedVersion: 2
-        x: 8
-        y: 210
-        width: 140
-        height: 228
+        x: 7
+        y: 209
+        width: 142
+        height: 230
       alignment: 9
-      pivot: {x: 0.5, y: 0.12280702}
+      pivot: {x: 0.5, y: 0.02}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: f10ca63baacd112499f188882b698b59
-      internalID: 977688574
+      spriteID: 233721fc046ba3600800000000000000
+      internalID: 448871502345040690
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tree_pink
+      name: Outside_1
       rect:
         serializedVersion: 2
-        x: 191
-        y: 207
-        width: 158
-        height: 232
-      alignment: 9
-      pivot: {x: 0.44, y: 0.12931034}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b66960579ee39a644a6064cd0326a485
-      internalID: -1423598382
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: tree_olive
-      rect:
-        serializedVersion: 2
-        x: 17
+        x: 172
         y: 0
-        width: 132
-        height: 193
+        width: 178
+        height: 439
       alignment: 9
-      pivot: {x: 0.37, y: 0.015544041}
+      pivot: {x: 0.5, y: 0.02}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 7a72a1968eb6e1c4d831df1155e3a989
-      internalID: 1204008423
+      spriteID: 51f0aaeed56f33070800000000000000
+      internalID: 8085076639356686101
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tree_green_b
+      name: Outside_2
       rect:
         serializedVersion: 2
-        x: 206
-        y: 0
-        width: 111
-        height: 186
+        x: 390
+        y: 342
+        width: 35
+        height: 51
       alignment: 9
-      pivot: {x: 0.41, y: 0.016129032}
+      pivot: {x: 0.5, y: 0.02}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: c3dca3628c1765b459d1ceec88f400ab
-      internalID: 635969253
+      spriteID: fa424675de30243e0800000000000000
+      internalID: -2071088560728693585
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bush_small
+      name: Outside_3
       rect:
         serializedVersion: 2
-        x: 391
-        y: 343
-        width: 33
-        height: 49
+        x: 439
+        y: 312
+        width: 41
+        height: 121
       alignment: 9
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: 0.5, y: 0.02}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 40858fa3ca5611a4fa7fdf92ee58aa23
-      internalID: 953825605
+      spriteID: ce0aadcb2242d7de0800000000000000
+      internalID: -1333870183015866132
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: vine_a
+      name: Outside_4
+      rect:
+        serializedVersion: 2
+        x: 527
+        y: 303
+        width: 96
+        height: 90
+      alignment: 9
+      pivot: {x: 0.5, y: 0.02}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 52a3dc1af43bd8110800000000000000
+      internalID: 1264864224959347237
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Outside_5
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 197
+        width: 41
+        height: 93
+      alignment: 9
+      pivot: {x: 0.5, y: 0.02}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7464763c4da0d0240800000000000000
+      internalID: 4759472290128152135
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Outside_6
+      rect:
+        serializedVersion: 2
+        x: 404
+        y: 276
+        width: 14
+        height: 19
+      alignment: 9
+      pivot: {x: 0.5, y: 0.02}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 919890e519a73f370800000000000000
+      internalID: 8355156498468931865
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Outside_7
       rect:
         serializedVersion: 2
         x: 440
-        y: 343
-        width: 39
-        height: 52
+        y: 241
+        width: 37
+        height: 28
       alignment: 9
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: 0.5, y: 0.02}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: d7b0daf7d13741549990e7e83a4db57d
-      internalID: -1435580246
+      spriteID: f45e4b1b93764ae50800000000000000
+      internalID: 6819689233237992783
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: vine_tall
+      name: Outside_8
       rect:
         serializedVersion: 2
-        x: 391
-        y: 198
-        width: 39
-        height: 96
-      alignment: 9
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 847a65889ef9ecb48a4878243a2cb013
-      internalID: -1850246398
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: bush_purple
-      rect:
-        serializedVersion: 2
-        x: 441
-        y: 243
-        width: 35
-        height: 25
-      alignment: 9
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0a47b98e6eaa89749a3525c8ba8de43c
-      internalID: 1751589968
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: flower
-      rect:
-        serializedVersion: 2
-        x: 452
-        y: 151
-        width: 13
-        height: 24
-      alignment: 9
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 800af78fb9afcc94a9e4d95e74eeae95
-      internalID: -1910750930
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ground_dirt
-      rect:
-        serializedVersion: 2
-        x: 528
-        y: 304
-        width: 94
+        x: 527
+        y: 160
+        width: 92
         height: 88
       alignment: 9
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: 0.5, y: 0.02}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: e03a90380464c5e4e8ef7132f7d6daff
-      internalID: 348429391
+      spriteID: 60f91c10df8330e00800000000000000
+      internalID: 1009713400768470790
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ground_cobble
+      name: Outside_9
       rect:
         serializedVersion: 2
-        x: 528
-        y: 161
-        width: 90
-        height: 86
+        x: 16
+        y: 0
+        width: 134
+        height: 194
       alignment: 9
+      pivot: {x: 0.5, y: 0.02}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a4effcf84fca4b910800000000000000
+      internalID: 1852295513140887114
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Outside_10
+      rect:
+        serializedVersion: 2
+        x: 451
+        y: 150
+        width: 15
+        height: 26
+      alignment: 9
+      pivot: {x: 0.5, y: 0.02}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6c6ac5f2313e92e90800000000000000
+      internalID: -7049854070133315898
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deco_tree_a
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 209
+        width: 142
+        height: 230
+      alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
@@ -406,8 +428,118 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 613b4b36c54f0404baacba3f7f28cf8a
-      internalID: -819415990
+      spriteID: 4a390f4043417534d9dc0191a426e301
+      internalID: 1179735798
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deco_tree_b
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 0
+        width: 134
+        height: 194
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5aa6c5ae1cf80eb429b9d862d22a3af3
+      internalID: -1272607754
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deco_bush_leaf
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 342
+        width: 35
+        height: 51
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c89edf9ce2ed7648975864c7c8f86ec
+      internalID: 1777027029
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deco_bush_vine
+      rect:
+        serializedVersion: 2
+        x: 439
+        y: 312
+        width: 41
+        height: 121
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff02b1185c374fd4cacde70e78836e20
+      internalID: -1817694644
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deco_bush_small
+      rect:
+        serializedVersion: 2
+        x: 440
+        y: 241
+        width: 37
+        height: 28
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3846c19e1eb971f468ed480b470635a0
+      internalID: 1607718378
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deco_flower_red
+      rect:
+        serializedVersion: 2
+        x: 451
+        y: 150
+        width: 15
+        height: 26
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df6f7f97d2c3e324dae31df46befcc78
+      internalID: -999303831
       vertices: []
       indices: 
       edges: []
@@ -437,17 +569,12 @@ TextureImporter:
       Outside_7: 6819689233237992783
       Outside_8: 1009713400768470790
       Outside_9: 1852295513140887114
-      bush_purple: 1751589968
-      bush_small: 953825605
-      flower: -1910750930
-      ground_cobble: -819415990
-      ground_dirt: 348429391
-      tree_green_a: 977688574
-      tree_green_b: 635969253
-      tree_olive: 1204008423
-      tree_pink: -1423598382
-      vine_a: -1435580246
-      vine_tall: -1850246398
+      deco_bush_leaf: 1777027029
+      deco_bush_small: 1607718378
+      deco_bush_vine: -1817694644
+      deco_flower_red: -999303831
+      deco_tree_a: 1179735798
+      deco_tree_b: -1272607754
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
