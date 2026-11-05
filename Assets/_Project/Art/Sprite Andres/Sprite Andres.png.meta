@@ -1,0 +1,1061 @@
+fileFormatVersion: 2
+guid: da0e2b2105bafde4c9e1d07d7b04e874
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -5200278275831786204
+    second: Hoja de sprites pixel art transparente_0
+  - first:
+      213: 2433473065538592098
+    second: Hoja de sprites pixel art transparente_1
+  - first:
+      213: 3606074465950138385
+    second: Hoja de sprites pixel art transparente_2
+  - first:
+      213: -4139540296537403727
+    second: Hoja de sprites pixel art transparente_3
+  - first:
+      213: -8705929745122407849
+    second: Hoja de sprites pixel art transparente_4
+  - first:
+      213: -8381960453181566694
+    second: Hoja de sprites pixel art transparente_5
+  - first:
+      213: -2170850651211529587
+    second: Hoja de sprites pixel art transparente_6
+  - first:
+      213: -9005031821177351113
+    second: Hoja de sprites pixel art transparente_7
+  - first:
+      213: 4545020462157838716
+    second: Hoja de sprites pixel art transparente_8
+  - first:
+      213: 3429000712434770648
+    second: Hoja de sprites pixel art transparente_9
+  - first:
+      213: 340674768685361669
+    second: Hoja de sprites pixel art transparente_10
+  - first:
+      213: 7444941437619608413
+    second: Hoja de sprites pixel art transparente_11
+  - first:
+      213: 8583804547802597831
+    second: Hoja de sprites pixel art transparente_12
+  - first:
+      213: 290478739075336289
+    second: Hoja de sprites pixel art transparente_13
+  - first:
+      213: -368195706398370644
+    second: Hoja de sprites pixel art transparente_14
+  - first:
+      213: -8784978125482748262
+    second: Hoja de sprites pixel art transparente_15
+  - first:
+      213: -319232516756631324
+    second: Hoja de sprites pixel art transparente_16
+  - first:
+      213: -452491165234390167
+    second: Hoja de sprites pixel art transparente_17
+  - first:
+      213: -6965810526430030856
+    second: Hoja de sprites pixel art transparente_18
+  - first:
+      213: 6462671209175500863
+    second: Hoja de sprites pixel art transparente_19
+  - first:
+      213: -8764515327404576653
+    second: Hoja de sprites pixel art transparente_20
+  - first:
+      213: 4064954752304200251
+    second: Hoja de sprites pixel art transparente_21
+  - first:
+      213: 4850523283810300198
+    second: Hoja de sprites pixel art transparente_22
+  - first:
+      213: -2151638030615686657
+    second: Hoja de sprites pixel art transparente_23
+  - first:
+      213: 5194231140546705802
+    second: Hoja de sprites pixel art transparente_24
+  - first:
+      213: -8318768736623057001
+    second: Hoja de sprites pixel art transparente_25
+  - first:
+      213: -468967952300382824
+    second: Hoja de sprites pixel art transparente_26
+  - first:
+      213: -6341733262262330751
+    second: Hoja de sprites pixel art transparente_27
+  - first:
+      213: 4206264545520997745
+    second: Hoja de sprites pixel art transparente_28
+  - first:
+      213: 7614134907771751450
+    second: Hoja de sprites pixel art transparente_29
+  - first:
+      213: -3943678449939759366
+    second: Hoja de sprites pixel art transparente_30
+  - first:
+      213: 8740386762374889311
+    second: Hoja de sprites pixel art transparente_31
+  - first:
+      213: -3007965002013443796
+    second: Hoja de sprites pixel art transparente_32
+  - first:
+      213: 1363789426386110792
+    second: Hoja de sprites pixel art transparente_33
+  - first:
+      213: 923216640046665697
+    second: Hoja de sprites pixel art transparente_34
+  - first:
+      213: 551113710348239272
+    second: Hoja de sprites pixel art transparente_35
+  - first:
+      213: 6438712359802480031
+    second: Hoja de sprites pixel art transparente_36
+  - first:
+      213: 8467356184674802215
+    second: Hoja de sprites pixel art transparente_37
+  - first:
+      213: -7320807632245544546
+    second: Hoja de sprites pixel art transparente_38
+  - first:
+      213: 6857878082385274668
+    second: Hoja de sprites pixel art transparente_39
+  - first:
+      213: -5418113242120049962
+    second: Hoja de sprites pixel art transparente_40
+  - first:
+      213: -455799939405633645
+    second: Hoja de sprites pixel art transparente_41
+  - first:
+      213: 7033507306027079519
+    second: Hoja de sprites pixel art transparente_42
+  - first:
+      213: -1456425956001598008
+    second: Hoja de sprites pixel art transparente_43
+  - first:
+      213: -2251645065502129790
+    second: Hoja de sprites pixel art transparente_44
+  - first:
+      213: 540356025269233520
+    second: Hoja de sprites pixel art transparente_45
+  - first:
+      213: 1443201636535867589
+    second: Hoja de sprites pixel art transparente_46
+  - first:
+      213: 4627479345190952507
+    second: Hoja de sprites pixel art transparente_47
+  - first:
+      213: -7426117203236442897
+    second: Hoja de sprites pixel art transparente_48
+  - first:
+      213: -8809128642457090986
+    second: Hoja de sprites pixel art transparente_49
+  - first:
+      213: 6896121187487493346
+    second: Hoja de sprites pixel art transparente_50
+  - first:
+      213: 2067335552596213713
+    second: Hoja de sprites pixel art transparente_51
+  - first:
+      213: 5089102806235424814
+    second: Hoja de sprites pixel art transparente_52
+  - first:
+      213: -5913225146474941282
+    second: Hoja de sprites pixel art transparente_53
+  - first:
+      213: -4509766559577916887
+    second: Hoja de sprites pixel art transparente_54
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationMethod: 0
+  spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Hoja de sprites pixel art transparente_0
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 1219
+        width: 135
+        height: 175
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4259ddbd576e4d7b0800000000000000
+      internalID: -5200278275831786204
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hoja de sprites pixel art transparente_1
+      rect:
+        serializedVersion: 2
+        x: 187
+        y: 1220
+        width: 139
+        height: 175
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 26d98e92cde65c120800000000000000
+      internalID: 2433473065538592098
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hoja de sprites pixel art transparente_2
+      rect:
+        serializedVersion: 2
+        x: 363
+        y: 1220
+        width: 135
+        height: 175
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1108098fe995b0230800000000000000
+      internalID: 3606074465950138385
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hoja de sprites pixel art transparente_3
+      rect:
+        serializedVersion: 2
+        x: 537
+        y: 1227
+        width: 143
+        height: 175
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1be097358066d86c0800000000000000
+      internalID: -4139540296537403727
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hoja de sprites pixel art transparente_4
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 1052
+        width: 135
+        height: 165
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 75ac876d5035e2780800000000000000
+      internalID: -8705929745122407849
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hoja de sprites pixel art transparente_5
+      rect:
+        serializedVersion: 2
+        x: 178
+        y: 1052
+        width: 143
+        height: 163
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a119dba906b4dab80800000000000000
+      internalID: -8381960453181566694
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hoja de sprites pixel art transparente_6
+      rect:
+        serializedVersion: 2
+        x: 358
+        y: 1052
+        width: 142
+        height: 175
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d828c1a95d69fd1e0800000000000000
+      internalID: -2170850651211529587
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hoja de sprites pixel art transparente_7
+      rect:
+        serializedVersion: 2
+        x: 537
+        y: 1052
+        width: 137
+        height: 175
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 73492a3f443b70380800000000000000
+      internalID: -9005031821177351113
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hoja de sprites pixel art transparente_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 877
+        width: 146
+        height: 175
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c79bccf9708231f30800000000000000
+      internalID: 4545020462157838716
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hoja de sprites pixel art transparente_9
+      rect:
+        serializedVersion: 2
+        x: 179
+        y: 877
+        width: 140
+        height: 175
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8d26c37faf1469f20800000000000000
+      internalID: 3429000712434770648
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hoja de sprites pixel art transparente_10
+      rect:
+        serializedVersion: 2
+        x: 358
+        y: 877
+        width: 139
+        height: 175
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 50aed6ba5e15ab400800000000000000
+      internalID: 340674768685361669
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hoja de sprites pixel art transparente_11
+      rect:
+        serializedVersion: 2
+        x: 546
+        y: 877
+        width: 133
+        height: 175
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d5b17e2eaceb15760800000000000000
+      internalID: 7444941437619608413
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hoja de sprites pixel art transparente_12
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 702
+        width: 138
+        height: 166
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c9082dd1cccf1770800000000000000
+      internalID: 8583804547802597831
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hoja de sprites pixel art transparente_13
+      rect:
+        serializedVersion: 2
+        x: 179
+        y: 702
+        width: 145
+        height: 166
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1688369cfdcf70400800000000000000
+      internalID: 290478739075336289
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hoja de sprites pixel art transparente_14
+      rect:
+        serializedVersion: 2
+        x: 361
+        y: 702
+        width: 136
+        height: 175
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ca41d40b4f7e3eaf0800000000000000
+      internalID: -368195706398370644
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hoja de sprites pixel art transparente_15
+      rect:
+        serializedVersion: 2
+        x: 537
+        y: 702
+        width: 132
+        height: 168
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a96160f80fc751680800000000000000
+      internalID: -8784978125482748262
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hoja de sprites pixel art transparente_16
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 548
+        width: 136
+        height: 154
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4e097f5a7bbd19bf0800000000000000
+      internalID: -319232516756631324
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hoja de sprites pixel art transparente_17
+      rect:
+        serializedVersion: 2
+        x: 179
+        y: 550
+        width: 125
+        height: 152
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 96b9330cead68b9f0800000000000000
+      internalID: -452491165234390167
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hoja de sprites pixel art transparente_18
+      rect:
+        serializedVersion: 2
+        x: 358
+        y: 549
+        width: 131
+        height: 153
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8f3167f8b38745f90800000000000000
+      internalID: -6965810526430030856
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hoja de sprites pixel art transparente_19
+      rect:
+        serializedVersion: 2
+        x: 537
+        y: 549
+        width: 127
+        height: 153
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f38cc0b593500b950800000000000000
+      internalID: 6462671209175500863
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hoja de sprites pixel art transparente_20
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 400
+        width: 116
+        height: 153
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 37075910fbf2e5680800000000000000
+      internalID: -8764515327404576653
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hoja de sprites pixel art transparente_21
+      rect:
+        serializedVersion: 2
+        x: 193
+        y: 401
+        width: 118
+        height: 153
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b3ab0276fce996830800000000000000
+      internalID: 4064954752304200251
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hoja de sprites pixel art transparente_22
+      rect:
+        serializedVersion: 2
+        x: 358
+        y: 397
+        width: 128
+        height: 152
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 621364a3a35805340800000000000000
+      internalID: 4850523283810300198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hoja de sprites pixel art transparente_23
+      rect:
+        serializedVersion: 2
+        x: 537
+        y: 400
+        width: 125
+        height: 152
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ff15eeb6c98d322e0800000000000000
+      internalID: -2151638030615686657
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hoja de sprites pixel art transparente_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 216
+        width: 147
+        height: 175
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a89fe8db3bd951840800000000000000
+      internalID: 5194231140546705802
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hoja de sprites pixel art transparente_25
+      rect:
+        serializedVersion: 2
+        x: 189
+        y: 217
+        width: 152
+        height: 175
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 79725f4a8ebcd8c80800000000000000
+      internalID: -8318768736623057001
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hoja de sprites pixel art transparente_26
+      rect:
+        serializedVersion: 2
+        x: 364
+        y: 214
+        width: 132
+        height: 175
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 895e710d124ed79f0800000000000000
+      internalID: -468967952300382824
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hoja de sprites pixel art transparente_27
+      rect:
+        serializedVersion: 2
+        x: 543
+        y: 215
+        width: 161
+        height: 175
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 18a139aa233adf7a0800000000000000
+      internalID: -6341733262262330751
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hoja de sprites pixel art transparente_28
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 20
+        width: 148
+        height: 175
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 17559138157af5a30800000000000000
+      internalID: 4206264545520997745
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hoja de sprites pixel art transparente_29
+      rect:
+        serializedVersion: 2
+        x: 184
+        y: 18
+        width: 165
+        height: 187
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a1c03a17b57daa960800000000000000
+      internalID: 7614134907771751450
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hoja de sprites pixel art transparente_30
+      rect:
+        serializedVersion: 2
+        x: 362
+        y: 18
+        width: 138
+        height: 178
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: afe3af2285d3549c0800000000000000
+      internalID: -3943678449939759366
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hoja de sprites pixel art transparente_31
+      rect:
+        serializedVersion: 2
+        x: 533
+        y: 19
+        width: 159
+        height: 187
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f5fb1eaa3771c4970800000000000000
+      internalID: 8740386762374889311
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 9bc8c931dad3f1b48ad8aadb8debb80b
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":4.0,"y":8.0},"gridSpriteSize":{"x":179.0,"y":175.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      Hoja de sprites pixel art transparente_0: -5200278275831786204
+      Hoja de sprites pixel art transparente_1: 2433473065538592098
+      Hoja de sprites pixel art transparente_10: 340674768685361669
+      Hoja de sprites pixel art transparente_11: 7444941437619608413
+      Hoja de sprites pixel art transparente_12: 8583804547802597831
+      Hoja de sprites pixel art transparente_13: 290478739075336289
+      Hoja de sprites pixel art transparente_14: -368195706398370644
+      Hoja de sprites pixel art transparente_15: -8784978125482748262
+      Hoja de sprites pixel art transparente_16: -319232516756631324
+      Hoja de sprites pixel art transparente_17: -452491165234390167
+      Hoja de sprites pixel art transparente_18: -6965810526430030856
+      Hoja de sprites pixel art transparente_19: 6462671209175500863
+      Hoja de sprites pixel art transparente_2: 3606074465950138385
+      Hoja de sprites pixel art transparente_20: -8764515327404576653
+      Hoja de sprites pixel art transparente_21: 4064954752304200251
+      Hoja de sprites pixel art transparente_22: 4850523283810300198
+      Hoja de sprites pixel art transparente_23: -2151638030615686657
+      Hoja de sprites pixel art transparente_24: 5194231140546705802
+      Hoja de sprites pixel art transparente_25: -8318768736623057001
+      Hoja de sprites pixel art transparente_26: -468967952300382824
+      Hoja de sprites pixel art transparente_27: -6341733262262330751
+      Hoja de sprites pixel art transparente_28: 4206264545520997745
+      Hoja de sprites pixel art transparente_29: 7614134907771751450
+      Hoja de sprites pixel art transparente_3: -4139540296537403727
+      Hoja de sprites pixel art transparente_30: -3943678449939759366
+      Hoja de sprites pixel art transparente_31: 8740386762374889311
+      Hoja de sprites pixel art transparente_4: -8705929745122407849
+      Hoja de sprites pixel art transparente_5: -8381960453181566694
+      Hoja de sprites pixel art transparente_6: -2170850651211529587
+      Hoja de sprites pixel art transparente_7: -9005031821177351113
+      Hoja de sprites pixel art transparente_8: 4545020462157838716
+      Hoja de sprites pixel art transparente_9: 3429000712434770648
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
