@@ -135,7 +135,7 @@ public class MemoryReconstructionGame : MonoBehaviour
     Action<MemoryResult> onComplete;
     readonly MemoryResult result = new MemoryResult();
 
-    static MemoryReconstructionGame current;
+    GameManager.ModalLock modalLock;
 
     /// <summary>Errores cometidos hasta ahora (servirá para la puntuación de precisión).</summary>
     public int Errors => result.Errors;
@@ -147,19 +147,14 @@ public class MemoryReconstructionGame : MonoBehaviour
         var game = canvas.gameObject.AddComponent<MemoryReconstructionGame>();
         game.onComplete = onComplete;
         game.Build();
-        current = game;
-        GameManager.Instance.MinigameOpen = true;
+        game.modalLock = GameManager.Instance.LockInput();   // Andrés queda quieto mientras dura el reto
         return game;
     }
 
     void OnDestroy()
     {
-        // Si el minijuego desaparece por un cambio de escena, el jugador no puede quedar bloqueado.
-        if (current == this)
-        {
-            current = null;
-            if (GameManager.Exists) GameManager.Instance.MinigameOpen = false;
-        }
+        // Si el minijuego desaparece por un cambio de escena, el jugador no puede quedar bloqueado (Release es idempotente).
+        modalLock?.Release();
     }
 
     // ───────────── Construcción de la interfaz ─────────────
@@ -274,7 +269,7 @@ public class MemoryReconstructionGame : MonoBehaviour
 
     void BuildColumn(List<(string text, bool plural)> items, int column)
     {
-        Shuffle(items);
+        ErrorHuntContent.Shuffle(items);
         float top = BoardCenterY + (items.Count - 1) * RowGap * 0.5f;
         for (int i = 0; i < items.Count; i++)
         {
@@ -644,7 +639,7 @@ public class MemoryReconstructionGame : MonoBehaviour
 
     void Finish()
     {
-        GameManager.Instance.MinigameOpen = false;
+        modalLock?.Release();
         var callback = onComplete;
         Destroy(gameObject);
         callback?.Invoke(result);
@@ -670,12 +665,4 @@ public class MemoryReconstructionGame : MonoBehaviour
         return delta.magnitude;
     }
 
-    static void Shuffle<T>(List<T> list)
-    {
-        for (int i = list.Count - 1; i > 0; i--)
-        {
-            int j = UnityEngine.Random.Range(0, i + 1);
-            (list[i], list[j]) = (list[j], list[i]);
-        }
-    }
 }

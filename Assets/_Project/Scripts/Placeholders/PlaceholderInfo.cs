@@ -35,6 +35,12 @@ public class PlaceholderInfo : MonoBehaviour
 
     TextMeshPro label;
 
+    /// <summary>
+    /// Los rótulos de nombre son solo para el equipo: se ven en el Editor y en compilaciones de desarrollo, pero NO en la versión
+    /// final. Así el juego publicado no crea cientos de objetos de texto (el Campus tiene 83 placeholders y EdificioCentral 121).
+    /// </summary>
+    public static bool LabelsEnabled => Application.isEditor || Debug.isDebugBuild;
+
     void OnEnable() => ScheduleRefresh();
 
     void OnValidate()
@@ -78,7 +84,7 @@ public class PlaceholderInfo : MonoBehaviour
             sr.color = PlaceholderPalette.GetColor(kind);
 
         // El texto solo se crea si se va a mostrar (así los muros y objetos sin etiqueta no cuestan nada).
-        if (showLabel) EnsureLabel();
+        if (showLabel && LabelsEnabled) EnsureLabel();
         UpdateLabel();
     }
 

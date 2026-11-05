@@ -13,6 +13,9 @@ public class ClassLessonInteractable : Interactable
     [Tooltip("Fracción del puntaje máximo que hay que alcanzar para aprobar.")]
     [Range(0.4f, 1f)] public float passFraction = 0.7f;
 
+    [Tooltip("Recuerdos que da la lección al aprobarla (recuerdo de clase: el reto 4 de la historia).")]
+    [Min(0)] public int memoryReward = 2;
+
     public DialogueLine[] intro =
     {
         new DialogueLine("Andrés", "Good morning, class! Today we are practicing the passive voice."),
@@ -49,7 +52,7 @@ public class ClassLessonInteractable : Interactable
         }
 
         var gm = GameManager.Instance;
-        gm.CompleteChallenge(challengeId, 0);
+        gm.CompleteChallenge(challengeId, memoryReward);
         gm.SetStat(challengeId + ":score", result.Score);
         gm.SetStat(challengeId + ":max", result.MaxScore);
         gm.SetStat(challengeId + ":attempts", result.Attempts);
