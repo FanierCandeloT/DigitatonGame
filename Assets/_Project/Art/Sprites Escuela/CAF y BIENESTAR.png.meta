@@ -40,7 +40,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -51,10 +51,10 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 48
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -80,7 +80,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -144,45 +144,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: CAF y BIENESTAR_0
+      name: CAF_BIENESTAR
       rect:
         serializedVersion: 2
         x: 0
-        y: 453
-        width: 5
-        height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        y: 0
+        width: 1536
+        height: 1024
+      alignment: 9
+      pivot: {x: 0.5748698, y: 0.13085938}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: efbb18797c9a44590800000000000000
-      internalID: -7690835588936516610
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CAF y BIENESTAR_1
-      rect:
-        serializedVersion: 2
-        x: 44
-        y: 19
-        width: 1477
-        height: 1005
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a4d1d0ca457c88930800000000000000
-      internalID: 4145782623472262474
+      spriteID: dd3d225364207a74c9273f04705f324d
+      internalID: 2069269412
       vertices: []
       indices: 
       edges: []
@@ -191,7 +169,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: d20c1eb696bffe8468e2dd65989e34c2
     internalID: 0
     vertices: []
     indices: 
@@ -203,6 +181,7 @@ TextureImporter:
     nameFileIdTable:
       CAF y BIENESTAR_0: -7690835588936516610
       CAF y BIENESTAR_1: 4145782623472262474
+      CAF_BIENESTAR: 2069269412
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

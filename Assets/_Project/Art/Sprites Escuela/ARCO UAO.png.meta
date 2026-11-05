@@ -55,7 +55,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -66,10 +66,10 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 48
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -95,7 +95,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -159,155 +159,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ARCO UAO_0
+      name: ARCO_UAO
       rect:
         serializedVersion: 2
         x: 0
-        y: 35
-        width: 1417
-        height: 1050
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        y: 0
+        width: 1448
+        height: 1086
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 6c1f54c3c5c24ee20800000000000000
-      internalID: 3378874395094544838
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ARCO UAO_1
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 957
-        width: 31
-        height: 60
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: fbd3f73eec1c361c0800000000000000
-      internalID: -4511549307370914369
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ARCO UAO_2
-      rect:
-        serializedVersion: 2
-        x: 1341
-        y: 911
-        width: 9
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 1e82d9cb971c80450800000000000000
-      internalID: 6055302427599251681
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ARCO UAO_3
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 727
-        width: 49
-        height: 177
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c33462c288cac1cf0800000000000000
-      internalID: -280159375947578564
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ARCO UAO_4
-      rect:
-        serializedVersion: 2
-        x: 38
-        y: 433
-        width: 11
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5415e51c3aa1f2a50800000000000000
-      internalID: 6498442077945090373
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ARCO UAO_5
-      rect:
-        serializedVersion: 2
-        x: 1359
-        y: 243
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 9d0dc9af4791a6be0800000000000000
-      internalID: -1483345137053675303
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ARCO UAO_6
-      rect:
-        serializedVersion: 2
-        x: 1384
-        y: 250
-        width: 14
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3db379f56467e5c90800000000000000
-      internalID: -7179170711358456877
+      spriteID: 06a6ba8e520f6164fbbec4d9545c33ac
+      internalID: 1219699043
       vertices: []
       indices: 
       edges: []
@@ -316,7 +184,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: cf36fe96536ec454684b67857589db11
     internalID: 0
     vertices: []
     indices: 
@@ -333,6 +201,7 @@ TextureImporter:
       ARCO UAO_4: 6498442077945090373
       ARCO UAO_5: -1483345137053675303
       ARCO UAO_6: -7179170711358456877
+      ARCO_UAO: 1219699043
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -8,9 +8,9 @@ using UnityEngine.Rendering.Universal;
 /// </summary>
 public static class PixelCameraSettings
 {
-    public const int Ppu = 16;
-    public const int ViewWidth = 480;    // 30 casillas de ancho
-    public const int ViewHeight = 270;   // 16,9 casillas de alto (16:9; a 1080p cada pixel se ve de 4x4)
+    public const int Ppu = 48;           // 1 casilla = 48x48 px = 1 unidad de mundo
+    public const int ViewWidth = 640;    // 13,3 casillas de ancho
+    public const int ViewHeight = 360;   // 7,5 casillas de alto (16:9; a 1080p cada pixel se ve de 3x3)
 
     /// <summary>Mitad de la altura visible en unidades de mundo.</summary>
     public const float OrthoSize = ViewHeight / 2f / Ppu;

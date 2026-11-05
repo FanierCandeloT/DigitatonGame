@@ -1,12 +1,13 @@
 # CLAUDE.md — DigitatonGame (Passive Amnesia: UAO Edition)
 
-Juego 2D pixel art (vista top-down 3/4) ambientado en la Universidad Autónoma de Occidente (UAO). Unity 6000.6, URP con Renderer 2D, Input System nuevo, Cinemachine y TextMeshPro. Estado actual: **greybox** (cubos de colores como placeholders) y flujo del guion con textos temporales en inglés.
+Juego 2D pixel art (vista top-down 3/4) ambientado en la Universidad Autónoma de Occidente (UAO). Unity 6000.6, URP con Renderer 2D, Input System nuevo, Cinemachine y TextMeshPro. Estado actual: el **Campus ya usa sprites reales** (suelo isométrico, edificios, Ágora, árboles); los **interiores siguen en greybox** (con algunos muebles/pisos con sprite) y el flujo del guion usa textos temporales en inglés.
 
 ## Reglas del proyecto
-- Todo el código y los assets propios viven en `Assets/_Project`. El plano de referencia está en `Docs/mapa_uao.jpg` (no se importa a Assets).
+- Todo el código y los assets propios viven en `Assets/_Project`. Planos de referencia: `Docs/mapa_uao.jpg` (greybox original) y `Assets/_Project/Docs/mapa_uao_2.png` (distribución real con caminos, base del Campus actual).
+- **Escala: todos los sprites a 48 PPU** (1 casilla = 48x48 px = 1 unidad), Filter Point, Compression None. Andrés mide 1x2 casillas (su prefab lleva `localScale` porque su hoja es de alta resolución).
 - Textos de UI y del juego: **inglés**. Comentarios y nombres de objetos del greybox: español.
 - Input: solo el **nuevo Input System** (`Active Input Handling = Input System Package (New)`). Se lee con `Keyboard.current`/`InputAction` en código. Si se cambia ese ajuste, **hay que reiniciar Unity** (si no, `Keyboard.current` es null y nada responde).
-- Cámara estilo Pokémon Esmeralda: Pixel Perfect, 480x270 de referencia (30 casillas de ancho), 16 PPU, `PixelSnapping`, fija sobre Andrés (sin suavizado) y fondo negro fuera del mapa (las salas más chicas que la vista quedan centradas). **El zoom se cambia solo en `PixelCameraSettings`** (más resolución = más mapa visible, p. ej. 384x216 = zoom intermedio); `CameraRigBinder` lo aplica al iniciar cada escena. Orden de dibujo por eje Y (`Transparency Sort Mode = Custom Axis (0,1,0)`).
+- Cámara: Pixel Perfect, **640x360 de referencia a 48 PPU** (se ven 13,3 x 7,5 casillas), `PixelSnapping`, fija sobre Andrés (sin suavizado) y fondo negro fuera del mapa (las salas más chicas que la vista quedan centradas). **El zoom se cambia solo en `PixelCameraSettings`** (más resolución = más mapa visible); `CameraRigBinder` lo aplica al iniciar cada escena. Orden de dibujo por eje Y (`Transparency Sort Mode = Custom Axis (0,1,0)`).
 - Saltos de línea: LF (`.gitattributes`).
 
 ## Leyenda de colores (fija, ver `PlaceholderPalette`)
@@ -36,8 +37,15 @@ Toda cosa del greybox lleva un `PlaceholderInfo` (nombre, descripción del asset
 ## Flujo del juego (guion, versión temporal)
 Play → `Aulas2` "Intro classroom" ("Scene 1: Intro – class dialogue pending") → salir y caminar al Ágora → al entrar al círculo: fundido, "Your memory has been lost." (3 s) → `Bienestar` junto a la camilla → Lucía (preguntas 1–4, +4 recuerdos; antes la puerta dice "Lucía: You must rest a little more.") → campus abierto → retos 5 (candado, portería este), 6 (banda, Cafetería), 7 (canecas, junto a Aulas 1), 8 (puzzle, TechoAulas3), 9–11 (exámenes, SalaProfesores, +3), 12 (palmas del Ágora, solo con 11 recuerdos) → "Results screen (pending)" → volver al menú; Play vuelve a empezar de cero.
 
-## Constructores de greybox (menú `DigitatonGame`)
-Las escenas del greybox se generan por código para que sean reproducibles; **volver a ejecutarlas pisa las ediciones a mano** de esas escenas.
+## Campus con sprites reales (isométrico)
+- **No usar los menús "Construir ..." de `DigitatonGame`**: regenerarían el greybox y borrarían el Campus con sprites y los interiores reescalados (y las ediciones de todo el equipo). Para cambios en esas escenas, editarlas directamente.
+- Suelo: pasto repetible generado con los verdes del TILE SET (`Art/Terreno/GrassTile.png`) + un **Tilemap isométrico** (Grid `Isometric`, celda ~5 x 2,5 u) con los rombos de `TILE SET` (assets `Art/Tiles/TILE_f_c.asset`) para los caminos.
+- Edificios (`Aulas1–4`, `CAF y BIENESTAR`): sprites isométricos con **pivote en la base** (en Aulas, 3 cortes para ordenar bien a Andrés a lo largo de la fachada) y `PolygonCollider2D` solo en la huella del suelo, así que se puede pasar por detrás. `ARCO UAO` (Edificio Central) es una vista cenital: va como decorado de suelo con colisión en sus bloques. El Ágora es decorado de suelo con colisión solo en los troncos de las palmas. Árboles de `Outside` con colisión solo en el tronco.
+- Las puertas amarillas, spawns, NPC, retos y el trigger del Ágora son los mismos objetos del greybox, recolocados en la entrada visible de cada edificio.
+- Herramientas (sin menú, se llaman desde código; son de un solo uso): `SpriteSetup` (importación a 48 PPU, corte de hojas, tiles, pasto, cámara), `IsoCampusBuilder` (rearma el Campus en su lugar; repetible) e `InteriorRescale` (**no repetir**: escala los interiores una vez, 0,65). `EscuelaDecorator` (A4/A5/Inside) sigue siendo independiente.
+
+## Constructores de greybox (menú `DigitatonGame`) — OBSOLETOS para Campus e interiores
+Las escenas del greybox se generaban por código para que fueran reproducibles; **volver a ejecutarlas pisa las ediciones a mano** de esas escenas (y ya no reproducen el estado actual).
 - `Construir campus completo` → `CampusBuilder` (escena Campus según el plano; 0,25 u por píxel del plano).
 - `Construir interiores` → `InteriorsBuilder` (Aulas1–4, EdificioCentral, Sotanos, Bienestar, Cafeteria, SalaProfesores, TechoAulas3, MuseoLili).
 - `Construir flujo de menús` → `MenuFlowBuilder` (prefabs de UI, MainMenu y Tutorial). `Agregar UI de historia al GameManager` → `StoryUiBuilder` (solo agrega lo que falta al prefab).

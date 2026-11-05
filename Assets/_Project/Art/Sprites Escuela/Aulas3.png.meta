@@ -40,7 +40,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -51,10 +51,10 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 48
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -80,7 +80,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -144,45 +144,67 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Aulas3_0
+      name: Aulas3_izq
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 1434
-        height: 1065
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 600
+        height: 1085
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1889401}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 103aa3f4650bbcd00800000000000000
-      internalID: 994082027508245249
+      spriteID: c8c14d34f4dc6974e8ffe85bceda09c8
+      internalID: -2076365175
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Aulas3_1
+      name: Aulas3_med
       rect:
         serializedVersion: 2
-        x: 626
-        y: 21
-        width: 11
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 600
+        y: 0
+        width: 450
+        height: 1085
+      alignment: 9
+      pivot: {x: 0.4888889, y: 0.23502304}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 181a6cd7a2a8d2170800000000000000
-      internalID: 8155326415341265281
+      spriteID: 8477eb433e934c245b70fa9223149463
+      internalID: -621744512
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Aulas3_der
+      rect:
+        serializedVersion: 2
+        x: 1050
+        y: 0
+        width: 400
+        height: 1085
+      alignment: 9
+      pivot: {x: 0.425, y: 0.40092167}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 52dcb9a8b5b39a44bbc151d5ad98f0c7
+      internalID: -1706687761
       vertices: []
       indices: 
       edges: []
@@ -191,7 +213,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 3250674696ed0f8498c6815a745cb1aa
     internalID: 0
     vertices: []
     indices: 
@@ -203,6 +225,9 @@ TextureImporter:
     nameFileIdTable:
       Aulas3_0: 994082027508245249
       Aulas3_1: 8155326415341265281
+      Aulas3_der: -1706687761
+      Aulas3_izq: -2076365175
+      Aulas3_med: -621744512
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
