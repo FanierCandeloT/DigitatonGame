@@ -76,12 +76,12 @@ public class DialoguePanel : MonoBehaviour
 
         var canvas = PixelUi.NewCanvas("DialoguePanel", 400);
         var panel = canvas.gameObject.AddComponent<DialoguePanel>();
+        panel.modalLock = GameManager.Instance.LockInput();   // Andrés queda quieto mientras dura el diálogo (antes de armar la UI: si algo falla, OnDestroy lo suelta)
         panel.lines = lines;
         panel.onDone = onDone;
         panel.startFrame = Time.frameCount;   // ignora la misma pulsación de E que abrió el diálogo
         panel.Build();
         panel.ShowLine(0);
-        panel.modalLock = GameManager.Instance.LockInput();   // Andrés queda quieto mientras dura el diálogo
         return panel;
     }
 
@@ -182,8 +182,16 @@ public class DialoguePanel : MonoBehaviour
         hint.gameObject.SetActive(true);
     }
 
+    /// <summary>Solo para pruebas automáticas: simula la pulsación de "avanzar" (el teclado no llega al juego si el editor no tiene foco).</summary>
+    [System.NonSerialized] public static bool SimulatedAdvance;
+
     static bool AdvancePressed()
     {
+        if (SimulatedAdvance)
+        {
+            SimulatedAdvance = false;
+            return true;
+        }
         var kb = Keyboard.current;
         if (kb != null && (kb.eKey.wasPressedThisFrame || kb.spaceKey.wasPressedThisFrame || kb.enterKey.wasPressedThisFrame)) return true;
         var pointer = Pointer.current;   // mouse o pantalla táctil

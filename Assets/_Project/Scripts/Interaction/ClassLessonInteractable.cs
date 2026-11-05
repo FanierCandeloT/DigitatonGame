@@ -16,6 +16,9 @@ public class ClassLessonInteractable : Interactable
     [Tooltip("Recuerdos que da la lección al aprobarla (recuerdo de clase: el reto 4 de la historia).")]
     [Min(0)] public int memoryReward = 2;
 
+    [Tooltip("Reto que debe estar completo antes de dar la lección (vacío = ninguno). En modo desarrollo no bloquea.")]
+    public string requiredChallenge = "r3_exams";
+
     public DialogueLine[] intro =
     {
         new DialogueLine("Andrés", "Good morning, class! Today we are practicing the passive voice."),
@@ -37,6 +40,12 @@ public class ClassLessonInteractable : Interactable
         if (gm.IsChallengeDone(challengeId))
         {
             ToastMessage.Show(doneMessage, 2.5f);
+            return;
+        }
+
+        if (!string.IsNullOrEmpty(requiredChallenge) && !gm.IsChallengeDone(requiredChallenge) && !gm.HasFlag(GameManager.FlagDevOpen))
+        {
+            ToastMessage.Show("The podium feels empty... Your students' exams are waiting in the Teachers' Room (Aulas 3).", 3.5f);
             return;
         }
 

@@ -86,6 +86,9 @@ public class PlaceholderInfo : MonoBehaviour
         // El texto solo se crea si se va a mostrar (así los muros y objetos sin etiqueta no cuestan nada).
         if (showLabel && LabelsEnabled) EnsureLabel();
         UpdateLabel();
+
+        // En la versión final no hay rótulos: se apaga el componente para que Unity no llame a LateUpdate (cientos de objetos por frame).
+        if (!LabelsEnabled && Application.isPlaying) enabled = false;
     }
 
     void EnsureLabel()

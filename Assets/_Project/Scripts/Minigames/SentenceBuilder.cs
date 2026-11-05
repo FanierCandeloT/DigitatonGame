@@ -78,16 +78,32 @@ public class SentenceBuilder : MonoBehaviour
     /// <summary>Abre el constructor. onSubmit recibe una cadena por fila ("" si una fila opcional quedó vacía).</summary>
     public static SentenceBuilder Open(string instruction, BuilderSlot[] slots, Action<string[]> onSubmit, Action onCancel = null)
     {
+        // Nunca dos constructores a la vez: el anterior se cierra (así 'current' y la cámara no quedan descuadrados)
+        if (current != null)
+        {
+            var old = current;
+            current = null;
+            old.Close();
+        }
+
         var canvas = PixelUi.NewCanvas("SentenceBuilder", 450);
         var builder = canvas.gameObject.AddComponent<SentenceBuilder>();
+        builder.modalLock = GameManager.Instance.LockInput();   // se toma ANTES de armar la UI: si algo falla, OnDestroy lo suelta
         builder.onSubmit = onSubmit;
         builder.onCancel = onCancel;
         builder.Build(instruction, slots);
         builder.inputReadyAt = Time.unscaledTime + 0.35f;   // ignora la pulsación que cerró el diálogo anterior
         current = builder;
-        builder.modalLock = GameManager.Instance.LockInput();   // Andrés queda quieto mientras el panel esté abierto, incluso oculto
         Opened?.Invoke();
         return builder;
+    }
+
+    /// <summary>Cambia las filas y la indicación sin cerrar el panel (para retos de varias rondas, como los exámenes).</summary>
+    public void Reload(string instruction, BuilderSlot[] slots)
+    {
+        for (int i = transform.childCount - 1; i >= 0; i--) Destroy(transform.GetChild(i).gameObject);
+        rows.Clear();
+        Build(instruction, slots);
     }
 
     void OnDestroy()
@@ -104,7 +120,7 @@ public class SentenceBuilder : MonoBehaviour
 
     void Build(string instruction, BuilderSlot[] slots)
     {
-        group = gameObject.AddComponent<CanvasGroup>();
+        if (group == null) group = gameObject.AddComponent<CanvasGroup>();
 
         int n = slots.Length;
         float height = 158f + RowStep * n;   // más compacto: deja ver el mundo

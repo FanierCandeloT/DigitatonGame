@@ -67,19 +67,26 @@ public class GameManager : MonoBehaviour
     public sealed class ModalLock
     {
         readonly GameManager owner;
+        readonly int generation;
         bool released;
 
-        internal ModalLock(GameManager owner) => this.owner = owner;
+        internal ModalLock(GameManager owner, int generation)
+        {
+            this.owner = owner;
+            this.generation = generation;
+        }
 
         public void Release()
         {
             if (released) return;
             released = true;
-            if (owner != null) owner.ReleaseModal();
+            // Un bloqueo de antes de ResetProgress ya no cuenta: así no desbloquea a uno nuevo por error
+            if (owner != null && generation == owner.modalGeneration) owner.ReleaseModal();
         }
     }
 
     int modalCount;
+    int modalGeneration;
 
     /// <summary>True si hay un diálogo o reto abierto (el jugador debe estar quieto).</summary>
     public bool ModalOpen => modalCount > 0;
@@ -87,7 +94,7 @@ public class GameManager : MonoBehaviour
     public ModalLock LockInput()
     {
         modalCount++;
-        return new ModalLock(this);
+        return new ModalLock(this, modalGeneration);
     }
 
     void ReleaseModal() => modalCount = Mathf.Max(0, modalCount - 1);
@@ -136,7 +143,7 @@ public class GameManager : MonoBehaviour
         // Atajo para desarrollo: si se da Play directamente en una escena del juego (no en el menú),
         // los edificios del campus quedan abiertos para poder probar.
         var current = SceneManager.GetActiveScene().name;
-        if (current != "MainMenu" && current != "Tutorial")
+        if ((Application.isEditor || Debug.isDebugBuild) && current != "MainMenu" && current != "Tutorial")
         {
             SetFlag(FlagDevOpen);
             SetFlag(FlagAgoraDone);   // el accidente ya lo cuenta la introducción: el disparador antiguo del Ágora no debe mandarte al hospital
@@ -184,6 +191,7 @@ public class GameManager : MonoBehaviour
         flags.Clear();
         stats.Clear();
         modalCount = 0;
+        modalGeneration++;
         ResultsOpen = false;
         NotebookOpen = false;
         hasPendingSpawn = false;

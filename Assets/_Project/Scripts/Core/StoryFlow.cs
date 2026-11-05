@@ -46,7 +46,7 @@ public static class StoryFlow
     {
         new Step("q1_4", "Talk to Lucía, the nurse, to recover your first memories.", true),
         new Step("r2_litter", "A student with a \"!\" near Aulas 1 is throwing bottles. Help her.", true),
-        new Step("r3_exams", "Find your students' exams in the Teachers' Room (inside Aulas 3).", false),
+        new Step("r3_exams", "Find your students' exams in the Teachers' Room (inside Aulas 3).", true),
         new Step("class1", "Remember your last class: use the podium in Aulas 2.", true),
         new Step("r5_confrontation", "Face the contractor at the construction site.", false),
     };

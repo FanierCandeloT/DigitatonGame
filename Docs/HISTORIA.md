@@ -23,7 +23,7 @@ confusión (habla en español entrecortado) → recuperación técnica (mezcla e
 | 0 | Introducción: el accidente | Negro con textos (se salta con una tecla) | Play en el menú | — | — | — | `intro_done` | 0 | Confusa | **Hecho** |
 | 1 | Hospital | `Bienestar` | Hablar con Lucía | Conectar neuronas + diálogo | La forma: `be` + participio | Mixto | `q1_4` | +4 → 4 | **Mezcla** | **Hecho** |
 | 2 | Campus (Aulas 1) | `Campus` | Estudiante con "!" | La frase mueve el mundo | Significado y agente (`by`) | 12 | `r2_litter` | +2 → 6 | Mezcla | **Hecho** |
-| 3 | Sala de profesores | `SalaProfesores` (por Aulas 3) | Escritorio con los exámenes | Corregir exámenes con bloques + libro que se completa | Transformar activa a pasiva | 8 y 12 | `r3_exams` | +2 → 8 | **Fluida** | Pendiente |
+| 3 | Sala de profesores | `SalaProfesores` (por Aulas 3) | Pila de exámenes con "!" | Corregir exámenes con bloques + libro que se completa | Transformar activa a pasiva | 8 y 12 | `r3_exams` | +2 → 8 | **Fluida** | **Hecho** |
 | 4 | Recuerdo de clase | `Aulas2` (atril) | Después del reto 3 | "Atrapa el error" (flashback) | Reconocer errores | 8 y 12 | `class1` | +2 → 10 | Fluida | **Hecho** |
 | 5 | La obra | Obra del campus | Pista del reto 4 | La confrontación (preguntas con bloques) | Preguntas en pasiva y agente | 8 y 12 | `r5_confrontation` | +2 → 12 | Fluida | Pendiente |
 | 6 | Cierre | Resultados | Al terminar el reto 5 | Pantalla de resultados | — | — | — | — | Fluida | Pendiente |
@@ -32,7 +32,7 @@ confusión (habla en español entrecortado) → recuperación técnica (mezcla e
 - Andrés empieza en `Bienestar` (cama) y **no puede salir** hasta completar el reto 1 (la puerta dice "Lucía: You must rest a little more.").
 - Al completar el reto 1 se abren los edificios del campus (`done:q1_4`).
 - El HUD muestra el **objetivo actual** (`StoryFlow`): el primer reto construido que falta. Un paso pendiente se salta hasta que se construya.
-- Pendiente de implementar con el reto 3: que el atril del reto 4 pida `done:r3_exams`.
+- El atril del reto 4 pide `done:r3_exams` ("The podium feels empty... exams are waiting in the Teachers' Room"). En modo desarrollo no bloquea.
 
 ## 4. Guion de diálogos
 
@@ -62,7 +62,7 @@ confusión (habla en español entrecortado) → recuperación técnica (mezcla e
 - **Valentina** (al acertar): "The bottles were collected by me! The campus is being cleaned, thanks to one sentence."
 - **Andrés:** "When the doer is named, things happen. I remember teaching this."
 
-### 3. Sala de profesores: los exámenes (pendiente)
+### 3. Sala de profesores: los exámenes (hecho: ejemplos finales en `ExamChallenge.cs`)
 *Andrés encuentra una pila de exámenes sin calificar. El libro de consulta (tecla C) está borroso.*
 - **Andrés:** "These are my students' exams. Their sentences are all in the active voice..."
 - **Andrés:** "In this country, they must be passive. Let me fix them."
