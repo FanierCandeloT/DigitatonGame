@@ -701,6 +701,7 @@ MonoBehaviour:
   requiredMemories: 0
   lockedMessage: Something is still missing...
   endsGame: 0
+  useMemoryReconstruction: 0
 --- !u!114 &502436541
 MonoBehaviour:
   m_ObjectHideFlags: 0

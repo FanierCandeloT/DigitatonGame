@@ -100,6 +100,45 @@ public static class InteriorsBuilder
         return go;
     }
 
+    const string StartMessage = "Class is about to start. Use the podium (E) to begin the lesson.";
+    static readonly Vector2 LessonPodiumPos = new Vector2(5f, -1.2f);
+
+    /// <summary>Atril del profesor: empieza la lección "Atrapa el error" (ClassLessonInteractable).</summary>
+    public static GameObject LessonPodium(Vector2 pos)
+    {
+        var go = GreyboxBuilder.MakeBox("Atril de la lección", PlaceholderKind.Interactive, pos, new Vector2(2.2f, 1.4f), Sq,
+            "Atril del profesor donde empieza la lección «Atrapa el error» (sprite de atril con libro, vista 3/4).", null, false, true, 1, true);
+        go.GetComponent<PlaceholderInfo>().labelFontSize = 4f;
+        go.AddComponent<ClassLessonInteractable>().prompt = "Press E to start the lesson";
+        return go;
+    }
+
+    /// <summary>Agrega el atril a Aulas2 sin reconstruir la escena (no pisa ediciones a mano).</summary>
+    [MenuItem("DigitatonGame/Agregar lección a Aulas2 (sin reconstruir)")]
+    public static void AddLessonToAulas2()
+    {
+        CampusBuilder.EnsureSprites();
+        var scene = UnityEditor.SceneManagement.EditorSceneManager.OpenScene($"{Root}/Scenes/Aulas2.unity", UnityEditor.SceneManagement.OpenSceneMode.Additive);
+
+        bool exists = false;
+        foreach (var root in scene.GetRootGameObjects())
+        {
+            if (root.GetComponentInChildren<ClassLessonInteractable>(true) != null) exists = true;
+            foreach (var m in root.GetComponentsInChildren<SceneStartMessage>(true)) m.message = StartMessage;
+        }
+
+        if (!exists)
+        {
+            var podium = LessonPodium(LessonPodiumPos);
+            SceneManager.MoveGameObjectToScene(podium, scene);
+        }
+
+        UnityEditor.SceneManagement.EditorSceneManager.MarkSceneDirty(scene);
+        UnityEditor.SceneManagement.EditorSceneManager.SaveScene(scene);
+        UnityEditor.SceneManagement.EditorSceneManager.CloseScene(scene, true);
+        Debug.Log(exists ? "Aulas2: el atril ya existía; solo se actualizó el mensaje de inicio." : "Aulas2: atril de la lección agregado.");
+    }
+
     /// <summary>Puerta/salida: lleva a otra escena (o aviso "Coming soon" si targetScene está vacío).</summary>
     public static GameObject ExitDoor(string name, Vector2 pos, Vector2 size, string targetScene, string targetSpawn, string desc,
         string requiredFlag = null, string lockedMessage = null)
@@ -232,10 +271,11 @@ public static class InteriorsBuilder
             Npc("Santiago", new Vector2(0f, 7.6f), "Santiago: (class dialogue pending)", "Sprite de Santiago, estudiante (NPC, vista 3/4, 16x32 px).");
             Npc("Estudiante", new Vector2(4f, 7.6f), "Student: (class dialogue pending)", "Sprite de otro estudiante del salón (NPC, vista 3/4, 16x32 px).");
             Spawn("Aulas2_Intro", new Vector2(0f, -1.2f));
+            LessonPodium(LessonPodiumPos);
 
             var msg = new GameObject("Mensaje de inicio (Escena 1)");
             var sm = msg.AddComponent<SceneStartMessage>();
-            sm.message = "Scene 1: Intro – class dialogue pending";
+            sm.message = StartMessage;
             sm.flagKey = "intro_shown";
             sm.seconds = 5f;
         }
@@ -362,9 +402,11 @@ public static class InteriorsBuilder
         // Recepción: escritorio de Lucía y las preguntas 1-4
         Box("Escritorio de Lucía", PlaceholderKind.Health, new Vector2(-11f, 3f), new Vector2(6f, 1.5f),
             "Escritorio de Lucía (sprite de escritorio con computador, vista 3/4).", true, true, Brown, 0, 5f);
-        Npc("Lucía", new Vector2(-11f, 5.4f), "Lucía: Take your time.", "Sprite de Lucía, enfermera de Bienestar (NPC, vista 3/4, 16x32 px).");
-        Challenge("Questions 1-4 (pending)", new Vector2(-6.4f, 4f), new Vector2(1.4f, 1.4f), "q1_4", "Questions 1-4", 4,
-            "Marcador del reto de las preguntas 1 a 4 (icono de libreta/cuestionario).");
+        // Lucía inicia el reto de las preguntas 1-4: primero conversa con Andrés y luego abre el minijuego de memoria.
+        var lucia = Npc("Lucía", new Vector2(-11f, 5.4f), "Lucía: Take your time.", "Sprite de Lucía, enfermera de Bienestar (NPC, vista 3/4, 16x32 px).");
+        Object.DestroyImmediate(lucia.GetComponent<ToastInteractable>());
+        var luciaChallenge = lucia.AddComponent<NpcChallengeInteractable>();
+        luciaChallenge.prompt = "Press E to talk";
 
         // Enfermería: camilla (cubo rojo claro) y botiquín
         Box("Camilla", PlaceholderKind.Health, new Vector2(12f, 4f), new Vector2(4f, 2f),

@@ -6,7 +6,7 @@ Juego 2D pixel art (vista top-down 3/4) ambientado en la Universidad Autónoma d
 - Todo el código y los assets propios viven en `Assets/_Project`. El plano de referencia está en `Docs/mapa_uao.jpg` (no se importa a Assets).
 - Textos de UI y del juego: **inglés**. Comentarios y nombres de objetos del greybox: español.
 - Input: solo el **nuevo Input System** (`Active Input Handling = Input System Package (New)`). Se lee con `Keyboard.current`/`InputAction` en código. Si se cambia ese ajuste, **hay que reiniciar Unity** (si no, `Keyboard.current` es null y nada responde).
-- Cámara: Pixel Perfect, 320x180 de referencia, 16 PPU. Orden de dibujo por eje Y (`Transparency Sort Mode = Custom Axis (0,1,0)`).
+- Cámara estilo Pokémon Esmeralda: Pixel Perfect, 480x270 de referencia (30 casillas de ancho), 16 PPU, `PixelSnapping`, fija sobre Andrés (sin suavizado) y fondo negro fuera del mapa (las salas más chicas que la vista quedan centradas). **El zoom se cambia solo en `PixelCameraSettings`** (más resolución = más mapa visible, p. ej. 384x216 = zoom intermedio); `CameraRigBinder` lo aplica al iniciar cada escena. Orden de dibujo por eje Y (`Transparency Sort Mode = Custom Axis (0,1,0)`).
 - Saltos de línea: LF (`.gitattributes`).
 
 ## Leyenda de colores (fija, ver `PlaceholderPalette`)
@@ -25,6 +25,10 @@ Toda cosa del greybox lleva un `PlaceholderInfo` (nombre, descripción del asset
 - **Door**: lleva a `targetScene`/`targetSpawnId`. Sin escena destino → "Coming soon". `requiredFlag` bloquea la puerta con `lockedMessage` hasta que exista esa marca (`devBypass` la abre sola si se da Play directo en una escena del juego).
 - **Interactable / PlayerInteractor**: "Press E" cerca de objetos con `Collider2D`. Subclases: `Door`, `ToastInteractable` (NPC con mensaje), `ChallengeInteractable` (retos del guion: suma recuerdos, no se repite, muestra "(pending)"), `DebugInteractable`.
 - **UI** (prefab del GameManager): fundido y texto sobre negro (`ScreenFader`), `ToastMessage`, `PauseMenu` (Esc), `NotebookPanel` (C), `MemoryHud` ("Memories: X/12", solo en gameplay), `ResultsPanel`.
+- **Minijuegos y diálogos** (`Scripts/Minigames`, toda la UI se arma por código con `PixelUi`; bloquean al jugador con `GameManager.MinigameOpen` / `DialogueOpen`):
+  - `DialoguePanel` (diálogo con máquina de escribir; `DialogueLine(speaker, text)`), `NpcChallengeInteractable` (Lucía: diálogo → `MemoryReconstructionGame` de neuronas → diálogo de cierre con repaso de errores).
+  - `ClassErrorHunt` = lección **"Atrapa el error"** en el atril de `Aulas2` (`ClassLessonInteractable`, marca `done:class1`). 8 frases de estudiantes (5 con error): STOP o dejar pasar con tiempo límite → ubicar la pieza mala → elegir la corrección. Puntaje 18; se aprueba con el 70 % (`passFraction`). Si no aprueba: guía por tipo de error (sin dar la respuesta; nivel 2 de la guía y +25 % de tiempo en cada reintento) y reintento con frases nuevas que refuerzan lo que falló. Frases, tipos de error y guías: `ErrorHuntContent`. Puntaje y intentos quedan en `GameManager.SetStat("class1:score" ...)`.
+  - Para agregar el atril sin reconstruir la escena: menú `DigitatonGame ▸ Agregar lección a Aulas2 (sin reconstruir)`.
 - **CameraRig** (prefab): Cinemachine + Pixel Perfect + Confiner 2D; se conecta solo a Andrés y a `MapBounds`.
 - **Colisiones**: el jugador y los NPC colisionan solo en los pies; edificios y palmas del campus, solo en su base (se puede pasar por detrás).
 

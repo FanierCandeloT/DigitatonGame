@@ -8287,6 +8287,7 @@ MonoBehaviour:
   requiredMemories: 0
   lockedMessage: Something is still missing...
   endsGame: 0
+  useMemoryReconstruction: 0
 --- !u!114 &1447169175
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8471,6 +8472,7 @@ MonoBehaviour:
   requiredMemories: 11
   lockedMessage: Something is still missing... (needs 11 memories)
   endsGame: 1
+  useMemoryReconstruction: 0
 --- !u!114 &1458375339
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10266,6 +10268,7 @@ MonoBehaviour:
   requiredMemories: 0
   lockedMessage: Something is still missing...
   endsGame: 0
+  useMemoryReconstruction: 0
 --- !u!114 &1769579626
 MonoBehaviour:
   m_ObjectHideFlags: 0

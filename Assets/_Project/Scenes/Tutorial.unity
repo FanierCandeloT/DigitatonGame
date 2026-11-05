@@ -171,6 +171,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: CameraRig
       objectReference: {fileID: 0}
+    - target: {fileID: 5203997218600005902, guid: c21b459f1882a8f4fa87c96474d4984d, type: 3}
+      propertyPath: m_NormalizedViewPortRect.width
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5203997218600005902, guid: c21b459f1882a8f4fa87c96474d4984d, type: 3}
+      propertyPath: m_NormalizedViewPortRect.height
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1109,6 +1117,9 @@ MonoBehaviour:
   targetScene: MainMenu
   targetSpawnId: 
   comingSoonMessage: Coming soon
+  requiredFlag: 
+  lockedMessage: Locked for now.
+  devBypass: 1
 --- !u!114 &1299264854
 MonoBehaviour:
   m_ObjectHideFlags: 0

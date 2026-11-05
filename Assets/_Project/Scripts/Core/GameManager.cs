@@ -55,9 +55,14 @@ public class GameManager : MonoBehaviour
     public bool NotebookOpen { get; set; }
     public bool IsTransitioning { get; private set; }
     public bool ResultsOpen { get; private set; }
+    public bool MinigameOpen { get; set; }
+    public bool DialogueOpen { get; set; }
+
+    /// <summary>True si el GameManager ya existe (no lo crea). Sirve para limpiar estado al destruir objetos.</summary>
+    public static bool Exists => instance != null;
 
     /// <summary>True cuando el jugador no debe moverse ni interactuar.</summary>
-    public bool InputLocked => IsPaused || NotebookOpen || IsTransitioning || ResultsOpen;
+    public bool InputLocked => IsPaused || NotebookOpen || IsTransitioning || ResultsOpen || MinigameOpen || DialogueOpen;
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     static void Bootstrap()
@@ -118,6 +123,12 @@ public class GameManager : MonoBehaviour
 
     public bool IsChallengeDone(string id) => flags.Contains("done:" + id);
 
+    // Cifras del jugador (puntajes de las lecciones, intentos...) para el resumen final.
+    readonly Dictionary<string, int> stats = new Dictionary<string, int>();
+
+    public void SetStat(string key, int value) => stats[key] = value;
+    public int GetStat(string key) => stats.TryGetValue(key, out var value) ? value : 0;
+
     /// <summary>Marca un reto como completado (no se puede repetir) y suma sus recuerdos.</summary>
     public void CompleteChallenge(string id, int memoryReward)
     {
@@ -129,6 +140,7 @@ public class GameManager : MonoBehaviour
     public void ResetProgress()
     {
         flags.Clear();
+        stats.Clear();
         ResultsOpen = false;
         NotebookOpen = false;
         hasPendingSpawn = false;

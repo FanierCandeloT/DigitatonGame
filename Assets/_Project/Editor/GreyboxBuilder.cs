@@ -196,6 +196,10 @@ public static class GreyboxBuilder
         Object.DestroyImmediate(go);
     }
 
+    // El formato de pantalla (zoom) vive en PixelCameraSettings: se cambia en un solo lugar.
+    /// <summary>Configura la cámara de pixel art. Se usa en el prefab y en las escenas sin rig (menús).</summary>
+    public static void ConfigurePixelCamera(Camera cam, PixelPerfectCamera ppc) => PixelCameraSettings.Apply(cam, ppc);
+
     static void BuildCameraPrefab()
     {
         var rig = new GameObject("CameraRig");
@@ -205,26 +209,19 @@ public static class GreyboxBuilder
         camGo.transform.SetParent(rig.transform, false);
         camGo.transform.localPosition = new Vector3(0, 0, -10);
         var cam = camGo.AddComponent<Camera>();
-        cam.orthographic = true;
-        cam.orthographicSize = 5.625f;
-        cam.clearFlags = CameraClearFlags.SolidColor;
-        cam.backgroundColor = new Color(0.10f, 0.12f, 0.16f);
         camGo.AddComponent<AudioListener>();
         camGo.AddComponent<CinemachineBrain>();
-        var ppc = camGo.AddComponent<PixelPerfectCamera>();
-        ppc.assetsPPU = 16;
-        ppc.refResolutionX = 320;
-        ppc.refResolutionY = 180;
+        ConfigurePixelCamera(cam, camGo.AddComponent<PixelPerfectCamera>());
 
         var vcGo = new GameObject("CinemachineCamera");
         vcGo.transform.SetParent(rig.transform, false);
         vcGo.transform.localPosition = new Vector3(0, 0, -10);
         var vcam = vcGo.AddComponent<CinemachineCamera>();
         var lens = vcam.Lens;
-        lens.OrthographicSize = 5.625f;
+        lens.OrthographicSize = PixelCameraSettings.OrthoSize;
         vcam.Lens = lens;
         var composer = vcGo.AddComponent<CinemachinePositionComposer>();
-        composer.Damping = new Vector3(0.4f, 0.4f, 0f);
+        composer.Damping = Vector3.zero;   // la cámara queda fija sobre Andrés, sin "flotar" detrás
         var confiner = vcGo.AddComponent<CinemachineConfiner2D>();
         confiner.Damping = 0f;
         confiner.SlowingDistance = 0f;
@@ -277,13 +274,8 @@ public static class GreyboxBuilder
         var camGo = new GameObject("Main Camera") { tag = "MainCamera" };
         camGo.transform.position = new Vector3(0, 0, -10);
         var cam = camGo.AddComponent<Camera>();
-        cam.orthographic = true;
-        cam.orthographicSize = 5.625f;
-        cam.clearFlags = CameraClearFlags.SolidColor;
-        cam.backgroundColor = new Color(0.10f, 0.12f, 0.16f);
         camGo.AddComponent<AudioListener>();
-        var ppc = camGo.AddComponent<PixelPerfectCamera>();
-        ppc.assetsPPU = 16; ppc.refResolutionX = 320; ppc.refResolutionY = 180;
+        ConfigurePixelCamera(cam, camGo.AddComponent<PixelPerfectCamera>());
         SaveScene(scene, name);
     }
 

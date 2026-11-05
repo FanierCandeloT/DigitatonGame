@@ -12,6 +12,16 @@ public class CameraRigBinder : MonoBehaviour
 
     void Start()
     {
+        // El formato de pantalla se aplica aquí en todas las escenas, así ninguna se queda con un zoom distinto.
+        var cam = GetComponentInChildren<Camera>();
+        PixelCameraSettings.Apply(cam, cam != null ? cam.GetComponent<UnityEngine.Rendering.Universal.PixelPerfectCamera>() : null);
+        if (virtualCamera != null)
+        {
+            var lens = virtualCamera.Lens;
+            lens.OrthographicSize = PixelCameraSettings.OrthoSize;
+            virtualCamera.Lens = lens;
+        }
+
         var player = FindFirstObjectByType<PlayerController>();
         if (player != null && virtualCamera != null)
         {

@@ -241,7 +241,6 @@ Total: 286 filas (477 objetos).
 | Bienestar | Muro Oeste | Muro/borde del mapa (puede ser una pared, cerca o límite visual). | 8x320 | Integrante 1 |
 | Bienestar | Muro Sur | Muro/borde del mapa (puede ser una pared, cerca o límite visual). | 720x8 | Integrante 1 |
 | Bienestar | Piso Bienestar | Piso interior de Bienestar Universitario. | 704x320 | Integrante 1 |
-| Bienestar | Questions 1-4 (pending) | Marcador del reto de las preguntas 1 a 4 (icono de libreta/cuestionario). | 22x22 | Integrante 1 |
 | Bienestar | Recepción | Recepción de Bienestar Universitario. | 344x312 | Integrante 1 |
 | Bienestar | Salida al Campus | Puerta de salida de Bienestar hacia el campus. Bloqueada hasta completar las preguntas 1-4. | 48x24 | Integrante 1 |
 | Cafeteria | Andrés | Sprite de Andrés (estudiante UAO), vista 3/4 top-down, con animación de caminar en 4/8 direcciones. | 16x32 | Integrante 1 |
