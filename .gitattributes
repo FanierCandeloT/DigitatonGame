@@ -1,5 +1,5 @@
 # Normalizar saltos de linea: git guarda LF, Windows trabaja con lo que prefiera el editor sin avisos
-* text=auto
+* text=auto eol=lf
 
 # Texto de Unity (YAML) -> siempre LF
 *.cs text eol=lf
