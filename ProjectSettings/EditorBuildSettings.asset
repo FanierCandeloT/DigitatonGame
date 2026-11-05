@@ -4,5 +4,27 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
-  m_configObjects: {}
+  m_Scenes:
+  - enabled: 1
+    path: Assets/_Project/Scenes/MainMenu.unity
+    guid: 01caadb6567c9914aac8d2e8c44ac14d
+  - enabled: 1
+    path: Assets/_Project/Scenes/Intro.unity
+    guid: b6329260408312a4e9718221daec9e05
+  - enabled: 1
+    path: Assets/_Project/Scenes/Bienestar.unity
+    guid: c23ad73ac99a97b42924fedf8bbf55b1
+  - enabled: 1
+    path: Assets/_Project/Scenes/Campus.unity
+    guid: a37c570a62a86d147b190c91bbb42a25
+  - enabled: 1
+    path: Assets/_Project/Scenes/SalaProfesores.unity
+    guid: 27d917ce175cd1347973fe97ac6152a6
+  - enabled: 1
+    path: Assets/_Project/Scenes/Agora.unity
+    guid: f9dd214bf148993488f275e73025174f
+  - enabled: 1
+    path: Assets/_Project/Scenes/Tutorial.unity
+    guid: 863de3b1344a27548bb6a9ed174a98cf
+  m_configObjects:
+    com.unity.dt.app-ui: {fileID: 11400000, guid: 1b1c20d82303e4b5781c3ef50ac1449f, type: 2}

@@ -1,0 +1,31 @@
+# Normalizar saltos de linea: git guarda LF, Windows trabaja con lo que prefiera el editor sin avisos
+* text=auto eol=lf
+
+# Texto de Unity (YAML) -> siempre LF
+*.cs text eol=lf
+*.shader text eol=lf
+*.asmdef text eol=lf
+*.json text eol=lf
+*.md text eol=lf
+*.unity text eol=lf merge=unityyamlmerge
+*.prefab text eol=lf merge=unityyamlmerge
+*.asset text eol=lf merge=unityyamlmerge
+*.mat text eol=lf merge=unityyamlmerge
+*.anim text eol=lf merge=unityyamlmerge
+*.controller text eol=lf merge=unityyamlmerge
+*.inputactions text eol=lf
+*.meta text eol=lf
+
+# Binarios
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.psd binary
+*.ase binary
+*.aseprite binary
+*.wav binary
+*.mp3 binary
+*.ogg binary
+*.ttf binary
+*.otf binary
+*.fbx binary
