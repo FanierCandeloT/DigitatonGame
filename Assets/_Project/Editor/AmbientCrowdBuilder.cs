@@ -28,16 +28,17 @@ public static class AmbientCrowdBuilder
         (new[] { new Vector2(-30f, -10f), new Vector2(-22f, -10f), new Vector2(-22f, -3f), new Vector2(-30f, -3f) }, 1.2f),   // alrededor del Ágora
     };
 
-    static readonly Color[] Shirts =
-    {
-        new Color(0.95f, 0.65f, 0.75f), new Color(0.65f, 0.8f, 0.95f), new Color(0.95f, 0.85f, 0.55f),
-        new Color(0.65f, 0.9f, 0.7f), new Color(0.8f, 0.7f, 0.95f), new Color(0.95f, 0.75f, 0.6f),
-    };
+    // Las rutas de arriba se dibujaron con el mapa original; el campus quedó al 60 % ("mapa al 60 %"), así que se escalan.
+    const float MapScale = 0.6f;
+
+    // Hojas de personajes (NpcSpriteSlicer) para cada peatón: estudiantes y gente del campus, sin los personajes fantásticos.
+    static readonly int[] Sheets = { 1, 3, 10, 13, 15, 19, 21, 22, 25, 16, 2 };
 
     [MenuItem("DigitatonGame/Agregar peatones al Campus")]
     public static void AddToCampus()
     {
         CampusBuilder.EnsureSprites();
+        if (NpcSpriteSlicer.Load(1).Length < 12) NpcSpriteSlicer.SliceAll();
         var prefab = BuildPrefab();
 
         var scene = EditorSceneManager.OpenScene("Assets/_Project/Scenes/Campus.unity", OpenSceneMode.Additive);
@@ -46,6 +47,7 @@ public static class AmbientCrowdBuilder
             if (root.GetComponentInChildren<AmbientCrowd>(true) != null) exists = true;
 
         if (!exists) PrefabUtility.InstantiatePrefab(prefab, scene);
+        // Si ya estaba colocado, la instancia del Campus toma el prefab actualizado (rutas y sprites nuevos) por ser instancia del prefab.
 
         EditorSceneManager.MarkSceneDirty(scene);
         EditorSceneManager.SaveScene(scene);
@@ -68,15 +70,19 @@ public static class AmbientCrowdBuilder
 
         for (int i = 0; i < Routes.Length; i++)
         {
-            var (points, speed) = Routes[i];
-            var go = GreyboxBuilder.MakeBox("Peatón " + (i + 1), PlaceholderKind.NPC, points[0], new Vector2(0.9f, 1.8f), square,
-                "Estudiante que camina por el campus (NPC de ambiente, vista 3/4, 16x32 px). Animaciones: caminar izquierda/derecha/arriba/abajo. " +
-                "Solo está activo cuando se ve en cámara.", new Vector2Int(16, 32), false, false, 0, false);
-            go.GetComponent<PlaceholderInfo>().applyKindColor = false;
-            go.GetComponent<SpriteRenderer>().color = Shirts[i % Shirts.Length];
-            go.transform.SetParent(rootGo.transform, true);
+            var (rawPoints, speed) = Routes[i];
+            var points = new Vector2[rawPoints.Length];
+            for (int p = 0; p < points.Length; p++) points[p] = rawPoints[p] * MapScale;
+
+            var frames = NpcSpriteSlicer.Load(Sheets[i % Sheets.Length]);
+            var go = new GameObject("Peatón " + (i + 1));
+            go.transform.SetParent(rootGo.transform, false);
+            go.transform.position = points[0];
+            var renderer = go.AddComponent<SpriteRenderer>();
+            renderer.sprite = frames.Length >= 12 ? frames[1] : square;   // cuadro quieto mirando hacia abajo
 
             var walker = go.AddComponent<AmbientWalker>();
+            walker.frames = frames.Length >= 12 ? frames : new Sprite[0];
             walker.path = points;
             walker.speed = speed;
             walker.pauseSeconds = 1.2f + (i % 3) * 0.6f;

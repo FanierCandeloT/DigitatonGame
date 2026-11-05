@@ -327,7 +327,9 @@ public class LitterChallenge : Interactable
 
         var go = new GameObject("Burbuja");
         go.transform.SetParent(student, false);
-        go.transform.localPosition = new Vector3(0f, 2.9f, 0f);
+        // La burbuja va sobre la cabeza, sea cual sea el pivote del sprite (centro en la caja de color, pies en el sprite final)
+        float head = student.TryGetComponent(out SpriteRenderer studentSprite) ? studentSprite.bounds.max.y - student.position.y : 1f;
+        go.transform.localPosition = new Vector3(0f, head + 1.9f, 0f);
 
         var back = new GameObject("Fondo").AddComponent<SpriteRenderer>();
         back.transform.SetParent(go.transform, false);

@@ -42,7 +42,7 @@ public class NpcSpriteAnimator : MonoBehaviour
 
     bool IsTalking()
     {
-        if (!GameManager.Exists || !GameManager.Instance.DialogueOpen) return false;
+        if (!GameManager.Exists || !GameManager.Instance.ModalOpen) return false;
 
         if (player == null)
         {

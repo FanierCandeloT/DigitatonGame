@@ -1524,17 +1524,17 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: -0.5}
+  m_Offset: {x: 0, y: 0.35}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.2, y: 0.33}
+    pivot: {x: 0.5, y: 0}
+    oldSize: {x: 1.25, y: 2}
     newSize: {x: 0.92621815, y: 1.2178675}
     adaptiveTilingThreshold: 0.5
-    drawMode: 1
+    drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.9, y: 0.7}
   m_EdgeRadius: 0
 --- !u!114 &221495926
 MonoBehaviour:
@@ -1553,8 +1553,8 @@ MonoBehaviour:
   suggestedSizePx: {x: 16, y: 32}
   owner: 0
   kind: 10
-  applyKindColor: 1
-  showLabel: 1
+  applyKindColor: 0
+  showLabel: 0
   labelFontSize: 5
   labelOffset: 0.15
 --- !u!212 &221495927
@@ -1606,11 +1606,11 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -447473948523714331, guid: 530ec4a1d5cf573488cf584978513127, type: 3}
-  m_Color: {r: 1, g: 0.55, b: 0.8, a: 1}
+  m_Sprite: {fileID: 4882386082444555118, guid: 530ec4a1d5cf573488cf584978513127, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 1
+  m_DrawMode: 0
   m_Size: {x: 0.92621815, y: 1.2178675}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
@@ -3156,17 +3156,17 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: -0.5}
+  m_Offset: {x: 0, y: 0.35}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.2, y: 0.32}
+    pivot: {x: 0.5, y: 0}
+    oldSize: {x: 1.25, y: 2}
     newSize: {x: 0.7748079, y: 1.2576991}
     adaptiveTilingThreshold: 0.5
-    drawMode: 1
+    drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.9, y: 0.7}
   m_EdgeRadius: 0
 --- !u!114 &505396229
 MonoBehaviour:
@@ -3185,8 +3185,8 @@ MonoBehaviour:
   suggestedSizePx: {x: 16, y: 32}
   owner: 0
   kind: 10
-  applyKindColor: 1
-  showLabel: 1
+  applyKindColor: 0
+  showLabel: 0
   labelFontSize: 5
   labelOffset: 0.15
 --- !u!212 &505396230
@@ -3239,10 +3239,10 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 3457449131224333571, guid: 1358b18246c7e4844ad0590718746d5c, type: 3}
-  m_Color: {r: 1, g: 0.55, b: 0.8, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 1
+  m_DrawMode: 0
   m_Size: {x: 0.7748079, y: 1.2576991}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
@@ -8675,6 +8675,8 @@ MonoBehaviour:
       m_Calls: []
   challengeId: class1
   passFraction: 0.7
+  memoryReward: 2
+  requiredChallenge: r3_exams
   intro:
   - speaker: "Andr\xE9s"
     text: Good morning, class! Today we are practicing the passive voice.
@@ -11500,17 +11502,17 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: -0.5}
+  m_Offset: {x: 0, y: 0.35}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 0.23, y: 0.34}
     newSize: {x: 0.90501934, y: 1.3203865}
     adaptiveTilingThreshold: 0.5
-    drawMode: 1
+    drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.9, y: 0.7}
   m_EdgeRadius: 0
 --- !u!114 &2066728209
 MonoBehaviour:
@@ -11529,8 +11531,8 @@ MonoBehaviour:
   suggestedSizePx: {x: 16, y: 32}
   owner: 0
   kind: 10
-  applyKindColor: 1
-  showLabel: 1
+  applyKindColor: 0
+  showLabel: 0
   labelFontSize: 5
   labelOffset: 0.15
 --- !u!212 &2066728210
@@ -11582,11 +11584,11 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 5546671543968653177, guid: 4c0c821f32c4e0442a7b78e36944723e, type: 3}
-  m_Color: {r: 1, g: 0.55, b: 0.8, a: 1}
+  m_Sprite: {fileID: 7891827344170792907, guid: b8f93c14e00e7314fb31c1d4b613534c, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 1
+  m_DrawMode: 0
   m_Size: {x: 0.90501934, y: 1.3203865}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
@@ -11602,7 +11604,7 @@ Transform:
   m_GameObject: {fileID: 2066728206}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.172, y: 4.62, z: 0}
+  m_LocalPosition: {x: -2.172, y: 3.9598067, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
