@@ -69,7 +69,7 @@ public static class MenuFlowBuilder
         mask = AssetDatabase.GetBuiltinExtraResource<Sprite>("UI/Skin/UIMask.psd"),
     };
 
-    static GameObject MakeCanvas(string name, int sortingOrder, bool raycaster = true)
+    public static GameObject MakeCanvas(string name, int sortingOrder, bool raycaster = true)
     {
         var go = new GameObject(name, typeof(RectTransform), typeof(Canvas), typeof(CanvasScaler));
         var canvas = go.GetComponent<Canvas>();
@@ -84,14 +84,14 @@ public static class MenuFlowBuilder
         return go;
     }
 
-    static RectTransform NewRect(string name, Transform parent)
+    public static RectTransform NewRect(string name, Transform parent)
     {
         var go = new GameObject(name, typeof(RectTransform));
         go.transform.SetParent(parent, false);
         return (RectTransform)go.transform;
     }
 
-    static void Stretch(RectTransform r)
+    public static void Stretch(RectTransform r)
     {
         r.anchorMin = Vector2.zero;
         r.anchorMax = Vector2.one;
@@ -99,7 +99,7 @@ public static class MenuFlowBuilder
         r.offsetMax = Vector2.zero;
     }
 
-    static Image NewImage(string name, Transform parent, Color color)
+    public static Image NewImage(string name, Transform parent, Color color)
     {
         var rt = NewRect(name, parent);
         var img = rt.gameObject.AddComponent<Image>();
@@ -107,7 +107,7 @@ public static class MenuFlowBuilder
         return img;
     }
 
-    static TMP_Text NewText(string name, Transform parent, string text, float size,
+    public static TMP_Text NewText(string name, Transform parent, string text, float size,
         TextAlignmentOptions align = TextAlignmentOptions.Center, FontStyles style = FontStyles.Normal)
     {
         var rt = NewRect(name, parent);
@@ -122,7 +122,7 @@ public static class MenuFlowBuilder
         return t;
     }
 
-    static void LayoutSize(GameObject go, float width, float height)
+    public static void LayoutSize(GameObject go, float width, float height)
     {
         var le = go.GetComponent<LayoutElement>();
         if (le == null) le = go.AddComponent<LayoutElement>();
@@ -131,7 +131,7 @@ public static class MenuFlowBuilder
     }
 
     /// <summary>Panel centrado con layout vertical.</summary>
-    static RectTransform VerticalPanel(string name, Transform parent, Vector2 size, Color bg, float spacing = 16f, int padding = 30)
+    public static RectTransform VerticalPanel(string name, Transform parent, Vector2 size, Color bg, float spacing = 16f, int padding = 30)
     {
         var img = NewImage(name, parent, bg);
         var rt = img.rectTransform;
@@ -162,7 +162,7 @@ public static class MenuFlowBuilder
         s.colors = c;
     }
 
-    static Button MakeButton(Transform parent, string text, float width = 360f, float height = 56f)
+    public static Button MakeButton(Transform parent, string text, float width = 360f, float height = 56f)
     {
         var go = TMP_DefaultControls.CreateButton(Res());
         go.name = text + " Button";
@@ -343,6 +343,7 @@ public static class MenuFlowBuilder
 
         PrefabUtility.SaveAsPrefabAsset(root, GameManagerPrefabPath);
         Object.DestroyImmediate(root);
+        StoryUiBuilder.EnsureAll();
     }
 
     // ───────────────────────── Escena MainMenu ─────────────────────────
@@ -400,7 +401,8 @@ public static class MenuFlowBuilder
         menu.settingsButton = settings;
         menu.buttonsRoot = buttonsRt.gameObject;
         menu.settingsPanel = settingsInstance.GetComponent<SettingsPanel>();
-        menu.playScene = "Campus";
+        menu.startScene = "Aulas2";
+        menu.startSpawn = "Aulas2_Intro";
         menu.tutorialScene = "Tutorial";
 
         GreyboxBuilder.SaveScene(scene, "MainMenu");

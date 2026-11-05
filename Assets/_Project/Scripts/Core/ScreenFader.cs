@@ -1,10 +1,17 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 
-/// <summary>Fundido a negro. Va en un Canvas con CanvasGroup y una imagen negra. Usa tiempo sin escala (funciona en pausa).</summary>
+/// <summary>
+/// Fundido a negro. Va en un Canvas con CanvasGroup y una imagen negra. Usa tiempo sin escala (funciona en pausa).
+/// También puede mostrar un texto centrado sobre el negro (por ejemplo "Your memory has been lost.").
+/// </summary>
 [RequireComponent(typeof(CanvasGroup))]
 public class ScreenFader : MonoBehaviour
 {
+    [Tooltip("Texto centrado que se muestra sobre el negro (opcional).")]
+    public TMP_Text caption;
+
     CanvasGroup group;
 
     CanvasGroup Group => group != null ? group : (group = GetComponent<CanvasGroup>());
@@ -27,5 +34,17 @@ public class ScreenFader : MonoBehaviour
             yield return null;
         }
         SetAlpha(target);
+    }
+
+    public void ShowCaption(string text)
+    {
+        if (caption == null) return;
+        caption.text = text;
+        caption.gameObject.SetActive(true);
+    }
+
+    public void HideCaption()
+    {
+        if (caption != null) caption.gameObject.SetActive(false);
     }
 }

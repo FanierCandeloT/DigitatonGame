@@ -34,7 +34,7 @@ public class NotebookPanel : MonoBehaviour
     {
         var gm = GameManager.Instance;
         // Solo dentro del juego: hace falta que haya jugador, y no en pausa ni en un fundido.
-        return !gm.IsPaused && !gm.IsTransitioning && FindAnyObjectByType<PlayerController>() != null;
+        return !gm.InputLocked && FindAnyObjectByType<PlayerController>() != null;
     }
 
     public void Open()

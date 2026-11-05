@@ -12,13 +12,15 @@ public class MainMenuController : MonoBehaviour
     public GameObject buttonsRoot;
     public SettingsPanel settingsPanel;
 
-    [Tooltip("Escena que carga Play. Por ahora Campus para poder probar; más adelante será Intro.")]
-    public string playScene = "Campus";
+    [Tooltip("Escena donde empieza el juego: el 'Intro classroom' dentro de Aulas2.")]
+    public string startScene = "Aulas2";
+    [Tooltip("SpawnPoint de esa escena donde aparece Andrés al empezar.")]
+    public string startSpawn = "Aulas2_Intro";
     public string tutorialScene = "Tutorial";
 
     void Start()
     {
-        playButton.onClick.AddListener(() => SceneTransition.Go(playScene, null));
+        playButton.onClick.AddListener(StartNewGame);
         tutorialButton.onClick.AddListener(() => SceneTransition.Go(tutorialScene, null));
         settingsButton.onClick.AddListener(OpenSettings);
         settingsPanel.onBack.AddListener(OnSettingsClosed);
@@ -31,6 +33,13 @@ public class MainMenuController : MonoBehaviour
         var kb = Keyboard.current;
         if (kb != null && kb.escapeKey.wasPressedThisFrame && settingsPanel.gameObject.activeSelf)
             settingsPanel.Back();
+    }
+
+    /// <summary>Play: borra el progreso anterior y empieza de cero en el Intro classroom.</summary>
+    void StartNewGame()
+    {
+        GameManager.Instance.ResetProgress();
+        SceneTransition.Go(startScene, startSpawn);
     }
 
     void OpenSettings()
