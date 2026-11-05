@@ -27,6 +27,13 @@ public class PlayerInteractor : MonoBehaviour
 
     void Update()
     {
+        // En pausa, con el cuaderno abierto o durante un fundido no se interactúa.
+        if (GameManager.Instance.InputLocked)
+        {
+            if (current != null) { current = null; SetPrompt(null); }
+            return;
+        }
+
         var nearest = FindNearest();
         if (nearest != current)
         {

@@ -19,7 +19,7 @@ public static class GreyboxBuilder
     const string PlayerPrefabPath = Root + "/Prefabs/Andres.prefab";
     const string CameraPrefabPath = Root + "/Prefabs/CameraRig.prefab";
 
-    static readonly string[] SceneOrder = { "MainMenu", "Intro", "Bienestar", "Campus", "SalaProfesores", "Agora" };
+    static readonly string[] SceneOrder = { "MainMenu", "Intro", "Bienestar", "Campus", "SalaProfesores", "Agora", "Tutorial" };
 
     // ───────────────────────── Menús ─────────────────────────
 
@@ -121,7 +121,7 @@ public static class GreyboxBuilder
         return go;
     }
 
-    static GameObject MakeSpawn(string id, Vector2 pos, bool isDefault)
+    public static GameObject MakeSpawn(string id, Vector2 pos, bool isDefault)
     {
         var go = new GameObject("Spawn_" + id);
         go.transform.position = pos;
@@ -131,7 +131,7 @@ public static class GreyboxBuilder
         return go;
     }
 
-    static GameObject MakeDoor(string name, Vector2 pos, Vector2 size, Sprite sprite, string targetScene, string targetSpawn)
+    public static GameObject MakeDoor(string name, Vector2 pos, Vector2 size, Sprite sprite, string targetScene, string targetSpawn)
     {
         var go = MakeBox(name, PlaceholderKind.Door, pos, size, sprite,
             "Puerta/entrada hacia " + targetScene + " (sprite de puerta o umbral).", null, trigger: true, order: 1);
@@ -242,12 +242,13 @@ public static class GreyboxBuilder
 
     static void BuildScenes(Sprite sprite)
     {
-        BuildMenuScene("MainMenu");
-        BuildMenuScene("Intro");
-        BuildCampus(sprite);
-        BuildBienestar(sprite);
-        BuildRoomScene("SalaProfesores", "Sala de profesores", sprite);
-        BuildRoomScene("Agora", "Ágora", sprite);
+        // Solo se crean las escenas que faltan: nunca se pisa el trabajo ya hecho en una escena existente.
+        if (!SceneExists("MainMenu")) BuildMenuScene("MainMenu");
+        if (!SceneExists("Intro")) BuildMenuScene("Intro");
+        if (!SceneExists("Campus")) BuildCampus(sprite);
+        if (!SceneExists("Bienestar")) BuildBienestar(sprite);
+        if (!SceneExists("SalaProfesores")) BuildRoomScene("SalaProfesores", "Sala de profesores", sprite);
+        if (!SceneExists("Agora")) BuildRoomScene("Agora", "Ágora", sprite);
 
         // Las escenas de plantilla ya no sirven: no tienen nada importante.
         foreach (var old in new[] { "Assets/Scenes/SampleScene.unity", "Assets/New Scene.unity" })
@@ -256,12 +257,14 @@ public static class GreyboxBuilder
             AssetDatabase.DeleteAsset("Assets/Scenes");
     }
 
-    static Scene NewScene() => EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
+    public static bool SceneExists(string name) => File.Exists($"{Root}/Scenes/{name}.unity");
 
-    static void SaveScene(Scene scene, string name) =>
+    public static Scene NewScene() => EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
+
+    public static void SaveScene(Scene scene, string name) =>
         EditorSceneManager.SaveScene(scene, $"{Root}/Scenes/{name}.unity");
 
-    static void AddGlobalLight()
+    public static void AddGlobalLight()
     {
         var go = new GameObject("Global Light 2D");
         var l = go.AddComponent<Light2D>();
@@ -269,7 +272,7 @@ public static class GreyboxBuilder
         l.intensity = 1f;
     }
 
-    static void BuildMenuScene(string name)
+    public static void BuildMenuScene(string name)
     {
         var scene = NewScene();
         AddGlobalLight();
@@ -286,7 +289,7 @@ public static class GreyboxBuilder
         SaveScene(scene, name);
     }
 
-    static void AddPlayerAndCamera(Vector2 playerPos)
+    public static void AddPlayerAndCamera(Vector2 playerPos)
     {
         var player = (GameObject)PrefabUtility.InstantiatePrefab(AssetDatabase.LoadAssetAtPath<GameObject>(PlayerPrefabPath));
         player.transform.position = playerPos;
@@ -294,7 +297,7 @@ public static class GreyboxBuilder
         rig.transform.position = Vector3.zero;
     }
 
-    static void AddBounds(Vector2 size)
+    public static void AddBounds(Vector2 size)
     {
         var go = new GameObject("MapBounds");
         var box = go.AddComponent<BoxCollider2D>();
@@ -304,7 +307,7 @@ public static class GreyboxBuilder
     }
 
     /// <summary>Muros negros alrededor de un rectángulo (centrado en el origen).</summary>
-    static void AddBorderWalls(Vector2 inner, Sprite sprite, float thickness = 0.5f)
+    public static void AddBorderWalls(Vector2 inner, Sprite sprite, float thickness = 0.5f)
     {
         float hx = inner.x / 2f, hy = inner.y / 2f, t = thickness;
         const string desc = "Muro/borde del mapa (puede ser una pared, cerca o límite visual).";
@@ -390,7 +393,7 @@ public static class GreyboxBuilder
 
     // ───────────────────────── Build Profile ─────────────────────────
 
-    static void RegisterScenesInBuild()
+    public static void RegisterScenesInBuild()
     {
         var list = new List<EditorBuildSettingsScene>();
         foreach (var n in SceneOrder)

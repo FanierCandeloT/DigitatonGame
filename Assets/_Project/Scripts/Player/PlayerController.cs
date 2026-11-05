@@ -49,6 +49,9 @@ public class PlayerController : MonoBehaviour
     {
         moveInput = moveAction.ReadValue<Vector2>();
         if (moveInput.sqrMagnitude > 1f) moveInput.Normalize();
+
+        // Pausa, cuaderno abierto o transición de escena: Andrés no se mueve.
+        if (GameManager.Instance.InputLocked) moveInput = Vector2.zero;
     }
 
     void FixedUpdate()

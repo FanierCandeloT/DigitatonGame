@@ -1,24 +1,18 @@
-using UnityEngine.SceneManagement;
-
 /// <summary>
-/// Cambia de escena recordando en qué SpawnPoint debe aparecer Andrés en la escena destino.
+/// Fachada para cambiar de escena (la usan las puertas y los menús).
+/// Toda la lógica vive en GameManager: fundido a negro, carga y guardado del punto de aparición.
 /// </summary>
 public static class SceneTransition
 {
-    /// <summary>Id del SpawnPoint donde debe aparecer el jugador en la siguiente escena (vacío = el de por defecto).</summary>
-    public static string PendingSpawnId { get; private set; }
-
+    /// <summary>Fundido a negro, carga la escena y deja a Andrés en el SpawnPoint indicado (vacío = el de por defecto).</summary>
     public static void Go(string sceneName, string spawnId)
     {
-        PendingSpawnId = spawnId;
-        SceneManager.LoadScene(sceneName);
+        GameManager.Instance.TransitionTo(sceneName, spawnId);
     }
 
-    /// <summary>Devuelve el id pendiente y lo borra (solo se usa una vez).</summary>
+    /// <summary>Devuelve el id de aparición pendiente y lo consume (solo se usa una vez por carga de escena).</summary>
     public static string ConsumePendingSpawnId()
     {
-        var id = PendingSpawnId;
-        PendingSpawnId = null;
-        return id;
+        return GameManager.Instance.ConsumeSpawnId();
     }
 }
