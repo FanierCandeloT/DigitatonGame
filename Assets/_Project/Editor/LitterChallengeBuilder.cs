@@ -15,12 +15,15 @@ public static class LitterChallengeBuilder
     const string SquarePath = "Assets/_Project/Art/Placeholders/Square.png";
 
     // Donde estaba el reto provisional de las canecas (junto a Aulas 1)
-    static readonly Vector2 CampusPosition = new Vector2(34.5f, -37.13f);
+    // (el mapa quedó al 60 %: 34,5 x 0,6 = 20,7 y -37,13 x 0,6 = -22,28; ahí está ahora la caneca provisional)
+    static readonly Vector2 CampusPosition = new Vector2(20.7f, -22.28f);
+    const int StudentSheet = 13;   // hoja de Valentina (NpcSpriteSlicer)
 
     [MenuItem("DigitatonGame/Agregar reto 2 (basura) al Campus")]
     public static void AddToCampus()
     {
         CampusBuilder.EnsureSprites();
+        if (NpcSpriteSlicer.Load(StudentSheet).Length < 12) NpcSpriteSlicer.SliceAll();
         var prefab = BuildPrefab();
 
         var scene = EditorSceneManager.OpenScene("Assets/_Project/Scenes/Campus.unity", OpenSceneMode.Additive);
@@ -73,12 +76,24 @@ public static class LitterChallengeBuilder
         // Estudiante (Valentina)
         var student = GreyboxBuilder.MakeBox("Valentina (reto 2)", PlaceholderKind.NPC, Vector2.zero, new Vector2(1f, 2f), square,
             "Sprite de Valentina, estudiante que tira botellas (NPC, vista 3/4, 16x32 px). Animaciones: caminar, tirar, recoger.", new Vector2Int(16, 32), false, false, 0, true);
-        student.GetComponent<PlaceholderInfo>().labelFontSize = 5f;
+        // Sprite real de Valentina: pivote en los pies, así que el transform queda a la altura de los pies
+        var frames = NpcSpriteSlicer.Load(StudentSheet);
+        var studentInfo = student.GetComponent<PlaceholderInfo>();
+        if (frames.Length >= 12)
+        {
+            var studentRenderer = student.GetComponent<SpriteRenderer>();
+            studentRenderer.sprite = frames[1];
+            studentRenderer.color = Color.white;
+            student.transform.localScale = Vector3.one;
+            studentInfo.applyKindColor = false;
+            studentInfo.showLabel = false;
+        }
+        studentInfo.labelFontSize = 5f;
         var col = student.AddComponent<BoxCollider2D>();
-        col.size = new Vector2(1f, 1f);
-        col.offset = new Vector2(0f, -0.5f);
+        col.size = new Vector2(1f, 0.7f);
+        col.offset = new Vector2(0f, 0.35f);   // colisiona solo en los pies
         student.transform.SetParent(rootGo.transform, false);
-        student.transform.localPosition = new Vector3(3.25f, -1.5f, 0f);
+        student.transform.localPosition = new Vector3(3.25f, -2.4f, 0f);
 
         // Botellas: 3 iniciales y 3 que aparecen si la frase empeora el desorden
         Vector3[] spots =
@@ -100,7 +115,7 @@ public static class LitterChallengeBuilder
         // Icono "!" sobre la cabeza: avisa que esa estudiante tiene un reto
         var iconGo = new GameObject("Icono de reto");
         iconGo.transform.SetParent(student.transform, false);
-        iconGo.transform.localPosition = new Vector3(0f, 2.1f, 0f);
+        iconGo.transform.localPosition = new Vector3(0f, 2.6f, 0f);   // sobre la cabeza (el sprite mide 2 u desde los pies)
         var text = iconGo.AddComponent<TextMeshPro>();
         text.text = "!";
         text.fontSize = 9f;
