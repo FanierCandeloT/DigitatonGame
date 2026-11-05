@@ -15,18 +15,20 @@ public class MemoryHud : MonoBehaviour
 
     static readonly string[] HiddenScenes = { "MainMenu", "Tutorial" };
 
-    TextMeshProUGUI speechLabel;
+    TextMeshProUGUI speechLabel, objectiveLabel;
     int lastMemories;
 
     void OnEnable()
     {
         GameManager.MemoriesChanged += OnMemoriesChanged;
+        GameManager.ProgressChanged += Refresh;
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     void OnDisable()
     {
         GameManager.MemoriesChanged -= OnMemoriesChanged;
+        GameManager.ProgressChanged -= Refresh;
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
@@ -65,6 +67,23 @@ public class MemoryHud : MonoBehaviour
         rect.pivot = new Vector2(1f, 1f);
         rect.anchoredPosition = new Vector2(0f, -4f);
         rect.sizeDelta = new Vector2(360f, 30f);
+
+        // Objetivo actual (lo que sigue en la historia), justo debajo del habla
+        var objective = new GameObject("Objetivo", typeof(RectTransform));
+        objective.transform.SetParent(root.transform, false);
+        objectiveLabel = objective.AddComponent<TextMeshProUGUI>();
+        objectiveLabel.font = label.font;
+        objectiveLabel.fontSize = 20f;
+        objectiveLabel.alignment = TextAlignmentOptions.TopRight;
+        objectiveLabel.textWrappingMode = TextWrappingModes.Normal;
+        objectiveLabel.color = new Color(0.85f, 0.9f, 1f);
+        objectiveLabel.raycastTarget = false;
+        var objectiveRect = objectiveLabel.rectTransform;
+        objectiveRect.anchorMin = new Vector2(1f, 0f);
+        objectiveRect.anchorMax = new Vector2(1f, 0f);
+        objectiveRect.pivot = new Vector2(1f, 1f);
+        objectiveRect.anchoredPosition = new Vector2(0f, -38f);
+        objectiveRect.sizeDelta = new Vector2(420f, 64f);
     }
 
     void Refresh()
@@ -79,6 +98,12 @@ public class MemoryHud : MonoBehaviour
             speechLabel.color = SpeechRecovery.StageColor(stage);
         }
 
+        if (objectiveLabel != null)
+        {
+            string objective = StoryFlow.CurrentObjective(gm);
+            objectiveLabel.text = string.IsNullOrEmpty(objective) ? "" : $"<b>OBJECTIVE</b>\n{objective}";
+        }
+
         bool inGame = FindAnyObjectByType<PlayerController>() != null &&
                       System.Array.IndexOf(HiddenScenes, SceneManager.GetActiveScene().name) < 0;
         root.SetActive(inGame);
@@ -88,7 +113,7 @@ public class MemoryHud : MonoBehaviour
     IEnumerator AnnounceWhenFree(string message)
     {
         yield return null;
-        while (GameManager.Instance.DialogueOpen || GameManager.Instance.MinigameOpen || GameManager.Instance.IsTransitioning)
+        while (GameManager.Instance.ModalOpen || GameManager.Instance.IsTransitioning)
             yield return null;
         yield return new WaitForSecondsRealtime(0.4f);
         ToastMessage.Show(message, 3.5f);

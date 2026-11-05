@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.UI;
 using UnityEngine.SceneManagement;
 
@@ -37,6 +38,9 @@ public class GameManager : MonoBehaviour
     public static event Action<bool> PauseChanged;
     public static event Action<int> MemoriesChanged;
 
+    /// <summary>Se dispara cuando cambia cualquier marca del guion o un reto (el HUD actualiza el objetivo).</summary>
+    public static event Action ProgressChanged;
+
     [SerializeField] ScreenFader fader;
     [SerializeField] ResultsPanel results;
     [SerializeField, Min(0.05f)] float fadeDuration = 0.35f;
@@ -55,14 +59,51 @@ public class GameManager : MonoBehaviour
     public bool NotebookOpen { get; set; }
     public bool IsTransitioning { get; private set; }
     public bool ResultsOpen { get; private set; }
-    public bool MinigameOpen { get; set; }
-    public bool DialogueOpen { get; set; }
+    /// <summary>
+    /// Bloqueo de control del jugador. Cada diálogo o reto toma el suyo con LockInput() y lo suelta con Release():
+    /// mientras haya al menos uno, Andrés no se mueve ni interactúa. Como cada uno es independiente (y Release es
+    /// idempotente), dos retos encadenados nunca se desbloquean entre sí.
+    /// </summary>
+    public sealed class ModalLock
+    {
+        readonly GameManager owner;
+        readonly int generation;
+        bool released;
+
+        internal ModalLock(GameManager owner, int generation)
+        {
+            this.owner = owner;
+            this.generation = generation;
+        }
+
+        public void Release()
+        {
+            if (released) return;
+            released = true;
+            // Un bloqueo de antes de ResetProgress ya no cuenta: así no desbloquea a uno nuevo por error
+            if (owner != null && generation == owner.modalGeneration) owner.ReleaseModal();
+        }
+    }
+
+    int modalCount;
+    int modalGeneration;
+
+    /// <summary>True si hay un diálogo o reto abierto (el jugador debe estar quieto).</summary>
+    public bool ModalOpen => modalCount > 0;
+
+    public ModalLock LockInput()
+    {
+        modalCount++;
+        return new ModalLock(this, modalGeneration);
+    }
+
+    void ReleaseModal() => modalCount = Mathf.Max(0, modalCount - 1);
 
     /// <summary>True si el GameManager ya existe (no lo crea). Sirve para limpiar estado al destruir objetos.</summary>
     public static bool Exists => instance != null;
 
     /// <summary>True cuando el jugador no debe moverse ni interactuar.</summary>
-    public bool InputLocked => IsPaused || NotebookOpen || IsTransitioning || ResultsOpen || MinigameOpen || DialogueOpen;
+    public bool InputLocked => IsPaused || NotebookOpen || IsTransitioning || ResultsOpen || ModalOpen;
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     static void Bootstrap()
@@ -102,7 +143,11 @@ public class GameManager : MonoBehaviour
         // Atajo para desarrollo: si se da Play directamente en una escena del juego (no en el menú),
         // los edificios del campus quedan abiertos para poder probar.
         var current = SceneManager.GetActiveScene().name;
-        if (current != "MainMenu" && current != "Tutorial") SetFlag(FlagDevOpen);
+        if ((Application.isEditor || Debug.isDebugBuild) && current != "MainMenu" && current != "Tutorial")
+        {
+            SetFlag(FlagDevOpen);
+            SetFlag(FlagAgoraDone);   // el accidente ya lo cuenta la introducción: el disparador antiguo del Ágora no debe mandarte al hospital
+        }
 
         if (fader != null) StartCoroutine(fader.FadeTo(0f, fadeDuration));
     }
@@ -119,7 +164,10 @@ public class GameManager : MonoBehaviour
     // ───────────── Progreso ─────────────
 
     public bool HasFlag(string flag) => flags.Contains(flag);
-    public void SetFlag(string flag) => flags.Add(flag);
+    public void SetFlag(string flag)
+    {
+        if (flags.Add(flag)) ProgressChanged?.Invoke();
+    }
 
     public bool IsChallengeDone(string id) => flags.Contains("done:" + id);
 
@@ -134,6 +182,7 @@ public class GameManager : MonoBehaviour
     {
         flags.Add("done:" + id);
         AddMemory(memoryReward);
+        ProgressChanged?.Invoke();
     }
 
     /// <summary>Borra todo el progreso: así "Play" siempre empieza de cero.</summary>
@@ -141,6 +190,8 @@ public class GameManager : MonoBehaviour
     {
         flags.Clear();
         stats.Clear();
+        modalCount = 0;
+        modalGeneration++;
         ResultsOpen = false;
         NotebookOpen = false;
         hasPendingSpawn = false;
@@ -148,6 +199,20 @@ public class GameManager : MonoBehaviour
         LastSpawnId = null;
         SetMemories(0);
         if (results != null) results.Hide();
+        ProgressChanged?.Invoke();
+    }
+
+    /// <summary>
+    /// Empieza una partida nueva: borra el progreso y reproduce la introducción (el accidente) sobre negro
+    /// antes de despertar en el hospital. Cada pantalla se puede saltar con cualquier tecla o clic.
+    /// </summary>
+    public void StartStory()
+    {
+        if (IsTransitioning) return;
+        ResetProgress();
+        SetFlag(StoryFlow.FlagIntroDone);
+        SetFlag(FlagAgoraDone);   // el accidente ya se contó aquí: el disparador antiguo del Ágora no debe repetirlo
+        TransitionToCaptions(StoryFlow.StartScene, StoryFlow.StartSpawn, StoryFlow.IntroCaptions, StoryFlow.CaptionSeconds);
     }
 
     // ───────────── Recuerdos ─────────────
@@ -195,16 +260,20 @@ public class GameManager : MonoBehaviour
     // ───────────── Cambio de escena ─────────────
 
     /// <summary>Fundido a negro, carga la escena y deja a Andrés en spawnId. Con caption: muestra ese texto sobre negro antes de cargar.</summary>
-    public void TransitionTo(string sceneName, string spawnId, string caption = null, float captionSeconds = 0f)
+    public void TransitionTo(string sceneName, string spawnId, string caption = null, float captionSeconds = 0f) =>
+        TransitionToCaptions(sceneName, spawnId, string.IsNullOrEmpty(caption) ? null : new[] { caption }, captionSeconds);
+
+    /// <summary>Como TransitionTo, pero con varias pantallas de texto seguidas sobre negro (cada una se puede saltar con una tecla o clic).</summary>
+    public void TransitionToCaptions(string sceneName, string spawnId, string[] captions, float secondsEach)
     {
         if (IsTransitioning) return;
         LastSpawnId = spawnId;
         pendingSpawnId = spawnId;
         hasPendingSpawn = !string.IsNullOrEmpty(spawnId);
-        StartCoroutine(TransitionRoutine(sceneName, caption, captionSeconds));
+        StartCoroutine(TransitionRoutine(sceneName, captions, secondsEach));
     }
 
-    IEnumerator TransitionRoutine(string sceneName, string caption, float captionSeconds)
+    IEnumerator TransitionRoutine(string sceneName, string[] captions, float secondsEach)
     {
         IsTransitioning = true;   // bloquea a Andrés desde el primer momento
         if (fader != null) yield return fader.FadeTo(1f, fadeDuration);
@@ -212,10 +281,13 @@ public class GameManager : MonoBehaviour
         NotebookOpen = false;
         SetPaused(false);
 
-        if (!string.IsNullOrEmpty(caption) && fader != null)
+        if (captions != null && fader != null)
         {
-            fader.ShowCaption(caption);
-            yield return new WaitForSecondsRealtime(captionSeconds);
+            foreach (var caption in captions)
+            {
+                fader.ShowCaption(caption);
+                yield return WaitCaption(secondsEach);
+            }
         }
 
         var op = SceneManager.LoadSceneAsync(sceneName);
@@ -235,5 +307,23 @@ public class GameManager : MonoBehaviour
             yield return fader.FadeTo(0f, fadeDuration);
         }
         IsTransitioning = false;
+    }
+
+    /// <summary>Espera los segundos indicados o hasta que el jugador pulse una tecla o haga clic (con un mínimo para poder leer).</summary>
+    static IEnumerator WaitCaption(float seconds)
+    {
+        for (float t = 0f; t < seconds; t += Time.unscaledDeltaTime)
+        {
+            if (t > 0.5f && AdvancePressed()) yield break;
+            yield return null;
+        }
+    }
+
+    static bool AdvancePressed()
+    {
+        var kb = Keyboard.current;
+        if (kb != null && kb.anyKey.wasPressedThisFrame) return true;
+        var pointer = Pointer.current;
+        return pointer != null && pointer.press.wasPressedThisFrame;
     }
 }

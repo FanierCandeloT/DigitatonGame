@@ -12,10 +12,6 @@ public class MainMenuController : MonoBehaviour
     public GameObject buttonsRoot;
     public SettingsPanel settingsPanel;
 
-    [Tooltip("Escena donde empieza el juego: el 'Intro classroom' dentro de Aulas2.")]
-    public string startScene = "Aulas2";
-    [Tooltip("SpawnPoint de esa escena donde aparece Andrés al empezar.")]
-    public string startSpawn = "Aulas2_Intro";
     public string tutorialScene = "Tutorial";
 
     void Start()
@@ -35,12 +31,8 @@ public class MainMenuController : MonoBehaviour
             settingsPanel.Back();
     }
 
-    /// <summary>Play: borra el progreso anterior y empieza de cero en el Intro classroom.</summary>
-    void StartNewGame()
-    {
-        GameManager.Instance.ResetProgress();
-        SceneTransition.Go(startScene, startSpawn);
-    }
+    /// <summary>Play: borra el progreso anterior, cuenta el accidente (introducción) y despierta en el hospital (ver StoryFlow).</summary>
+    void StartNewGame() => GameManager.Instance.StartStory();
 
     void OpenSettings()
     {

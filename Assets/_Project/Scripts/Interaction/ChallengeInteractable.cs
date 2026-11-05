@@ -1,8 +1,9 @@
 using UnityEngine;
 
 /// <summary>
-/// Reto del guion (objeto cian). Por ahora es solo un marcador: al interactuar muestra "(pending)",
-/// suma recuerdos y no se puede repetir. Las preguntas 1-4, 5-8, 9-11 y 12 usan este componente.
+/// Marcador provisional de un reto que todavía no se construyó (objeto cian): al interactuar muestra "(pending)",
+/// suma recuerdos y no se puede repetir. Los retos reales ya tienen su propio componente (NpcChallengeInteractable,
+/// LitterChallenge, ClassLessonInteractable); este queda para los que faltan (ver StoryFlow).
 /// </summary>
 public class ChallengeInteractable : Interactable
 {
@@ -21,9 +22,6 @@ public class ChallengeInteractable : Interactable
 
     [Tooltip("Si está activo, al completarlo aparece la pantalla de resultados.")]
     public bool endsGame;
-
-    [Tooltip("Si está activo, abre el minijuego de reconstrucción de memoria en vez del mensaje temporal.")]
-    public bool useMemoryReconstruction;
 
     static readonly Color DoneColor = new Color(0.35f, 0.5f, 0.5f);
 
@@ -44,12 +42,6 @@ public class ChallengeInteractable : Interactable
         if (gm.MemoriesRecovered < requiredMemories)
         {
             ToastMessage.Show(lockedMessage);
-            return;
-        }
-
-        if (useMemoryReconstruction)
-        {
-            MemoryReconstructionGame.Open(errors => Complete(interactor, "Your memories have been restored."));
             return;
         }
 

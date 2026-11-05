@@ -116,7 +116,7 @@ public class ClassErrorHunt : MonoBehaviour
     int tokenChosen = -1, chipChosen = -1, resultsChoice;
     float inputReadyAt;
 
-    static ClassErrorHunt current;
+    GameManager.ModalLock modalLock;
 
     /// <summary>Abre la lección. onFinish recibe el resultado al aprobar y continuar, o al salir sin aprobar.</summary>
     public static ClassErrorHunt Open(Action<HuntResult> onFinish, float passFraction = 0.7f)
@@ -126,20 +126,15 @@ public class ClassErrorHunt : MonoBehaviour
         game.onFinish = onFinish;
         game.passFraction = passFraction;
         game.Build();
-        current = game;
-        GameManager.Instance.MinigameOpen = true;
+        game.modalLock = GameManager.Instance.LockInput();   // Andrés queda quieto mientras dura la lección
         game.StartCoroutine(game.Lesson());
         return game;
     }
 
     void OnDestroy()
     {
-        // Si la lección desaparece por un cambio de escena, el jugador no puede quedar bloqueado.
-        if (current == this)
-        {
-            current = null;
-            if (GameManager.Exists) GameManager.Instance.MinigameOpen = false;
-        }
+        // Si la lección desaparece por un cambio de escena, el jugador no puede quedar bloqueado (Release es idempotente).
+        modalLock?.Release();
     }
 
     // ───────────── Construcción de la interfaz ─────────────
@@ -429,7 +424,7 @@ public class ClassErrorHunt : MonoBehaviour
         }
 
         result.Passed &= resultsChoice == 2;   // salir sin aprobar nunca cuenta como aprobado
-        GameManager.Instance.MinigameOpen = false;
+        modalLock?.Release();
         var callback = onFinish;
         Destroy(gameObject);
         callback?.Invoke(result);

@@ -401,9 +401,7 @@ public static class MenuFlowBuilder
         menu.settingsButton = settings;
         menu.buttonsRoot = buttonsRt.gameObject;
         menu.settingsPanel = settingsInstance.GetComponent<SettingsPanel>();
-        menu.startScene = "Aulas2";
-        menu.startSpawn = "Aulas2_Intro";
-        menu.tutorialScene = "Tutorial";
+        menu.tutorialScene = "Tutorial";   // el juego empieza con StoryFlow.StartScene (la introducción del accidente)
 
         GreyboxBuilder.SaveScene(scene, "MainMenu");
     }

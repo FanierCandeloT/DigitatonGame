@@ -63,8 +63,7 @@ public class DialoguePanel : MonoBehaviour
     bool lineComplete;
     int startFrame;
     int visibleLength;
-
-    static DialoguePanel current;
+    GameManager.ModalLock modalLock;
 
     /// <summary>Muestra las líneas en orden y llama a onDone al terminar.</summary>
     public static DialoguePanel Show(DialogueLine[] lines, Action onDone)
@@ -77,26 +76,17 @@ public class DialoguePanel : MonoBehaviour
 
         var canvas = PixelUi.NewCanvas("DialoguePanel", 400);
         var panel = canvas.gameObject.AddComponent<DialoguePanel>();
+        panel.modalLock = GameManager.Instance.LockInput();   // Andrés queda quieto mientras dura el diálogo (antes de armar la UI: si algo falla, OnDestroy lo suelta)
         panel.lines = lines;
         panel.onDone = onDone;
         panel.startFrame = Time.frameCount;   // ignora la misma pulsación de E que abrió el diálogo
         panel.Build();
         panel.ShowLine(0);
-
-        current = panel;
-        GameManager.Instance.DialogueOpen = true;
         return panel;
     }
 
-    void OnDestroy()
-    {
-        // Si el panel desaparece por un cambio de escena, el jugador no puede quedar bloqueado.
-        if (current == this)
-        {
-            current = null;
-            if (GameManager.Exists) GameManager.Instance.DialogueOpen = false;
-        }
-    }
+    // Si el panel desaparece por un cambio de escena, el jugador no puede quedar bloqueado (Release es idempotente).
+    void OnDestroy() => modalLock?.Release();
 
     void Build()
     {
@@ -192,8 +182,16 @@ public class DialoguePanel : MonoBehaviour
         hint.gameObject.SetActive(true);
     }
 
+    /// <summary>Solo para pruebas automáticas: simula la pulsación de "avanzar" (el teclado no llega al juego si el editor no tiene foco).</summary>
+    [System.NonSerialized] public static bool SimulatedAdvance;
+
     static bool AdvancePressed()
     {
+        if (SimulatedAdvance)
+        {
+            SimulatedAdvance = false;
+            return true;
+        }
         var kb = Keyboard.current;
         if (kb != null && (kb.eKey.wasPressedThisFrame || kb.spaceKey.wasPressedThisFrame || kb.enterKey.wasPressedThisFrame)) return true;
         var pointer = Pointer.current;   // mouse o pantalla táctil
@@ -203,7 +201,7 @@ public class DialoguePanel : MonoBehaviour
     void Close()
     {
         var callback = onDone;
-        GameManager.Instance.DialogueOpen = false;
+        modalLock?.Release();
         Destroy(gameObject);
         callback?.Invoke();
     }

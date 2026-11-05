@@ -10,6 +10,35 @@ public class CameraRigBinder : MonoBehaviour
     public CinemachineCamera virtualCamera;
     public CinemachineConfiner2D confiner;
 
+    /// <summary>Cuánto sube Andrés en la pantalla mientras el panel de bloques está abierto, para no tapar el mundo (en Cinemachine, negativo = más arriba).</summary>
+    const float BuilderLift = -0.22f;
+
+    CinemachinePositionComposer composer;
+
+    void OnEnable()
+    {
+        SentenceBuilder.Opened += LiftForBuilder;
+        SentenceBuilder.Closed += LowerAfterBuilder;
+    }
+
+    void OnDisable()
+    {
+        SentenceBuilder.Opened -= LiftForBuilder;
+        SentenceBuilder.Closed -= LowerAfterBuilder;
+    }
+
+    void LiftForBuilder() => SetScreenY(BuilderLift);
+    void LowerAfterBuilder() => SetScreenY(0f);
+
+    void SetScreenY(float y)
+    {
+        if (composer == null && virtualCamera != null) composer = virtualCamera.GetComponent<CinemachinePositionComposer>();
+        if (composer == null) return;
+        var composition = composer.Composition;
+        composition.ScreenPosition = new Vector2(composition.ScreenPosition.x, y);
+        composer.Composition = composition;
+    }
+
     void Start()
     {
         // El formato de pantalla se aplica aquí en todas las escenas, así ninguna se queda con un zoom distinto.
