@@ -31,14 +31,19 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioClip correct;
     [SerializeField] AudioClip incorrect;
     [SerializeField] AudioClip steps;
+    [SerializeField] AudioClip writeText;
 
     [Header("Niveles (relativos; el volumen final lo ponen los sliders de Settings)")]
     [SerializeField, Range(0f, 1f)] float ambientLevel = 0.7f;
     [SerializeField, Range(0f, 1f)] float stepsLevel = 0.6f;
+    [SerializeField, Range(0f, 1f)] float writeTextLevel = 0.55f;
+    [SerializeField, Min(0.05f)] float writeTextShortSeconds = 0.14f;   // duración del "tic" al avanzar un diálogo
     [SerializeField, Min(0.1f)] float musicFadeIn = 2f;
     [SerializeField, Min(0.1f)] float musicFadeOut = 1.5f;
 
-    AudioSource musicSource, sfxSource, stepsSource;
+    AudioSource musicSource, sfxSource, stepsSource, textSource;
+    bool typing;               // hay un texto escribiéndose (loop de WriteText)
+    bool textPausedByUs;       // el loop está en pausa porque el juego está en pausa
     Coroutine musicFade;
     int lastWalkFrame = -10;
     float lastPreviewTime = -10f;
@@ -75,6 +80,17 @@ public class AudioManager : MonoBehaviour
         if (instance != null) instance.lastWalkFrame = Time.frameCount;
     }
 
+    // ── Texto de diálogos (WriteText) ──
+
+    /// <summary>Empieza el loop de WriteText (letras apareciendo). Si ya sonaba, lo reinicia. Se pausa solo con el juego.</summary>
+    public static void StartTyping() => instance?.BeginTyping();
+
+    /// <summary>Detiene el loop de WriteText en el acto (la línea ya apareció completa o el diálogo se cerró). No corta el "tic" corto.</summary>
+    public static void StopTyping() => instance?.EndTyping();
+
+    /// <summary>El jugador avanzó o saltó una línea: un "tic" corto de WriteText. Cada clic lo reinicia (nunca se acumula).</summary>
+    public static void PlayTextAdvance() => instance?.PlayTextShort();
+
     /// <summary>Vista previa al mover el slider de efectos: un clic (con límite de frecuencia).</summary>
     public static void PreviewSfx()
     {
@@ -93,8 +109,10 @@ public class AudioManager : MonoBehaviour
         musicSource = NewSource("Música", musicGroup, loop: true, ambient);
         sfxSource = NewSource("Efectos", sfxGroup, loop: false, null);
         stepsSource = NewSource("Pasos", sfxGroup, loop: true, steps);
+        textSource = NewSource("Texto de diálogos", sfxGroup, loop: true, writeText);   // un solo canal: el "tic" y el loop nunca se superponen
         musicSource.volume = 0f;
         stepsSource.volume = 0f;
+        textSource.volume = writeTextLevel;
 
         ApplyVolumes();
     }
@@ -200,6 +218,56 @@ public class AudioManager : MonoBehaviour
     void Update()
     {
         UpdateSteps();
+        UpdateText();
+    }
+
+    // WriteText: loop mientras las letras aparecen. Pausa del juego = pausa del sonido (y continúa al reanudar).
+    void BeginTyping()
+    {
+        if (textSource == null || writeText == null) return;
+        typing = true;
+        textPausedByUs = false;
+        textSource.Stop();
+        textSource.loop = true;
+        textSource.volume = writeTextLevel;
+        textSource.pitch = 1f + Random.Range(-0.03f, 0.03f);
+        textSource.time = 0f;
+        textSource.Play();
+    }
+
+    void EndTyping()
+    {
+        typing = false;
+        textPausedByUs = false;
+        // Solo corta el loop; si está sonando el "tic" corto (loop apagado) lo deja terminar.
+        if (textSource != null && textSource.loop) textSource.Stop();
+    }
+
+    void PlayTextShort()
+    {
+        if (textSource == null || writeText == null) return;
+        typing = false;
+        textPausedByUs = false;
+        textSource.Stop();              // cada clic reinicia el sonido corto
+        textSource.loop = false;
+        textSource.volume = writeTextLevel;
+        float pitch = 1f + Random.Range(-0.04f, 0.04f);
+        textSource.pitch = pitch;
+        textSource.time = 0f;
+        textSource.Play();
+        textSource.SetScheduledEndTime(AudioSettings.dspTime + writeTextShortSeconds / pitch);
+    }
+
+    void UpdateText()
+    {
+        if (textSource == null || !typing) return;
+
+        bool paused = GameManager.Exists && GameManager.Instance.IsPaused;
+        if (paused && textSource.isPlaying) { textSource.Pause(); textPausedByUs = true; }
+        else if (!paused && textPausedByUs) { textSource.UnPause(); textPausedByUs = false; }
+
+        if (textSource.isPlaying)   // el tono deriva muy poco, para que no suene repetitivo
+            textSource.pitch = 1f + (Mathf.PerlinNoise(Time.unscaledTime * 1.3f, 9.1f) - 0.5f) * 0.07f;
     }
 
     void LateUpdate()

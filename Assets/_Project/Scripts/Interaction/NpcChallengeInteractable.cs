@@ -25,6 +25,9 @@ public class NpcChallengeInteractable : Interactable
 
     [TextArea] public string doneMessage = "Lucía: Take your time.";
 
+    [Tooltip("Diálogo que abre al hablar con ella cuando el reto ya está completo (asset de Assets/_Project/Data/Dialogues). Vacío = mensaje corto.")]
+    public DialogueAsset doneDialogue;
+
     /// <summary>Diálogo inicial. Andrés trae sus tres versiones: inglés, mezcla (palabras recuperadas entre llaves) y español.</summary>
     static readonly DialogueLine[] DefaultIntro =
     {
@@ -54,7 +57,8 @@ public class NpcChallengeInteractable : Interactable
         var gm = GameManager.Instance;
         if (gm.IsChallengeDone(challengeId))
         {
-            ToastMessage.Show(doneMessage, 2.5f);
+            if (doneDialogue != null && doneDialogue.HasLines) doneDialogue.Show();
+            else ToastMessage.Show(doneMessage, 2.5f);
             return;
         }
 

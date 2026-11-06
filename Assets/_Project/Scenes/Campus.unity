@@ -19818,6 +19818,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   message: 'Don Jairo: Welcome to UAO!'
+  dialogue: {fileID: 11400000, guid: 6e8784db97dfabc45bf8f94cdfbe5d53, type: 2}
 --- !u!61 &680415016
 BoxCollider2D:
   m_ObjectHideFlags: 0

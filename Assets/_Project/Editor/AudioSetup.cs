@@ -26,7 +26,7 @@ public static class AudioSetup
         Configure("Ambient", AudioClipLoadType.CompressedInMemory, AudioCompressionFormat.Vorbis, 0.6f, mono: false, preload: false, background: true, log);
 
         // Efectos cortos: descomprimidos al cargar y precargados, así suenan al instante sin retraso.
-        foreach (var n in new[] { "Click", "Correct", "Incorrect", "Interaction", "OpenBook" })
+        foreach (var n in new[] { "Click", "Correct", "Incorrect", "Interaction", "OpenBook", "WriteText" })
             Configure(n, AudioClipLoadType.DecompressOnLoad, AudioCompressionFormat.ADPCM, 1f, mono: true, preload: true, background: false, log);
 
         // Pasos: es un loop largo; comprimido en memoria y en mono, precargado.
@@ -140,6 +140,7 @@ public static class AudioSetup
         Set("correct", Clip("Correct"));
         Set("incorrect", Clip("Incorrect"));
         Set("steps", Clip("Steps"));
+        Set("writeText", Clip("WriteText"));
         so.ApplyModifiedPropertiesWithoutUndo();
 
         PrefabUtility.SaveAsPrefabAsset(root, PrefabPath);

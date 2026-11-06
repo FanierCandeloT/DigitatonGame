@@ -2830,6 +2830,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   message: "Do\xF1a Marta: What can I get you?"
+  dialogue: {fileID: 11400000, guid: 8b967f9159c26744daef72a7ccfa7bd1, type: 2}
 --- !u!61 &1440661927
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2867,8 +2868,8 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0.35}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    pivot: {x: 0.5, y: 0}
+    oldSize: {x: 1.25, y: 2}
     newSize: {x: 1, y: 2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
