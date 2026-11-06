@@ -4024,7 +4024,7 @@ MonoBehaviour:
   suggestedSizePx: {x: 48, y: 32}
   owner: 0
   kind: 9
-  applyKindColor: 1
+  applyKindColor: 0
   showLabel: 1
   labelFontSize: 4
   labelOffset: 0.15
@@ -4124,7 +4124,7 @@ SpriteRenderer:
   m_SortingOrder: 1
   m_MaskInteraction: 0
   m_Sprite: {fileID: 4423213345857408856, guid: 1917bf77291f39741a7ead698f6c6f23, type: 3}
-  m_Color: {r: 1, g: 0.92, b: 0.1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1
