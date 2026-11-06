@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e99c77aeff342034c8032ffd8e761e6d, type: 3}
+  m_Name: Credits
+  m_EditorClassIdentifier: Assembly-CSharp::CreditsAsset
+  title: Credits
+  blocks:
+  - heading: 
+    entries:
+    - text: 'Passive Amnesia: UAO Edition'
+      detail: 
+      big: 1
+    - text: "A Digitat\xF3n project"
+      detail: 
+      big: 0
+    - text: "Universidad Aut\xF3noma de Occidente \u2013 Cali"
+      detail: 
+      big: 0
+  - heading: DEVELOPMENT TEAM
+    entries:
+    - text: "Fanier Andr\xE9s Candelo Triana"
+      detail: 2240623
+      big: 0
+    - text: Juan Camilo Trujillo Vargas
+      detail: 2240209
+      big: 0
+    - text: "Sebasti\xE1n Meneses Molina"
+      detail: 2240311
+      big: 0
+  - heading: TOOLS AND RESOURCES
+    entries:
+    - text: Made with Unity
+      detail: 
+      big: 0
+    - text: 'Font: Pixelify Sans (SIL Open Font License)'
+      detail: 
+      big: 0
+    - text: 'Sustainable Development Goals: ODS 8 & 12'
+      detail: 
+      big: 0

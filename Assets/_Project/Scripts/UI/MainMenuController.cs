@@ -16,6 +16,8 @@ public class MainMenuController : MonoBehaviour
     public Button settingsButton;
     public GameObject buttonsRoot;
     public SettingsPanel settingsPanel;
+    public Button creditsButton;
+    public CreditsPanel creditsPanel;
 
     [Header("Rediseño")]
     [Tooltip("Capa con todo lo que se esconde cuando Settings está abierto (degradado, título, botones, ayuda).")]
@@ -37,6 +39,13 @@ public class MainMenuController : MonoBehaviour
         settingsPanel.onClosing.AddListener(OnSettingsClosing);
         settingsPanel.onBack.AddListener(OnSettingsClosed);
         settingsPanel.gameObject.SetActive(false);
+        if (creditsButton != null && creditsPanel != null)
+        {
+            creditsButton.onClick.AddListener(OpenCredits);
+            creditsPanel.onClosing.AddListener(OnSettingsClosing);   // mismo comportamiento: el difuminado se va y el menú vuelve
+            creditsPanel.onBack.AddListener(OnCreditsClosed);
+            creditsPanel.gameObject.SetActive(false);
+        }
         Select(playButton);
         StartCoroutine(Intro());
     }
@@ -69,8 +78,9 @@ public class MainMenuController : MonoBehaviour
     void Update()
     {
         var kb = Keyboard.current;
-        if (kb != null && kb.escapeKey.wasPressedThisFrame && settingsPanel.gameObject.activeSelf)
-            settingsPanel.Back();
+        if (kb == null || !kb.escapeKey.wasPressedThisFrame) return;
+        if (settingsPanel.gameObject.activeSelf) settingsPanel.Back();
+        else if (creditsPanel != null && creditsPanel.gameObject.activeSelf) creditsPanel.Back();
     }
 
     /// <summary>Play: borra el progreso anterior, cuenta el accidente (introducción) y despierta en el hospital (ver StoryFlow).</summary>
@@ -81,6 +91,18 @@ public class MainMenuController : MonoBehaviour
         SetLayer(false);                       // el menú se esconde (y deja de recibir flechas / clics)
         if (blur != null) blur.Show(true);     // el fondo se difumina
         settingsPanel.gameObject.SetActive(true);
+    }
+
+    void OpenCredits()
+    {
+        SetLayer(false);
+        if (blur != null) blur.Show(true);
+        creditsPanel.gameObject.SetActive(true);
+    }
+
+    void OnCreditsClosed()
+    {
+        Select(creditsButton);
     }
 
     void OnSettingsClosing()
