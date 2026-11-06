@@ -98,14 +98,6 @@ public class SentenceBuilder : MonoBehaviour
         return builder;
     }
 
-    /// <summary>Cambia las filas y la indicación sin cerrar el panel (para retos de varias rondas, como los exámenes).</summary>
-    public void Reload(string instruction, BuilderSlot[] slots)
-    {
-        for (int i = transform.childCount - 1; i >= 0; i--) Destroy(transform.GetChild(i).gameObject);
-        rows.Clear();
-        Build(instruction, slots);
-    }
-
     void OnDestroy()
     {
         modalLock?.Release();   // idempotente: si se destruye por un cambio de escena, el jugador no queda bloqueado

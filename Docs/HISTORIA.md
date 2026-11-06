@@ -43,6 +43,10 @@ confusión (habla en español entrecortado) → recuperación técnica (mezcla e
 4. "Then, one day, an accident happened."
 5. "A scaffold was left unsecured. By whom? Nobody knows."
 6. "Your memory has been lost."
+7. "And with it, his English. Only his mother tongue, Spanish, remains."
+8. "Every memory he recovers will bring his English back."
+
+*(Lucía también lo explica en su primer diálogo, y al terminar el reto 1 le entrega el cuaderno: tecla C, lista de objetivos y feedback por reto. Ver `ORDEN_ACTIVIDADES.md`.)*
 
 ### 1. Hospital (hecho)
 *Andrés despierta junto a la camilla. Lucía está junto a su escritorio. Andrés habla en español entrecortado.*

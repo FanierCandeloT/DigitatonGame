@@ -506,29 +506,111 @@ public class MemoryReconstructionGame : MonoBehaviour
 
     // ───────────── Revisión de las frases ─────────────
 
+    /// <summary>Una pieza equivocada: cuál es, qué cable la une mal y por qué (texto plano, sin etiquetas).</summary>
+    class Issue
+    {
+        public MemoryNeuron Piece;
+        public Wire Wire;
+        public string Text;
+    }
+
     void CheckSentence(MemoryNeuron verb)
     {
         var left = FindWire(w => w.To == verb);
         var right = FindWire(w => w.From == verb);
-        if (left == null || right == null) return;
+        if (left == null) return;   // sin sujeto todavía no se puede juzgar el verbo
 
-        var subject = left.From;
-        var complement = right.To;
-
-        foreach (var s in Sentences)
+        // Con solo el primer enlace (sujeto → verbo) ya se avisa de lo que falla, sin esperar al final
+        if (right == null)
         {
-            if (s.Subject == subject.Text && s.Verb == verb.Text && s.Complement == complement.Text)
+            var early = Diagnose(left, null);
+            if (early.Count > 0) StartCoroutine(RejectSentence(left, null, early));
+            return;
+        }
+
+        // Una sola fuente de verdad: la frase es correcta cuando el diagnóstico no encuentra nada
+        var issues = Diagnose(left, right);
+        if (issues.Count == 0) AcceptSentence(left, right);
+        else StartCoroutine(RejectSentence(left, right, issues));
+    }
+
+    /// <summary>
+    /// Revisa cada enlace por separado y devuelve TODO lo que falla (concordancia, verbo que no cuadra con el sujeto,
+    /// final que no cuadra), en vez de culpar siempre al complemento. right es null si solo hay un enlace.
+    /// </summary>
+    List<Issue> Diagnose(Wire left, Wire right)
+    {
+        var issues = new List<Issue>();
+        var subject = left.From;
+        var verb = left.To;
+        var complement = right?.To;
+
+        bool found = TryFindSentence(subject.Text, out var own);
+
+        // El verbo y el final forman una frase de otro sujeto: lo que no encaja es el sujeto
+        if (complement != null)
+        {
+            foreach (var s in Sentences)
             {
-                AcceptSentence(left, right);
-                return;
+                if (s.Verb == verb.Text && s.Complement == complement.Text && s.Subject != subject.Text)
+                {
+                    issues.Add(new Issue
+                    {
+                        Piece = subject, Wire = left,
+                        Text = $"The verb and the ending belong together, but \"{subject.Text}\" does not fit with them. Who or what receives that action?",
+                    });
+                    return issues;
+                }
             }
         }
-        StartCoroutine(RejectSentence(left, right, subject, verb, complement));
+
+        if (subject.IsPlural != verb.IsPlural)
+        {
+            string number = subject.IsPlural ? "plural" : "singular";
+            string forms = subject.IsPlural ? "were / are" : "was / is";
+            issues.Add(new Issue
+            {
+                Piece = verb, Wire = left,
+                Text = $"Agreement: \"{subject.Text}\" is {number}, so the passive needs {forms}.",
+            });
+        }
+        else if (found && verb.Text != own.Verb)
+        {
+            issues.Add(new Issue
+            {
+                Piece = verb, Wire = left,
+                Text = $"Meaning: \"{verb.Text}\" does not fit \"{subject.Text}\". Think about what really happens to it.",
+            });
+        }
+
+        if (complement != null && found && complement.Text != own.Complement)
+        {
+            string tip = Errors >= 2 ? " Tip: read the whole sentence aloud and ask yourself if it could be true." : "";
+            issues.Add(new Issue
+            {
+                Piece = complement, Wire = right,
+                Text = $"Meaning: the ending does not fit the idea. Think: {own.Clue}{tip}",
+            });
+        }
+        return issues;
+    }
+
+    static bool TryFindSentence(string subject, out Sentence found)
+    {
+        foreach (var s in Sentences)
+        {
+            if (s.Subject == subject)
+            {
+                found = s;
+                return true;
+            }
+        }
+        found = default;
+        return false;
     }
 
     void AcceptSentence(Wire left, Wire right)
     {
-        AudioManager.PlayCorrect();
         HideError();
         foreach (var wire in new[] { left, right })
         {
@@ -565,44 +647,36 @@ public class MemoryReconstructionGame : MonoBehaviour
         continueButton.SetActive(true);
     }
 
-    IEnumerator RejectSentence(Wire left, Wire right, MemoryNeuron subject, MemoryNeuron verb, MemoryNeuron complement)
+    IEnumerator RejectSentence(Wire left, Wire right, List<Issue> issues)
     {
         busy = true;
-        AudioManager.PlayIncorrect();
-        RecordMistake(subject, verb, complement);
+        var wiresInvolved = right != null ? new[] { left, right } : new[] { left };
+        var subject = left.From;
+        var verb = left.To;
+        var complement = right?.To;
+        RecordMistake(subject, verb, complement, issues);
 
-        // Solo se marca en rojo la pieza que hay que cambiar (el verbo si no concuerda; el final si no tiene sentido).
-        bool agreement = subject.IsPlural != verb.IsPlural;
-        var wrongPiece = agreement ? verb : complement;
-        var badWire = agreement ? left : right;
+        // Se marcan en rojo TODAS las piezas equivocadas y los cables que las unen mal
+        var wrongPieces = new List<MemoryNeuron>();
+        foreach (var issue in issues) wrongPieces.Add(issue.Piece);
 
-        foreach (var wire in new[] { left, right })
+        foreach (var wire in wiresInvolved)
         {
             wire.Wrong = true;
             wire.Pulse.gameObject.SetActive(false);
-            wire.Image.color = wire == badWire ? WireWrong : WireNeutral;
+            wire.Image.color = issues.Exists(i => i.Wire == wire) ? WireWrong : WireNeutral;
         }
+        foreach (var piece in wrongPieces) piece.Outline.color = WireWrong;
 
-        wrongPiece.Outline.color = WireWrong;
+        string Mark(MemoryNeuron n) => wrongPieces.Contains(n) ? $"<color=#FF6060><b>{n.Text}</b></color>" : n.Text;
+        string attempt = complement != null
+            ? $"\"{Mark(subject)} {Mark(verb)} {Mark(complement)}\""
+            : $"\"{Mark(subject)} {Mark(verb)} ...\"";
 
-        string Mark(MemoryNeuron n) => n == wrongPiece ? $"<color=#FF6060><b>{n.Text}</b></color>" : n.Text;
-        string attempt = $"\"{Mark(subject)} {Mark(verb)} {Mark(complement)}\"";
-
-        if (agreement)
-        {
-            string number = subject.IsPlural ? "plural" : "singular";
-            string forms = subject.IsPlural ? "were / are" : "was / is";
-            ShowError("Not quite! The verb does not agree with the subject.",
-                $"{attempt}\n<b>{subject.Text}</b> is {number}, so the passive needs <b>{forms}</b>.\n" +
-                "Tip: plural subjects use were / are; singular subjects use was / is.");
-        }
-        else
-        {
-            string clue = "";
-            foreach (var s in Sentences) if (s.Subject == subject.Text) clue = s.Clue;
-            ShowError("Not quite! The ending does not fit the idea.",
-                $"{attempt}\nThe grammar is correct, but the sentence does not make sense.\nThink: {clue}");
-        }
+        var body = new System.Text.StringBuilder(attempt);
+        foreach (var issue in issues) body.Append("\n- ").Append(issue.Text);
+        ShowError(issues.Count > 1 ? "Not quite! More than one link needs another look." : "Not quite! This link does not work.",
+            body.ToString());
 
         for (float t = 0f; t < WrongSeconds; t += Time.unscaledDeltaTime)
         {
@@ -612,31 +686,30 @@ public class MemoryReconstructionGame : MonoBehaviour
         }
         board.anchoredPosition = Vector2.zero;
 
-        wrongPiece.Outline.color = wrongPiece.RoleColor;
-        RemoveWire(left);
-        RemoveWire(right);
+        foreach (var piece in wrongPieces) piece.Outline.color = piece.RoleColor;
+        foreach (var wire in wiresInvolved) RemoveWire(wire);
         busy = false;
     }
 
     /// <summary>Guarda el intento para el repaso final (sin repetir el mismo intento).</summary>
-    void RecordMistake(MemoryNeuron subject, MemoryNeuron verb, MemoryNeuron complement)
+    void RecordMistake(MemoryNeuron subject, MemoryNeuron verb, MemoryNeuron complement, List<Issue> issues)
     {
         result.Errors++;
 
-        string attempt = $"{subject.Text} {verb.Text} {complement.Text}";
+        string attempt = complement != null ? $"{subject.Text} {verb.Text} {complement.Text}" : $"{subject.Text} {verb.Text} ...";
         foreach (var known in result.Mistakes) if (known.Attempt == attempt) return;
 
         string correct = attempt;
-        foreach (var s in Sentences)
+        if (TryFindSentence(subject.Text, out var own)) correct = $"{own.Subject} {own.Verb} {own.Complement}";
+
+        var explanation = new System.Text.StringBuilder();
+        foreach (var issue in issues)
         {
-            if (s.Subject == subject.Text) correct = $"{s.Subject} {s.Verb} {s.Complement}";
+            if (explanation.Length > 0) explanation.Append(' ');
+            explanation.Append(issue.Text);
         }
 
-        string explanation = subject.IsPlural != verb.IsPlural
-            ? (subject.IsPlural ? "Plural subject: use were or are." : "Singular subject: use was or is.")
-            : "The grammar is right, but the meaning does not fit.";
-
-        result.Mistakes.Add(new MemoryMistake { Attempt = attempt, Explanation = explanation, Correct = correct });
+        result.Mistakes.Add(new MemoryMistake { Attempt = attempt, Explanation = explanation.ToString(), Correct = correct });
     }
 
     void Finish()
