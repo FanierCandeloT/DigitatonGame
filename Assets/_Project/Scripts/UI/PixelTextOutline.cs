@@ -52,12 +52,14 @@ public class PixelTextOutline : MonoBehaviour
         foreach (var c in copies)
         {
             if (c == null) continue;
-            c.text = lastText;
+            c.text = StripColor(lastText);   // las copias son oscuras: sin etiquetas de color (si no, se verían manchas del color original)
             c.fontSize = lastSize;
             var oc = outlineColor; oc.a = lastColor.a;
             c.color = oc;
         }
     }
+
+    static string StripColor(string text) => string.IsNullOrEmpty(text) ? text : System.Text.RegularExpressions.Regex.Replace(text, "</?color[^>]*>", "");
 
     /// <summary>Crea las 4 copias detrás de label (mismos anclajes y tamaño) y deja el componente configurado.</summary>
     public static PixelTextOutline Build(TMP_Text label, float offset = 2f)
@@ -91,7 +93,7 @@ public class PixelTextOutline : MonoBehaviour
             t.alignment = label.alignment; t.textWrappingMode = label.textWrappingMode;
             t.overflowMode = label.overflowMode; t.margin = label.margin;
             t.richText = label.richText; t.raycastTarget = false;
-            t.text = label.text; t.color = comp.outlineColor;
+            t.text = StripColor(label.text); t.color = comp.outlineColor;
             comp.copies[i] = t;
         }
         return comp;
