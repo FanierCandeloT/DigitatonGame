@@ -1,6 +1,8 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -41,7 +43,13 @@ public class AudioManager : MonoBehaviour
     [SerializeField, Min(0.1f)] float musicFadeIn = 2f;
     [SerializeField, Min(0.1f)] float musicFadeOut = 1.5f;
 
-    AudioSource musicSource, sfxSource, stepsSource, textSource;
+    const int SfxPoolSize = 6;
+    AudioSource musicSource, stepsSource, textSource;
+    AudioSource[] sfxPool;
+    int sfxNext;
+    readonly System.Collections.Generic.Dictionary<AudioClip, Vector2> trims = new System.Collections.Generic.Dictionary<AudioClip, Vector2>();
+    GameObject lastSelected;
+    bool warnedMixer;
     bool typing;               // hay un texto escribiéndose (loop de WriteText)
     bool textPausedByUs;       // el loop está en pausa porque el juego está en pausa
     Coroutine musicFade;
@@ -91,7 +99,7 @@ public class AudioManager : MonoBehaviour
     /// <summary>El jugador avanzó o saltó una línea: un "tic" corto de WriteText. Cada clic lo reinicia (nunca se acumula).</summary>
     public static void PlayTextAdvance() => instance?.PlayTextShort();
 
-    /// <summary>Vista previa al mover el slider de efectos: un clic (con límite de frecuencia).</summary>
+    /// <summary>Vista previa del volumen de efectos (al soltar el slider o ajustarlo con el teclado): un clic, con límite de frecuencia.</summary>
     public static void PreviewSfx()
     {
         if (instance == null || Time.unscaledTime - instance.lastPreviewTime < 0.12f) return;
@@ -99,15 +107,38 @@ public class AudioManager : MonoBehaviour
         PlayClick();
     }
 
+    /// <summary>Clic suave al moverse entre botones con el teclado (ya suena solo; no hace falta llamarlo).</summary>
+    public static void PlayNavigate() => instance?.PlaySfx(instance.click, 0.4f, 1.25f);
+
+    // ── Diagnóstico (lo usa la ventana DigitatonGame ▸ Audio Test) ──
+
+    /// <summary>True si el AudioManager existe (en Play, siempre, en cualquier escena).</summary>
+    public static bool Exists => instance != null;
+
+    /// <summary>True si la música ambiente está sonando.</summary>
+    public static bool MusicPlaying => instance != null && instance.musicSource != null && instance.musicSource.isPlaying;
+
+    /// <summary>Volumen actual (en dB) de un parámetro expuesto del GameMixer, o false si no se puede leer.</summary>
+    public static bool TryGetMixerDb(string param, out float db)
+    {
+        db = 0f;
+        return instance != null && instance.mixer != null && instance.mixer.GetFloat(param, out db);
+    }
+
+    /// <summary>Convierte el valor 0..1 de un slider a decibelios: 0 % = -80 dB, 100 % = 0 dB, con curva logarítmica.</summary>
+    public static float LinearToDb(float linear) => ToDecibels(linear);
+
     // ───────────── Ciclo de vida ─────────────
 
     void Awake()
     {
         if (instance != null && instance != this) { Destroy(this); return; }
         instance = this;
+        SettingsData.MigrateVolumes();   // los volúmenes que dejó el bug de los sliders (0..100) se restablecen una sola vez
 
         musicSource = NewSource("Música", musicGroup, loop: true, ambient);
-        sfxSource = NewSource("Efectos", sfxGroup, loop: false, null);
+        sfxPool = new AudioSource[SfxPoolSize];
+        for (int i = 0; i < SfxPoolSize; i++) sfxPool[i] = NewSource("Efecto " + i, sfxGroup, loop: false, null);
         stepsSource = NewSource("Pasos", sfxGroup, loop: true, steps);
         textSource = NewSource("Texto de diálogos", sfxGroup, loop: true, writeText);   // un solo canal: el "tic" y el loop nunca se superponen
         musicSource.volume = 0f;
@@ -170,8 +201,13 @@ public class AudioManager : MonoBehaviour
     void ApplyVolumes()
     {
         if (mixer == null) return;
-        mixer.SetFloat(MusicParam, ToDecibels(SettingsData.MusicVolume));
-        mixer.SetFloat(SfxParam, ToDecibels(SettingsData.SfxVolume));
+        bool a = mixer.SetFloat(MusicParam, ToDecibels(SettingsData.MusicVolume));
+        bool b = mixer.SetFloat(SfxParam, ToDecibels(SettingsData.SfxVolume));
+        if ((!a || !b) && !warnedMixer)
+        {
+            warnedMixer = true;   // el GameMixer debe exponer "MusicVolume" y "SfxVolume" (AudioSetup lo crea así)
+            Debug.LogWarning("AudioManager: el GameMixer no tiene expuestos los parámetros MusicVolume / SfxVolume; los sliders no cambiarán el volumen.", this);
+        }
     }
 
     // ───────────── Música ─────────────
@@ -210,10 +246,53 @@ public class AudioManager : MonoBehaviour
 
     // ───────────── Efectos ─────────────
 
-    void PlaySfx(AudioClip clip)
+    /// <summary>
+    /// Efecto corto por un canal libre del grupo SFX. Salta el silencio del inicio del archivo (OpenBook trae 0,26 s,
+    /// WriteText 0,14 s...) y corta la cola silenciosa (Interaction dura 8 s pero solo suena 0,3 s), así el sonido llega
+    /// justo cuando pasa la acción.
+    /// </summary>
+    void PlaySfx(AudioClip clip, float volume = 1f, float pitch = 1f)
     {
-        if (clip != null && sfxSource != null) sfxSource.PlayOneShot(clip);
+        if (clip == null || sfxPool == null) return;
+        var trim = Trim(clip);
+        var src = sfxPool[sfxNext];
+        sfxNext = (sfxNext + 1) % sfxPool.Length;
+        src.Stop();
+        src.clip = clip;
+        src.volume = volume;
+        src.pitch = pitch;
+        src.time = Mathf.Min(trim.x, clip.length * 0.95f);
+        src.Play();
+        src.SetScheduledEndTime(AudioSettings.dspTime + Mathf.Max(0.05f, (trim.y - trim.x) / pitch));
     }
+
+    /// <summary>(inicio, fin) audibles del clip en segundos. Los clips comprimidos o muy largos se tratan como audibles completos.</summary>
+    Vector2 Trim(AudioClip clip)
+    {
+        if (trims.TryGetValue(clip, out var cached)) return cached;
+        var result = new Vector2(0f, clip.length);
+        if (clip.length <= 20f && clip.loadType == AudioClipLoadType.DecompressOnLoad && clip.loadState == AudioDataLoadState.Loaded)
+        {
+            var data = new float[clip.samples * clip.channels];
+            if (clip.GetData(data, 0))
+            {
+                const float threshold = 0.015f;
+                int first = -1, last = -1;
+                for (int i = 0; i < data.Length; i++)
+                    if (Mathf.Abs(data[i]) > threshold) { if (first < 0) first = i; last = i; }
+                if (first >= 0)
+                {
+                    float perSecond = clip.channels * (float)clip.frequency;
+                    result = new Vector2(Mathf.Max(0f, first / perSecond - 0.005f), Mathf.Min(clip.length, last / perSecond + 0.06f));
+                }
+            }
+        }
+        trims[clip] = result;
+        return result;
+    }
+
+    /// <summary>Segundo del archivo donde empieza el sonido de verdad (salta el silencio inicial).</summary>
+    float LeadIn(AudioClip clip) => clip == null ? 0f : Trim(clip).x;
 
     void Update()
     {
@@ -231,7 +310,7 @@ public class AudioManager : MonoBehaviour
         textSource.loop = true;
         textSource.volume = writeTextLevel;
         textSource.pitch = 1f + Random.Range(-0.03f, 0.03f);
-        textSource.time = 0f;
+        textSource.time = LeadIn(writeText);   // WriteText.mp3 trae 0,14 s de silencio al inicio: el "tic" corto sonaba mudo
         textSource.Play();
     }
 
@@ -253,7 +332,7 @@ public class AudioManager : MonoBehaviour
         textSource.volume = writeTextLevel;
         float pitch = 1f + Random.Range(-0.04f, 0.04f);
         textSource.pitch = pitch;
-        textSource.time = 0f;
+        textSource.time = LeadIn(writeText);   // WriteText.mp3 trae 0,14 s de silencio al inicio: el "tic" corto sonaba mudo
         textSource.Play();
         textSource.SetScheduledEndTime(AudioSettings.dspTime + writeTextShortSeconds / pitch);
     }
@@ -273,6 +352,23 @@ public class AudioManager : MonoBehaviour
     void LateUpdate()
     {
         AddClickToNewButtons();
+        NavigationClick();
+    }
+
+    // Al moverse entre botones con las flechas del teclado: clic más suave (con el mouse el resaltado no suena, para no saturar).
+    void NavigationClick()
+    {
+        var es = EventSystem.current;
+        var selected = es != null ? es.currentSelectedGameObject : null;
+        if (selected == lastSelected) return;
+        var previous = lastSelected;
+        lastSelected = selected;
+        if (previous == null || selected == null) return;
+
+        var kb = Keyboard.current;
+        bool arrow = kb != null && (kb.upArrowKey.wasPressedThisFrame || kb.downArrowKey.wasPressedThisFrame
+                                    || kb.leftArrowKey.wasPressedThisFrame || kb.rightArrowKey.wasPressedThisFrame || kb.tabKey.wasPressedThisFrame);
+        if (arrow && selected.GetComponent<Selectable>() != null) PlayNavigate();
     }
 
     // Pasos: loop mientras Andrés camina (lo avisa PlayerController cada frame); el tono varía suavemente.
@@ -308,10 +404,18 @@ public class AudioManager : MonoBehaviour
 
         for (int i = 0; i < n; i++)
         {
-            if (!(selectableBuffer[i] is Button button)) continue;
-            if (button.TryGetComponent(out ButtonClickSound _)) continue;
-            button.gameObject.AddComponent<ButtonClickSound>();
-            button.onClick.AddListener(PlayClick);
+            var selectable = selectableBuffer[i];
+            if (selectable == null || selectable.TryGetComponent(out ButtonClickSound _)) continue;
+            if (selectable is Button button)
+            {
+                button.gameObject.AddComponent<ButtonClickSound>();
+                button.onClick.AddListener(PlayClick);
+            }
+            else if (selectable is Toggle toggle)   // checkbox de Fullscreen y cualquier otro Toggle
+            {
+                toggle.gameObject.AddComponent<ButtonClickSound>();
+                toggle.onValueChanged.AddListener(_ => PlayClick());
+            }
         }
     }
 }

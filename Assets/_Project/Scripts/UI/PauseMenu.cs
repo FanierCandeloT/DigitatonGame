@@ -41,7 +41,7 @@ public class PauseMenu : MonoBehaviour
         var gm = GameManager.Instance;
         if (gm.IsTransitioning || gm.ResultsOpen || gm.ModalOpen) return;
 
-        if (notebook != null && notebook.IsOpen) { notebook.Close(); return; }
+        if (notebook != null && notebook.IsOpen) { notebook.Close(); AudioManager.PlayOpenBook(); return; }
         if (settingsPanel.gameObject.activeSelf) { settingsPanel.Back(); return; }
 
         if (gm.IsPaused) gm.SetPaused(false);

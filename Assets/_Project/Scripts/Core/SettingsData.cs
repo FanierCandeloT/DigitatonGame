@@ -55,7 +55,26 @@ public static class SettingsData
         }
     }
 
-    public static void ApplyAll() => ApplyScreen();
+    public static void ApplyAll()
+    {
+        MigrateVolumes();
+        ApplyScreen();
+    }
+
+    const string VolumesFixedKey = "settings.volumesFixed1";
+
+    /// <summary>
+    /// Una sola vez: restablece los volúmenes a 80 %. El bug de los sliders (rango 0..100 contra valores 0..1) dejaba guardados
+    /// 0 o 100 %, y con 0 no se oía nada. Después los volúmenes ya son siempre 0..1.
+    /// </summary>
+    public static void MigrateVolumes()
+    {
+        if (PlayerPrefs.GetInt(VolumesFixedKey, 0) == 1) return;
+        PlayerPrefs.SetFloat(MusicKey, 0.8f);
+        PlayerPrefs.SetFloat(SfxKey, 0.8f);
+        PlayerPrefs.SetInt(VolumesFixedKey, 1);
+        PlayerPrefs.Save();
+    }
 
     static void ApplyScreen()
     {

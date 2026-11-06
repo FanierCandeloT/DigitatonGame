@@ -611,6 +611,7 @@ public class MemoryReconstructionGame : MonoBehaviour
 
     void AcceptSentence(Wire left, Wire right)
     {
+        AudioManager.PlayCorrect();   // acierto: el mismo instante en que aparece el feedback
         HideError();
         foreach (var wire in new[] { left, right })
         {
@@ -649,6 +650,7 @@ public class MemoryReconstructionGame : MonoBehaviour
 
     IEnumerator RejectSentence(Wire left, Wire right, List<Issue> issues)
     {
+        AudioManager.PlayIncorrect();
         busy = true;
         var wiresInvolved = right != null ? new[] { left, right } : new[] { left };
         var subject = left.From;

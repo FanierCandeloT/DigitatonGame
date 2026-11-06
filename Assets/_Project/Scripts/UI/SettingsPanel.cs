@@ -37,7 +37,14 @@ public class SettingsPanel : MonoBehaviour
         animator = GetComponent<SettingsPanelAnimator>();
 
         musicSlider.onValueChanged.AddListener(v => { SettingsData.MusicVolume = v; UpdateLabels(); });
-        sfxSlider.onValueChanged.AddListener(v => { SettingsData.SfxVolume = v; UpdateLabels(); AudioManager.PreviewSfx(); });   // se oye el nuevo volumen al instante
+        var release = sfxSlider.GetComponent<SliderReleaseSound>();
+        if (release == null) release = sfxSlider.gameObject.AddComponent<SliderReleaseSound>();
+        sfxSlider.onValueChanged.AddListener(v =>
+        {
+            SettingsData.SfxVolume = v;
+            UpdateLabels();
+            if (!release.Dragging) AudioManager.PreviewSfx();   // con el teclado suena en cada ajuste; con el mouse, al soltar (SliderReleaseSound)
+        });
         fullscreenToggle.onValueChanged.AddListener(on => SettingsData.Fullscreen = on);
         textSpeedButton.onClick.AddListener(() => CycleTextSpeed(+1));
         backButton.onClick.AddListener(Back);

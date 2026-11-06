@@ -71,11 +71,14 @@ Todo el sonido pasa por `AudioManager` (`Scripts/Core/AudioManager.cs`), que viv
 
 | Qué pasa | Qué llamar | Quién lo llama hoy |
 |---|---|---|
-| Clic en un botón (o Enter sobre él) | **Nada**: suena solo en TODOS los `Button` (menús, pausa, minijuegos y botones nuevos) | `AudioManager` (agrega el sonido a cada botón que aparece) |
-| Acierto en un minijuego / reto | `AudioManager.PlayCorrect()` | `ChallengeInteractable` (al sumar el recuerdo), `ClassErrorHunt`, `MemoryReconstructionGame`, `ExamChallenge`, `LitterChallenge` |
+| Clic en un botón (o Enter sobre él) o en un checkbox (`Toggle`) | **Nada**: suena solo en TODOS los `Button` y `Toggle` (menús, Settings, pausa, libro del tutorial, resultados, minijuegos y cualquiera nuevo) | `AudioManager` (agrega el sonido a cada botón que aparece) |
+| Moverse entre botones con las flechas / Tab | **Nada**: `PlayNavigate()` (Click más suave y agudo; con el mouse no suena) | `AudioManager` (`NavigationClick`) |
+| Soltar el slider de efectos (o ajustarlo con el teclado) | **Nada**: Click como muestra del volumen (el de música se oye en el momento) | `SliderReleaseSound` + `SettingsPanel` |
+| Acierto en un minijuego / reto | `AudioManager.PlayCorrect()` | `ChallengeInteractable` (al sumar el recuerdo), `ClassErrorHunt`, `MemoryReconstructionGame`, `ExamSurgery` (en `SetFeedback`: verde/rojo), `LitterChallenge`, `SolarPuzzleChallenge` |
 | Fallo en un minijuego / reto | `AudioManager.PlayIncorrect()` | los mismos |
 | Andrés se acerca a algo interactivo ("Press E") | `AudioManager.PlayInteraction()` (una sola vez; vuelve a sonar solo si se aleja y se acerca) | `PlayerInteractor` |
-| Presionar C (abrir/cerrar el Cuaderno) | `AudioManager.PlayOpenBook()` | `NotebookPanel` |
+| Presionar C (abrir/cerrar el Cuaderno) | `AudioManager.PlayOpenBook()` | `NotebookPanel` (también al cerrarlo con Esc: `PauseMenu`) |
+| Abrir, cerrar o pasar página del libro de la Profe Dalia | `AudioManager.PlayOpenBook()` (además del Click de sus botones) | `TutorialBookPanel` |
 | Andrés camina | `AudioManager.NotifyWalking()` cada frame que realmente se mueve (loop con tono variable; para solo al dejar de llamarse: pausa, fundido, cuaderno o diálogo no lo llaman) | `PlayerController` |
 | Música ambiente | `AudioManager.StartMusic()` (fundido de entrada) / `StopMusic()` (fundido de salida) | `GameManager.StartStory()` al presionar Play; se detiene sola al cargar `MainMenu` o `Tutorial` (ahí no suena) |
 | Clic "a mano" en algo que no es `Button` | `AudioManager.PlayClick()` | — |
@@ -88,6 +91,13 @@ Todo el sonido pasa por `AudioManager` (`Scripts/Core/AudioManager.cs`), que viv
 - **Regla para todo minijuego o reto nuevo (obligatoria):** llamar `AudioManager.PlayCorrect()` al acertar y `AudioManager.PlayIncorrect()` al fallar, en el mismo momento en que aparece el feedback. No usar `AudioSource` propios para eso.
 - Los audios están en `Assets/_Project/Audio` (`Ambient`, `Click`, `Correct`, `Incorrect`, `Interaction`, `OpenBook`, `Steps`, `WriteText`). Importación: `Ambient` como música (comprimida en memoria, el loop lo hace el `AudioSource`); efectos cortos descomprimidos al cargar y precargados (sin retraso); `Steps` comprimido en memoria y mono. Para cambiar un audio se reemplaza el archivo con el mismo nombre; los niveles relativos (`ambientLevel`, `stepsLevel`) y los fundidos se ajustan en el componente `AudioManager` del prefab.
 - Herramienta de un solo uso (sin menú): `AudioSetup` (importación de clips, creación del mixer y alta del `AudioManager` en el prefab); es repetible.
+
+### Revisión de audio (qué estaba fallando y cómo se evita)
+- **Regla obligatoria:** todo botón, minijuego o diálogo NUEVO debe usar el `AudioManager` (nunca `AudioSource` propios ni `PlayOneShot` sueltos). Botones y checkboxes: no hay que hacer nada (suenan solos). Minijuego/reto: `PlayCorrect()`/`PlayIncorrect()` al mostrar el feedback. Diálogo o texto con máquina de escribir: `StartTyping`/`StopTyping`/`PlayTextAdvance`. Un `grep` de `PlayCorrect` por cada minijuego nuevo evita que un merge lo pierda (ya pasó con `MemoryReconstructionGame`).
+- **Silencios al inicio de los archivos:** `WriteText.mp3` empieza a sonar en 0,14 s (el "tic" de 0,14 s sonaba mudo), `OpenBook.mp3` en 0,26 s e `Interaction.mp3` dura 8 s pero solo suena 0,3 s. `AudioManager.PlaySfx` mide el inicio y el final audibles de cada clip corto (`Trim`) y salta el silencio; los efectos salen por un pool de 6 canales del grupo SFX. Los clips comprimidos (Ambient, Steps) no se miden.
+- **Volumen:** `SettingsData.MigrateVolumes()` restablece una sola vez Music y SFX a 80 % (el bug de los sliders 0..100 dejaba 0 o 100 %). Conversión: dB = 20·log10(v), 0 % = -80 dB, 100 % = 0 dB.
+- **Qué suena en cada momento:** Ambient (Music) al presionar Play, en loop entre escenas, se apaga con fundido al volver a `MainMenu`; no suena en `MainMenu` ni `Tutorial`. Click: botones, checkboxes y muestra del slider de efectos. Navegar: flechas. Interaction: una vez al aparecer "Press E". OpenBook: Cuaderno (C o Esc) y libro de Dalia. Steps: loop mientras Andrés camina (en todas las escenas; para en pausa, fundidos, diálogos y libros porque ahí no se mueve). WriteText: loop al escribir, corte al completar y tic al avanzar. Correct/Incorrect: minijuegos y retos.
+- **Probar sin jugar:** menú `DigitatonGame ▸ Audio Test` (`AudioTestWindow`): estado del `AudioManager`, volumen guardado vs dB reales del mixer y un botón por sonido. En Play usa el `AudioManager` real; fuera de Play reproduce el archivo directo.
 
 ## Rendimiento y WebGL
 - Ajustes aplicados (`optimize-web`): build target WebGL, Gzip + Decompression Fallback (GitHub Pages no manda `Content-Encoding`), Managed Stripping High, IL2CPP Optimize Size, Quality Low sin vSync/MSAA, Input solo nuevo (`activeInputHandler = 1`). Compilación de prueba: 13 MB, carga y se mueve en el navegador. `Builds/` está ignorada por git.

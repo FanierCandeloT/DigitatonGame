@@ -298,6 +298,8 @@ public class ExamSurgery : MonoBehaviour
 
     void SetFeedback(string text, Color color)
     {
+        if (color == Good) AudioManager.PlayCorrect();        // el sonido sale en el mismo instante que el mensaje
+        else if (color == Bad) AudioManager.PlayIncorrect();
         feedbackLabel.text = text;
         feedbackLabel.color = color;
     }
