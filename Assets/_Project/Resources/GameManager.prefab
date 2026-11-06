@@ -1133,6 +1133,64 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &4260265325995201703
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2926043403664467128}
+  - component: {fileID: 5735008070594464909}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2926043403664467128
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4260265325995201703}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7806600977600454818}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5735008070594464909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4260265325995201703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 212bc268bb8359e47b20369047db2140, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AudioManager
+  mixer: {fileID: 24100000, guid: 0002c7a6c08fc0a49b06adc5579367b2, type: 2}
+  musicGroup: {fileID: -2681015448077822255, guid: 0002c7a6c08fc0a49b06adc5579367b2, type: 2}
+  sfxGroup: {fileID: -9176785791778630300, guid: 0002c7a6c08fc0a49b06adc5579367b2, type: 2}
+  ambient: {fileID: 8300000, guid: 948a8933763fde244b76ef5c438e3837, type: 3}
+  click: {fileID: 8300000, guid: b1182faa6542cf445901503f3ae2b1fc, type: 3}
+  interaction: {fileID: 8300000, guid: 6ab9990dc7ec42449981e920c76d1aa0, type: 3}
+  openBook: {fileID: 8300000, guid: 8ba26399077bf804598ad9d76b0d5620, type: 3}
+  correct: {fileID: 8300000, guid: 057f9edd9b208be47bf9b791e0756d33, type: 3}
+  incorrect: {fileID: 8300000, guid: 28ade291e72a26c44ae97acca364ab37, type: 3}
+  steps: {fileID: 8300000, guid: b9cb70654c9353643a551facee4f86d2, type: 3}
+  ambientLevel: 0.7
+  stepsLevel: 0.6
+  musicFadeIn: 2
+  musicFadeOut: 1.5
 --- !u!1 &4644303624196405963
 GameObject:
   m_ObjectHideFlags: 0
@@ -1906,6 +1964,7 @@ Transform:
   - {fileID: 4287433270298528838}
   - {fileID: 1826265559572247870}
   - {fileID: 1153604440852300289}
+  - {fileID: 2926043403664467128}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1534502036221842961

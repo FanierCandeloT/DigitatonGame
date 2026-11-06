@@ -210,6 +210,7 @@ public class GameManager : MonoBehaviour
     {
         if (IsTransitioning) return;
         ResetProgress();
+        AudioManager.StartMusic();   // la música ambiente entra con fundido y sigue sonando entre escenas hasta volver al menú
         SetFlag(StoryFlow.FlagIntroDone);
         SetFlag(FlagAgoraDone);   // el accidente ya se contó aquí: el disparador antiguo del Ágora no debe repetirlo
         TransitionToCaptions(StoryFlow.StartScene, StoryFlow.StartSpawn, StoryFlow.IntroCaptions, StoryFlow.CaptionSeconds);

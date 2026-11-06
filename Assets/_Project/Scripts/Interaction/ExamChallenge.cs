@@ -201,6 +201,7 @@ public class ExamChallenge : Interactable
         {
             errors++;
             failsOnCurrent++;
+            AudioManager.PlayIncorrect();
             builder.SetFeedback(problem, Bad);   // visible al instante; el panel sigue abierto con las mismas elecciones
             return;
         }
@@ -210,6 +211,7 @@ public class ExamChallenge : Interactable
 
     IEnumerator Passed()
     {
+        AudioManager.PlayCorrect();
         builder.Hide();
         bool last = current >= Exams.Length - 1;
 

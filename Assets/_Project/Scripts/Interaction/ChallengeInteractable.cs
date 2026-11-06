@@ -52,6 +52,7 @@ public class ChallengeInteractable : Interactable
     {
         var gm = GameManager.Instance;
         gm.CompleteChallenge(challengeId, memoryReward);
+        AudioManager.PlayCorrect();   // se suma el recuerdo
         ToastMessage.Show(message, 2.5f);
         MarkDone();
         base.Interact(interactor);

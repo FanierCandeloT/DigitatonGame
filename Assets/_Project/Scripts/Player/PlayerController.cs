@@ -58,6 +58,9 @@ public class PlayerController : MonoBehaviour
 
         // Pausa, cuaderno abierto o transición de escena: Andrés no se mueve.
         if (GameManager.Instance.InputLocked) moveInput = Vector2.zero;
+
+        // Pasos: solo suenan si Andrés realmente se está moviendo (no en pausa, fundidos, cuaderno, diálogos ni contra un muro).
+        if (moveInput != Vector2.zero && rb.linearVelocity.sqrMagnitude > 0.25f) AudioManager.NotifyWalking();
     }
 
     void FixedUpdate()

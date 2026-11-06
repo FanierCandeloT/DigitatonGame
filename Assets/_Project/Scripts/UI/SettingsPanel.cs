@@ -30,7 +30,7 @@ public class SettingsPanel : MonoBehaviour
         wired = true;
 
         musicSlider.onValueChanged.AddListener(v => { SettingsData.MusicVolume = v; UpdateLabels(); });
-        sfxSlider.onValueChanged.AddListener(v => { SettingsData.SfxVolume = v; UpdateLabels(); });
+        sfxSlider.onValueChanged.AddListener(v => { SettingsData.SfxVolume = v; UpdateLabels(); AudioManager.PreviewSfx(); });   // se oye el nuevo volumen al instante
         fullscreenToggle.onValueChanged.AddListener(on => SettingsData.Fullscreen = on);
         textSpeedButton.onClick.AddListener(() =>
         {

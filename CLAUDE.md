@@ -49,6 +49,24 @@ Play (menú → `GameManager.StartStory()`) → introducción del accidente (6 p
 - **Sprites de personajes** (`Art/Sprites Personajes`): `NpcSpriteSlicer` (menú `Recortar sprites de NPC`) corta las 40 hojas en 3 columnas x 4 filas de 20x32 px (filas abajo/izquierda/derecha/arriba; columna 1 = quieto), pivote en los pies, 16 PPU (mide 2 u, igual que Andrés), Point y sin compresión; `NpcSpriteSlicer.Load(n)` devuelve los 12 cuadros. `NpcSpriteSetup` (menú `Poner sprites a los NPC`) los asigna a Valentina, Santiago, Estudiante (Aulas2), Don Jairo (Campus) y Doña Marta (Cafetería). Lucía usa `Enfermera.png` con `NpcSpriteAnimator` (idle y hablar).
 - **Peatones de ambiente** (`AmbientCrowd` + `AmbientWalker`, prefab `Peatones_Campus`, 11 en el Campus, rutas al 60 %, con sprites que miran hacia donde caminan): solo están activos los que caen en cámara. Menú `Agregar peatones al Campus`.
 
+## Audio
+Todo el sonido pasa por `AudioManager` (`Scripts/Core/AudioManager.cs`), que vive dentro de `Resources/GameManager.prefab` (no se destruye entre escenas) y usa el AudioMixer `Audio/GameMixer.mixer` con los grupos **Music** y **SFX**. Los sliders de Settings (`SettingsData.MusicVolume` / `SfxVolume`) mueven los volúmenes expuestos `MusicVolume` / `SfxVolume` del mixer al instante (también desde el menú de pausa). Todos los métodos son estáticos y no hacen nada si el `AudioManager` no existe: **no hay que referenciarlo en las escenas**.
+
+| Qué pasa | Qué llamar | Quién lo llama hoy |
+|---|---|---|
+| Clic en un botón (o Enter sobre él) | **Nada**: suena solo en TODOS los `Button` (menús, pausa, minijuegos y botones nuevos) | `AudioManager` (agrega el sonido a cada botón que aparece) |
+| Acierto en un minijuego / reto | `AudioManager.PlayCorrect()` | `ChallengeInteractable` (al sumar el recuerdo), `ClassErrorHunt`, `MemoryReconstructionGame`, `ExamChallenge`, `LitterChallenge` |
+| Fallo en un minijuego / reto | `AudioManager.PlayIncorrect()` | los mismos |
+| Andrés se acerca a algo interactivo ("Press E") | `AudioManager.PlayInteraction()` (una sola vez; vuelve a sonar solo si se aleja y se acerca) | `PlayerInteractor` |
+| Presionar C (abrir/cerrar el Cuaderno) | `AudioManager.PlayOpenBook()` | `NotebookPanel` |
+| Andrés camina | `AudioManager.NotifyWalking()` cada frame que realmente se mueve (loop con tono variable; para solo al dejar de llamarse: pausa, fundido, cuaderno o diálogo no lo llaman) | `PlayerController` |
+| Música ambiente | `AudioManager.StartMusic()` (fundido de entrada) / `StopMusic()` (fundido de salida) | `GameManager.StartStory()` al presionar Play; se detiene sola al cargar `MainMenu` o `Tutorial` (ahí no suena) |
+| Clic "a mano" en algo que no es `Button` | `AudioManager.PlayClick()` | — |
+
+- **Regla para todo minijuego o reto nuevo (obligatoria):** llamar `AudioManager.PlayCorrect()` al acertar y `AudioManager.PlayIncorrect()` al fallar, en el mismo momento en que aparece el feedback. No usar `AudioSource` propios para eso.
+- Los audios están en `Assets/_Project/Audio` (`Ambient`, `Click`, `Correct`, `Incorrect`, `Interaction`, `OpenBook`, `Steps`). Importación: `Ambient` como música (comprimida en memoria, el loop lo hace el `AudioSource`); efectos cortos descomprimidos al cargar y precargados (sin retraso); `Steps` comprimido en memoria y mono. Para cambiar un audio se reemplaza el archivo con el mismo nombre; los niveles relativos (`ambientLevel`, `stepsLevel`) y los fundidos se ajustan en el componente `AudioManager` del prefab.
+- Herramienta de un solo uso (sin menú): `AudioSetup` (importación de clips, creación del mixer y alta del `AudioManager` en el prefab); es repetible.
+
 ## Rendimiento y WebGL
 - Ajustes aplicados (`optimize-web`): build target WebGL, Gzip + Decompression Fallback (GitHub Pages no manda `Content-Encoding`), Managed Stripping High, IL2CPP Optimize Size, Quality Low sin vSync/MSAA, Input solo nuevo (`activeInputHandler = 1`). Compilación de prueba: 13 MB, carga y se mueve en el navegador. `Builds/` está ignorada por git.
 - `PlaceholderInfo` solo crea rótulos en Editor/Development build y se apaga en la versión final.
