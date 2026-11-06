@@ -180,6 +180,17 @@ public class GameManager : MonoBehaviour
     public int GetStat(string key) => stats.TryGetValue(key, out var value) ? value : 0;
     public bool HasStat(string key) => stats.ContainsKey(key);
 
+    // Recuento global de errores por regla (mismos nombres que usa el cuaderno: ErrorHuntContent.Label). Lo lee la pantalla de resultados.
+    readonly Dictionary<string, int> ruleMistakes = new Dictionary<string, int>();
+
+    public void AddRuleMistake(string rule, int amount = 1)
+    {
+        if (string.IsNullOrEmpty(rule) || amount <= 0) return;
+        ruleMistakes[rule] = (ruleMistakes.TryGetValue(rule, out var n) ? n : 0) + amount;
+    }
+
+    public IReadOnlyDictionary<string, int> RuleMistakes => ruleMistakes;
+
     // Retroalimentación escrita de cada reto (el cuaderno la muestra al abrir el reto completado).
     readonly Dictionary<string, string> feedback = new Dictionary<string, string>();
 
@@ -204,6 +215,7 @@ public class GameManager : MonoBehaviour
     {
         flags.Clear();
         stats.Clear();
+        ruleMistakes.Clear();
         feedback.Clear();
         modalCount = 0;
         modalGeneration++;

@@ -49,16 +49,16 @@ public class ExamSurgery : MonoBehaviour
             VerbOptions = new[] { "are paid", "is paid", "are paying", "paid" },
             VerbKinds = new[] { ErrorKind.None, ErrorKind.Agreement, ErrorKind.Participle, ErrorKind.MissingBe }, VerbOk = 0,
             Question = "Why does the passive sentence start with \"The workers\"?",
-            Answers = new[] { "Because we focus on who RECEIVES the action.", "Because the workers are doing the action.", "Because 'pay' is an irregular verb." }, AnswerOk = 0,
+            Answers = new[] { "Because we focus on who receives the action.", "Because the workers are doing the action.", "Because 'pay' is an irregular verb." }, AnswerOk = 0,
             QuestionHint = "Look at the active sentence again. Who is the sentence about now?",
             QuestionRule = "In the passive, the receiver of the action becomes the subject, so it goes first.",
         },
         new SurgeryExam   // pasado simple
         {
-            Topic = "SDG 12 - responsible consumption", Doer = "Students", Verb = "recycled", Receiver = "the bottles",
+            Topic = "SDG 12 - responsible consumption", Doer = "The students", Verb = "recycled", Receiver = "the bottles",
             VerbOptions = new[] { "were recycled", "are recycled", "was recycled", "were recycling" },
             VerbKinds = new[] { ErrorKind.None, ErrorKind.Tense, ErrorKind.Agreement, ErrorKind.Participle }, VerbOk = 0,
-            Question = "When can we leave out \"by students\"?",
+            Question = "When can we leave out \"by the students\"?",
             Answers = new[] { "Never: 'by' is always required.", "When the doer is unknown or not important.", "Only in questions." }, AnswerOk = 1,
             QuestionHint = "Remember the accident: \"A scaffold was left unsecured.\" Was the doer named?",
             QuestionRule = "The agent can be omitted when it is unknown, obvious or unimportant. Leaving it out can also hide who is responsible!",
@@ -71,17 +71,17 @@ public class ExamSurgery : MonoBehaviour
             Question = "In the passive, which word comes after \"have / has\"?",
             Answers = new[] { "be", "been", "being" }, AnswerOk = 1,
             QuestionHint = "Present perfect = have / has + past participle. 'Be' has its own past participle.",
-            QuestionRule = "Present perfect passive: have / has + BEEN + past participle.",
+            QuestionRule = "Present perfect passive: have / has + been + past participle.",
         },
         new SurgeryExam   // modal
         {
             Topic = "SDG 8 - safe work", Doer = "Workers", Verb = "must wear", Receiver = "helmets",
-            VerbOptions = new[] { "must be worn", "must worn", "must be wear", "must are worn" },
+            VerbOptions = new[] { "must be worn", "must worn", "must be wear", "must is worn" },
             VerbKinds = new[] { ErrorKind.None, ErrorKind.MissingBe, ErrorKind.Participle, ErrorKind.Agreement }, VerbOk = 0,
             Question = "After a modal verb (must, can, should), the passive uses...",
             Answers = new[] { "be + past participle", "been + past participle", "is + infinitive" }, AnswerOk = 0,
             QuestionHint = "A modal is always followed by the base form of the next verb.",
-            QuestionRule = "Modal passive: modal + BE + past participle (must be worn).",
+            QuestionRule = "Modal passive: modal + be + past participle (must be worn).",
         },
     };
 
@@ -195,7 +195,7 @@ public class ExamSurgery : MonoBehaviour
         questionRoot = PixelUi.NewRect("Pregunta", paper.transform);
         PixelUi.Stretch(questionRoot);
 
-        var instruction = PixelUi.NewLabel("Indicacion", workRoot, "Operate on the sentence: SWAP the two noun chips, pick the verb's passive form, and stamp the doer.", 20, Vector2.zero, new Vector2(1120f, 28f), FontStyles.Italic);
+        var instruction = PixelUi.NewLabel("Indicacion", workRoot, "Rewrite it in the passive voice: swap the two noun chips, pick the passive verb form and stamp the doer.", 20, Vector2.zero, new Vector2(1120f, 28f), FontStyles.Italic);
         instruction.color = Muted;
         PixelUi.Place(instruction.rectTransform, new Vector2(0.5f, 1f), new Vector2(0.5f, 1f), new Vector2(0f, -44f), new Vector2(1120f, 28f));
 
@@ -213,7 +213,7 @@ public class ExamSurgery : MonoBehaviour
         PixelUi.Place(extraRoot, new Vector2(0.5f, 1f), new Vector2(0.5f, 1f), new Vector2(0f, -252f), new Vector2(1120f, 50f));
 
         // Sellos y botón de calificar
-        var stampCaption = PixelUi.NewLabel("SellosTitulo", workRoot, "STAMPS", 18, Vector2.zero, new Vector2(110f, 40f), FontStyles.Bold);
+        var stampCaption = PixelUi.NewLabel("SellosTitulo", workRoot, "Stamps:", 18, Vector2.zero, new Vector2(110f, 40f), FontStyles.Bold);
         stampCaption.color = RoleColor(Role.By);
         PixelUi.Place(stampCaption.rectTransform, new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(40f, -316f), new Vector2(110f, 40f));
         for (int i = 0; i < Stamps.Length; i++)
@@ -225,7 +225,7 @@ public class ExamSurgery : MonoBehaviour
             stampChips.Add(stamp, chip.Outline);
         }
 
-        gradeButton = NewButton(workRoot, "GRADE", Good, new Vector2(970f, -310f), new Vector2(190f, 52f));
+        gradeButton = NewButton(workRoot, "Grade", Good, new Vector2(970f, -310f), new Vector2(190f, 52f));
         gradeButton.onClick.AddListener(Grade);
 
         feedbackLabel = PixelUi.NewLabel("Feedback", paper.transform, "", 22, Vector2.zero, new Vector2(1120f, 96f), FontStyles.Normal, TextAlignmentOptions.TopLeft);
@@ -285,9 +285,9 @@ public class ExamSurgery : MonoBehaviour
 
         workRoot.gameObject.SetActive(true);
         questionRoot.gameObject.SetActive(false);
-        examLabel.text = $"EXAM {index + 1} / {Exams.Length}  -  {exam.Topic}";
-        activeLabel.text = $"ACTIVE:  {exam.Doer} {exam.Verb} {exam.Receiver}.";
-        SetFeedback("Rewrite it in the passive voice. Tap two chips to swap them.", Muted);
+        examLabel.text = $"Exam {index + 1} of {Exams.Length}: {exam.Topic}";
+        activeLabel.text = $"Active sentence: {exam.Doer} {exam.Verb} {exam.Receiver}.";
+        SetFeedback("Tap two chips to swap them.", Muted);
 
         line.Clear();
         line.Add(new Chip { Role = Role.Doer, Text = exam.Doer });
@@ -480,7 +480,7 @@ public class ExamSurgery : MonoBehaviour
         // 1) Orden: el receptor va primero
         if (line[0].Role != Role.Receiver)
         {
-            problems.Add("Word order: the RECEIVER of the action must come first. " +
+            problems.Add("Word order: the receiver of the action must come first. " +
                          (level == 0 ? "Who or what receives the action in the active sentence?"
                                      : "Active: doer + verb + receiver. Passive: receiver + be + participle + by + doer."));
             wrong.Add(line[0]);
@@ -535,7 +535,7 @@ public class ExamSurgery : MonoBehaviour
 
     IEnumerator ShowProblems(List<string> problems, List<Chip> wrong)
     {
-        var sb = new StringBuilder("X Not graded yet:");
+        var sb = new StringBuilder("Not graded yet:");
         foreach (var p in problems) sb.Append("\n- ").Append(p);
         SetFeedback(sb.ToString(), Bad);
 
@@ -568,7 +568,7 @@ public class ExamSurgery : MonoBehaviour
         busy = false;
         workRoot.gameObject.SetActive(false);
         questionRoot.gameObject.SetActive(true);
-        questionLabel.text = "TEACHER'S QUESTION\n" + exam.Question;
+        questionLabel.text = "Teacher's question:\n" + exam.Question;
         SetFeedback("Choose the best answer.", Muted);
 
         foreach (var old in questionButtons) Destroy(old);
@@ -598,7 +598,7 @@ public class ExamSurgery : MonoBehaviour
         result.Errors++;
         result.Note("Why and when to use the passive");
         questionFails++;
-        SetFeedback("X Not quite. " + (questionFails >= 2 ? exam.QuestionRule : exam.QuestionHint), Bad);
+        SetFeedback("Not quite. " + (questionFails >= 2 ? exam.QuestionRule : exam.QuestionHint), Bad);
     }
 
     IEnumerator NextExam()

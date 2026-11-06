@@ -276,7 +276,7 @@ public static class EscuelaDecorExtra
         {
             foreach (var col in g.GetComponentsInChildren<Collider2D>(true))
             {
-                if (!col.enabled || col.GetComponent<MapBounds>() != null || col.GetComponent<AgoraTrigger>() != null) continue;
+                if (!col.enabled || col.GetComponent<MapBounds>() != null) continue;
                 var b = col.bounds;
                 if (b.size.x > 40f || b.size.y > 40f) continue;                                      // bordes y muros largos
                 string n = col.name;

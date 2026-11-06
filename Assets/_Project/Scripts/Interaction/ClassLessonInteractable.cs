@@ -52,19 +52,42 @@ public class ClassLessonInteractable : Interactable
         DialoguePanel.Show(intro, () => ClassErrorHunt.Open(result => OnFinished(interactor, result), passFraction));
     }
 
+    /// <summary>Texto del cuaderno: puntaje, intentos y, de las frases que fallaste en el último intento, el tipo de error con su recordatorio.</summary>
+    static string BuildFeedback(HuntResult result)
+    {
+        var sb = new System.Text.StringBuilder($"Score: {result.Score}/{result.MaxScore} in {result.Attempts} attempt(s).");
+        if (result.Mistakes.Count == 0)
+            return sb.Append("\nYou caught every error and let the correct sentences pass. Great ear!").ToString();
+
+        sb.Append("\n\nIn your last attempt, review:");
+        var seen = new System.Collections.Generic.HashSet<string>();
+        foreach (var m in result.Mistakes)
+        {
+            string label = ErrorHuntContent.Label(m.Kind);
+            if (!seen.Add(label)) continue;
+            sb.Append("\n- ").Append(label).Append(": ").Append(ErrorHuntContent.Reminder(label));
+        }
+        return sb.ToString();
+    }
+
     void OnFinished(PlayerInteractor interactor, HuntResult result)
     {
+        // Cada intento (aprobado o no) suma sus errores al recuento general
+        var gm = GameManager.Instance;
+        gm.SetStat(challengeId + ":errors", gm.GetStat(challengeId + ":errors") + result.Mistakes.Count);
+        foreach (var m in result.Mistakes) gm.AddRuleMistake(ErrorHuntContent.Label(m.Kind));
+
         if (!result.Passed)
         {
             ToastMessage.Show("Take a short break, professor. The lesson can be tried again.", 3f);
             return;
         }
 
-        var gm = GameManager.Instance;
         gm.CompleteChallenge(challengeId, memoryReward);
         gm.SetStat(challengeId + ":score", result.Score);
         gm.SetStat(challengeId + ":max", result.MaxScore);
         gm.SetStat(challengeId + ":attempts", result.Attempts);
+        gm.SetFeedback(challengeId, BuildFeedback(result));
         base.Interact(interactor);
         DialoguePanel.Show(passed, null);
     }

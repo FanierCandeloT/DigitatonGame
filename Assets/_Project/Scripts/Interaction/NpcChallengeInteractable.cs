@@ -32,11 +32,11 @@ public class NpcChallengeInteractable : Interactable
     static readonly DialogueLine[] DefaultIntro =
     {
         new DialogueLine("Andrés",
-            "Everything is blank... Maybe talking to people will help me recover my memories, and who I am.",
+            "Everything is blank... Maybe talking to people will help me recover my memories and find out who I am.",
             "{Everything is blank}... Quizás hablar con la gente me ayude a recuperar mis {memories}, y a saber {who I am}.",
             "Todo está en blanco... Quizás hablar con la gente me ayude a recuperar mis recuerdos, y a saber quién soy."),
         new DialogueLine("Lucía", "You were found near the campus yesterday. You were brought here by a student."),
-        new DialogueLine("Lucía", "Don't worry about your Spanish. The accident damaged the part of your brain that stores English. It will come back as your memories are recovered."),
+        new DialogueLine("Lucía", "Don't worry if you speak Spanish now. The accident damaged the part of your brain that stores English. It will come back as your memories are recovered."),
         new DialogueLine("Lucía", "Your memories can be repaired. The pieces must be connected, one by one."),
         new DialogueLine("Andrés",
             "I understand. Okay... let's try.",
@@ -70,6 +70,7 @@ public class NpcChallengeInteractable : Interactable
     {
         // Primero se suman los recuerdos: así el cierre ya muestra el habla de Andrés en su nueva etapa.
         GameManager.Instance.CompleteChallenge(challengeId, memoryReward);
+        GameManager.Instance.SetStat(challengeId + ":errors", result != null ? result.Errors : 0);
         base.Interact(interactor);
         GameManager.Instance.SetFeedback(challengeId, BuildFeedback(result));
         // Al cerrar el diálogo Lucía ya le entregó el cuaderno: se abre con el mini tutorial (C). El aviso de "tu habla mejora" lo da MemoryHud.
@@ -122,7 +123,7 @@ public class NpcChallengeInteractable : Interactable
         lines.Add(new DialogueLine("Lucía", "Take this notebook. It's yours. Everything you remember should be written down in it."));
         lines.Add(new DialogueLine("Lucía", "Your tasks are listed there, and after each one you can read what you did well and what to review. Press C to open it."));
         lines.Add(new DialogueLine("Lucía", "And here, take this map too. It will help you find your way around the campus."));
-        lines.Add(new DialogueLine("Lucía", "You will see it in the top left corner. The \"!\" shows where your next task is."));
+        lines.Add(new DialogueLine("Lucía", "You will see it in the top-left corner. The \"!\" shows where your next task is."));
         lines.Add(new DialogueLine("Lucía", "The campus can be explored now. Your other memories are waiting there."));
         return lines.ToArray();
     }

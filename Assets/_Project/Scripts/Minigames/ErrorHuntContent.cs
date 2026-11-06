@@ -51,7 +51,7 @@ public static class ErrorHuntContent
         // ── Tiempo verbal ──
         new HuntSentence("Plastic|is recycled|yesterday.", ErrorKind.Tense, 1, "was recycled", "will be recycled", "are recycled"),
         new HuntSentence("The report|will be finished|last Monday.", ErrorKind.Tense, 1, "was finished", "is finished", "be finished"),
-        new HuntSentence("The exams|were corrected|tomorrow.", ErrorKind.Tense, 1, "will be corrected", "are corrected", "was corrected"),
+        new HuntSentence("The exams|were corrected|tomorrow.", ErrorKind.Tense, 1, "will be corrected", "had been corrected", "was corrected"),
         new HuntSentence("The wages|have been paid|last Friday.", ErrorKind.Tense, 1, "were paid", "are paid", "will be paid"),
 
         // ── Participio pasado ──
@@ -84,7 +84,7 @@ public static class ErrorHuntContent
         new HuntSentence("Energy|is saved|in this building."),
         new HuntSentence("The bottles|are collected|every Friday."),
         new HuntSentence("My lesson|was taught|in Room 204."),
-        new HuntSentence("The windows|have been cleaned|this morning."),
+        new HuntSentence("The windows|have been cleaned|already."),
         new HuntSentence("Waste|should be reduced|in factories."),
         new HuntSentence("Safety helmets|must be worn|on the site."),
     };
@@ -151,6 +151,23 @@ public static class ErrorHuntContent
             default:
                 return "Before you stop a sentence, check three things: the subject, the verb 'to be' and the participle. If all three fit, let it pass.";
         }
+    }
+
+    /// <summary>Regla del reto 1: unir sujeto, verbo y complemento que tengan sentido juntos.</summary>
+    public const string PiecesRule = "Matching the sentence pieces";
+
+    /// <summary>Recordatorio corto de la regla que corresponde a una etiqueta de error (la usan el cuaderno y los resultados).</summary>
+    public static string Reminder(string label)
+    {
+        if (label == Label(ErrorKind.Agreement)) return "'be' must match the subject (is / are, was / were).";
+        if (label == Label(ErrorKind.Tense)) return "keep the tense of the active verb (present, past, present perfect, future).";
+        if (label == Label(ErrorKind.Participle)) return "after 'be' use the past participle (written, taught, worn).";
+        if (label == Label(ErrorKind.Agent)) return "'by' introduces the doer. Name the doer when it matters who is responsible.";
+        if (label == Label(ErrorKind.MissingBe)) return "do not forget 'be' (modal + be, have + been).";
+        if (label == Label(ErrorKind.None)) return "before stopping a sentence, check the subject, 'be' and the participle; if all three fit, let it pass.";
+        if (label == PiecesRule) return "the subject, the passive verb and the ending must make sense together.";
+        if (label == "Word order") return "the receiver goes first and 'by + doer' goes last.";
+        return "the passive focuses on the receiver; the doer can be left out only when it is unknown or unimportant.";
     }
 
     public static string Describe(MistakeType type)

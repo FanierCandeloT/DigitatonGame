@@ -33,7 +33,8 @@ public class MemoryHud : MonoBehaviour
 
     TextMeshProUGUI speechLabel, objectiveLabel;
     RectTransform separator;
-    int lastMemories;
+    int lastMemories, pendingRemeasure;
+    bool needsMeasure;
 
     void OnEnable()
     {
@@ -186,24 +187,49 @@ public class MemoryHud : MonoBehaviour
             {
                 objectiveLabel.text = text;
                 separator.gameObject.SetActive(text.Length > 0);
-
-                // El texto se mide con la fuente real y el ancho interior: el recuadro crece lo justo y NADA se sale
-                float textHeight = 0f;
-                if (text.Length > 0)
-                {
-                    objectiveLabel.ForceMeshUpdate();
-                    textHeight = Mathf.Ceil(objectiveLabel.GetPreferredValues(text, InnerWidth, 0f).y);
-                    objectiveLabel.rectTransform.sizeDelta = new Vector2(InnerWidth, textHeight + 2f);
-                }
-                float height = text.Length == 0 ? 64f : ObjectiveTop + 4f + textHeight + Pad;
-                ((RectTransform)root.transform).sizeDelta = new Vector2(PanelWidth, height);
+                needsMeasure = true;
             }
         }
 
         bool inGame = FindAnyObjectByType<PlayerController>() != null &&
                       System.Array.IndexOf(HiddenScenes, SceneManager.GetActiveScene().name) < 0;
         // En pausa se esconde: el menú de pausa difumina el juego y el panel no debe quedar encima
-        root.SetActive(inGame && !gm.IsPaused);
+        bool visible = inGame && !gm.IsPaused;
+        if (visible && !root.activeSelf) needsMeasure = true;   // un objeto inactivo no mide bien el texto: se vuelve a medir al aparecer
+        root.SetActive(visible);
+        if (visible && needsMeasure && objectiveLabel != null) Measure();
+    }
+
+    /// <summary>
+    /// Mide el objetivo con la fuente real y el ancho interior: el recuadro crece lo justo y NADA se sale.
+    /// Solo se hace con el panel activo (antes se medía apagado, daba una sola línea y el texto se salía del recuadro hasta el siguiente cambio).
+    /// </summary>
+    void Measure()
+    {
+        needsMeasure = false;
+        pendingRemeasure = 2;
+        string text = objectiveLabel.text;
+        float textHeight = 0f;
+        if (text.Length > 0)
+        {
+            Canvas.ForceUpdateCanvases();
+            objectiveLabel.ForceMeshUpdate();
+            textHeight = Mathf.Ceil(objectiveLabel.GetPreferredValues(text, InnerWidth, 0f).y);
+            objectiveLabel.rectTransform.sizeDelta = new Vector2(InnerWidth, textHeight + 2f);
+        }
+        float height = text.Length == 0 ? 64f : ObjectiveTop + 4f + textHeight + Pad;
+        ((RectTransform)root.transform).sizeDelta = new Vector2(PanelWidth, height);
+    }
+
+    // Mientras el panel esté a la vista se revisa una vez más al cuadro siguiente (la fuente y el canvas ya están listos)
+    void LateUpdate()
+    {
+        if (pendingRemeasure > 0 && objectiveLabel != null && root.activeInHierarchy)
+        {
+            int left = pendingRemeasure - 1;
+            Measure();
+            pendingRemeasure = left;
+        }
     }
 
     /// <summary>Espera a que se cierren diálogos y minijuegos para que el aviso no tape ni sea tapado.</summary>

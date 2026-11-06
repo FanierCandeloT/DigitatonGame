@@ -512,6 +512,7 @@ public class MemoryReconstructionGame : MonoBehaviour
         public MemoryNeuron Piece;
         public Wire Wire;
         public string Text;
+        public string Rule = ErrorHuntContent.PiecesRule;   // regla que falló, para el recuento de la pantalla de resultados
     }
 
     void CheckSentence(MemoryNeuron verb)
@@ -572,6 +573,7 @@ public class MemoryReconstructionGame : MonoBehaviour
             {
                 Piece = verb, Wire = left,
                 Text = $"Agreement: \"{subject.Text}\" is {number}, so the passive needs {forms}.",
+                Rule = ErrorHuntContent.Label(ErrorKind.Agreement),
             });
         }
         else if (found && verb.Text != own.Verb)
@@ -697,6 +699,7 @@ public class MemoryReconstructionGame : MonoBehaviour
     void RecordMistake(MemoryNeuron subject, MemoryNeuron verb, MemoryNeuron complement, List<Issue> issues)
     {
         result.Errors++;
+        if (issues.Count > 0) GameManager.Instance.AddRuleMistake(issues[0].Rule);
 
         string attempt = complement != null ? $"{subject.Text} {verb.Text} {complement.Text}" : $"{subject.Text} {verb.Text} ...";
         foreach (var known in result.Mistakes) if (known.Attempt == attempt) return;

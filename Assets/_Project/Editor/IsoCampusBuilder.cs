@@ -446,7 +446,7 @@ public static class IsoCampusBuilder
         var points = new List<Vector2>();
         foreach (var g in scene.GetRootGameObjects())
             if (g.GetComponent<Door>() != null || g.GetComponent<SpawnPoint>() != null || g.GetComponent<ToastInteractable>() != null
-                || g.GetComponent<ChallengeInteractable>() != null || g.GetComponent<AgoraTrigger>() != null)
+                || g.GetComponent<ChallengeInteractable>() != null)
                 points.Add(g.transform.position);
 
         var holder = new GameObject("Vegetación (Outside)");

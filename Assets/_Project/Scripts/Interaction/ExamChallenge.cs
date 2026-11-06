@@ -25,8 +25,8 @@ public class ExamChallenge : Interactable
     static readonly string[] BookRules =
     {
         "1. Passive = be + past participle (is / are / was / were + paid).",
-        "2. The RECEIVER of the action goes first. The doer goes after 'by' (and can be left out if unknown).",
-        "3. 'Be' matches the new subject and the tense: have / has + BEEN, modal + BE.",
+        "2. The receiver of the action goes first. The doer goes after 'by' (and can be left out if unknown).",
+        "3. 'Be' matches the new subject and the tense: have / has + been, modal + be.",
     };
 
     static readonly Color Frame = new Color(1f, 0.82f, 0.45f);
@@ -59,7 +59,7 @@ public class ExamChallenge : Interactable
             "{These are my students' exams}. Todas sus frases están en {active voice}...",
             "Estos son los exámenes de mis estudiantes. Todas sus frases están en voz activa..."),
         new DialogueLine("Andrés",
-            "In this country, they must be passive. Let me fix them. My book will help me... if I can read it.",
+            "In this country, every sentence must be passive. Let me fix them. My book will help me... if I can read it.",
             "En este país todo debe ser {passive}. Voy a {fix them}. Mi {book} me va a ayudar... si puedo leerlo.",
             "En este país deben ser pasivas. Voy a corregirlas. Mi libro me ayudará... si puedo leerlo."),
     };
@@ -122,6 +122,7 @@ public class ExamChallenge : Interactable
         gm.CompleteChallenge(challengeId, memoryReward);
         gm.SetStat(challengeId + ":attempts", result.Attempts);
         gm.SetStat(challengeId + ":errors", result.Errors);
+        foreach (var pair in result.Weak) gm.AddRuleMistake(pair.Key, pair.Value);
         gm.SetFeedback(challengeId, BuildFeedback(result));
         ApplyDoneLook();
         base.Interact(lastInteractor);
@@ -137,19 +138,8 @@ public class ExamChallenge : Interactable
 
         var sb = new StringBuilder($"{ExamSurgery.ExamCount} exams graded in {result.Attempts} tries, with {result.Errors} mistake(s). Rules to review:\n");
         foreach (var pair in result.Weak)
-            sb.Append("\n- ").Append(pair.Key).Append(" (x").Append(pair.Value).Append("): ").Append(Reminder(pair.Key));
+            sb.Append("\n- ").Append(pair.Key).Append(" (x").Append(pair.Value).Append("): ").Append(ErrorHuntContent.Reminder(pair.Key));
         return sb.ToString();
-    }
-
-    static string Reminder(string label)
-    {
-        if (label == ErrorHuntContent.Label(ErrorKind.Agreement)) return "'be' must match the new subject (is / are, was / were).";
-        if (label == ErrorHuntContent.Label(ErrorKind.Tense)) return "keep the tense of the active verb (present, past, present perfect).";
-        if (label == ErrorHuntContent.Label(ErrorKind.Participle)) return "after 'be' use the past participle (written, taught, worn).";
-        if (label == ErrorHuntContent.Label(ErrorKind.Agent)) return "'by' introduces the doer.";
-        if (label == ErrorHuntContent.Label(ErrorKind.MissingBe)) return "do not forget 'be' (modal + be, have + been).";
-        if (label == "Word order") return "the receiver goes first and 'by + doer' goes last.";
-        return "the passive focuses on the receiver; the doer can be left out when it is unknown or unimportant.";
     }
 
     void ApplyDoneLook()
@@ -168,17 +158,20 @@ public class ExamChallenge : Interactable
         bookCanvas = canvas.gameObject;
 
         var panel = PixelUi.NewPanel("Libro", canvas.transform, Frame, new Color(0.12f, 0.09f, 0.05f, 0.97f), out _);
-        PixelUi.Place(panel.rectTransform, new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(16f, -16f), new Vector2(600f, 216f));
+        // Franja arriba, del mismo ancho que el examen (que queda debajo, sin tapar nada)
+        PixelUi.Place(panel.rectTransform, new Vector2(0.5f, 1f), new Vector2(0.5f, 1f), new Vector2(0f, -14f), new Vector2(1180f, 158f));
 
-        var title = PixelUi.NewLabel("Titulo", panel.transform, "TEACHER'S BOOK", 22, new Vector2(0f, 88f), new Vector2(560f, 30f), FontStyles.Bold);
+        var title = PixelUi.NewLabel("Titulo", panel.transform, "Teacher's book", 22, Vector2.zero, new Vector2(1120f, 30f), FontStyles.Bold);
         title.color = Frame;
+        PixelUi.Place(title.rectTransform, new Vector2(0.5f, 1f), new Vector2(0.5f, 1f), new Vector2(0f, -10f), new Vector2(1120f, 30f));
 
         bookLines = new TextMeshProUGUI[BookRules.Length];
         for (int i = 0; i < BookRules.Length; i++)
         {
-            var line = PixelUi.NewLabel("Regla", panel.transform, "", 19, new Vector2(0f, 38f - i * 56f), new Vector2(560f, 52f), FontStyles.Normal);
+            var line = PixelUi.NewLabel("Regla", panel.transform, "", 19, Vector2.zero, new Vector2(1120f, 32f), FontStyles.Normal);
             line.textWrappingMode = TextWrappingModes.Normal;
             line.alignment = TextAlignmentOptions.Left;
+            PixelUi.Place(line.rectTransform, new Vector2(0.5f, 1f), new Vector2(0.5f, 1f), new Vector2(0f, -46f - i * 36f), new Vector2(1120f, 32f));
             bookLines[i] = line;
         }
         RefreshBook(false);

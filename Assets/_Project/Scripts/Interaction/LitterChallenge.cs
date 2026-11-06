@@ -50,6 +50,7 @@ public class LitterChallenge : Interactable
     PlayerInteractor lastInteractor;
     bool running;
     int attempts, errors;
+    readonly Dictionary<string, int> weak = new Dictionary<string, int>();
     Transform root;
     Vector3 studentHome, binHome;
     static Sprite whiteSprite;
@@ -78,7 +79,7 @@ public class LitterChallenge : Interactable
 
     static DialogueLine[] ClosingLines() => new[]
     {
-        new DialogueLine("Valentina", "The bottles were collected by me! The campus is being cleaned, thanks to one sentence."),
+        new DialogueLine("Valentina", "The bottles are being collected by me! The campus is being cleaned, thanks to one sentence."),
         new DialogueLine("Andrés",
             "When the doer is named, things happen. I remember teaching this.",
             "{When the doer is named}, las cosas pasan. Ya recuerdo cuando {I taught this}.",
@@ -141,7 +142,7 @@ public class LitterChallenge : Interactable
                 yield return Say(subject == "The student" ? "I am not a bottle!" : "The campus cannot be carried!", 2.2f);
                 break;
             case Outcome.Tense:
-                yield return Say("They WERE collected? But they are still here!", 2.4f);
+                yield return Say("They were collected? But they are still here!", 2.4f);
                 break;
             default:   // concordancia o participio: la frase no se entiende
                 yield return Say("I do not understand that sentence.", 2.0f);
@@ -149,6 +150,9 @@ public class LitterChallenge : Interactable
         }
 
         errors++;
+        string rule = RuleLabel(outcome);
+        GameManager.Instance.AddRuleMistake(rule);
+        weak[rule] = weak.TryGetValue(rule, out var count) ? count + 1 : 1;
         AudioManager.PlayIncorrect();
         builder.Show();
         builder.SetFeedback(Guidance(outcome), Warn);
@@ -162,11 +166,25 @@ public class LitterChallenge : Interactable
         gm.CompleteChallenge(challengeId, memoryReward);
         gm.SetStat(challengeId + ":attempts", attempts);
         gm.SetStat(challengeId + ":errors", errors);
+        gm.SetFeedback(challengeId, BuildFeedback());
         ApplyDoneLook();
         base.Interact(lastInteractor);
         running = false;
         DialoguePanel.Show(ClosingLines(), null);
         yield break;
+    }
+
+    /// <summary>Texto del cuaderno: la frase correcta y, si hubo fallos, qué reglas repasar.</summary>
+    string BuildFeedback()
+    {
+        string answer = "The bottles are collected by the student.";
+        if (errors == 0)
+            return $"Solved on the first try: \"{answer}\" The receiver comes first, then be + participle, and 'by' names the doer.";
+
+        var sb = new System.Text.StringBuilder($"Solved in {attempts} tries, with {errors} mistake(s).\nThe sentence: \"{answer}\"\n\nRules to review:");
+        foreach (var pair in weak)
+            sb.Append("\n- ").Append(pair.Key).Append(" (x").Append(pair.Value).Append("): ").Append(ErrorHuntContent.Reminder(pair.Key));
+        return sb.ToString();
     }
 
     // ───────────── Reglas ─────────────
@@ -189,6 +207,20 @@ public class LitterChallenge : Interactable
         return verb == "are thrown" ? Outcome.Backfire : Outcome.Success;
     }
 
+    /// <summary>Regla que falló, con el mismo nombre que usan el cuaderno y los resultados.</summary>
+    static string RuleLabel(Outcome outcome)
+    {
+        switch (outcome)
+        {
+            case Outcome.Agreement: return ErrorHuntContent.Label(ErrorKind.Agreement);
+            case Outcome.Participle: return ErrorHuntContent.Label(ErrorKind.Participle);
+            case Outcome.Tense: return ErrorHuntContent.Label(ErrorKind.Tense);
+            case Outcome.NeedsAgent:
+            case Outcome.AbsurdAgent: return ErrorHuntContent.Label(ErrorKind.Agent);
+            default: return "The receiver of the action";   // sujeto absurdo, frase que empeora el desorden...
+        }
+    }
+
     /// <summary>Guía según el error: orienta sin dar la respuesta. Desde el tercer intento da más detalle.</summary>
     string Guidance(Outcome outcome)
     {
@@ -198,8 +230,8 @@ public class LitterChallenge : Interactable
             case Outcome.Agreement: return ErrorHuntContent.Hint(ErrorKind.Agreement, level);
             case Outcome.Participle: return ErrorHuntContent.Hint(ErrorKind.Participle, level);
             case Outcome.Tense:
-                return level == 0 ? "The bottles are on the ground right now. Which verb form shows what is happening now?"
-                                  : "Present: is / are. Past: was / were. Choose the one that matches 'right now'.";
+                return level == 0 ? "The bottles are on the ground right now. Is it something that already finished, or something that happens regularly? Choose the tense that fits."
+                                  : "Present: is / are (it happens regularly). Past: was / were (it already finished). Choose the one that fits the situation.";
             case Outcome.NeedsAgent:
                 return level == 0 ? "Nobody is named, so nobody moves. Who should do the action?"
                                   : "In a passive sentence, the doer is introduced by 'by'. Add a doer in the last row.";

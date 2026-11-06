@@ -332,7 +332,6 @@ public static class GreyboxBuilder
         // Objeto interactivo de prueba (cian)
         var challenge = MakeBox("Reto de prueba", PlaceholderKind.Interactive, new Vector2(-3f, -6f), new Vector2(1f, 1f), sprite,
             "Objeto interactivo / reto del campus.", null, trigger: true, order: 1);
-        challenge.AddComponent<DebugInteractable>().message = "¡Interacción de prueba en el Campus!";
 
         // Puntos de aparición
         MakeSpawn("Campus_Default", new Vector2(0f, -4f), true);
@@ -357,7 +356,6 @@ public static class GreyboxBuilder
             "Camilla/mobiliario de enfermería.", null, solid: true);
         var counter = MakeBox("Mostrador", PlaceholderKind.Interactive, new Vector2(4f, 2f), new Vector2(1f, 1f), sprite,
             "Mostrador de atención.", null, trigger: true, order: 1);
-        counter.AddComponent<DebugInteractable>().message = "¡Interacción de prueba en Bienestar!";
 
         // Puerta de regreso al Campus: aparece frente a la puerta por la que entró
         MakeDoor("Salida al Campus", new Vector2(0f, -6.25f), new Vector2(1.5f, 1f), sprite, "Campus", "Campus_FromBienestar");

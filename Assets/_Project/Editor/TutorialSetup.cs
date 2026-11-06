@@ -27,7 +27,7 @@ public static class TutorialSetup
     const float IdleFeet = 337f, IdleBodyH = 343f;
     const int PointFrames = 8, PointW = 256, PointH = 768;
     const float PointFeet = 141f, PointBodyH = 506f;
-    const float DaliaHeightUnits = 3.2f;   // Andrés mide ~3,7 u visibles en el juego (con pelo); los NPC adultos van un poco más bajos
+    const float DaliaHeightUnits = 2.0f;   // misma altura visible que Andrés (~2 u, 1x2 casillas) y los NPC adultos
 
     // ───────────── 1. Sprites ─────────────
 

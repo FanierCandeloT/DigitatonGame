@@ -102,7 +102,6 @@ public static class MapScaleTool
 
         // Límites de cámara y disparador circular del Ágora
         if (go.GetComponent<MapBounds>() != null && box != null) { box.size *= r; return 1; }
-        if (go.GetComponent<AgoraTrigger>() != null && go.TryGetComponent(out CircleCollider2D circle)) { circle.radius *= r; return 1; }
 
         // Personajes, puertas, spawns y puntos de interacción pequeños: solo se mueven
         bool character = go.GetComponent<PlayerController>() != null || go.GetComponent<ToastInteractable>() != null ||

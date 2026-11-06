@@ -486,19 +486,9 @@ public static class CampusBuilder
             "Sprite de Don Jairo, el portero de la entrada este (NPC, vista 3/4, 16x32 px).", new Vector2(1, 2), true, 5f);
     }
 
-    /// <summary>Objetos del guion en el campus: disparador del Ágora y retos de las preguntas 5, 7 y 12.</summary>
+    /// <summary>Objetos del guion en el campus: retos de las preguntas 5, 7 y 12.</summary>
     static void BuildStoryObjects()
     {
-        // Escena 5: al entrar por primera vez al círculo del Ágora, Andrés pierde la memoria y despierta en Bienestar.
-        var trigger = new GameObject("Disparador del Ágora");
-        trigger.transform.position = W(410, 250);
-        var circleCol = trigger.AddComponent<CircleCollider2D>();
-        circleCol.isTrigger = true;
-        circleCol.radius = 10f;
-        trigger.AddComponent<AgoraTrigger>();
-        Tag(trigger, PlaceholderKind.Interactive, "Disparador del Ágora (Escena 5)",
-            "Zona invisible del círculo del Ágora: la primera vez que Andrés entra se pierde la memoria y se carga Bienestar.", new Vector2(20, 20), false);
-
         // Pregunta 5: candado en la portería este, junto a Don Jairo
         InteriorsBuilder.Challenge("Candado (Question 5)", W(956, 160), new Vector2(1.2f, 1.2f), "q5", "Question 5 – Padlock", 1,
             "Candado de la portería este, junto a Don Jairo (sprite de candado, vista 3/4). Reto de la pregunta 5.");

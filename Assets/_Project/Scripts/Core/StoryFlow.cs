@@ -28,7 +28,7 @@ public static class StoryFlow
         "Andrés believed that every action has a doer.",
         "Then, one day, an accident happened.",
         "A scaffold was left unsecured. By whom? Nobody knows.",
-        "Your memory has been lost.",
+        "His memory has been lost.",
         "And with it, his English. Only his mother tongue, Spanish, remains.",
         "Every memory he recovers will bring his English back.",
     };

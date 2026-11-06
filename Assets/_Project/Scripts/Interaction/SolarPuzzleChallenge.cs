@@ -72,7 +72,7 @@ public class SolarPuzzleChallenge : Interactable
         // Presente perfecto
         new Round
         {
-            Clue = "The workers have cleaned the panels.",
+            Clue = "The workers have just cleaned the panels.",
             Passive = "The panels have been cleaned by the workers.",
             Slots = new[]
             {
@@ -228,8 +228,8 @@ public class SolarPuzzleChallenge : Interactable
             "Ahora {I remember everything}: quién soy, y quién {did what}.",
             "Ahora lo recuerdo todo: quién soy, y quién hizo qué."),
         new DialogueLine("Andrés",
-            "In this country, everything was done by nobody. That ends today.",
-            "En este país, todo {was done by nobody}. Eso {ends today}.",
+            "In this country, things were done by nobody. That ends today.",
+            "En este país, todo {were done by nobody}. Eso {ends today}.",
             "En este país, todo fue hecho por nadie. Eso termina hoy."),
         new DialogueLine("Andrés",
             "The workers will be heard by me.",
@@ -244,7 +244,7 @@ public class SolarPuzzleChallenge : Interactable
         var gm = GameManager.Instance;
         if (gm.IsChallengeDone(challengeId))
         {
-            ToastMessage.Show("The panels are working. The campus has its light back!", 2.5f);
+            ToastMessage.Show("The panels are working. The campus has power again!", 2.5f);
             return;
         }
         if (!gm.HasFlag(BlackoutDirector.FlagStarted) && !gm.HasFlag(GameManager.FlagDevOpen))
@@ -371,6 +371,7 @@ public class SolarPuzzleChallenge : Interactable
     void Track(Outcome outcome)
     {
         string label = Label(outcome);
+        GameManager.Instance.AddRuleMistake(label);
         weak[label] = weak.TryGetValue(label, out var n) ? n + 1 : 1;
     }
 
@@ -395,20 +396,20 @@ public class SolarPuzzleChallenge : Interactable
         int level = roundAttempts >= 3 ? 1 : 0;
         switch (outcome)
         {
-            case Outcome.Agreement: return "X " + ErrorHuntContent.Hint(ErrorKind.Agreement, level);
-            case Outcome.Tense: return "X " + ErrorHuntContent.Hint(ErrorKind.Tense, level);
-            case Outcome.Participle: return "X " + ErrorHuntContent.Hint(ErrorKind.Participle, level);
-            case Outcome.MissingBe: return "X " + ErrorHuntContent.Hint(ErrorKind.MissingBe, level);
+            case Outcome.Agreement: return ErrorHuntContent.Hint(ErrorKind.Agreement, level);
+            case Outcome.Tense: return ErrorHuntContent.Hint(ErrorKind.Tense, level);
+            case Outcome.Participle: return ErrorHuntContent.Hint(ErrorKind.Participle, level);
+            case Outcome.MissingBe: return ErrorHuntContent.Hint(ErrorKind.MissingBe, level);
             case Outcome.NeedsAgent:
-                return "X Nothing happens... Who does the action? No doer is named, so nobody moves. Add the agent with 'by'.";
+                return "Nothing happens... Who does the action? No doer is named, so nobody moves. Add the agent with 'by'.";
             case Outcome.AgentForm:
-                return level == 0 ? "X Almost! Look at the word after 'by'. Is it the right form for a person after a preposition?"
-                                  : "X After 'by' use the object form of a pronoun: me, him, her, us, them (not I, he, she, we, they).";
+                return level == 0 ? "Almost! Look at the word after 'by'. Is it the right form for a person after a preposition?"
+                                  : "After 'by' use the object form of a pronoun: me, him, her, us, them (not I, he, she, we, they).";
             case Outcome.WrongAgent:
-                return "X That cannot do the action! Read the active sentence again: who really does it?";
+                return "That cannot do the action! Read the active sentence again: who really does it?";
             default:   // WrongSubject
-                return level == 0 ? "X The circuit does not answer. In the passive, what goes FIRST?"
-                                  : "X The passive starts with the thing that RECEIVES the action (the object of the active sentence).";
+                return level == 0 ? "The circuit does not answer. In the passive, what goes first?"
+                                  : "The passive starts with the thing that receives the action (the object of the active sentence).";
         }
     }
 
