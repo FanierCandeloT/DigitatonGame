@@ -517,7 +517,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.44781342, y: 0.44781342, z: 1}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 275075210}
@@ -1529,7 +1529,7 @@ SpriteRenderer:
   m_SortingOrder: -100
   m_MaskInteraction: 0
   m_Sprite: {fileID: 1526859126, guid: 3123a6c2eb3bcbf4daa4596db52e6ed7, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.9, g: 0.82, b: 0.65, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
@@ -5241,11 +5241,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7962573426918396755, guid: 060610fccda7aa142990ce79582d1a63, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.9851111
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7962573426918396755, guid: 060610fccda7aa142990ce79582d1a63, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.1390858
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7962573426918396755, guid: 060610fccda7aa142990ce79582d1a63, type: 3}
       propertyPath: m_LocalScale.z
