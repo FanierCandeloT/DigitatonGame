@@ -20,11 +20,11 @@ public static class MenuRedesign
     const string FontDir = UiDir + "/Fonts";
 
     // Paleta tomada del fondo animado, del título y de BotonMenu
-    static readonly Color Terracotta = new Color(0.72f, 0.29f, 0.15f);
-    static readonly Color Orange = new Color(0.96f, 0.52f, 0.12f);
-    static readonly Color Turquoise = new Color(0.22f, 0.78f, 0.72f);
-    static readonly Color Cream = new Color(1f, 0.93f, 0.76f);
-    static readonly Color DarkWarm = new Color(0.09f, 0.05f, 0.04f);
+    public static readonly Color Terracotta = new Color(0.72f, 0.29f, 0.15f);
+    public static readonly Color Orange = new Color(0.96f, 0.52f, 0.12f);
+    public static readonly Color Turquoise = new Color(0.22f, 0.78f, 0.72f);
+    public static readonly Color Cream = new Color(1f, 0.93f, 0.76f);
+    public static readonly Color DarkWarm = new Color(0.09f, 0.05f, 0.04f);
 
     // ───────────── 1 y 2. Assets y fuente ─────────────
 
@@ -190,6 +190,16 @@ public static class MenuRedesign
     static TMP_FontAsset font;
     static Sprite buttonSprite, titleSprite, arrowSprite, gradientSprite;
 
+    /// <summary>Carga la fuente y los sprites del estilo (para armar el menú de pausa en el prefab, fuera de MainMenu).</summary>
+    public static void LoadStyle()
+    {
+        font = AssetDatabase.LoadAssetAtPath<TMP_FontAsset>($"{FontDir}/PixelifySans Raster.asset");
+        buttonSprite = LoadSprite("BotonMenu");
+        titleSprite = LoadSprite("TITULO");
+        arrowSprite = LoadSprite("flecha_menu");
+        gradientSprite = LoadSprite("gradiente_menu");
+    }
+
     public static string BuildMenu()
     {
         var scene = EditorSceneManager.OpenScene("Assets/_Project/Scenes/MainMenu.unity", OpenSceneMode.Single);
@@ -318,7 +328,7 @@ public static class MenuRedesign
 
     static Sprite LoadSprite(string name) => AssetDatabase.LoadAllAssetsAtPath($"{UiDir}/{name}.png").OfType<Sprite>().First();
 
-    static void StyleButton(Button b, float w, float h, float fontSize)
+    public static void StyleButton(Button b, float w, float h, float fontSize)
     {
         var img = b.GetComponent<Image>();
         img.sprite = buttonSprite; img.type = Image.Type.Sliced; img.color = Color.white;
@@ -359,7 +369,7 @@ public static class MenuRedesign
 
     // ───────────── Settings ─────────────
 
-    static void BuildSettings(SettingsPanel sp, Transform root, Image animatedBg)
+    public static void BuildSettings(SettingsPanel sp, Transform root, Image animatedBg)
     {
         // La instancia del prefab SettingsPanel se desempaqueta en ESTA escena: así los cambios de color y de estructura se guardan sin overrides perdidos
         if (PrefabUtility.IsPartOfPrefabInstance(sp.gameObject)) PrefabUtility.UnpackPrefabInstance(PrefabUtility.GetOutermostPrefabInstanceRoot(sp.gameObject), PrefabUnpackMode.Completely, InteractionMode.AutomatedAction);
@@ -490,7 +500,7 @@ public static class MenuRedesign
         fadeDuration = 0.08f,
     };
 
-    static Button MakeMenuButton(string name, RectTransform parent, string text, Vector2 pos, Vector2 size, float fontSize, out TMP_Text label)
+    public static Button MakeMenuButton(string name, RectTransform parent, string text, Vector2 pos, Vector2 size, float fontSize, out TMP_Text label)
     {
         var img = NewImage(name, parent, Color.white);
         Place(img.rectTransform, pos, size);
@@ -508,20 +518,20 @@ public static class MenuRedesign
 
     // ───────────── Utilidades ─────────────
 
-    static T GetOrAdd<T>(GameObject go) where T : Component
+    public static T GetOrAdd<T>(GameObject go) where T : Component
     {
         var c = go.GetComponent<T>();
         return c != null ? c : go.AddComponent<T>();
     }
 
-    static RectTransform NewRect(string name, Transform parent)
+    public static RectTransform NewRect(string name, Transform parent)
     {
         var go = new GameObject(name, typeof(RectTransform));
         go.transform.SetParent(parent, false);
         return (RectTransform)go.transform;
     }
 
-    static Image NewImage(string name, Transform parent, Color color)
+    public static Image NewImage(string name, Transform parent, Color color)
     {
         var rt = NewRect(name, parent);
         var img = rt.gameObject.AddComponent<Image>();
@@ -529,7 +539,7 @@ public static class MenuRedesign
         return img;
     }
 
-    static TMP_Text NewLabel(string name, Transform parent, string text, float size, Color color, TextAlignmentOptions align)
+    public static TMP_Text NewLabel(string name, Transform parent, string text, float size, Color color, TextAlignmentOptions align)
     {
         var rt = NewRect(name, parent);
         var t = rt.gameObject.AddComponent<TextMeshProUGUI>();
@@ -538,19 +548,19 @@ public static class MenuRedesign
         return t;
     }
 
-    static void Stretch(RectTransform rt)
+    public static void Stretch(RectTransform rt)
     {
         rt.anchorMin = Vector2.zero; rt.anchorMax = Vector2.one;
         rt.offsetMin = Vector2.zero; rt.offsetMax = Vector2.zero;
     }
 
-    static void Place(RectTransform rt, Vector2 pos, Vector2 size)
+    public static void Place(RectTransform rt, Vector2 pos, Vector2 size)
     {
         rt.anchorMin = rt.anchorMax = rt.pivot = new Vector2(0.5f, 0.5f);
         rt.anchoredPosition = pos; rt.sizeDelta = size;
     }
 
-    static void DestroyChild(Transform parent, string name)
+    public static void DestroyChild(Transform parent, string name)
     {
         for (int i = parent.childCount - 1; i >= 0; i--)
             if (parent.GetChild(i).name == name) Object.DestroyImmediate(parent.GetChild(i).gameObject);

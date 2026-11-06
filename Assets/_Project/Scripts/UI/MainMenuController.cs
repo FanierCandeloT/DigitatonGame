@@ -100,7 +100,15 @@ public class MainMenuController : MonoBehaviour
         menuLayer.interactable = visible;
         menuLayer.blocksRaycasts = visible;
         if (layerRoutine != null) StopCoroutine(layerRoutine);
-        layerRoutine = StartCoroutine(Fade(menuLayer, visible ? 1f : 0f, LayerFade));
+        layerRoutine = StartCoroutine(FadeLayer(visible));
+    }
+
+    /// <summary>Con Settings abierto el menú se esconde del todo: se desvanece y luego se apaga (no se asoma nada por detrás del panel).</summary>
+    IEnumerator FadeLayer(bool visible)
+    {
+        if (visible) menuLayer.gameObject.SetActive(true);
+        yield return Fade(menuLayer, visible ? 1f : 0f, LayerFade);
+        if (!visible) menuLayer.gameObject.SetActive(false);
     }
 
     static void Select(Selectable s)

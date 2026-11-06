@@ -270,6 +270,7 @@ public class GameManager : MonoBehaviour
         if (IsPaused == paused) return;
         IsPaused = paused;
         Time.timeScale = paused ? 0f : 1f;
+        if (!paused) AudioListener.pause = false;
         PauseChanged?.Invoke(paused);
     }
 
@@ -296,6 +297,7 @@ public class GameManager : MonoBehaviour
 
         NotebookOpen = false;
         SetPaused(false);
+        AudioListener.pause = false;   // al cambiar de escena (también al salir al menú desde la pausa) el audio nunca queda en pausa
 
         if (captions != null && fader != null)
         {
