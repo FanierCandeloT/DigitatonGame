@@ -172,24 +172,28 @@ public class MiniMapHud : MonoBehaviour
         }
 
         bool ok = true;
-        try
+        // Con la luz normal aunque haya un apagón: el mapa debe poder leerse (BlackoutDirector vuelve a oscurecer al terminar)
+        BlackoutDirector.WithNormalLight(() =>
         {
-            var request = new RenderPipeline.StandardRequest { destination = texture };
-            if (RenderPipeline.SupportsRenderRequest(snapshotCamera, request))
-                RenderPipeline.SubmitRenderRequest(snapshotCamera, request);
-            else
-                snapshotCamera.Render();
-        }
-        catch (System.Exception e)
-        {
-            Debug.LogWarning($"[MiniMap] No se pudo fotografiar el campus: {e.Message}");
-            ok = false;
-        }
-        finally
-        {
-            foreach (var r in hidden) if (r != null) r.enabled = true;
-            snapshotCamera.targetTexture = null;
-        }
+            try
+            {
+                var request = new RenderPipeline.StandardRequest { destination = texture };
+                if (RenderPipeline.SupportsRenderRequest(snapshotCamera, request))
+                    RenderPipeline.SubmitRenderRequest(snapshotCamera, request);
+                else
+                    snapshotCamera.Render();
+            }
+            catch (System.Exception e)
+            {
+                Debug.LogWarning($"[MiniMap] No se pudo fotografiar el campus: {e.Message}");
+                ok = false;
+            }
+            finally
+            {
+                foreach (var r in hidden) if (r != null) r.enabled = true;
+                snapshotCamera.targetTexture = null;
+            }
+        });
 
         if (!ok) { ReleaseTexture(); return false; }
         mapImage.texture = texture;
@@ -362,6 +366,7 @@ public class MiniMapHud : MonoBehaviour
                 return litter != null ? (Vector2?)litter.transform.position : null;
             case "r3_exams": return DoorsTo("Aulas3");     // la Sala de Profesores está dentro de Aulas 3
             case "class1": return DoorsTo("Aulas2");       // el atril de la lección está en Aulas 2
+            case "r6_solar": return DoorsTo("Aulas3");     // la escalera al techo con los paneles solares está en Aulas 3
             default: return null;
         }
     }
