@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e7e1553d99642c42a7105ad3d6624f3, type: 3}
+  m_Name: Dalia_Tutorial
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueAsset
+  lines:
+  - speaker: Professor Dalia
+    text: Welcome to UAO! I am Professor Dalia.
+    spanish: 
+    mixed: 
+    fluent: 0
+  - speaker: Professor Dalia
+    text: Here, everyone speaks in the Passive Voice. Don't worry, it is learned step by step.
+    spanish: 
+    mixed: 
+    fluent: 0
+  - speaker: Professor Dalia
+    text: This book was written for you. Read it carefully!
+    spanish: 
+    mixed: 
+    fluent: 0

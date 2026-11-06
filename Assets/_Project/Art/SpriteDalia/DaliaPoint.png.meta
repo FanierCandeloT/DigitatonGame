@@ -226,7 +226,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -240,7 +240,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 48
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -266,7 +266,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -333,19 +333,19 @@ TextureImporter:
       name: DaliaPoint_0
       rect:
         serializedVersion: 2
-        x: 600
-        y: 759
-        width: 9
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 0
+        width: 256
+        height: 768
+      alignment: 9
+      pivot: {x: 0.5, y: 0.18359375}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 9287cda2f04633090800000000000000
+      spriteID: b96cbfa5dc9bf8d49a849cb4490ce118
       internalID: -8055985292129306583
       vertices: []
       indices: 
@@ -355,19 +355,19 @@ TextureImporter:
       name: DaliaPoint_1
       rect:
         serializedVersion: 2
-        x: 1094
-        y: 715
-        width: 29
-        height: 47
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 256
+        y: 0
+        width: 256
+        height: 768
+      alignment: 9
+      pivot: {x: 0.5, y: 0.18359375}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 519c323e508d56e60800000000000000
+      spriteID: f4da05b525339c84b812efd0eaecb091
       internalID: 7955001836617058581
       vertices: []
       indices: 
@@ -377,19 +377,19 @@ TextureImporter:
       name: DaliaPoint_2
       rect:
         serializedVersion: 2
-        x: 1330
-        y: 721
-        width: 65
-        height: 39
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 512
+        y: 0
+        width: 256
+        height: 768
+      alignment: 9
+      pivot: {x: 0.5, y: 0.18359375}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 9df6b0b3a97e06ef0800000000000000
+      spriteID: 74467a51909445b449ec3cfa37dd269a
       internalID: -116838940710047783
       vertices: []
       indices: 
@@ -399,19 +399,19 @@ TextureImporter:
       name: DaliaPoint_3
       rect:
         serializedVersion: 2
-        x: 50
-        y: 719
-        width: 21
-        height: 23
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 768
+        y: 0
+        width: 256
+        height: 768
+      alignment: 9
+      pivot: {x: 0.5, y: 0.18359375}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f33630338c8d15ee0800000000000000
+      spriteID: 32e44b99dcf3e7e458ca53f76a8629e3
       internalID: -1273998865208220865
       vertices: []
       indices: 
@@ -421,19 +421,19 @@ TextureImporter:
       name: DaliaPoint_4
       rect:
         serializedVersion: 2
-        x: 70
-        y: 725
-        width: 17
-        height: 25
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1024
+        y: 0
+        width: 256
+        height: 768
+      alignment: 9
+      pivot: {x: 0.5, y: 0.18359375}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 90575b510d4549510800000000000000
+      spriteID: 3e858e81559e4ec45a470f69361e1825
       internalID: 1554961024043808009
       vertices: []
       indices: 
@@ -443,19 +443,19 @@ TextureImporter:
       name: DaliaPoint_5
       rect:
         serializedVersion: 2
-        x: 84
-        y: 673
-        width: 145
-        height: 73
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1280
+        y: 0
+        width: 256
+        height: 768
+      alignment: 9
+      pivot: {x: 0.5, y: 0.18359375}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b0171ed7e1dce7640800000000000000
+      spriteID: 241d803275c930144a01dc166e98df2b
       internalID: 5079722960565137675
       vertices: []
       indices: 
@@ -465,19 +465,19 @@ TextureImporter:
       name: DaliaPoint_6
       rect:
         serializedVersion: 2
-        x: 298
-        y: 697
-        width: 53
-        height: 60
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1536
+        y: 0
+        width: 256
+        height: 768
+      alignment: 9
+      pivot: {x: 0.5, y: 0.18359375}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 135c88e4b570f1cc0800000000000000
+      spriteID: ea99b107099988648a7229a8a1642477
       internalID: -3738261076953217743
       vertices: []
       indices: 
@@ -487,1252 +487,20 @@ TextureImporter:
       name: DaliaPoint_7
       rect:
         serializedVersion: 2
-        x: 373
-        y: 709
-        width: 26
-        height: 29
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1792
+        y: 0
+        width: 256
+        height: 768
+      alignment: 9
+      pivot: {x: 0.5, y: 0.18359375}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 61c8493833846fd50800000000000000
+      spriteID: 2b9fb630a178ad1409da36c3c6b6b41c
       internalID: 6770678475886201878
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: DaliaPoint_8
-      rect:
-        serializedVersion: 2
-        x: 406
-        y: 671
-        width: 67
-        height: 75
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: dceb04c3c95fc81a0800000000000000
-      internalID: -6805794885489082675
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: DaliaPoint_9
-      rect:
-        serializedVersion: 2
-        x: 504
-        y: 695
-        width: 79
-        height: 51
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 99a5de13aef9168e0800000000000000
-      internalID: -1701903355960534375
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: DaliaPoint_10
-      rect:
-        serializedVersion: 2
-        x: 582
-        y: 709
-        width: 47
-        height: 43
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 83fe623feaafad890800000000000000
-      internalID: -7432352605710913736
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: DaliaPoint_11
-      rect:
-        serializedVersion: 2
-        x: 582
-        y: 737
-        width: 7
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 12d6b7cd8a93717c0800000000000000
-      internalID: -4100745538281181919
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: DaliaPoint_12
-      rect:
-        serializedVersion: 2
-        x: 646
-        y: 719
-        width: 38
-        height: 35
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d4b2b00ffedac5190800000000000000
-      internalID: -7972305994316567731
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: DaliaPoint_13
-      rect:
-        serializedVersion: 2
-        x: 750
-        y: 29
-        width: 1298
-        height: 723
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e221f7ff076305390800000000000000
-      internalID: -7831699893046537682
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: DaliaPoint_14
-      rect:
-        serializedVersion: 2
-        x: 850
-        y: 729
-        width: 17
-        height: 25
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7226106e3008a5ef0800000000000000
-      internalID: -118641685939789273
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: DaliaPoint_15
-      rect:
-        serializedVersion: 2
-        x: 1822
-        y: 717
-        width: 12
-        height: 25
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: eef7378422866a020800000000000000
-      internalID: 2352682351801368558
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: DaliaPoint_16
-      rect:
-        serializedVersion: 2
-        x: 1860
-        y: 731
-        width: 21
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d6fd0feb260be4c30800000000000000
-      internalID: 4345604628615847789
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: DaliaPoint_17
-      rect:
-        serializedVersion: 2
-        x: 1912
-        y: 737
-        width: 13
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 83e9251047e22d440800000000000000
-      internalID: 4959077215461613112
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: DaliaPoint_18
-      rect:
-        serializedVersion: 2
-        x: 20
-        y: 709
-        width: 33
-        height: 21
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c4d2f72ba1b7e5640800000000000000
-      internalID: 5070625585059802444
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: DaliaPoint_19
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 701
-        width: 21
-        height: 21
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6c8c500c10837acd0800000000000000
-      internalID: -2547005484086998842
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: DaliaPoint_20
-      rect:
-        serializedVersion: 2
-        x: 238
-        y: 671
-        width: 43
-        height: 47
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8482bf9ab74806c60800000000000000
-      internalID: 7809387420528093256
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: DaliaPoint_21
-      rect:
-        serializedVersion: 2
-        x: 322
-        y: 709
-        width: 9
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 21ba8f9bdea7e19c0800000000000000
-      internalID: -3954588261338797294
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: DaliaPoint_22
-      rect:
-        serializedVersion: 2
-        x: 360
-        y: 693
-        width: 21
-        height: 37
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 9ee912c79e783bdc0800000000000000
-      internalID: -3624403838223409431
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: DaliaPoint_23
-      rect:
-        serializedVersion: 2
-        x: 593
-        y: 691
-        width: 18
-        height: 37
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 575de23207258e860800000000000000
-      internalID: 7559382616121464181
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: DaliaPoint_24
-      rect:
-        serializedVersion: 2
-        x: 696
-        y: 689
-        width: 25
-        height: 39
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7073e067d7e689340800000000000000
-      internalID: 4870764482131801863
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: DaliaPoint_25
-      rect:
-        serializedVersion: 2
-        x: 712
-        y: 698
-        width: 19
-        height: 18
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2270db0fc768a71e0800000000000000
-      internalID: -2199297596844079326
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: DaliaPoint_26
-      rect:
-        serializedVersion: 2
-        x: 1056
-        y: 710
-        width: 6
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7144fd33335a47e90800000000000000
-      internalID: -7028811479086316521
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: DaliaPoint_27
-      rect:
-        serializedVersion: 2
-        x: 1060
-        y: 705
-        width: 11
-        height: 21
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e8a92cb60f2554260800000000000000
-      internalID: 7081157181663517326
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: DaliaPoint_28
-      rect:
-        serializedVersion: 2
-        x: 1144
-        y: 719
-        width: 7
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 41635e21780f5ce10800000000000000
-      internalID: 2217442854478099988
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: DaliaPoint_29
-      rect:
-        serializedVersion: 2
-        x: 1160
-        y: 719
-        width: 7
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c1c72090d9d74d440800000000000000
-      internalID: 4959727203056253980
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: DaliaPoint_30
-      rect:
-        serializedVersion: 2
-        x: 1320
-        y: 719
-        width: 7
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 579719f2303dacf30800000000000000
-      internalID: 4596718380321438069
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: DaliaPoint_31
-      rect:
-        serializedVersion: 2
-        x: 1330
-        y: 705
-        width: 13
-        height: 20
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 80c9a9bf8f3488bb0800000000000000
-      internalID: -4933618655132214264
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: DaliaPoint_32
-      rect:
-        serializedVersion: 2
-        x: 1482
-        y: 705
-        width: 7
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 99e80bfc33d57da40800000000000000
-      internalID: 5392881555908628121
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: DaliaPoint_33
-      rect:
-        serializedVersion: 2
-        x: 264
-        y: 695
-        width: 9
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e4f5c9f435d018640800000000000000
-      internalID: 5080356506119724878
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: DaliaPoint_34
-      rect:
-        serializedVersion: 2
-        x: 964
-        y: 693
-        width: 7
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ac5d0871f93c5ca40800000000000000
-      internalID: 5387927617280202186
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: DaliaPoint_35
-      rect:
-        serializedVersion: 2
-        x: 970
-        y: 687
-        width: 7
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4bd32be07dde54c80800000000000000
-      internalID: -8338997627086291532
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: DaliaPoint_36
-      rect:
-        serializedVersion: 2
-        x: 1270
-        y: 679
-        width: 9
-        height: 22
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7377714caa348a670800000000000000
-      internalID: 8550158293276260151
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: DaliaPoint_37
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 21
-        width: 515
-        height: 635
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 672758418df7d6d50800000000000000
-      internalID: 6732177584022712950
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: DaliaPoint_38
-      rect:
-        serializedVersion: 2
-        x: 484
-        y: 131
-        width: 301
-        height: 551
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3cd259ab97f9618a0800000000000000
-      internalID: -6334700480679825981
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: DaliaPoint_39
-      rect:
-        serializedVersion: 2
-        x: 268
-        y: 89
-        width: 21
-        height: 31
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e028d810cd7698700800000000000000
-      internalID: 543079424691372558
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: DaliaPoint_40
-      rect:
-        serializedVersion: 2
-        x: 1544
-        y: 111
-        width: 7
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 60adc2a641a8b70c0800000000000000
-      internalID: -4576912776006673914
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: DaliaPoint_41
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 79
-        width: 15
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: fb8326f94fe82ed10800000000000000
-      internalID: 2153440753133697215
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: DaliaPoint_42
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 86
-        width: 13
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e278bca98a6a5afb0800000000000000
-      internalID: -4637116998226311378
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: DaliaPoint_43
-      rect:
-        serializedVersion: 2
-        x: 536
-        y: 61
-        width: 25
-        height: 43
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 85a288692ce6ee690800000000000000
-      internalID: -7570992141535008168
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: DaliaPoint_44
-      rect:
-        serializedVersion: 2
-        x: 602
-        y: 37
-        width: 47
-        height: 61
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6fbfc1efcbc6412a0800000000000000
-      internalID: -6767664781058049034
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: DaliaPoint_45
-      rect:
-        serializedVersion: 2
-        x: 680
-        y: 47
-        width: 35
-        height: 53
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6b948f14e4b3f3eb0800000000000000
-      internalID: -4738003075670193738
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: DaliaPoint_46
-      rect:
-        serializedVersion: 2
-        x: 1208
-        y: 79
-        width: 15
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e64a88e74a05bb820800000000000000
-      internalID: 2935028249589752942
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: DaliaPoint_47
-      rect:
-        serializedVersion: 2
-        x: 424
-        y: 59
-        width: 11
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: cf2076389521a4580800000000000000
-      internalID: -8842234742722592004
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: DaliaPoint_48
-      rect:
-        serializedVersion: 2
-        x: 448
-        y: 63
-        width: 11
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 49cc736d1daf20060800000000000000
-      internalID: 6918367756743593108
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: DaliaPoint_49
-      rect:
-        serializedVersion: 2
-        x: 543
-        y: 63
-        width: 8
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: f9d1eb7053bf5e070800000000000000
-      internalID: 8135184507096407455
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: DaliaPoint_50
-      rect:
-        serializedVersion: 2
-        x: 554
-        y: 47
-        width: 27
-        height: 33
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: f9d5c59ba5c33d440800000000000000
-      internalID: 4959373975019609503
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: DaliaPoint_51
-      rect:
-        serializedVersion: 2
-        x: 718
-        y: 49
-        width: 19
-        height: 23
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c0c22d8774bd921e0800000000000000
-      internalID: -2222003841114428404
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: DaliaPoint_52
-      rect:
-        serializedVersion: 2
-        x: 802
-        y: 65
-        width: 13
-        height: 18
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2a0116b59c64adc70800000000000000
-      internalID: 8996581036261445794
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: DaliaPoint_53
-      rect:
-        serializedVersion: 2
-        x: 878
-        y: 51
-        width: 21
-        height: 23
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: f6a11113b7287e2e0800000000000000
-      internalID: -2096563635901883793
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: DaliaPoint_54
-      rect:
-        serializedVersion: 2
-        x: 1146
-        y: 65
-        width: 9
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a1b1b1c31337ee2b0800000000000000
-      internalID: -5553374635202241766
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: DaliaPoint_55
-      rect:
-        serializedVersion: 2
-        x: 1638
-        y: 63
-        width: 11
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 0a36843ec7edece90800000000000000
-      internalID: -7003415742544059488
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: DaliaPoint_56
-      rect:
-        serializedVersion: 2
-        x: 1830
-        y: 49
-        width: 15
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 59f7c0edd91708460800000000000000
-      internalID: 7241913123660922773
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: DaliaPoint_57
-      rect:
-        serializedVersion: 2
-        x: 1894
-        y: 42
-        width: 25
-        height: 38
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6182ac58399e3ba30800000000000000
-      internalID: 4229981294845110294
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: DaliaPoint_58
-      rect:
-        serializedVersion: 2
-        x: 1094
-        y: 46
-        width: 15
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6f0e894ed14848a00800000000000000
-      internalID: 757875901229228278
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: DaliaPoint_59
-      rect:
-        serializedVersion: 2
-        x: 1398
-        y: 37
-        width: 13
-        height: 21
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 89b39969fe468ffa0800000000000000
-      internalID: -5766748342661334120
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: DaliaPoint_60
-      rect:
-        serializedVersion: 2
-        x: 1586
-        y: 47
-        width: 13
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e9748525fe8fb8db0800000000000000
-      internalID: -4788460072016001122
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: DaliaPoint_61
-      rect:
-        serializedVersion: 2
-        x: 1862
-        y: 33
-        width: 9
-        height: 20
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 06e4689eef6fd4500800000000000000
-      internalID: 382233118096379488
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: DaliaPoint_62
-      rect:
-        serializedVersion: 2
-        x: 1388
-        y: 23
-        width: 13
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8a89df70d2fbe6190800000000000000
-      internalID: -7967220490643335000
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: DaliaPoint_63
-      rect:
-        serializedVersion: 2
-        x: 1908
-        y: 35
-        width: 7
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 05666ac75a47ee2e0800000000000000
-      internalID: -2094608522570996144
       vertices: []
       indices: 
       edges: []
@@ -1741,7 +509,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 29bf9f7241a197a4aa5b5fb2271147af
     internalID: 0
     vertices: []
     indices: 
