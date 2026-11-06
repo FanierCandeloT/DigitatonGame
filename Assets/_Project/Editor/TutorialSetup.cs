@@ -41,18 +41,89 @@ public static class TutorialSetup
         CropOne("BotonCerrarTuto", new Rect(312, 108, 1072, 714));
         CropOne("BotonTutoDrch", new Rect(193, 95, 636, 360));
         CropOne("BotonTutoIzq", new Rect(170, 85, 1358, 730));
-        Strip("DaliaIdle", IdleFrames, IdleW, IdleH, new Vector2(0.5f, IdleFeet / IdleH));
-        Strip("DaliaPoint", PointFrames, PointW, PointH, new Vector2(0.5f, PointFeet / PointH));
+        var idleReport = NormalizeIdle();
         AssetDatabase.SaveAssets();
 
-        sb.AppendLine("DaliaIdle: " + IdleFrames + " cuadros de " + IdleW + "x" + IdleH + " px");
-        sb.AppendLine("DaliaPoint: " + PointFrames + " cuadros de " + PointW + "x" + PointH + " px");
+        sb.AppendLine(idleReport);
         foreach (var n in new[] { "LibroTuto1", "LibroTutoDrch", "LibroTutoIzq", "BotonCerrarTuto", "BotonTutoDrch", "BotonTutoIzq" })
         {
             var s = LoadSprites(n);
             sb.AppendLine(n + ": " + s.Length + " sprite(s), " + (s.Length > 0 ? s[0].rect.width + "x" + s[0].rect.height + " px" : "?"));
         }
         return sb.ToString();
+    }
+
+    const string IdleNorm = "DaliaIdleNorm";
+
+    /// <summary>
+    /// DaliaIdle.png NO es una cuadrícula regular: los 8 dibujos miden entre 172 y 189 px de ancho y los huecos entre ellos
+    /// entre 8 y 18 px (no 192 fijos). Cortarla cada 192 px dejaba pedazos del dibujo vecino junto a la cabeza y la mano, y
+    /// además el cuerpo se movía de cuadro a cuadro. Aquí se genera DaliaIdleNorm.png: cada dibujo se copia SOLO con sus
+    /// propias columnas, alineado por el centro del torso, en celdas del mismo tamaño. El original no se modifica.
+    /// </summary>
+    public static string NormalizeIdle()
+    {
+        var src = new Texture2D(2, 2, TextureFormat.RGBA32, false);
+        src.LoadImage(File.ReadAllBytes($"{Dir}/DaliaIdle.png"));
+        var px = src.GetPixels32();
+        int W = src.width, H = src.height;
+
+        // Columnas con dibujo -> un tramo por cuadro
+        var col = new int[W];
+        for (int x = 0; x < W; x++)
+        {
+            int n = 0;
+            for (int y = 0; y < H; y++) if (px[y * W + x].a > 40) n++;
+            col[x] = n;
+        }
+        var segs = new List<Vector2Int>();
+        int s = -1;
+        for (int x = 0; x <= W; x++)
+        {
+            bool filled = x < W && col[x] > 3;
+            if (filled && s < 0) s = x;
+            if (!filled && s >= 0) { if (x - s > 40) segs.Add(new Vector2Int(s, x - 1)); s = -1; }
+        }
+        if (segs.Count != IdleFrames) throw new System.Exception($"Se esperaban {IdleFrames} dibujos y se encontraron {segs.Count}.");
+
+        // Cada dibujo se queda con las columnas hasta la mitad del hueco con el vecino
+        var from = new int[IdleFrames];
+        var to = new int[IdleFrames];
+        var anchor = new int[IdleFrames];
+        int left = 0, right = 0;
+        for (int f = 0; f < IdleFrames; f++)
+        {
+            from[f] = f == 0 ? 0 : (segs[f - 1].y + segs[f].x) / 2 + 1;
+            to[f] = f == IdleFrames - 1 ? W - 1 : (segs[f].y + segs[f + 1].x) / 2;
+            // ancla horizontal: centro del torso/cadera (sin el pelo, que cambia más de un cuadro a otro)
+            double sum = 0; int count = 0;
+            for (int y = 400; y <= 520; y++)
+                for (int x = segs[f].x; x <= segs[f].y; x++)
+                    if (px[y * W + x].a > 128) { sum += x; count++; }
+            anchor[f] = Mathf.RoundToInt((float)(sum / count));
+            left = Mathf.Max(left, anchor[f] - from[f]);
+            right = Mathf.Max(right, to[f] - anchor[f]);
+        }
+        int cell = left + right + 1;   // ancho común de todas las celdas
+        var dst = new Color32[cell * IdleFrames * H];
+        for (int f = 0; f < IdleFrames; f++)
+            for (int x = from[f]; x <= to[f]; x++)
+            {
+                int dx = f * cell + (left + x - anchor[f]);
+                for (int y = 0; y < H; y++) dst[y * cell * IdleFrames + dx] = px[y * W + x];
+            }
+
+        var outTex = new Texture2D(cell * IdleFrames, H, TextureFormat.RGBA32, false);
+        outTex.SetPixels32(dst);
+        File.WriteAllBytes($"{Dir}/{IdleNorm}.png", outTex.EncodeToPNG());
+        Object.DestroyImmediate(outTex);
+        Object.DestroyImmediate(src);
+        AssetDatabase.ImportAsset($"{Dir}/{IdleNorm}.png", ImportAssetOptions.ForceSynchronousImport);
+
+        // Mismo tamaño en los 8 cuadros y pivote en los pies (X = torso, Y = suela)
+        Strip(IdleNorm, IdleFrames, cell, H, new Vector2((float)left / cell, IdleFeet / H));
+        return $"DaliaIdleNorm: {IdleFrames} cuadros de {cell}x{H} px (pivote x={left}, y={IdleFeet}); tramos originales: " +
+               string.Join(", ", segs.Select(v => (v.y - v.x + 1) + " px"));
     }
 
     static TextureImporter Configure(string name, SpriteImportMode mode)
@@ -166,25 +237,21 @@ public static class TutorialSetup
         book.closeButton = LoadSprites("BotonCerrarTuto")[0];
         EditorUtility.SetDirty(book);
 
-        // Animación: DaliaIdle y DaliaPoint se alternan en loop
+        // Animación: solo DaliaIdle en loop
         if (!AssetDatabase.IsValidFolder(AnimDir)) AssetDatabase.CreateFolder(Dir, "Animacion");
-        var idle = MakeClip("DaliaIdle", LoadSprites("DaliaIdle"), 6f, IdleBodyH);
-        var point = MakeClip("DaliaPoint", LoadSprites("DaliaPoint"), 6f, PointBodyH);
+        var idle = MakeClip("DaliaIdle", LoadSprites(IdleNorm), 6f, IdleBodyH);
+        AssetDatabase.DeleteAsset(AnimDir + "/DaliaPoint.anim");   // Dalia solo usa DaliaIdle
         var controllerPath = AnimDir + "/Dalia.controller";
         AssetDatabase.DeleteAsset(controllerPath);
         var controller = AnimatorController.CreateAnimatorControllerAtPath(controllerPath);
         var machine = controller.layers[0].stateMachine;
         var sIdle = machine.AddState("Idle");
-        var sPoint = machine.AddState("Point");
         sIdle.motion = idle;
-        sPoint.motion = point;
         machine.defaultState = sIdle;
-        Transition(sIdle, sPoint, 2f);    // explica (2 vueltas de idle) y luego señala el tablero
-        Transition(sPoint, sIdle, 1f);    // una vuelta señalando y vuelve
         EditorUtility.SetDirty(controller);
 
         AssetDatabase.SaveAssets();
-        log.Add("Animator Dalia.controller (Idle <-> Point) creado");
+        log.Add("Animator Dalia.controller (solo DaliaIdle en loop) creado");
         return string.Join(" | ", log);
     }
 
@@ -294,22 +361,22 @@ public static class TutorialSetup
 
         // ── Piso y muros (los objetos existentes se reutilizan: así no se pierden sus referencias) ──
         var floor = roots["Tutorial Floor"];
-        Tiled(floor, floorSprite, floorTile, floorThreshold, lit, new Vector2(0f, 3f), new Vector2(13.6f, 12.7f), -100, false);
+        Tiled(floor, floorSprite, floorTile, floorThreshold, lit, new Vector2(0f, 3f), new Vector2(17.2f, 12.7f), -100, false);
         floor.name = "Piso del salon";
 
-        Tiled(roots["Muro Sur"], wallSprite, wallTile, wallThreshold, lit, new Vector2(0f, -3.5f), new Vector2(14f, 0.5f), 0, true);
-        Tiled(roots["Muro Oeste"], wallSprite, wallTile, wallThreshold, lit, new Vector2(-6.75f, 3f), new Vector2(0.5f, 13.5f), 0, true);
-        Tiled(roots["Muro Este"], wallSprite, wallTile, wallThreshold, lit, new Vector2(6.75f, 3f), new Vector2(0.5f, 13.5f), 0, true);
+        Tiled(roots["Muro Sur"], wallSprite, wallTile, wallThreshold, lit, new Vector2(0f, -3.5f), new Vector2(17f, 0.5f), 0, true);
+        Tiled(roots["Muro Oeste"], wallSprite, wallTile, wallThreshold, lit, new Vector2(-8.25f, 3f), new Vector2(0.5f, 13.5f), 0, true);
+        Tiled(roots["Muro Este"], wallSprite, wallTile, wallThreshold, lit, new Vector2(8.25f, 3f), new Vector2(0.5f, 13.5f), 0, true);
         // El muro norte del salón pasa a ser el muro central, con una abertura de 3 casillas hacia la extensión
         var wallLeft = roots["Muro Norte"];
-        Tiled(wallLeft, wallSprite, wallTile, wallThreshold, lit, new Vector2(-4.25f, 3.5f), new Vector2(5.5f, 0.5f), 0, true);
+        Tiled(wallLeft, wallSprite, wallTile, wallThreshold, lit, new Vector2(-5.0f, 3.5f), new Vector2(7f, 0.5f), 0, true);
         wallLeft.name = "Muro central izquierdo";
         var wallRight = Object.Instantiate(wallLeft, container.transform);
         wallRight.name = "Muro central derecho";
-        Tiled(wallRight, wallSprite, wallTile, wallThreshold, lit, new Vector2(4.25f, 3.5f), new Vector2(5.5f, 0.5f), 0, true);
+        Tiled(wallRight, wallSprite, wallTile, wallThreshold, lit, new Vector2(5.0f, 3.5f), new Vector2(7f, 0.5f), 0, true);
         var wallNorth = Object.Instantiate(wallLeft, container.transform);
         wallNorth.name = "Muro norte (extension)";
-        Tiled(wallNorth, wallSprite, wallTile, wallThreshold, lit, new Vector2(0f, 9.5f), new Vector2(14f, 0.5f), 0, true);
+        Tiled(wallNorth, wallSprite, wallTile, wallThreshold, lit, new Vector2(0f, 9.5f), new Vector2(17f, 0.5f), 0, true);
         Tiled(roots["Practice Wall"], wallSprite, wallTile, wallThreshold, lit, roots["Practice Wall"].transform.position, new Vector2(0.5f, 3.9f), 0, true);
         foreach (var n in new[] { "Muro Sur", "Muro Oeste", "Muro Este", "Practice Wall" }) StripPlaceholder(roots[n]);
         StripPlaceholder(wallLeft); StripPlaceholder(wallRight); StripPlaceholder(wallNorth);
@@ -332,9 +399,9 @@ public static class TutorialSetup
         StripPlaceholder(exit);
 
         // ── Decoración del salón (los mismos sprites que Aulas2) ──
-        Deco(container, S, "Inside_C", "deco_plant_a", "Planta", new Vector2(-6.0f, 2.7f), lit, 0, new Vector2(0.5f, 0.4f), new Vector2(0f, -0.35f));
-        Deco(container, S, "Inside_C", "deco_plant_c", "Planta", new Vector2(6.0f, 2.2f), lit, 0, new Vector2(0.5f, 0.4f), new Vector2(0f, -0.65f));
-        Deco(container, S, "Inside_C", "deco_bin_grey", "Papelera", new Vector2(-6.0f, -2.6f), lit, 0, new Vector2(0.4f, 0.3f), new Vector2(0f, -0.2f));
+        Deco(container, S, "Inside_C", "deco_plant_a", "Planta", new Vector2(-7.5f, 2.7f), lit, 0, new Vector2(0.5f, 0.4f), new Vector2(0f, -0.35f));
+        Deco(container, S, "Inside_C", "deco_plant_c", "Planta", new Vector2(7.5f, 2.2f), lit, 0, new Vector2(0.5f, 0.4f), new Vector2(0f, -0.65f));
+        Deco(container, S, "Inside_C", "deco_bin_grey", "Papelera", new Vector2(-7.5f, -2.6f), lit, 0, new Vector2(0.4f, 0.3f), new Vector2(0f, -0.2f));
         Deco(container, S, "Inside_C", "deco_win_beige", "Ventana", new Vector2(-4.2f, 3.15f), lit, -50, Vector2.zero, Vector2.zero, 1.3f);
         Deco(container, S, "Inside_C", "deco_win_yellow", "Ventana", new Vector2(4.2f, 3.15f), lit, -50, Vector2.zero, Vector2.zero, 1.3f);
         Deco(container, S, "Inside_C", "deco_clock", "Reloj", new Vector2(0f, 3.1f), lit, -50, Vector2.zero, Vector2.zero);
@@ -343,10 +410,10 @@ public static class TutorialSetup
 
         // ── Extensión: tablero, escritorio de la profesora y pupitres ──
         Deco(container, S, "Inside_C", "Inside_C_85", "Tablero", new Vector2(1.0f, 9.05f), lit, 1, Vector2.zero, Vector2.zero, 1f, new Vector3(1.84f, 0.6f, 1f));
-        Deco(container, S, "Inside_C", "deco_win_beige", "Ventana", new Vector2(-4.6f, 8.6f), lit, -50, Vector2.zero, Vector2.zero, 1.3f);
-        Deco(container, S, "Inside_C", "deco_win_yellow", "Ventana", new Vector2(5.6f, 8.6f), lit, -50, Vector2.zero, Vector2.zero, 1.3f);
-        Deco(container, S, "Inside_C", "deco_plant_c", "Planta", new Vector2(-6.1f, 8.3f), lit, 0, new Vector2(0.5f, 0.4f), new Vector2(0f, -0.65f));
-        Deco(container, S, "Inside_C", "deco_wardrobe", "Armario", new Vector2(5.7f, 7.4f), lit, 0, new Vector2(1.4f, 0.8f), new Vector2(0f, -0.6f));
+        Deco(container, S, "Inside_C", "deco_win_beige", "Ventana", new Vector2(-5.4f, 8.6f), lit, -50, Vector2.zero, Vector2.zero, 1.3f);
+        Deco(container, S, "Inside_C", "deco_win_yellow", "Ventana", new Vector2(6.4f, 8.6f), lit, -50, Vector2.zero, Vector2.zero, 1.3f);
+        Deco(container, S, "Inside_C", "deco_plant_c", "Planta", new Vector2(-7.6f, 8.3f), lit, 0, new Vector2(0.5f, 0.4f), new Vector2(0f, -0.65f));
+        Deco(container, S, "Inside_C", "deco_wardrobe", "Armario", new Vector2(7.2f, 7.4f), lit, 0, new Vector2(1.4f, 0.8f), new Vector2(0f, -0.6f));
         // Escritorio de la profesora (el mismo pupitre, más ancho)
         Deco(container, S, "Inside_C", "Inside_C_119", "Escritorio de la profesora", new Vector2(3.0f, 8.0f), lit, 0, new Vector2(1.4f, 1.0f), Vector2.zero, 1f, new Vector3(2.0f, 0.95f, 1f));
         foreach (var x in new[] { -5.2f, -3.4f })
@@ -362,7 +429,7 @@ public static class TutorialSetup
         // ── Límites del mapa, Andrés y spawn ──
         var bounds = roots["MapBounds"];
         bounds.transform.position = new Vector3(0f, 3f, 0f);
-        bounds.GetComponent<BoxCollider2D>().size = new Vector2(14.4f, 13.9f);
+        bounds.GetComponent<BoxCollider2D>().size = new Vector2(17f, 13.5f);
 
         var spawn = roots["Spawn_Tutorial_Default"];
         var andres = roots["Andres"];
@@ -444,7 +511,7 @@ public static class TutorialSetup
 
     static void BuildDalia(GameObject parent, Material lit)
     {
-        var idle = LoadSprites("DaliaIdle");
+        var idle = LoadSprites(IdleNorm);
         var controller = AssetDatabase.LoadAssetAtPath<AnimatorController>(AnimDir + "/Dalia.controller");
 
         // Raíz: collider SOLO en los pies + interacción. El dibujo va en un hijo, porque la animación cambia su escala.
