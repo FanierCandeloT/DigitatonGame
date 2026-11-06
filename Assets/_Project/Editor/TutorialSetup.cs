@@ -294,22 +294,22 @@ public static class TutorialSetup
 
         // ── Piso y muros (los objetos existentes se reutilizan: así no se pierden sus referencias) ──
         var floor = roots["Tutorial Floor"];
-        Tiled(floor, floorSprite, floorTile, floorThreshold, lit, new Vector2(0f, 3f), new Vector2(13.6f, 12.7f), -100, false);
+        Tiled(floor, floorSprite, floorTile, floorThreshold, lit, new Vector2(0f, 3f), new Vector2(17.2f, 12.7f), -100, false);
         floor.name = "Piso del salon";
 
-        Tiled(roots["Muro Sur"], wallSprite, wallTile, wallThreshold, lit, new Vector2(0f, -3.5f), new Vector2(14f, 0.5f), 0, true);
-        Tiled(roots["Muro Oeste"], wallSprite, wallTile, wallThreshold, lit, new Vector2(-6.75f, 3f), new Vector2(0.5f, 13.5f), 0, true);
-        Tiled(roots["Muro Este"], wallSprite, wallTile, wallThreshold, lit, new Vector2(6.75f, 3f), new Vector2(0.5f, 13.5f), 0, true);
+        Tiled(roots["Muro Sur"], wallSprite, wallTile, wallThreshold, lit, new Vector2(0f, -3.5f), new Vector2(17f, 0.5f), 0, true);
+        Tiled(roots["Muro Oeste"], wallSprite, wallTile, wallThreshold, lit, new Vector2(-8.25f, 3f), new Vector2(0.5f, 13.5f), 0, true);
+        Tiled(roots["Muro Este"], wallSprite, wallTile, wallThreshold, lit, new Vector2(8.25f, 3f), new Vector2(0.5f, 13.5f), 0, true);
         // El muro norte del salón pasa a ser el muro central, con una abertura de 3 casillas hacia la extensión
         var wallLeft = roots["Muro Norte"];
-        Tiled(wallLeft, wallSprite, wallTile, wallThreshold, lit, new Vector2(-4.25f, 3.5f), new Vector2(5.5f, 0.5f), 0, true);
+        Tiled(wallLeft, wallSprite, wallTile, wallThreshold, lit, new Vector2(-5.0f, 3.5f), new Vector2(7f, 0.5f), 0, true);
         wallLeft.name = "Muro central izquierdo";
         var wallRight = Object.Instantiate(wallLeft, container.transform);
         wallRight.name = "Muro central derecho";
-        Tiled(wallRight, wallSprite, wallTile, wallThreshold, lit, new Vector2(4.25f, 3.5f), new Vector2(5.5f, 0.5f), 0, true);
+        Tiled(wallRight, wallSprite, wallTile, wallThreshold, lit, new Vector2(5.0f, 3.5f), new Vector2(7f, 0.5f), 0, true);
         var wallNorth = Object.Instantiate(wallLeft, container.transform);
         wallNorth.name = "Muro norte (extension)";
-        Tiled(wallNorth, wallSprite, wallTile, wallThreshold, lit, new Vector2(0f, 9.5f), new Vector2(14f, 0.5f), 0, true);
+        Tiled(wallNorth, wallSprite, wallTile, wallThreshold, lit, new Vector2(0f, 9.5f), new Vector2(17f, 0.5f), 0, true);
         Tiled(roots["Practice Wall"], wallSprite, wallTile, wallThreshold, lit, roots["Practice Wall"].transform.position, new Vector2(0.5f, 3.9f), 0, true);
         foreach (var n in new[] { "Muro Sur", "Muro Oeste", "Muro Este", "Practice Wall" }) StripPlaceholder(roots[n]);
         StripPlaceholder(wallLeft); StripPlaceholder(wallRight); StripPlaceholder(wallNorth);
@@ -332,9 +332,9 @@ public static class TutorialSetup
         StripPlaceholder(exit);
 
         // ── Decoración del salón (los mismos sprites que Aulas2) ──
-        Deco(container, S, "Inside_C", "deco_plant_a", "Planta", new Vector2(-6.0f, 2.7f), lit, 0, new Vector2(0.5f, 0.4f), new Vector2(0f, -0.35f));
-        Deco(container, S, "Inside_C", "deco_plant_c", "Planta", new Vector2(6.0f, 2.2f), lit, 0, new Vector2(0.5f, 0.4f), new Vector2(0f, -0.65f));
-        Deco(container, S, "Inside_C", "deco_bin_grey", "Papelera", new Vector2(-6.0f, -2.6f), lit, 0, new Vector2(0.4f, 0.3f), new Vector2(0f, -0.2f));
+        Deco(container, S, "Inside_C", "deco_plant_a", "Planta", new Vector2(-7.5f, 2.7f), lit, 0, new Vector2(0.5f, 0.4f), new Vector2(0f, -0.35f));
+        Deco(container, S, "Inside_C", "deco_plant_c", "Planta", new Vector2(7.5f, 2.2f), lit, 0, new Vector2(0.5f, 0.4f), new Vector2(0f, -0.65f));
+        Deco(container, S, "Inside_C", "deco_bin_grey", "Papelera", new Vector2(-7.5f, -2.6f), lit, 0, new Vector2(0.4f, 0.3f), new Vector2(0f, -0.2f));
         Deco(container, S, "Inside_C", "deco_win_beige", "Ventana", new Vector2(-4.2f, 3.15f), lit, -50, Vector2.zero, Vector2.zero, 1.3f);
         Deco(container, S, "Inside_C", "deco_win_yellow", "Ventana", new Vector2(4.2f, 3.15f), lit, -50, Vector2.zero, Vector2.zero, 1.3f);
         Deco(container, S, "Inside_C", "deco_clock", "Reloj", new Vector2(0f, 3.1f), lit, -50, Vector2.zero, Vector2.zero);
@@ -343,10 +343,10 @@ public static class TutorialSetup
 
         // ── Extensión: tablero, escritorio de la profesora y pupitres ──
         Deco(container, S, "Inside_C", "Inside_C_85", "Tablero", new Vector2(1.0f, 9.05f), lit, 1, Vector2.zero, Vector2.zero, 1f, new Vector3(1.84f, 0.6f, 1f));
-        Deco(container, S, "Inside_C", "deco_win_beige", "Ventana", new Vector2(-4.6f, 8.6f), lit, -50, Vector2.zero, Vector2.zero, 1.3f);
-        Deco(container, S, "Inside_C", "deco_win_yellow", "Ventana", new Vector2(5.6f, 8.6f), lit, -50, Vector2.zero, Vector2.zero, 1.3f);
-        Deco(container, S, "Inside_C", "deco_plant_c", "Planta", new Vector2(-6.1f, 8.3f), lit, 0, new Vector2(0.5f, 0.4f), new Vector2(0f, -0.65f));
-        Deco(container, S, "Inside_C", "deco_wardrobe", "Armario", new Vector2(5.7f, 7.4f), lit, 0, new Vector2(1.4f, 0.8f), new Vector2(0f, -0.6f));
+        Deco(container, S, "Inside_C", "deco_win_beige", "Ventana", new Vector2(-5.4f, 8.6f), lit, -50, Vector2.zero, Vector2.zero, 1.3f);
+        Deco(container, S, "Inside_C", "deco_win_yellow", "Ventana", new Vector2(6.4f, 8.6f), lit, -50, Vector2.zero, Vector2.zero, 1.3f);
+        Deco(container, S, "Inside_C", "deco_plant_c", "Planta", new Vector2(-7.6f, 8.3f), lit, 0, new Vector2(0.5f, 0.4f), new Vector2(0f, -0.65f));
+        Deco(container, S, "Inside_C", "deco_wardrobe", "Armario", new Vector2(7.2f, 7.4f), lit, 0, new Vector2(1.4f, 0.8f), new Vector2(0f, -0.6f));
         // Escritorio de la profesora (el mismo pupitre, más ancho)
         Deco(container, S, "Inside_C", "Inside_C_119", "Escritorio de la profesora", new Vector2(3.0f, 8.0f), lit, 0, new Vector2(1.4f, 1.0f), Vector2.zero, 1f, new Vector3(2.0f, 0.95f, 1f));
         foreach (var x in new[] { -5.2f, -3.4f })
@@ -362,7 +362,7 @@ public static class TutorialSetup
         // ── Límites del mapa, Andrés y spawn ──
         var bounds = roots["MapBounds"];
         bounds.transform.position = new Vector3(0f, 3f, 0f);
-        bounds.GetComponent<BoxCollider2D>().size = new Vector2(14.4f, 13.9f);
+        bounds.GetComponent<BoxCollider2D>().size = new Vector2(17f, 13.5f);
 
         var spawn = roots["Spawn_Tutorial_Default"];
         var andres = roots["Andres"];
