@@ -48,23 +48,4 @@ public static class PlaceholderPalette
         }
     }
 
-    public static string GetDescription(PlaceholderKind kind)
-    {
-        switch (kind)
-        {
-            case PlaceholderKind.Player:            return "Blanco: jugador (Andrés)";
-            case PlaceholderKind.ClassroomBuilding: return "Azul: edificios de aulas";
-            case PlaceholderKind.AdminBuilding:     return "Morado: edificios administrativos y de servicios";
-            case PlaceholderKind.Health:            return "Rojo: salud (Bienestar, enfermería)";
-            case PlaceholderKind.Food:              return "Naranja: comida (cafetería)";
-            case PlaceholderKind.Green:             return "Verde: zonas verdes y jardines";
-            case PlaceholderKind.Walkway:           return "Beige: caminos peatonales";
-            case PlaceholderKind.Street:            return "Gris oscuro: calles y parqueaderos";
-            case PlaceholderKind.Wall:              return "Negro: muros y bordes que no se pueden atravesar";
-            case PlaceholderKind.Door:              return "Amarillo: puertas y entradas a otras escenas";
-            case PlaceholderKind.NPC:               return "Rosado: personajes (NPC)";
-            case PlaceholderKind.Interactive:       return "Cian: objetos interactivos y retos";
-            default:                                return "";
-        }
-    }
 }

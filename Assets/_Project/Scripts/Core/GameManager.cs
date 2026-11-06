@@ -23,6 +23,8 @@ public class GameManager : MonoBehaviour
     public const string FlagBienestarDone = "done:q1_4";
     public const string FlagAgoraDone = "agora_done";
     public const string FlagDevOpen = "dev_open";
+    /// <summary>Lucía le entrega el cuaderno a Andrés al terminar el primer reto; hasta entonces C no abre nada.</summary>
+    public const string FlagNotebookGiven = "notebook_given";
 
     static GameManager instance;
 
@@ -176,6 +178,18 @@ public class GameManager : MonoBehaviour
 
     public void SetStat(string key, int value) => stats[key] = value;
     public int GetStat(string key) => stats.TryGetValue(key, out var value) ? value : 0;
+    public bool HasStat(string key) => stats.ContainsKey(key);
+
+    // Retroalimentación escrita de cada reto (el cuaderno la muestra al abrir el reto completado).
+    readonly Dictionary<string, string> feedback = new Dictionary<string, string>();
+
+    public void SetFeedback(string challengeId, string text)
+    {
+        feedback[challengeId] = text;
+        ProgressChanged?.Invoke();
+    }
+
+    public string GetFeedback(string challengeId) => feedback.TryGetValue(challengeId, out var text) ? text : null;
 
     /// <summary>Marca un reto como completado (no se puede repetir) y suma sus recuerdos.</summary>
     public void CompleteChallenge(string id, int memoryReward)
@@ -190,6 +204,7 @@ public class GameManager : MonoBehaviour
     {
         flags.Clear();
         stats.Clear();
+        feedback.Clear();
         modalCount = 0;
         modalGeneration++;
         ResultsOpen = false;
