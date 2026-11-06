@@ -19,7 +19,7 @@ public static class GreyboxBuilder
     const string PlayerPrefabPath = Root + "/Prefabs/Andres.prefab";
     const string CameraPrefabPath = Root + "/Prefabs/CameraRig.prefab";
 
-    static readonly string[] SceneOrder = { "MainMenu", "Campus", "Aulas1", "Aulas2", "Aulas3", "Aulas4", "EdificioCentral", "Sotanos", "Bienestar", "Cafeteria", "SalaProfesores", "TechoAulas3", "MuseoLili", "Tutorial" };
+    static readonly string[] SceneOrder = { "MainMenu", "Campus", "Aulas1", "Aulas2", "Aulas3", "Aulas4", "Sotanos", "Bienestar", "Cafeteria", "SalaProfesores", "TechoAulas3", "MuseoLili", "Tutorial" };
 
     // ───────────────────────── Menús ─────────────────────────
 
