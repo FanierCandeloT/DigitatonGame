@@ -19,16 +19,15 @@ public class NotebookPanel : MonoBehaviour
     public static event Action Opened;
     public static event Action Closed;
 
-    // Mismo estilo que el panel de progreso (MemoryHud): borde terracota, fondo oscuro cálido, textos crema y naranja
-    static readonly Color Cream = new Color(1f, 0.93f, 0.76f);
-    static readonly Color Orange = new Color(0.96f, 0.52f, 0.12f);
-    static readonly Color Frame = new Color(0.72f, 0.29f, 0.15f);
-    static readonly Color Paper = new Color(0.09f, 0.05f, 0.04f, 0.97f);
-    static readonly Color DetailFill = new Color(0.14f, 0.08f, 0.06f);
-    static readonly Color RowIdle = new Color(0.22f, 0.12f, 0.08f);
-    static readonly Color RowDone = new Color(0.16f, 0.30f, 0.20f);
-    static readonly Color RowCurrent = new Color(0.45f, 0.22f, 0.07f);
-    static readonly Color RowSelectedOutline = new Color(0.96f, 0.52f, 0.12f);
+    // Estilo papel: fondo beige, tinta oscura y filas de colores (verde = hecho, amarillo = actual)
+    static readonly Color Ink = new Color(0.16f, 0.11f, 0.07f);
+    static readonly Color Frame = new Color(0.30f, 0.18f, 0.08f);
+    static readonly Color Paper = new Color(0.95f, 0.90f, 0.76f);
+    static readonly Color DetailFill = new Color(1f, 0.98f, 0.9f);
+    static readonly Color RowIdle = new Color(0.88f, 0.80f, 0.62f);
+    static readonly Color RowDone = new Color(0.66f, 0.82f, 0.58f);
+    static readonly Color RowCurrent = new Color(1f, 0.85f, 0.35f);
+    static readonly Color RowSelectedOutline = new Color(0.12f, 0.35f, 0.75f);
 
     const float DetailWidth = 570f, DetailHeight = 450f, BodyTop = 62f, BodyPad = 16f;
 
@@ -147,7 +146,7 @@ public class NotebookPanel : MonoBehaviour
 
         var title = PixelUi.NewLabel("Titulo", fill.transform, "PROFESSOR'S NOTEBOOK", 40f, Vector2.zero,
             new Vector2(900f, 56f), FontStyles.Bold);
-        title.color = Orange;
+        title.color = Ink;
         PixelUi.Place(title.rectTransform, new Vector2(0.5f, 1f), new Vector2(0.5f, 1f), new Vector2(0f, -14f), new Vector2(900f, 56f));
 
         // Lista de objetivos a la izquierda
@@ -172,7 +171,7 @@ public class NotebookPanel : MonoBehaviour
         PixelUi.Place(detail.rectTransform, new Vector2(1f, 1f), new Vector2(1f, 1f), new Vector2(-20f, -84f), new Vector2(DetailWidth, DetailHeight));
         detailTitle = PixelUi.NewLabel("DetalleTitulo", detailFill.transform, "", 30f, Vector2.zero, Vector2.zero,
             FontStyles.Bold, TextAlignmentOptions.TopLeft);
-        detailTitle.color = Orange;
+        detailTitle.color = Ink;
         PixelUi.Place(detailTitle.rectTransform, new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(16f, -12f), new Vector2(530f, 44f));
         // El texto va dentro de un visor con máscara: si es largo (muchos errores) se desplaza en vez de salirse del cuadro
         bodyViewHeight = DetailHeight - BodyTop - 24f;
@@ -181,14 +180,14 @@ public class NotebookPanel : MonoBehaviour
         PixelUi.Place(viewport, new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(BodyPad, -BodyTop), new Vector2(DetailWidth - 2f * BodyPad - 8f, bodyViewHeight));
         detailBody = PixelUi.NewLabel("DetalleTexto", viewport, "", 22f, Vector2.zero, Vector2.zero,
             FontStyles.Normal, TextAlignmentOptions.TopLeft);
-        detailBody.color = Cream;
+        detailBody.color = Ink;
         detailBody.textWrappingMode = TextWrappingModes.Normal;
         bodyRect = detailBody.rectTransform;
         PixelUi.Place(bodyRect, new Vector2(0f, 1f), new Vector2(0f, 1f), Vector2.zero, new Vector2(viewport.sizeDelta.x, bodyViewHeight));
         bodyScroll = 0f;
 
         hint = PixelUi.NewLabel("Pista", fill.transform, "", 22f, Vector2.zero, Vector2.zero, FontStyles.Bold, TextAlignmentOptions.Center);
-        hint.color = Cream;
+        hint.color = new Color(0.12f, 0.35f, 0.75f);
         PixelUi.Place(hint.rectTransform, new Vector2(0.5f, 0f), new Vector2(0.5f, 0f), new Vector2(0f, 14f), new Vector2(980f, 34f));
         hint.text = firstOpenHint
             ? "Lucía: write down what you remember. C opens / closes this notebook."
@@ -206,7 +205,7 @@ public class NotebookPanel : MonoBehaviour
         string mark = done ? "[x]" : current ? "[>]" : "[ ]";
         var label = PixelUi.NewLabel("Texto", rowFill.transform, $"{mark} {step.Title}", 26f, Vector2.zero, Vector2.zero,
             FontStyles.Bold, TextAlignmentOptions.MidlineLeft);
-        label.color = Cream;
+        label.color = Ink;
         PixelUi.Stretch(label.rectTransform);
         label.rectTransform.offsetMin = new Vector2(14f, 0f);
 
@@ -230,9 +229,9 @@ public class NotebookPanel : MonoBehaviour
         var gm = GameManager.Instance;
         detailTitle.text = step.Title;
         if (gm.IsChallengeDone(id))
-            detailBody.text = $"<b><color=#66F29E>Completed.</color></b>\n\n{FeedbackFor(gm, id)}";
+            detailBody.text = $"<b><color=#1B6B3A>Completed.</color></b>\n\n{FeedbackFor(gm, id)}";
         else
-            detailBody.text = $"<b><color=#F58A1F>Objective:</color></b> {step.Objective}\n\nComplete this task to unlock your feedback here.";
+            detailBody.text = $"<b><color=#A04A00>Objective:</color></b> {step.Objective}\n\nComplete this task to unlock your feedback here.";
 
         // Se mide el texto: el cuerpo crece lo justo y lo que no cabe en el cuadro se desplaza
         detailBody.richText = true;

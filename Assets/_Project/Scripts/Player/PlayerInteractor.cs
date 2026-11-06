@@ -53,7 +53,7 @@ public class PlayerInteractor : MonoBehaviour
 
     Interactable FindNearest()
     {
-        int count = Physics2D.OverlapCircleNonAlloc(transform.position, interactRadius, hits);
+        int count = Physics2D.OverlapCircle(transform.position, interactRadius, new ContactFilter2D().NoFilter(), hits);
         Interactable best = null;
         float bestDist = float.MaxValue;
         for (int i = 0; i < count; i++)

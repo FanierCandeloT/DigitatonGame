@@ -30,6 +30,6 @@ Material:
     m_Ints: []
     m_Floats: []
     m_Colors:
-    - _Dir: {r: 0, g: 1, b: 1.6, a: 0}
+    - _Dir: {r: 0, g: 1, b: 1.5, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

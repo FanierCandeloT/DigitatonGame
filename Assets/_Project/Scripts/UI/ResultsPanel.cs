@@ -14,8 +14,6 @@ using UnityEngine.UI;
 /// </summary>
 public class ResultsPanel : MonoBehaviour
 {
-    [Tooltip("Objeto de la pantalla provisional antigua (\"Results screen (pending)\"): se apaga, la nueva se arma por código.")]
-    public GameObject root;
     public string mainMenuScene = "MainMenu";
 
     static readonly Color Terracotta = new Color(0.72f, 0.29f, 0.15f);
@@ -70,11 +68,6 @@ public class ResultsPanel : MonoBehaviour
     Button backButton;
     bool leaving;
 
-    void Start()
-    {
-        if (root != null) root.SetActive(false);
-    }
-
     void Update()
     {
         if (canvasObject == null || leaving) return;
@@ -86,7 +79,6 @@ public class ResultsPanel : MonoBehaviour
     public void Show()
     {
         Hide();
-        if (root != null) root.SetActive(false);
         leaving = false;
         Build(GameManager.Instance);
         if (EventSystem.current != null) EventSystem.current.SetSelectedGameObject(backButton.gameObject);

@@ -21,7 +21,6 @@ public class BackdropBlur : MonoBehaviour
     float amount;
     bool want;
 
-    public bool Visible => want;
     public void Show(bool on) => want = on;
 
     void Awake()

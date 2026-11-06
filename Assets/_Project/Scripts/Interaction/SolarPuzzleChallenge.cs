@@ -109,8 +109,6 @@ public class SolarPuzzleChallenge : Interactable
         },
     };
 
-    public static int RoundCount => Rounds.Length;
-
     /// <summary>
     /// Evalúa una frase de un circuito. Orden: primero la forma del verbo (concordancia, tiempo, participio, 'be'),
     /// después qué cosa recibe la acción (el sujeto de la pasiva) y por último el agente: sin agente nadie actúa.

@@ -171,6 +171,7 @@ public class BlackoutDirector : MonoBehaviour
             yield return new WaitForSecondsRealtime(0.6f);
             gm.SetFlag(FlagStarted);
             yield return Flicker();
+            if (player == null) yield break;   // se cambió de escena durante el parpadeo: no hay a quién hablarle (finally libera el bloqueo)
 
             npc = FindStudent(player);
             if (npc != null)

@@ -175,7 +175,10 @@ public class ClassErrorHunt : MonoBehaviour
 
         promptLabel = PixelUi.NewLabel("Indicacion", root, "", 28, new Vector2(0f, -4f), new Vector2(1200f, 40f));
         promptLabel.color = Muted;
-        feedbackLabel = PixelUi.NewLabel("Respuesta", root, "", 30, new Vector2(0f, -40f), new Vector2(1200f, 44f), FontStyles.Bold);
+        promptLabel.enableAutoSizing = true;   // la instrucción de la primera frase es más larga: se achica para caber en una línea
+        promptLabel.fontSizeMax = 28f;
+        promptLabel.fontSizeMin = 16f;
+        feedbackLabel =PixelUi.NewLabel("Respuesta", root, "", 30, new Vector2(0f, -40f), new Vector2(1200f, 44f), FontStyles.Bold);
     }
 
     void BuildHud()
@@ -457,7 +460,9 @@ public class ClassErrorHunt : MonoBehaviour
 
         // 1) Decisión con tiempo: STOP o dejarla pasar
         promptLabel.color = Muted;
-        promptLabel.text = "Is it correct? Press STOP if you hear a mistake.";
+        promptLabel.text = index == 0 && attempt == 1
+            ? "How to play: STOP (Space) if it has a mistake, SOUNDS RIGHT (Enter) if not. After STOP, tap the wrong part and pick the fix."
+            : "Is it correct? Press STOP if you hear a mistake.";
         stopRequested = okRequested = false;
         inputReadyAt = Time.unscaledTime + 0.3f;
         acceptingDecision = true;

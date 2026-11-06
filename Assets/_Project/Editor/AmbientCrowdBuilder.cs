@@ -19,11 +19,11 @@ public static class AmbientCrowdBuilder
         (new[] { new Vector2(95f, -45.4f), new Vector2(-15f, -45.4f) }, 1.4f),
         (new[] { new Vector2(0f, -13.6f), new Vector2(52f, -13.6f) }, 1.6f),        // frente a Aulas 2
         (new[] { new Vector2(24f, 7.6f), new Vector2(78f, 7.6f) }, 1.5f),           // frente a Aulas 3
-        (new[] { new Vector2(58f, 26.4f), new Vector2(106f, 26.4f) }, 1.8f),        // frente a Aulas 4
+        (new[] { new Vector2(58f, 26.4f), new Vector2(97f, 26.4f) }, 1.8f),        // frente a Aulas 4
         (new[] { new Vector2(-25f, 50.4f), new Vector2(112f, 50.4f) }, 1.7f),       // camino norte
         (new[] { new Vector2(-29.8f, -48f), new Vector2(-29.8f, 48f) }, 1.6f),      // camino norte-sur central
         (new[] { new Vector2(-28.6f, 46f), new Vector2(-28.6f, -46f) }, 1.3f),
-        (new[] { new Vector2(60.3f, -50f), new Vector2(60.3f, 24f) }, 1.5f),        // camino este (Aulas 2 - sur); antes la portería oeste, que ya no existe
+        (new[] { new Vector2(60.3f, -50f), new Vector2(60.3f, 6f) }, 1.5f),        // camino este (Aulas 2 - sur); antes la portería oeste, que ya no existe
         (new[] { new Vector2(60f, -7.1f), new Vector2(79f, -7.1f) }, 1.4f),         // camino a la Cafetería
         (new[] { new Vector2(-30f, -10f), new Vector2(-22f, -10f), new Vector2(-22f, -3f), new Vector2(-30f, -3f) }, 1.2f),   // alrededor del Ágora
     };

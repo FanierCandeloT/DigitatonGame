@@ -1132,7 +1132,7 @@ GameObject:
   - component: {fileID: 502436541}
   - component: {fileID: 502436540}
   m_Layer: 0
-  m_Name: Salida al Edificio Central
+  m_Name: Salida al Campus
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1154,8 +1154,8 @@ MonoBehaviour:
   onInteract:
     m_PersistentCalls:
       m_Calls: []
-  targetScene: EdificioCentral
-  targetSpawnId: EC_Sotanos
+  targetScene: Campus
+  targetSpawnId: Campus_Sotanos
   comingSoonMessage: Coming soon
   requiredFlag: 
   lockedMessage: Locked for now.
