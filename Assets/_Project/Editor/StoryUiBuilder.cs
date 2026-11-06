@@ -61,20 +61,10 @@ public static class StoryUiBuilder
         var results = root.GetComponentInChildren<ResultsPanel>(true);
         if (results == null)
         {
-            var canvas = MenuFlowBuilder.MakeCanvas("ResultsCanvas", 700);
-            canvas.transform.SetParent(root.transform, false);
-
-            var dim = MenuFlowBuilder.NewImage("ResultsRoot", canvas.transform, new Color(0f, 0f, 0f, 0.92f));
-            MenuFlowBuilder.Stretch(dim.rectTransform);
-            var box = MenuFlowBuilder.VerticalPanel("Box", dim.transform, new Vector2(760, 360), new Color(0.08f, 0.09f, 0.13f, 1f), 36f, 40);
-            var title = MenuFlowBuilder.NewText("Title", box, "Results screen (pending)", 54, TextAlignmentOptions.Center, FontStyles.Bold);
-            MenuFlowBuilder.LayoutSize(title.gameObject, 0, 90);
-            var back = MenuFlowBuilder.MakeButton(box, "Back to Menu", 360, 64);
-
-            results = canvas.AddComponent<ResultsPanel>();
-            results.root = dim.gameObject;
-            results.backButton = back;
-            dim.gameObject.SetActive(false);
+            // La pantalla de resultados se arma por código al mostrarla (ResultsPanel); aquí solo hace falta el componente
+            var holder = new GameObject("ResultsPanel");
+            holder.transform.SetParent(root.transform, false);
+            results = holder.AddComponent<ResultsPanel>();
         }
 
         var so = new SerializedObject(gm);

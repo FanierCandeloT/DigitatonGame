@@ -1,8 +1,9 @@
 using UnityEngine;
 
 /// <summary>
-/// Reto del guion (objeto cian). Por ahora es solo un marcador: al interactuar muestra "(pending)",
-/// suma recuerdos y no se puede repetir. Las preguntas 1-4, 5-8, 9-11 y 12 usan este componente.
+/// Marcador provisional de un reto que todavía no se construyó (objeto cian): al interactuar muestra "(pending)",
+/// suma recuerdos y no se puede repetir. Los retos reales ya tienen su propio componente (NpcChallengeInteractable,
+/// LitterChallenge, ClassLessonInteractable); este queda para los que faltan (ver StoryFlow).
 /// </summary>
 public class ChallengeInteractable : Interactable
 {
@@ -44,8 +45,15 @@ public class ChallengeInteractable : Interactable
             return;
         }
 
+        Complete(interactor, $"{displayName} (pending)");
+    }
+
+    void Complete(PlayerInteractor interactor, string message)
+    {
+        var gm = GameManager.Instance;
         gm.CompleteChallenge(challengeId, memoryReward);
-        ToastMessage.Show($"{displayName} (pending)", 2.5f);
+        AudioManager.PlayCorrect();   // se suma el recuerdo
+        ToastMessage.Show(message, 2.5f);
         MarkDone();
         base.Interact(interactor);
 

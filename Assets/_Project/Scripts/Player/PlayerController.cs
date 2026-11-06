@@ -14,6 +14,12 @@ public class PlayerController : MonoBehaviour
     InputAction moveAction;
     Vector2 moveInput;
 
+    /// <summary>
+    /// Entrada simulada, solo para pruebas automáticas: se suma al teclado y pasa por el mismo bloqueo
+    /// (InputLocked), así se puede comprobar que un reto realmente deja quieto a Andrés.
+    /// </summary>
+    [System.NonSerialized] public Vector2 SimulatedInput;
+
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -47,15 +53,22 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        moveInput = moveAction.ReadValue<Vector2>();
+        moveInput = moveAction.ReadValue<Vector2>() + SimulatedInput;
         if (moveInput.sqrMagnitude > 1f) moveInput.Normalize();
 
         // Pausa, cuaderno abierto o transición de escena: Andrés no se mueve.
         if (GameManager.Instance.InputLocked) moveInput = Vector2.zero;
+
+        // Pasos: solo suenan si Andrés realmente se está moviendo (no en pausa, fundidos, cuaderno, diálogos ni contra un muro).
+        if (moveInput != Vector2.zero && rb.linearVelocity.sqrMagnitude > 0.25f) AudioManager.NotifyWalking();
     }
 
     void FixedUpdate()
     {
-        rb.linearVelocity = moveInput * speed;
+        // Estándar de los retos: con un diálogo o reto abierto Andrés queda completamente quieto: velocidad cero y posición
+        // congelada, para que ni siquiera un NPC que se mueva durante el reto (o una colisión) pueda empujarlo.
+        bool locked = GameManager.Instance.InputLocked;
+        rb.constraints = locked ? RigidbodyConstraints2D.FreezeAll : RigidbodyConstraints2D.FreezeRotation;
+        rb.linearVelocity = locked ? Vector2.zero : moveInput * speed;
     }
 }

@@ -1,0 +1,590 @@
+fileFormatVersion: 2
+guid: 5e9b40aff57d76845af2bae841dc659f
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -8055985292129306583
+    second: DaliaPoint_0
+  - first:
+      213: 7955001836617058581
+    second: DaliaPoint_1
+  - first:
+      213: -116838940710047783
+    second: DaliaPoint_2
+  - first:
+      213: -1273998865208220865
+    second: DaliaPoint_3
+  - first:
+      213: 1554961024043808009
+    second: DaliaPoint_4
+  - first:
+      213: 5079722960565137675
+    second: DaliaPoint_5
+  - first:
+      213: -3738261076953217743
+    second: DaliaPoint_6
+  - first:
+      213: 6770678475886201878
+    second: DaliaPoint_7
+  - first:
+      213: -6805794885489082675
+    second: DaliaPoint_8
+  - first:
+      213: -1701903355960534375
+    second: DaliaPoint_9
+  - first:
+      213: -7432352605710913736
+    second: DaliaPoint_10
+  - first:
+      213: -4100745538281181919
+    second: DaliaPoint_11
+  - first:
+      213: -7972305994316567731
+    second: DaliaPoint_12
+  - first:
+      213: -7831699893046537682
+    second: DaliaPoint_13
+  - first:
+      213: -118641685939789273
+    second: DaliaPoint_14
+  - first:
+      213: 2352682351801368558
+    second: DaliaPoint_15
+  - first:
+      213: 4345604628615847789
+    second: DaliaPoint_16
+  - first:
+      213: 4959077215461613112
+    second: DaliaPoint_17
+  - first:
+      213: 5070625585059802444
+    second: DaliaPoint_18
+  - first:
+      213: -2547005484086998842
+    second: DaliaPoint_19
+  - first:
+      213: 7809387420528093256
+    second: DaliaPoint_20
+  - first:
+      213: -3954588261338797294
+    second: DaliaPoint_21
+  - first:
+      213: -3624403838223409431
+    second: DaliaPoint_22
+  - first:
+      213: 7559382616121464181
+    second: DaliaPoint_23
+  - first:
+      213: 4870764482131801863
+    second: DaliaPoint_24
+  - first:
+      213: -2199297596844079326
+    second: DaliaPoint_25
+  - first:
+      213: -7028811479086316521
+    second: DaliaPoint_26
+  - first:
+      213: 7081157181663517326
+    second: DaliaPoint_27
+  - first:
+      213: 2217442854478099988
+    second: DaliaPoint_28
+  - first:
+      213: 4959727203056253980
+    second: DaliaPoint_29
+  - first:
+      213: 4596718380321438069
+    second: DaliaPoint_30
+  - first:
+      213: -4933618655132214264
+    second: DaliaPoint_31
+  - first:
+      213: 5392881555908628121
+    second: DaliaPoint_32
+  - first:
+      213: 5080356506119724878
+    second: DaliaPoint_33
+  - first:
+      213: 5387927617280202186
+    second: DaliaPoint_34
+  - first:
+      213: -8338997627086291532
+    second: DaliaPoint_35
+  - first:
+      213: 8550158293276260151
+    second: DaliaPoint_36
+  - first:
+      213: 6732177584022712950
+    second: DaliaPoint_37
+  - first:
+      213: -6334700480679825981
+    second: DaliaPoint_38
+  - first:
+      213: 543079424691372558
+    second: DaliaPoint_39
+  - first:
+      213: -4576912776006673914
+    second: DaliaPoint_40
+  - first:
+      213: 2153440753133697215
+    second: DaliaPoint_41
+  - first:
+      213: -4637116998226311378
+    second: DaliaPoint_42
+  - first:
+      213: -7570992141535008168
+    second: DaliaPoint_43
+  - first:
+      213: -6767664781058049034
+    second: DaliaPoint_44
+  - first:
+      213: -4738003075670193738
+    second: DaliaPoint_45
+  - first:
+      213: 2935028249589752942
+    second: DaliaPoint_46
+  - first:
+      213: -8842234742722592004
+    second: DaliaPoint_47
+  - first:
+      213: 6918367756743593108
+    second: DaliaPoint_48
+  - first:
+      213: 8135184507096407455
+    second: DaliaPoint_49
+  - first:
+      213: 4959373975019609503
+    second: DaliaPoint_50
+  - first:
+      213: -2222003841114428404
+    second: DaliaPoint_51
+  - first:
+      213: 8996581036261445794
+    second: DaliaPoint_52
+  - first:
+      213: -2096563635901883793
+    second: DaliaPoint_53
+  - first:
+      213: -5553374635202241766
+    second: DaliaPoint_54
+  - first:
+      213: -7003415742544059488
+    second: DaliaPoint_55
+  - first:
+      213: 7241913123660922773
+    second: DaliaPoint_56
+  - first:
+      213: 4229981294845110294
+    second: DaliaPoint_57
+  - first:
+      213: 757875901229228278
+    second: DaliaPoint_58
+  - first:
+      213: -5766748342661334120
+    second: DaliaPoint_59
+  - first:
+      213: -4788460072016001122
+    second: DaliaPoint_60
+  - first:
+      213: 382233118096379488
+    second: DaliaPoint_61
+  - first:
+      213: -7967220490643335000
+    second: DaliaPoint_62
+  - first:
+      213: -2094608522570996144
+    second: DaliaPoint_63
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 48
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationMethod: 0
+  spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: DaliaPoint_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 256
+        height: 768
+      alignment: 9
+      pivot: {x: 0.5, y: 0.18359375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b96cbfa5dc9bf8d49a849cb4490ce118
+      internalID: -8055985292129306583
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DaliaPoint_1
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 256
+        height: 768
+      alignment: 9
+      pivot: {x: 0.5, y: 0.18359375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f4da05b525339c84b812efd0eaecb091
+      internalID: 7955001836617058581
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DaliaPoint_2
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 256
+        height: 768
+      alignment: 9
+      pivot: {x: 0.5, y: 0.18359375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 74467a51909445b449ec3cfa37dd269a
+      internalID: -116838940710047783
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DaliaPoint_3
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 0
+        width: 256
+        height: 768
+      alignment: 9
+      pivot: {x: 0.5, y: 0.18359375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32e44b99dcf3e7e458ca53f76a8629e3
+      internalID: -1273998865208220865
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DaliaPoint_4
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 0
+        width: 256
+        height: 768
+      alignment: 9
+      pivot: {x: 0.5, y: 0.18359375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e858e81559e4ec45a470f69361e1825
+      internalID: 1554961024043808009
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DaliaPoint_5
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 0
+        width: 256
+        height: 768
+      alignment: 9
+      pivot: {x: 0.5, y: 0.18359375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 241d803275c930144a01dc166e98df2b
+      internalID: 5079722960565137675
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DaliaPoint_6
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 0
+        width: 256
+        height: 768
+      alignment: 9
+      pivot: {x: 0.5, y: 0.18359375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea99b107099988648a7229a8a1642477
+      internalID: -3738261076953217743
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DaliaPoint_7
+      rect:
+        serializedVersion: 2
+        x: 1792
+        y: 0
+        width: 256
+        height: 768
+      alignment: 9
+      pivot: {x: 0.5, y: 0.18359375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b9fb630a178ad1409da36c3c6b6b41c
+      internalID: 6770678475886201878
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 29bf9f7241a197a4aa5b5fb2271147af
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      DaliaPoint_0: -8055985292129306583
+      DaliaPoint_1: 7955001836617058581
+      DaliaPoint_10: -7432352605710913736
+      DaliaPoint_11: -4100745538281181919
+      DaliaPoint_12: -7972305994316567731
+      DaliaPoint_13: -7831699893046537682
+      DaliaPoint_14: -118641685939789273
+      DaliaPoint_15: 2352682351801368558
+      DaliaPoint_16: 4345604628615847789
+      DaliaPoint_17: 4959077215461613112
+      DaliaPoint_18: 5070625585059802444
+      DaliaPoint_19: -2547005484086998842
+      DaliaPoint_2: -116838940710047783
+      DaliaPoint_20: 7809387420528093256
+      DaliaPoint_21: -3954588261338797294
+      DaliaPoint_22: -3624403838223409431
+      DaliaPoint_23: 7559382616121464181
+      DaliaPoint_24: 4870764482131801863
+      DaliaPoint_25: -2199297596844079326
+      DaliaPoint_26: -7028811479086316521
+      DaliaPoint_27: 7081157181663517326
+      DaliaPoint_28: 2217442854478099988
+      DaliaPoint_29: 4959727203056253980
+      DaliaPoint_3: -1273998865208220865
+      DaliaPoint_30: 4596718380321438069
+      DaliaPoint_31: -4933618655132214264
+      DaliaPoint_32: 5392881555908628121
+      DaliaPoint_33: 5080356506119724878
+      DaliaPoint_34: 5387927617280202186
+      DaliaPoint_35: -8338997627086291532
+      DaliaPoint_36: 8550158293276260151
+      DaliaPoint_37: 6732177584022712950
+      DaliaPoint_38: -6334700480679825981
+      DaliaPoint_39: 543079424691372558
+      DaliaPoint_4: 1554961024043808009
+      DaliaPoint_40: -4576912776006673914
+      DaliaPoint_41: 2153440753133697215
+      DaliaPoint_42: -4637116998226311378
+      DaliaPoint_43: -7570992141535008168
+      DaliaPoint_44: -6767664781058049034
+      DaliaPoint_45: -4738003075670193738
+      DaliaPoint_46: 2935028249589752942
+      DaliaPoint_47: -8842234742722592004
+      DaliaPoint_48: 6918367756743593108
+      DaliaPoint_49: 8135184507096407455
+      DaliaPoint_5: 5079722960565137675
+      DaliaPoint_50: 4959373975019609503
+      DaliaPoint_51: -2222003841114428404
+      DaliaPoint_52: 8996581036261445794
+      DaliaPoint_53: -2096563635901883793
+      DaliaPoint_54: -5553374635202241766
+      DaliaPoint_55: -7003415742544059488
+      DaliaPoint_56: 7241913123660922773
+      DaliaPoint_57: 4229981294845110294
+      DaliaPoint_58: 757875901229228278
+      DaliaPoint_59: -5766748342661334120
+      DaliaPoint_6: -3738261076953217743
+      DaliaPoint_60: -4788460072016001122
+      DaliaPoint_61: 382233118096379488
+      DaliaPoint_62: -7967220490643335000
+      DaliaPoint_63: -2094608522570996144
+      DaliaPoint_7: 6770678475886201878
+      DaliaPoint_8: -6805794885489082675
+      DaliaPoint_9: -1701903355960534375
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

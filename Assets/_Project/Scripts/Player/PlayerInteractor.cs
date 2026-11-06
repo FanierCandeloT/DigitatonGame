@@ -13,6 +13,7 @@ public class PlayerInteractor : MonoBehaviour
 
     InputAction interactAction;
     Interactable current;
+    Interactable soundGivenFor;   // objeto cerca del cual ya sonó el aviso (se limpia al alejarse)
     readonly Collider2D[] hits = new Collider2D[16];
 
     void Awake()
@@ -39,7 +40,12 @@ public class PlayerInteractor : MonoBehaviour
         {
             current = nearest;
             SetPrompt(current);
+
+            // El sonido suena una sola vez al aparecer "Press E". Mientras siga cerca no se repite (tampoco al cerrar un
+            // diálogo); vuelve a sonar solo si se aleja y se acerca otra vez, o si pasa a otro objeto.
+            if (current != null && current != soundGivenFor) AudioManager.PlayInteraction();
         }
+        soundGivenFor = nearest;
 
         if (current != null && interactAction.WasPressedThisFrame())
             current.Interact(this);
@@ -47,7 +53,7 @@ public class PlayerInteractor : MonoBehaviour
 
     Interactable FindNearest()
     {
-        int count = Physics2D.OverlapCircleNonAlloc(transform.position, interactRadius, hits);
+        int count = Physics2D.OverlapCircle(transform.position, interactRadius, new ContactFilter2D().NoFilter(), hits);
         Interactable best = null;
         float bestDist = float.MaxValue;
         for (int i = 0; i < count; i++)
