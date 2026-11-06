@@ -52,12 +52,14 @@ public static class ErrorHuntContent
         new HuntSentence("Plastic|is recycled|yesterday.", ErrorKind.Tense, 1, "was recycled", "will be recycled", "are recycled"),
         new HuntSentence("The report|will be finished|last Monday.", ErrorKind.Tense, 1, "was finished", "is finished", "be finished"),
         new HuntSentence("The exams|were corrected|tomorrow.", ErrorKind.Tense, 1, "will be corrected", "are corrected", "was corrected"),
+        new HuntSentence("The wages|have been paid|last Friday.", ErrorKind.Tense, 1, "were paid", "are paid", "will be paid"),
 
         // ── Participio pasado ──
         new HuntSentence("The essays|were write|by the students.", ErrorKind.Participle, 1, "were written", "were wrote", "were writing"),
         new HuntSentence("Energy|is waste|in many offices.", ErrorKind.Participle, 1, "is wasted", "is wasting", "is wastes"),
         new HuntSentence("My lesson|was teach|in Room 204.", ErrorKind.Participle, 1, "was taught", "was teached", "was teaching"),
         new HuntSentence("All the plastic|was throw|away.", ErrorKind.Participle, 1, "was thrown", "was threw", "was throwing"),
+        new HuntSentence("The report|has been write|by Ana.", ErrorKind.Participle, 1, "has been written", "has been wrote", "has been writing"),
 
         // ── Quien hace la acción (by + agente) ──
         new HuntSentence("The exams|were corrected|from the teacher.", ErrorKind.Agent, 2, "by the teacher.", "to the teacher.", "of the teacher."),
@@ -68,6 +70,8 @@ public static class ErrorHuntContent
         new HuntSentence("The classroom|cleaned|every day.", ErrorKind.MissingBe, 1, "is cleaned", "cleaning", "clean"),
         new HuntSentence("The bottles|collected|every Friday.", ErrorKind.MissingBe, 1, "are collected", "collecting", "to collect"),
         new HuntSentence("These exams|corrected|by Professor Andrés.", ErrorKind.MissingBe, 1, "were corrected", "correcting", "to correct"),
+        new HuntSentence("Plastic|must recycled|at school.", ErrorKind.MissingBe, 1, "must be recycled", "must recycling", "must to recycle"),
+        new HuntSentence("The wages|have paid|by the company.", ErrorKind.MissingBe, 1, "have been paid", "have paying", "has been paid"),
 
         // ── Frases correctas (hay que dejarlas pasar) ──
         new HuntSentence("The workers|were paid|on time."),
@@ -80,6 +84,9 @@ public static class ErrorHuntContent
         new HuntSentence("Energy|is saved|in this building."),
         new HuntSentence("The bottles|are collected|every Friday."),
         new HuntSentence("My lesson|was taught|in Room 204."),
+        new HuntSentence("The windows|have been cleaned|this morning."),
+        new HuntSentence("Waste|should be reduced|in factories."),
+        new HuntSentence("Safety helmets|must be worn|on the site."),
     };
 
     /// <summary>
@@ -130,7 +137,7 @@ public static class ErrorHuntContent
                 return more ? "Singular subjects use is / was. Plural subjects use are / were. Find the noun before the verb."
                             : "Look at the subject. Is it singular or plural? The verb 'to be' has to match it.";
             case ErrorKind.Tense:
-                return more ? "Past: was / were. Present: is / are. Future: will be. Match the time clue in the sentence."
+                return more ? "Past: was / were. Present: is / are. Future: will be. Present perfect (have / has been) is not used with a finished time like 'last Friday'. Match the time clue."
                             : "Look for a time clue in the sentence (yesterday, tomorrow, every day...). The verb 'to be' shows the time.";
             case ErrorKind.Participle:
                 return more ? "Passive = be + past participle. Irregular verbs change their form (see > seen, break > broken)."
@@ -139,7 +146,7 @@ public static class ErrorHuntContent
                 return more ? "The person or thing that does the action comes after a connector. Check that little word."
                             : "Who does the action? A small word introduces the doer in a passive sentence. Check it.";
             case ErrorKind.MissingBe:
-                return more ? "Passive = be (is / are / was / were) + past participle. Both parts must be there."
+                return more ? "Passive = be (is / are / was / were) + past participle. After a modal (must, can, should) use 'be'; after have / has use 'been'. Both parts must be there."
                             : "A passive sentence has two parts. Is any part missing from the verb?";
             default:
                 return "Before you stop a sentence, check three things: the subject, the verb 'to be' and the participle. If all three fit, let it pass.";

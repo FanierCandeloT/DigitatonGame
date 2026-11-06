@@ -49,6 +49,12 @@ public static class PixelUi
         return sprite;
     }
 
+    /// <summary>Espera en tiempo real (no le afecta la pausa ni el timeScale). Para usar con StartCoroutine / yield return.</summary>
+    public static System.Collections.IEnumerator Wait(float seconds)
+    {
+        for (float t = 0f; t < seconds; t += Time.unscaledDeltaTime) yield return null;
+    }
+
     public static RectTransform NewRect(string objectName, Transform parent)
     {
         var go = new GameObject(objectName, typeof(RectTransform));
@@ -85,6 +91,35 @@ public static class PixelUi
         fill.rectTransform.offsetMin = new Vector2(PixelScale, PixelScale);
         fill.rectTransform.offsetMax = new Vector2(-PixelScale, -PixelScale);
         return border;
+    }
+
+    /// <summary>
+    /// Convierte una imagen existente (por ejemplo la caja gris de un HUD) en un panel pixelado con borde de color y relleno oscuro opaco,
+    /// para que se lea bien sobre cualquier fondo. Devuelve el relleno; el contenido existente queda encima. Seguro si el padre usa Layout Group.
+    /// </summary>
+    public static Image Restyle(Image target, Color outline, Color fillColor)
+    {
+        target.sprite = Box;
+        target.type = Image.Type.Sliced;
+        target.pixelsPerUnitMultiplier = 1f / PixelScale;
+        target.color = outline;
+
+        // Idempotente: si ya tiene relleno (se llamó antes), solo se actualiza su color
+        var existing = target.transform.Find("Relleno");
+        if (existing != null && existing.TryGetComponent(out Image current))
+        {
+            current.color = fillColor;
+            return current;
+        }
+
+        var fill = NewBox("Relleno", target.transform, fillColor);
+        fill.raycastTarget = false;
+        fill.transform.SetAsFirstSibling();
+        Stretch(fill.rectTransform);
+        fill.rectTransform.offsetMin = new Vector2(PixelScale, PixelScale);
+        fill.rectTransform.offsetMax = new Vector2(-PixelScale, -PixelScale);
+        fill.gameObject.AddComponent<LayoutElement>().ignoreLayout = true;
+        return fill;
     }
 
     public static TextMeshProUGUI NewLabel(string objectName, Transform parent, string text, float size, Vector2 position,

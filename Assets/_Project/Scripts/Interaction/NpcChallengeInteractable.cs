@@ -30,14 +30,15 @@ public class NpcChallengeInteractable : Interactable
     {
         new DialogueLine("Andrés",
             "Everything is blank... Maybe talking to people will help me recover my memories, and who I am.",
-            "Todo está {blank}... {Maybe} hablar con {people} me ayude a {recover} mis {memories}, y quién soy.",
+            "{Everything is blank}... Quizás hablar con la gente me ayude a recuperar mis {memories}, y a saber {who I am}.",
             "Todo está en blanco... Quizás hablar con la gente me ayude a recuperar mis recuerdos, y a saber quién soy."),
         new DialogueLine("Lucía", "You were found near the campus yesterday. You were brought here by a student."),
+        new DialogueLine("Lucía", "Don't worry about your Spanish. The accident damaged the part of your brain that stores English. It will come back as your memories are recovered."),
         new DialogueLine("Lucía", "Your memories can be repaired. The pieces must be connected, one by one."),
         new DialogueLine("Andrés",
-            "Okay... let's try.",
-            "{Okay}... vamos a {try}.",
-            "Está bien... vamos a intentarlo."),
+            "I understand. Okay... let's try.",
+            "Entiendo. {Okay}... {let's try}, paso a paso.",
+            "Entiendo. Está bien... vamos a intentarlo."),
     };
 
     DialogueLine[] Intro
@@ -66,7 +67,21 @@ public class NpcChallengeInteractable : Interactable
         // Primero se suman los recuerdos: así el cierre ya muestra el habla de Andrés en su nueva etapa.
         GameManager.Instance.CompleteChallenge(challengeId, memoryReward);
         base.Interact(interactor);
-        DialoguePanel.Show(BuildClosing(result), null);   // el aviso de "tu habla mejora" lo da MemoryHud al cerrar el diálogo
+        GameManager.Instance.SetFeedback(challengeId, BuildFeedback(result));
+        // Al cerrar el diálogo Lucía ya le entregó el cuaderno: se abre con el mini tutorial (C). El aviso de "tu habla mejora" lo da MemoryHud.
+        DialoguePanel.Show(BuildClosing(result), NotebookPanel.GiveToPlayer);
+    }
+
+    /// <summary>Texto del cuaderno para este reto: qué salió bien y cada error con su explicación.</summary>
+    static string BuildFeedback(MemoryResult result)
+    {
+        if (result == null || result.Errors == 0)
+            return "All the sentences were built perfectly: subject + be + past participle (+ by + agent).";
+
+        var sb = new System.Text.StringBuilder($"Mistakes: {result.Errors}. Review each one:\n");
+        foreach (var m in result.Mistakes)
+            sb.Append($"\n- \"{m.Attempt}\"\n  {m.Explanation}\n  Correct: {m.Correct}\n");
+        return sb.ToString();
     }
 
     /// <summary>Diálogo final: celebra el logro y, si hubo errores, los explica con la frase correcta.</summary>
@@ -98,8 +113,10 @@ public class NpcChallengeInteractable : Interactable
         // Con 4 recuerdos Andrés ya mezcla inglés: aquí se nota la mecánica del habla
         lines.Add(new DialogueLine("Andrés",
             "I remember now... I'm a teacher. English was taught in my classroom.",
-            "Ahora recuerdo... {I'm a teacher}. {English was taught} en mi salón.",
+            "Ahora recuerdo... {I'm a teacher}. Yo enseñaba inglés: {English was taught} en mi salón.",
             "Ahora lo recuerdo... soy profesor. Enseñaba inglés en mi salón."));
+        lines.Add(new DialogueLine("Lucía", "Take this notebook. It's yours. Everything you remember should be written down in it."));
+        lines.Add(new DialogueLine("Lucía", "Your tasks are listed there, and after each one you can read what you did well and what to review. Press C to open it."));
         lines.Add(new DialogueLine("Lucía", "The campus can be explored now. Your other memories are waiting there."));
         return lines.ToArray();
     }

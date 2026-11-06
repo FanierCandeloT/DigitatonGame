@@ -396,7 +396,7 @@ public class ClassErrorHunt : MonoBehaviour
 
     IEnumerator Lesson()
     {
-        yield return Wait(0.6f);
+        yield return PixelUi.Wait(0.6f);
         while (true)
         {
             BeginAttempt();
@@ -406,7 +406,7 @@ public class ClassErrorHunt : MonoBehaviour
             promptLabel.text = attempt == 1
                 ? "Class is starting! Listen to each student."
                 : $"Attempt {attempt}: new sentences. Take your time.";
-            yield return Wait(2.2f);
+            yield return PixelUi.Wait(2.2f);
 
             for (int i = 0; i < run.Count; i++) yield return PlayRound(run[i], i, run.Count);
 
@@ -495,7 +495,7 @@ public class ClassErrorHunt : MonoBehaviour
             {
                 Award(0, "That one was fine.", Muted, 3f);
             }
-            yield return Wait(1.5f);
+            yield return PixelUi.Wait(1.5f);
             speaker = null;
             yield break;
         }
@@ -506,7 +506,7 @@ public class ClassErrorHunt : MonoBehaviour
             Mistake(s, MistakeType.Missed);
             Award(0, silent ? "Time is up! That sentence had a mistake." : "Oops, that sentence had a mistake.", Bad, -15f);
             bubbleFrame.color = Bad;
-            yield return Wait(1.8f);
+            yield return PixelUi.Wait(1.8f);
             speaker = null;
             yield break;
         }
@@ -530,7 +530,7 @@ public class ClassErrorHunt : MonoBehaviour
             ColorToken(tokens[tokenChosen], Bad);
             promptLabel.text = "";
             Award(0, "That part is fine. The mistake is somewhere else.", Bad, -8f);
-            yield return Wait(2f);
+            yield return PixelUi.Wait(2f);
             speaker = null;
             yield break;
         }
@@ -566,7 +566,7 @@ public class ClassErrorHunt : MonoBehaviour
             ColorToken(tokens[tokenChosen], Bad);
             Award(0, "That does not fix it.", Bad, -5f);
         }
-        yield return Wait(1.9f);
+        yield return PixelUi.Wait(1.9f);
         speaker = null;
     }
 
@@ -610,11 +610,6 @@ public class ClassErrorHunt : MonoBehaviour
         floaters.Add(new Floater { Label = label, Life = 1.2f, MaxLife = 1.2f });
     }
 
-    static IEnumerator Wait(float seconds)
-    {
-        for (float t = 0f; t < seconds; t += Time.unscaledDeltaTime) yield return null;
-    }
-
     // ───────────── Piezas de la frase ─────────────
 
     void BuildTokens(HuntSentence s)
@@ -656,7 +651,7 @@ public class ClassErrorHunt : MonoBehaviour
         foreach (var t in tokens)
         {
             t.Rect.gameObject.SetActive(true);
-            yield return Wait(0.18f);
+            yield return PixelUi.Wait(0.18f);
         }
     }
 

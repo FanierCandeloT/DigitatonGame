@@ -46,7 +46,8 @@ public static class NpcSpriteSetup
         Debug.Log($"NPC: {changed} personajes con sprite recortado.");
     }
 
-    static bool Apply(GameObject npc, int sheet)
+    /// <summary>Pone la hoja recortada a un NPC ya creado (sprite quieto, pies en su sitio, colisión solo en los pies).</summary>
+    public static bool Apply(GameObject npc, int sheet)
     {
         var frames = NpcSpriteSlicer.Load(sheet);
         if (frames.Length < 12 || !npc.TryGetComponent(out SpriteRenderer sr)) return false;

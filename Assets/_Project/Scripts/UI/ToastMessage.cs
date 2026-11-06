@@ -18,6 +18,13 @@ public class ToastMessage : MonoBehaviour
     {
         instance = this;
         group.alpha = 0f;
+
+        // Panel opaco con borde dorado para que el aviso se lea sobre cualquier escena
+        var panel = label.transform.parent != null ? label.transform.parent.GetComponent<UnityEngine.UI.Image>() : null;
+        label.fontSizeMax = label.fontSize;   // los avisos largos se encogen para caber en el panel
+        label.fontSizeMin = 18f;
+        label.enableAutoSizing = true;
+        if (panel != null) PixelUi.Restyle(panel, new Color(1f, 0.85f, 0.30f), new Color(0.06f, 0.08f, 0.16f, 0.96f));
     }
 
     void OnDestroy()

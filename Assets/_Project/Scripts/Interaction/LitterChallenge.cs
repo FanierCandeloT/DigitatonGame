@@ -72,7 +72,7 @@ public class LitterChallenge : Interactable
         new DialogueLine("Valentina", "The bottles are being thrown. The bin is being ignored. It is just... happening."),
         new DialogueLine("Andrés",
             "That is not right. The campus should be cleaned. Let me say it correctly.",
-            "Eso no está {right}. El campus {should be cleaned}. Déjame {say it} bien.",
+            "Eso no está bien. {The campus should be cleaned}. Déjame {say it correctly}.",
             "Eso no está bien. Hay que limpiar el campus. Déjame decirlo bien."),
     };
 
@@ -81,7 +81,7 @@ public class LitterChallenge : Interactable
         new DialogueLine("Valentina", "The bottles were collected by me! The campus is being cleaned, thanks to one sentence."),
         new DialogueLine("Andrés",
             "When the doer is named, things happen. I remember teaching this.",
-            "Cuando el {doer} es nombrado, las cosas {happen}. Ya recuerdo {teaching this}.",
+            "{When the doer is named}, las cosas pasan. Ya recuerdo cuando {I taught this}.",
             "Cuando se nombra a quien lo hace, las cosas pasan. Ya recuerdo que enseñaba esto."),
     };
 
@@ -257,7 +257,7 @@ public class LitterChallenge : Interactable
         bin.SetParent(student, true);
         yield return Say("The bin is collected! Bye, bin!", 1.2f, wait: false);
         yield return MoveTo(student, studentHome + new Vector3(3f, 0f, 0f));
-        yield return Wait(0.8f);
+        yield return PixelUi.Wait(0.8f);
         bin.SetParent(root, true);
         yield return MoveTo(bin, binHome, 8f);
         yield return MoveTo(student, studentHome);
@@ -271,11 +271,6 @@ public class LitterChallenge : Interactable
     }
 
     // ───────────── Animaciones sencillas ─────────────
-
-    static IEnumerator Wait(float seconds)
-    {
-        for (float t = 0f; t < seconds; t += Time.unscaledDeltaTime) yield return null;
-    }
 
     static IEnumerator MoveTo(Transform t, Vector3 target, float speed = 7f)
     {
@@ -349,7 +344,7 @@ public class LitterChallenge : Interactable
 
         if (wait)
         {
-            yield return Wait(seconds);
+            yield return PixelUi.Wait(seconds);
             if (go != null) Destroy(go);
         }
         else

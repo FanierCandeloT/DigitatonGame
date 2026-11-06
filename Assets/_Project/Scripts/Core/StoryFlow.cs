@@ -26,6 +26,8 @@ public static class StoryFlow
         "Then, one day, an accident happened.",
         "A scaffold was left unsecured. By whom? Nobody knows.",
         "Your memory has been lost.",
+        "And with it, his English. Only his mother tongue, Spanish, remains.",
+        "Every memory he recovers will bring his English back.",
     };
 
     public class Step
@@ -33,10 +35,12 @@ public static class StoryFlow
         public readonly string Id;          // el reto se marca como "done:{Id}" al completarse
         public readonly string Objective;   // texto del HUD (en inglés, como el resto del juego)
         public readonly bool Built;
+        public readonly string Title;       // nombre corto para la lista del cuaderno
 
-        public Step(string id, string objective, bool built)
+        public Step(string id, string title, string objective, bool built)
         {
             Id = id;
+            Title = title;
             Objective = objective;
             Built = built;
         }
@@ -44,11 +48,11 @@ public static class StoryFlow
 
     public static readonly Step[] Steps =
     {
-        new Step("q1_4", "Talk to Lucía, the nurse, to recover your first memories.", true),
-        new Step("r2_litter", "A student with a \"!\" near Aulas 1 is throwing bottles. Help her.", true),
-        new Step("r3_exams", "Find your students' exams in the Teachers' Room (inside Aulas 3).", true),
-        new Step("class1", "Remember your last class: use the podium in Aulas 2.", true),
-        new Step("r5_confrontation", "Face the contractor at the construction site.", false),
+        new Step("q1_4", "Lucía's neurons", "Talk to Lucía, the nurse, to recover your first memories.", true),
+        new Step("r2_litter", "The bottles", "A student with a \"!\" near Aulas 1 is throwing bottles. Help her.", true),
+        new Step("r3_exams", "The exams", "Find your students' exams in the Teachers' Room (inside Aulas 3).", true),
+        new Step("class1", "The last class", "Remember your last class: use the podium in Aulas 2.", true),
+        new Step("r5_confrontation", "The construction site", "Face the contractor at the construction site.", false),
     };
 
     /// <summary>Texto del objetivo actual: el primer reto construido que todavía no se completó.</summary>

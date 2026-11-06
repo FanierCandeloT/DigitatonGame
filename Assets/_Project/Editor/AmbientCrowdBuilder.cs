@@ -28,6 +28,9 @@ public static class AmbientCrowdBuilder
         (new[] { new Vector2(-30f, -10f), new Vector2(-22f, -10f), new Vector2(-22f, -3f), new Vector2(-30f, -3f) }, 1.2f),   // alrededor del Ágora
     };
 
+    // Peatones extra: los mismos caminos recorridos en sentido contrario (más gente sin inventar rutas que crucen edificios).
+    static readonly int[] ReversedRoutes = { 0, 2, 3, 4, 5, 8, 9 };
+
     // Las rutas de arriba se dibujaron con el mapa original; el campus quedó al 60 % ("mapa al 60 %"), así que se escalan.
     const float MapScale = 0.6f;
 
@@ -66,15 +69,19 @@ public static class AmbientCrowdBuilder
 
         var rootGo = new GameObject("Peatones del Campus");
         var crowd = rootGo.AddComponent<AmbientCrowd>();
-        var walkers = new AmbientWalker[Routes.Length];
+        var walkers = new AmbientWalker[Routes.Length + ReversedRoutes.Length];
 
-        for (int i = 0; i < Routes.Length; i++)
+        for (int i = 0; i < walkers.Length; i++)
         {
-            var (rawPoints, speed) = Routes[i];
+            bool reversed = i >= Routes.Length;
+            var (rawPoints, speed) = Routes[reversed ? ReversedRoutes[i - Routes.Length] : i];
             var points = new Vector2[rawPoints.Length];
-            for (int p = 0; p < points.Length; p++) points[p] = rawPoints[p] * MapScale;
+            for (int p = 0; p < points.Length; p++)
+                points[p] = rawPoints[reversed ? points.Length - 1 - p : p] * MapScale;
+            if (reversed) speed *= 0.9f;
 
-            var frames = NpcSpriteSlicer.Load(Sheets[i % Sheets.Length]);
+            // Los extra usan hojas desfasadas para que no se repita el mismo personaje en la misma ruta
+            var frames = NpcSpriteSlicer.Load(Sheets[(i + (reversed ? 5 : 0)) % Sheets.Length]);
             var go = new GameObject("Peatón " + (i + 1));
             go.transform.SetParent(rootGo.transform, false);
             go.transform.position = points[0];
