@@ -132,20 +132,22 @@ public class AudioManager : MonoBehaviour
 
     void Awake()
     {
-        if (instance != null && instance != this) { Destroy(this); return; }
+        // Una sola copia: si por cualquier motivo aparece otra, se destruye ENTERA (con sus AudioSources), no solo el componente
+        if (instance != null && instance != this) { Destroy(gameObject); return; }
         instance = this;
         SettingsData.MigrateVolumes();   // los volúmenes que dejó el bug de los sliders (0..100) se restablecen una sola vez
-
-        musicSource = NewSource("Música", musicGroup, loop: true, ambient);
-        sfxPool = new AudioSource[SfxPoolSize];
-        for (int i = 0; i < SfxPoolSize; i++) sfxPool[i] = NewSource("Efecto " + i, sfxGroup, loop: false, null);
-        stepsSource = NewSource("Pasos", sfxGroup, loop: true, steps);
-        textSource = NewSource("Texto de diálogos", sfxGroup, loop: true, writeText);   // un solo canal: el "tic" y el loop nunca se superponen
-        musicSource.volume = 0f;
-        stepsSource.volume = 0f;
-        textSource.volume = writeTextLevel;
-
+        EnsureSources();
         ApplyVolumes();
+    }
+
+    /// <summary>Crea los AudioSources que falten (también los vuelve a crear si algo los destruyó): el sonido no depende de que sigan vivos.</summary>
+    void EnsureSources()
+    {
+        if (musicSource == null) { musicSource = NewSource("Música", musicGroup, loop: true, ambient); musicSource.volume = 0f; }
+        if (sfxPool == null || sfxPool.Length != SfxPoolSize) sfxPool = new AudioSource[SfxPoolSize];
+        for (int i = 0; i < SfxPoolSize; i++) if (sfxPool[i] == null) sfxPool[i] = NewSource("Efecto " + i, sfxGroup, loop: false, null);
+        if (stepsSource == null) { stepsSource = NewSource("Pasos", sfxGroup, loop: true, steps); stepsSource.volume = 0f; }
+        if (textSource == null) { textSource = NewSource("Texto de diálogos", sfxGroup, loop: true, writeText); textSource.volume = writeTextLevel; }   // un solo canal: el "tic" y el loop nunca se superponen
     }
 
     AudioSource NewSource(string sourceName, AudioMixerGroup group, bool loop, AudioClip clip)
@@ -190,6 +192,16 @@ public class AudioManager : MonoBehaviour
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        // En CADA carga de escena (no solo la primera): el audio queda en un estado limpio y los botones nuevos se conectan.
+        Time.timeScale = GameManager.Exists && GameManager.Instance.IsPaused ? Time.timeScale : 1f;
+        AudioListener.pause = false;
+        AudioListener.volume = 1f;
+        EnsureSources();
+        ResetSnapshot();
+        ApplyVolumes();
+        lastSelected = null;
+        ConnectSelectables();
+
         // Sin música en el menú ni en el tutorial: al volver al menú se apaga con fundido.
         if (System.Array.IndexOf(SilentScenes, scene.name) >= 0) EndMusic();
     }
@@ -197,6 +209,14 @@ public class AudioManager : MonoBehaviour
     // ───────────── Volumen (sliders de Settings → AudioMixer) ─────────────
 
     static float ToDecibels(float linear) => linear <= 0.0001f ? -80f : Mathf.Clamp(20f * Mathf.Log10(linear), -80f, 0f);
+
+    /// <summary>Deja activo el snapshot por defecto del GameMixer (ninguno debe quedar con el volumen bajo).</summary>
+    void ResetSnapshot()
+    {
+        if (mixer == null) return;
+        var snapshot = mixer.FindSnapshot("Snapshot");
+        if (snapshot != null) snapshot.TransitionTo(0f);
+    }
 
     void ApplyVolumes()
     {
@@ -296,6 +316,7 @@ public class AudioManager : MonoBehaviour
 
     void Update()
     {
+        EnsureSources();
         UpdateSteps();
         UpdateText();
     }
@@ -396,7 +417,9 @@ public class AudioManager : MonoBehaviour
     }
 
     // Clic automático: cualquier Button que aparezca (menús, pausa, minijuegos, botones nuevos) recibe el sonido sin configurarlo.
-    void AddClickToNewButtons()
+    void AddClickToNewButtons() => ConnectSelectables();
+
+    void ConnectSelectables()
     {
         int n = Selectable.allSelectableCount;
         if (selectableBuffer.Length < n) selectableBuffer = new Selectable[n + 32];

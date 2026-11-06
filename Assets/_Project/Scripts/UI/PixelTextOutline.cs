@@ -14,7 +14,10 @@ public class PixelTextOutline : MonoBehaviour
     public float offset = 2f;
     public Color outlineColor = new Color(0.08f, 0.03f, 0.02f, 1f);
 
+    static readonly Vector2[] Dirs = { new Vector2(-1, -1), new Vector2(1, -1), new Vector2(-1, 1), new Vector2(1, 1) };
+
     string lastText;
+    Vector2 lastPos, lastRectSize;
     Color lastColor;
     float lastSize = -1f;
     bool lastActive = true;
@@ -29,6 +32,21 @@ public class PixelTextOutline : MonoBehaviour
             foreach (var c in copies) if (c != null) c.gameObject.SetActive(active);
         }
         if (!active) return;
+
+        // si el texto cambia de tamaño o de lugar (paneles que se ajustan al contenido), las copias lo siguen
+        var src = label.rectTransform;
+        if (src.anchoredPosition != lastPos || src.sizeDelta != lastRectSize)
+        {
+            lastPos = src.anchoredPosition; lastRectSize = src.sizeDelta;
+            for (int i = 0; i < copies.Length; i++)
+            {
+                if (copies[i] == null) continue;
+                var rt = copies[i].rectTransform;
+                rt.sizeDelta = src.sizeDelta;
+                rt.anchoredPosition = src.anchoredPosition + Dirs[i % 4] * offset;
+            }
+        }
+
         if (label.text == lastText && label.color == lastColor && Mathf.Approximately(label.fontSize, lastSize)) return;
         lastText = label.text; lastColor = label.color; lastSize = label.fontSize;
         foreach (var c in copies)
