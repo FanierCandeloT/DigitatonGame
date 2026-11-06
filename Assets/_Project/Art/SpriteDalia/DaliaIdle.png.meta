@@ -1,0 +1,886 @@
+fileFormatVersion: 2
+guid: 4f6fa335fed9b694b9bb044db9bd4be9
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 4271281499298948694
+    second: DaliaIdle_0
+  - first:
+      213: 4921529075727729646
+    second: DaliaIdle_1
+  - first:
+      213: -8352948068860840735
+    second: DaliaIdle_2
+  - first:
+      213: 5256288174559695206
+    second: DaliaIdle_3
+  - first:
+      213: -5436452325081072482
+    second: DaliaIdle_4
+  - first:
+      213: 7420009676193867922
+    second: DaliaIdle_5
+  - first:
+      213: -5159748366822234593
+    second: DaliaIdle_6
+  - first:
+      213: 4574093890227681337
+    second: DaliaIdle_7
+  - first:
+      213: 1018153945183225825
+    second: DaliaIdle_8
+  - first:
+      213: -1087901143794859039
+    second: DaliaIdle_9
+  - first:
+      213: -1862917213587761564
+    second: DaliaIdle_10
+  - first:
+      213: 272441116459351753
+    second: DaliaIdle_11
+  - first:
+      213: -1625933010858013161
+    second: DaliaIdle_12
+  - first:
+      213: 7252298898407881681
+    second: DaliaIdle_13
+  - first:
+      213: -5560287840193609409
+    second: DaliaIdle_14
+  - first:
+      213: 3521001901947434618
+    second: DaliaIdle_15
+  - first:
+      213: -2553888452850774961
+    second: DaliaIdle_16
+  - first:
+      213: 1856119246980333168
+    second: DaliaIdle_17
+  - first:
+      213: 832018196315351966
+    second: DaliaIdle_18
+  - first:
+      213: 4818237799914349090
+    second: DaliaIdle_19
+  - first:
+      213: 2458918866524638763
+    second: DaliaIdle_20
+  - first:
+      213: 8206158664592963887
+    second: DaliaIdle_21
+  - first:
+      213: 6865401358159908636
+    second: DaliaIdle_22
+  - first:
+      213: 3852110672250006084
+    second: DaliaIdle_23
+  - first:
+      213: 8332644109528617760
+    second: DaliaIdle_24
+  - first:
+      213: -1573793197452096493
+    second: DaliaIdle_25
+  - first:
+      213: -1342924820744988822
+    second: DaliaIdle_26
+  - first:
+      213: -6566618561363009036
+    second: DaliaIdle_27
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationMethod: 0
+  spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: DaliaIdle_0
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 727
+        width: 25
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6566965b4e3a64b30800000000000000
+      internalID: 4271281499298948694
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DaliaIdle_1
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 750
+        width: 13
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ee302867e98cc4440800000000000000
+      internalID: 4921529075727729646
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DaliaIdle_2
+      rect:
+        serializedVersion: 2
+        x: 126
+        y: 734
+        width: 17
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1e4b348bcfd541c80800000000000000
+      internalID: -8352948068860840735
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DaliaIdle_3
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 693
+        width: 65
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 66197b9ee3612f840800000000000000
+      internalID: 5256288174559695206
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DaliaIdle_4
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 709
+        width: 95
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e9c3235f967dd84b0800000000000000
+      internalID: -5436452325081072482
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DaliaIdle_5
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 727
+        width: 31
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2982f73dc7b29f660800000000000000
+      internalID: 7420009676193867922
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DaliaIdle_6
+      rect:
+        serializedVersion: 2
+        x: 337
+        y: 703
+        width: 34
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f16a829a234e468b0800000000000000
+      internalID: -5159748366822234593
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DaliaIdle_7
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 705
+        width: 171
+        height: 203
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9383e4898227a7f30800000000000000
+      internalID: 4574093890227681337
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DaliaIdle_8
+      rect:
+        serializedVersion: 2
+        x: 570
+        y: 703
+        width: 23
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1e70f456e95312e00800000000000000
+      internalID: 1018153945183225825
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DaliaIdle_9
+      rect:
+        serializedVersion: 2
+        x: 630
+        y: 719
+        width: 125
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1e3cd557caff6e0f0800000000000000
+      internalID: -1087901143794859039
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DaliaIdle_10
+      rect:
+        serializedVersion: 2
+        x: 758
+        y: 719
+        width: 69
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 46614261aa69526e0800000000000000
+      internalID: -1862917213587761564
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DaliaIdle_11
+      rect:
+        serializedVersion: 2
+        x: 848
+        y: 727
+        width: 49
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ce35c080c7e7c300800000000000000
+      internalID: 272441116459351753
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DaliaIdle_12
+      rect:
+        serializedVersion: 2
+        x: 918
+        y: 711
+        width: 91
+        height: 83
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 71e0a3b8a868f69e0800000000000000
+      internalID: -1625933010858013161
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DaliaIdle_13
+      rect:
+        serializedVersion: 2
+        x: 1038
+        y: 735
+        width: 23
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1dbfe8c7c6755a460800000000000000
+      internalID: 7252298898407881681
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DaliaIdle_14
+      rect:
+        serializedVersion: 2
+        x: 1054
+        y: 719
+        width: 17
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f3106544ba3e5d2b0800000000000000
+      internalID: -5560287840193609409
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DaliaIdle_15
+      rect:
+        serializedVersion: 2
+        x: 1060
+        y: 735
+        width: 11
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a763d03239c1dd030800000000000000
+      internalID: 3521001901947434618
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DaliaIdle_16
+      rect:
+        serializedVersion: 2
+        x: 1070
+        y: 733
+        width: 29
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f4c8bd3bbf3ce8cd0800000000000000
+      internalID: -2553888452850774961
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DaliaIdle_17
+      rect:
+        serializedVersion: 2
+        x: 1084
+        y: 719
+        width: 51
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 07e3709fe9242c910800000000000000
+      internalID: 1856119246980333168
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DaliaIdle_18
+      rect:
+        serializedVersion: 2
+        x: 1150
+        y: 703
+        width: 179
+        height: 83
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e9ba90e242ceb8b00800000000000000
+      internalID: 832018196315351966
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DaliaIdle_19
+      rect:
+        serializedVersion: 2
+        x: 1344
+        y: 719
+        width: 123
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 222214b30c1ddd240800000000000000
+      internalID: 4818237799914349090
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DaliaIdle_20
+      rect:
+        serializedVersion: 2
+        x: 1464
+        y: 719
+        width: 43
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b2e05b26ea5df1220800000000000000
+      internalID: 2458918866524638763
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DaliaIdle_21
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 29
+        width: 1505
+        height: 667
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f29be8dc3d122e170800000000000000
+      internalID: 8206158664592963887
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DaliaIdle_22
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 273
+        width: 9
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c1f0b99292ec64f50800000000000000
+      internalID: 6865401358159908636
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DaliaIdle_23
+      rect:
+        serializedVersion: 2
+        x: 334
+        y: 271
+        width: 9
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 44ae3fe3f32757530800000000000000
+      internalID: 3852110672250006084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DaliaIdle_24
+      rect:
+        serializedVersion: 2
+        x: 407
+        y: 287
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 023543c5baf73a370800000000000000
+      internalID: 8332644109528617760
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DaliaIdle_25
+      rect:
+        serializedVersion: 2
+        x: 1248
+        y: 271
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 31c01fbdc63c82ae0800000000000000
+      internalID: -1573793197452096493
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DaliaIdle_26
+      rect:
+        serializedVersion: 2
+        x: 1340
+        y: 273
+        width: 196
+        height: 409
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a67907b9df8fc5de0800000000000000
+      internalID: -1342924820744988822
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DaliaIdle_27
+      rect:
+        serializedVersion: 2
+        x: 1354
+        y: 263
+        width: 15
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4f1a87ab53faed4a0800000000000000
+      internalID: -6566618561363009036
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      DaliaIdle_0: 4271281499298948694
+      DaliaIdle_1: 4921529075727729646
+      DaliaIdle_10: -1862917213587761564
+      DaliaIdle_11: 272441116459351753
+      DaliaIdle_12: -1625933010858013161
+      DaliaIdle_13: 7252298898407881681
+      DaliaIdle_14: -5560287840193609409
+      DaliaIdle_15: 3521001901947434618
+      DaliaIdle_16: -2553888452850774961
+      DaliaIdle_17: 1856119246980333168
+      DaliaIdle_18: 832018196315351966
+      DaliaIdle_19: 4818237799914349090
+      DaliaIdle_2: -8352948068860840735
+      DaliaIdle_20: 2458918866524638763
+      DaliaIdle_21: 8206158664592963887
+      DaliaIdle_22: 6865401358159908636
+      DaliaIdle_23: 3852110672250006084
+      DaliaIdle_24: 8332644109528617760
+      DaliaIdle_25: -1573793197452096493
+      DaliaIdle_26: -1342924820744988822
+      DaliaIdle_27: -6566618561363009036
+      DaliaIdle_3: 5256288174559695206
+      DaliaIdle_4: -5436452325081072482
+      DaliaIdle_5: 7420009676193867922
+      DaliaIdle_6: -5159748366822234593
+      DaliaIdle_7: 4574093890227681337
+      DaliaIdle_8: 1018153945183225825
+      DaliaIdle_9: -1087901143794859039
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
