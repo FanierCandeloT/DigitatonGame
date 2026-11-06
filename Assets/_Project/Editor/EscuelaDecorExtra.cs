@@ -41,7 +41,7 @@ public static class EscuelaDecorExtra
         packCache.Clear();
         EnsureGarbageSlices();
 
-        foreach (var scene in new[] { "Campus", "Aulas1", "Aulas2", "Aulas3", "Aulas4", "EdificioCentral", "Sotanos", "Bienestar",
+        foreach (var scene in new[] { "Campus", "Aulas1", "Aulas2", "Aulas3", "Aulas4", "Sotanos", "Bienestar",
                                       "Cafeteria", "SalaProfesores", "TechoAulas3", "MuseoLili" })
         {
             var path = $"{ScenesDir}{scene}.unity";

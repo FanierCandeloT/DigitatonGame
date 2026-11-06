@@ -1610,7 +1610,7 @@ Transform:
   m_GameObject: {fileID: 7326939738292818844}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -69, y: -11.04, z: 0}
+  m_LocalPosition: {x: 36.18, y: -30.000002, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1689,8 +1689,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AmbientWalker
   path:
-  - {x: -69, y: -11.04}
-  - {x: -27.000002, y: -11.04}
+  - {x: 36.18, y: -30.000002}
+  - {x: 36.18, y: 14.400001}
   speed: 1.5
   pauseSeconds: 2.4
   timeOffset: 109.6
@@ -2237,7 +2237,7 @@ Transform:
   m_GameObject: {fileID: 9034482053106556446}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -27.000002, y: -11.04, z: 0}
+  m_LocalPosition: {x: 36.18, y: 14.400001, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2316,8 +2316,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AmbientWalker
   path:
-  - {x: -27.000002, y: -11.04}
-  - {x: -69, y: -11.04}
+  - {x: 36.18, y: 14.400001}
+  - {x: 36.18, y: -30.000002}
   speed: 1.3499999
   pauseSeconds: 1.8000001
   timeOffset: 219.2

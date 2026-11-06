@@ -24,9 +24,6 @@ EditorBuildSettings:
     path: Assets/_Project/Scenes/Aulas4.unity
     guid: fd88d03d6cd5e784287e8c27d45e6769
   - enabled: 1
-    path: Assets/_Project/Scenes/EdificioCentral.unity
-    guid: e5ab9f1264fccbd4ba168440783c3767
-  - enabled: 1
     path: Assets/_Project/Scenes/Sotanos.unity
     guid: b2fc32a2b0ccd8f4d93b67c0e4cad519
   - enabled: 1

@@ -21,7 +21,7 @@ public static class MapScaleTool
     const string MarkerPrefix = "Escala del mapa (x";
     static readonly string[] Scenes =
     {
-        "Campus", "Aulas1", "Aulas2", "Aulas3", "Aulas4", "EdificioCentral", "Sotanos", "Bienestar",
+        "Campus", "Aulas1", "Aulas2", "Aulas3", "Aulas4", "Sotanos", "Bienestar",
         "Cafeteria", "SalaProfesores", "TechoAulas3", "MuseoLili",
     };
 
