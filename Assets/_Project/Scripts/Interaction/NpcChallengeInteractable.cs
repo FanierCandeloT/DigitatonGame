@@ -121,6 +121,8 @@ public class NpcChallengeInteractable : Interactable
             "Ahora lo recuerdo... soy profesor. Enseñaba inglés en mi salón."));
         lines.Add(new DialogueLine("Lucía", "Take this notebook. It's yours. Everything you remember should be written down in it."));
         lines.Add(new DialogueLine("Lucía", "Your tasks are listed there, and after each one you can read what you did well and what to review. Press C to open it."));
+        lines.Add(new DialogueLine("Lucía", "And here, take this map too. It will help you find your way around the campus."));
+        lines.Add(new DialogueLine("Lucía", "You will see it in the top left corner. The \"!\" shows where your next task is."));
         lines.Add(new DialogueLine("Lucía", "The campus can be explored now. Your other memories are waiting there."));
         return lines.ToArray();
     }

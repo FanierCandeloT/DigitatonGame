@@ -53,6 +53,8 @@ public static class StoryFlow
         new Step("r3_exams", "The exams", "Find your students' exams in the Teachers' Room (inside Aulas 3).", true),
         new Step("class1", "The last class", "Remember your last class: use the podium in Aulas 2.", true),
         new Step("r5_confrontation", "The construction site", "Face the contractor at the construction site.", false),
+        // Último reto: después de la clase se va la luz de todo el campus (BlackoutDirector) y hay que arreglar los paneles solares
+        new Step("r6_solar", "The blackout", "The power is out! Climb to the roof of Aulas 3 and reconnect the solar panels.", true),
     };
 
     /// <summary>Texto del objetivo actual: el primer reto construido que todavía no se completó.</summary>

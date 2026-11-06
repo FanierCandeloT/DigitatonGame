@@ -26,7 +26,10 @@ confusión (habla en español entrecortado) → recuperación técnica (mezcla e
 | 3 | Sala de profesores | `SalaProfesores` (por Aulas 3) | Pila de exámenes con "!" | Corregir exámenes con bloques + libro que se completa | Transformar activa a pasiva | 8 y 12 | `r3_exams` | +2 → 8 | **Fluida** | **Hecho** |
 | 4 | Recuerdo de clase | `Aulas2` (atril) | Después del reto 3 | "Atrapa el error" (flashback) | Reconocer errores | 8 y 12 | `class1` | +2 → 10 | Fluida | **Hecho** |
 | 5 | La obra | Obra del campus | Pista del reto 4 | La confrontación (preguntas con bloques) | Preguntas en pasiva y agente | 8 y 12 | `r5_confrontation` | +2 → 12 | Fluida | Pendiente |
-| 6 | Cierre | Resultados | Al terminar el reto 5 | Pantalla de resultados | — | — | — | — | Fluida | Pendiente |
+| 6 | **El apagón (reto final)** | `TechoAulas3` (escalera en el pasillo de `Aulas3`) | Al terminar la clase (reto 4) se va la luz de todo el campus y una estudiante se acerca a Andrés | Reconectar 3 circuitos de paneles solares con frases en pasiva (pasado, presente perfecto y futuro) | Tiempos de la pasiva + agente (`by me`) | 7/8/12 | `r6_solar` | +2 | Fluida | **Hecho** (ver sección 4.6) |
+| 7 | Cierre | Resultados | Al terminar el reto 6 (o el 5, si se construye) | Pantalla de resultados | — | — | — | — | Fluida | Hecho (la abre el reto 6) |
+
+> **Nota de orden:** el apagón empieza justo después del reto 4 (`done:class1`), aunque el reto 5 siga pendiente. Si se construye el reto 5, hay que decidir si va antes del apagón o si el apagón pasa a ser el último paso.
 
 **Condiciones que conectan los pasos**
 - Andrés empieza en `Bienestar` (cama) y **no puede salir** hasta completar el reto 1 (la puerta dice "Lucía: You must rest a little more.").
@@ -91,6 +94,20 @@ confusión (habla en español entrecortado) → recuperación técnica (mezcla e
 - Cada pregunta bien hecha suma una pieza al tablero de evidencias (ODS 8: salarios y cascos; ODS 12: material desperdiciado).
 - **Contratista:** "...It was decided by the company. And the scaffold was left by... by me."
 - **Andrés** (cierre, con bloques): "The workers will be heard by me."
+
+### 4.6. El apagón y los paneles solares (hecho: `BlackoutDirector.cs`, `SolarPuzzleChallenge.cs`)
+*Al cerrar el diálogo de la clase, las luces parpadean y todo el campus queda a oscuras (en todas las escenas, hasta que se arregle). Valentina (o el NPC más cercano) camina hasta Andrés.*
+- **Valentina:** "Professor! The lights were turned off! The whole campus is in the dark!"
+- **Andrés:** "What happened? Who turned them off?"
+- **Valentina:** "Nobody knows... It is said that the solar panels on the roof of Aulas 3 were disconnected."
+- **Valentina:** "They can only be reconnected by the right sentences. Please, go up to the roof! The stairs are in the hallway of Aulas 3."
+- **Andrés:** "The panels were disconnected... Then they will be reconnected. By me."
+- El objetivo del HUD y la "!" del mapa pasan a la entrada de `Aulas3`. En el techo, la **caja de control** (con "!") abre 3 circuitos; cada uno muestra una frase activa para decirla en pasiva con bloques:
+  1. "The company cut the cables." → *The cables were cut by the company.* (pasado)
+  2. "The workers have cleaned the panels." → *The panels have been cleaned by the workers.* (presente perfecto)
+  3. "I will restore the power." → *The power will be restored by me.* (futuro, agente "me")
+- Cada circuito bien dicho enciende una fila de paneles (con luz propia sobre el techo oscuro). Errores: el circuito chispea y el panel da una guía sin la respuesta (concordancia, tiempo, participio, 'be', agente; sin agente "nadie actúa").
+- Al terminar: vuelve la luz, **Andrés** dice "The lights are back! The power was restored by me." / "I remember everything now: who I am, and who did what." / "In this country, everything was done by nobody. That ends today." / **"The workers will be heard by me."** y se abre la pantalla de resultados.
 
 ### 6. Cierre
 - Captions: "Andrés remembered who he was." · "Not because things were done to him..." · "...but because he named himself as the doer."

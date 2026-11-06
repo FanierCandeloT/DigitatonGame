@@ -331,7 +331,16 @@ public static class EscuelaDecorator
         sr.sprite = s;
         sr.drawMode = SpriteDrawMode.Simple;
         Clean(sr);
+
+        // El placeholder venía estirado por la escala del transform (muebles de 2-3,8x, o aplastados a 0,8x en un eje).
+        // Un sprite estirado desigual se ve raro junto a Andrés: se deja uniforme y como mucho a 1,5x el tamaño del sprite.
+        var ls = sr.transform.localScale;
+        float u = Mathf.Clamp(Mathf.Sqrt(Mathf.Abs(ls.x * ls.y)), 1f, MaxPropScale);
+        sr.transform.localScale = new Vector3(u, u, ls.z);
     }
+
+    /// <summary>Tope de ampliación de un mueble con sprite (más que eso se ve pixelado y desproporcionado).</summary>
+    const float MaxPropScale = 1.5f;
 
     static int DecorateInterior(Scene sc, string scene, Dictionary<string, Sprite> sp)
     {
@@ -438,17 +447,32 @@ public static class EscuelaDecorator
     /// <summary>Puerta doble si el hueco es horizontal (pared norte/sur), puerta sencilla si es vertical (pared este/oeste).</summary>
     static void DoorSprite(SpriteRenderer sr, Dictionary<string, Sprite> sp)
     {
-        var box = sr.TryGetComponent(out BoxCollider2D col) ? col.size : sr.size;
-        Prop(sr, box.x >= box.y ? sp["door_double_red"] : sp["door_single_window"]);
+        // Zona de interacción en el mundo (no cambia: solo cambia lo que se ve)
+        bool hasBox = sr.TryGetComponent(out BoxCollider2D col);
+        var lossy = sr.transform.lossyScale;
+        var worldBox = hasBox ? new Vector2(col.size.x * Mathf.Abs(lossy.x), col.size.y * Mathf.Abs(lossy.y)) : sr.size;
+        bool horizontal = worldBox.x >= worldBox.y;
+
+        sr.sprite = horizontal ? sp["door_double_red"] : sp["door_single_window"];
+        sr.drawMode = SpriteDrawMode.Simple;
+        Clean(sr);
+
+        // Escala UNIFORME (antes la puerta doble estaba aplastada a 3 x 1,5 u: más baja que Andrés, que mide ~2,2 u).
+        // Doble: 3,2 x 2,5 u. Sencilla: 1,7 x 3 u.
+        float scale = horizontal ? DoubleDoorScale : SingleDoorScale;
+        sr.transform.localScale = new Vector3(scale, scale, 1f);
+        if (hasBox) col.size = new Vector2(worldBox.x / scale, worldBox.y / scale);
     }
+
+    const float DoubleDoorScale = 1.25f, SingleDoorScale = 1.67f;
 
     /// <summary>Cambia el cilindro verde por un árbol de ~3 u de alto, con el pie del tronco en el punto de colisión.</summary>
     static void ReplacePalm(SpriteRenderer sr, Sprite tree)
     {
         if (tree == null) return;
         float scale = 3f / tree.bounds.size.y;
-        sr.transform.localScale = Vector3.one * scale;
         Prop(sr, tree);
+        sr.transform.localScale = Vector3.one * scale;   // después de Prop: Prop deja la escala en 1 o más
         if (sr.TryGetComponent(out CircleCollider2D col))
         {
             col.radius = 0.22f / scale;

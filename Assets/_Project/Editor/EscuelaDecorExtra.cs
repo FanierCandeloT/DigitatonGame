@@ -226,6 +226,21 @@ public static class EscuelaDecorExtra
         return go;
     }
 
+    /// <summary>
+    /// Ajuste de proporción respecto a Andrés (mide ~2,2 u de alto). Los sprites del pack son de 16 px por casilla y vienen
+    /// muy pequeños: un auto medía 2,5 x 3,7 u (más bajo que una persona en largo). Se multiplica el tamaño de cada familia:
+    /// vehículos y contenedores x1,5; farolas x1,8 (antes más bajas que Andrés); canecas x1,3; basura x0,45 (los montones medían ~6 u).
+    /// </summary>
+    static float ScaleFor(Sprite s)
+    {
+        string n = s.name;
+        if (n.StartsWith("Car_") || n.StartsWith("Container_")) return 1.5f;
+        if (n == "garbage_a" || n == "garbage_b") return 0.45f;
+        if (n == "deco_lamp") return 1.8f;
+        if (n.StartsWith("deco_bin")) return 1.3f;
+        return 1f;
+    }
+
     /// <summary>Huella en el suelo de un objeto de pie: ancho del sprite y una franja de ~0,3 u desde su base.</summary>
     static Rect Footprint(Sprite s, Vector2 foot, float scale)
     {
@@ -240,6 +255,7 @@ public static class EscuelaDecorExtra
     static GameObject Place(Transform parent, Sprite s, Vector2 foot, string name, int order = 0, bool solid = false, float scale = 1f, bool flip = false)
     {
         if (s == null) return null;
+        scale *= ScaleFor(s);
         bool standing = order >= 0;
         Rect fp = default;
         if (standing)
@@ -494,7 +510,8 @@ public static class EscuelaDecorExtra
     static void SotanosItems(List<(string key, float x, float y, int order, bool solid, float scale)> l)
     {
         const string B = "Objects/Buildings/";
-        l.Add(It("p:" + C + "Container_3_Gray_Horizontal.png", -12f, 4.2f, 0, true)); l.Add(It("p:" + C + "Container_7_Red_Horizontal.png", 12f, 4.2f, 0, true));
+        // 0,67 x 1,5 (el ajuste general de contenedores): en el sótano, que es bajito, se quedan a su tamaño del pack
+        l.Add(It("p:" + C + "Container_3_Gray_Horizontal.png", -12f, 4.2f, 0, true, 0.67f)); l.Add(It("p:" + C + "Container_7_Red_Horizontal.png", 12f, 4.2f, 0, true, 0.67f));
         l.Add(It("g:0", -20f, -5.6f, 0, false, 0.8f)); l.Add(It("g:1", -3f, 5.4f, 0, false, 0.7f));
         l.Add(It("g:1", 16f, -5.8f, 0, false, 0.8f)); l.Add(It("g:0", 26f, 5.4f, 0, false, 0.7f));
         l.Add(It("p:" + B + "Air-vent_2_rusty.png", -4f, 6.6f, WallDecal)); l.Add(It("p:" + B + "Air-vent_4_rusty.png", 20f, 6.6f, WallDecal));
@@ -734,10 +751,11 @@ public static class EscuelaDecorExtra
             var access = find("Vía de acceso norte");
             float accessX = access != null ? access.transform.position.x : float.NaN;
 
-            var rows = parkN.height >= 12f ? new[] { parkN.yMin + 0.5f, parkN.yMax - 4.3f } : new[] { parkN.center.y - 1.8f };
+            // Un auto mide ~5,6 u de largo (x1,5): dos filas caben si el parqueadero mide al menos ~13 u de alto
+            var rows = parkN.height >= 13f ? new[] { parkN.yMin + 0.5f, parkN.yMax - 5.9f } : new[] { parkN.center.y - 2.8f };
             foreach (float rowY in rows)
             {
-                for (float x = parkN.xMin + 2.5f; x <= parkN.xMax - 2.5f; x += 5.4f)
+                for (float x = parkN.xMin + 2.8f; x <= parkN.xMax - 2.8f; x += 5.4f)
                 {
                     bool nearAccess = !float.IsNaN(accessX) && Mathf.Abs(x - accessX) < 3.5f && rowY > parkN.center.y;
                     if (nearAccess || rng.NextDouble() < 0.4) continue;
@@ -749,7 +767,7 @@ public static class EscuelaDecorExtra
                     var line = Put(root, white, new Vector2(x, rowY - 0.2f), "Línea de parqueo", -84, false);
                     if (line == null) continue;
                     var sr = line.GetComponent<SpriteRenderer>();
-                    sr.drawMode = SpriteDrawMode.Sliced; sr.size = new Vector2(0.16f, 4.4f); sr.color = new Color(1f, 1f, 1f, 0.55f);
+                    sr.drawMode = SpriteDrawMode.Sliced; sr.size = new Vector2(0.16f, 5.8f); sr.color = new Color(1f, 1f, 1f, 0.55f);
                 }
             }
             n += Place(root, Garbage(0), At(parkN, 0.07f, 0.82f), "Basura", 0, false, 0.9f) != null ? 1 : 0;
@@ -762,7 +780,7 @@ public static class EscuelaDecorExtra
         {
             n += Place(root, Pk(V + "Overgrown/Car_8_Overgrown_Bus/Dark-Green/Car_8_Overgrown_Dark-Green_Orange_Bus.png"), At(parkS, 0.22f, 0.12f), "Bus abandonado", 0, true) != null ? 1 : 0;
             n += Place(root, Pk(V + "Overgrown/Car_8_Overgrown_Bus/Green/Car_8_Overgrown_Green_Blue_Bus.png"), At(parkS, 0.78f, 0.12f), "Bus abandonado", 0, true) != null ? 1 : 0;
-            n += Place(root, Pk(V + "Rust/Car_7_Rust_Truck/Car_7_Rust_Red_Truck_.png"), At(parkS, 0.50f, 0.2f), "Camión oxidado", 0, true) != null ? 1 : 0;
+            n += Place(root, Pk(RustCars[1]), At(parkS, 0.50f, 0.12f), "Auto abandonado", 0, true) != null ? 1 : 0;
             n += Place(root, Garbage(1), At(parkS, 0.95f, 0.15f), "Basura", 0, false, 0.8f) != null ? 1 : 0;
         }
         return n;
@@ -846,7 +864,7 @@ public static class EscuelaDecorExtra
                 var dp = (Vector2)d.transform.position;
                 if (!d.name.StartsWith("Puerta") || dp.x < basePos.x - W / 2f || dp.x > basePos.x + W / 2f || Mathf.Abs(dp.y - basePos.y) > 2.5f) continue;
                 var aw = Pk($"Objects/Buildings/Awning_{awning}_1.png");
-                n += PutLocal(t, aw, new Vector2(dp.x - basePos.x, dp.y - basePos.y + 1.1f), "Toldo", 2, 1f) ? 1 : 0;
+                n += PutLocal(t, aw, new Vector2(dp.x - basePos.x, dp.y - basePos.y + 1.45f), "Toldo", 2, 1f) ? 1 : 0;   // sobre la puerta (que ahora mide 2,5 u)
             }
         }
 
@@ -928,6 +946,14 @@ public static class EscuelaDecorExtra
             if (go == null) continue;
             var sr = go.GetComponent<SpriteRenderer>();
             bool alreadyAdjusted = go.transform.Find("[Base ajustada]") != null || (sr.sprite != null && sr.sprite.name.StartsWith("Enterance"));
+
+            // Escala uniforme (venía aplastada a 3,6 x 2 u) sin cambiar la zona de interacción en el mundo
+            bool hasBox = go.TryGetComponent(out BoxCollider2D box);
+            var lossy = go.transform.lossyScale;
+            var worldBox = hasBox ? new Vector2(box.size.x * Mathf.Abs(lossy.x), box.size.y * Mathf.Abs(lossy.y)) : Vector2.zero;
+            go.transform.localScale = Vector3.one * 1.15f;
+            if (hasBox) box.size = worldBox / 1.15f;
+
             sr.sprite = Pk(rel); sr.drawMode = SpriteDrawMode.Simple; sr.color = Color.white;
             if (go.TryGetComponent(out PlaceholderInfo info)) { info.applyKindColor = false; info.showLabel = false; }
             // el sprite tiene el pivote abajo: se baja para que su base quede en la base de la zona de la puerta (solo la primera vez)
