@@ -67,11 +67,48 @@ public class CameraRigBinder : MonoBehaviour
         if (bounds != null && confiner != null)
         {
             confiner.BoundingShape2D = bounds.Shape;
+            boundsBox = bounds.GetComponent<BoxCollider2D>();
+            if (boundsBox != null) authoredBoundsSize = boundsBox.size;
+            FitBoundsToView();
             confiner.InvalidateBoundingShapeCache();
         }
         else if (bounds == null)
         {
             Debug.LogWarning("CameraRig: no hay MapBounds en la escena; la cámara no estará limitada.", this);
         }
+    }
+
+    // ───────────── Límites del mapa vs. lo que ve la cámara ─────────────
+
+    BoxCollider2D boundsBox;
+    Vector2 authoredBoundsSize;
+    int lastScreenWidth, lastScreenHeight;
+
+    void LateUpdate()
+    {
+        // Si la ventana cambia de tamaño, el Pixel Perfect Camera cambia el zoom: los límites se vuelven a ajustar
+        if (Screen.width != lastScreenWidth || Screen.height != lastScreenHeight) FitBoundsToView();
+    }
+
+    /// <summary>
+    /// El Confiner 2D de Cinemachine deja la cámara CONGELADA en el centro si el MapBounds es más chico que la vista en
+    /// algún eje (en ese caso no puede moverla dentro del límite). Para que las salas pequeñas o bajitas (Sótanos, Museo...)
+    /// no dejen a Andrés salirse de la pantalla, los límites se agrandan en memoria hasta cubrir lo que ve la cámara;
+    /// lo que sobra se ve negro. No cambia lo que está guardado en la escena.
+    /// </summary>
+    void FitBoundsToView()
+    {
+        lastScreenWidth = Screen.width;
+        lastScreenHeight = Screen.height;
+        if (boundsBox == null || confiner == null) return;
+
+        var view = PixelCameraSettings.VisibleSize(Screen.width, Screen.height);
+        var scale = boundsBox.transform.lossyScale;
+        var needed = new Vector2(view.x / Mathf.Max(Mathf.Abs(scale.x), 0.0001f), view.y / Mathf.Max(Mathf.Abs(scale.y), 0.0001f)) + Vector2.one * 0.5f;
+        var size = new Vector2(Mathf.Max(authoredBoundsSize.x, needed.x), Mathf.Max(authoredBoundsSize.y, needed.y));
+
+        if (boundsBox.size == size) return;
+        boundsBox.size = size;
+        confiner.InvalidateBoundingShapeCache();
     }
 }
