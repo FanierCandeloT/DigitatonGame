@@ -611,7 +611,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5203997218600005902, guid: c21b459f1882a8f4fa87c96474d4984d, type: 3}
       propertyPath: orthographic size
-      value: 5
+      value: 3.3854167
       objectReference: {fileID: 0}
     - target: {fileID: 5203997218600005902, guid: c21b459f1882a8f4fa87c96474d4984d, type: 3}
       propertyPath: m_NormalizedViewPortRect.width
@@ -2360,8 +2360,8 @@ Transform:
   m_GameObject: {fileID: 1051375925}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.1, y: -0.61, z: 0}
-  m_LocalScale: {x: 0.44781342, y: 0.44781342, z: 1}
+  m_LocalPosition: {x: -0.16, y: -0.48, z: 0}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1311137713}
@@ -5102,11 +5102,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7962573426918396755, guid: 060610fccda7aa142990ce79582d1a63, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.9851111
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7962573426918396755, guid: 060610fccda7aa142990ce79582d1a63, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.1390858
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7962573426918396755, guid: 060610fccda7aa142990ce79582d1a63, type: 3}
       propertyPath: m_LocalScale.z
