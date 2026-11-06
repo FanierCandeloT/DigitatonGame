@@ -1,0 +1,76 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee4ad954a8fdc8c4a8c8893ba0758148, type: 3}
+  m_Name: Intro
+  m_EditorClassIdentifier: Assembly-CSharp::CinematicAsset
+  shots:
+  - name: La clase
+    image: {fileID: 21300000, guid: 3ccf1ddedd124444a93736b655be64b2, type: 3}
+    caption: "Andr\xE9s taught English at the Universidad Aut\xF3noma de Occidente."
+    holdSeconds: 1.8
+    move: 1
+    tint: {r: 1, g: 1, b: 1, a: 1}
+  - name: El campus
+    image: {fileID: 21300000, guid: 927d898c3526b3c4b9b7f4d2467ec090, type: 3}
+    caption: In this country, everybody speaks in the passive voice. Things are done. Nobody says who did them.
+    holdSeconds: 1.8
+    move: 4
+    tint: {r: 1, g: 1, b: 1, a: 1}
+  - name: "Andr\xE9s piensa"
+    image: {fileID: 21300000, guid: 0dbaa9e27d0ec5f4a8811153b16d0769, type: 3}
+    caption: "Andr\xE9s believed that every action has a doer."
+    holdSeconds: 2
+    move: 1
+    tint: {r: 1, g: 1, b: 1, a: 1}
+  - name: La obra
+    image: {fileID: 21300000, guid: 5f3f00d864b4fd74c91092e8519010fd, type: 3}
+    caption: Then, one day, an accident happened.
+    holdSeconds: 1.6
+    move: 3
+    tint: {r: 0.9, g: 0.88, b: 0.9, a: 1}
+  - name: El andamio cae
+    image: {fileID: 21300000, guid: 1b15beb202ac29d49a7c79c0515de501, type: 3}
+    caption: A scaffold was left unsecured. By whom? Nobody knows.
+    holdSeconds: 2
+    move: 1
+    tint: {r: 1, g: 1, b: 1, a: 1}
+  - name: En el suelo
+    image: {fileID: 21300000, guid: 33b8b6987c90634478882a95740d01fd, type: 3}
+    caption: Your memory has been lost.
+    holdSeconds: 2
+    move: 1
+    tint: {r: 0.85, g: 0.85, b: 0.9, a: 1}
+  - name: Piden ayuda
+    image: {fileID: 21300000, guid: 8ca57a3b9179eff499784698d186d788, type: 3}
+    caption: And with it, his English. Only his mother tongue, Spanish, remains.
+    holdSeconds: 1.8
+    move: 4
+    tint: {r: 1, g: 1, b: 1, a: 1}
+  - name: Ambulancia
+    image: {fileID: 21300000, guid: 45715dee22a016848ba7241cc7f0c989, type: 3}
+    caption: Every memory he recovers will bring his English back.
+    holdSeconds: 1.8
+    move: 3
+    tint: {r: 1, g: 1, b: 1, a: 1}
+  - name: Bienestar
+    image: {fileID: 21300000, guid: 761e18414d675494080e5732ff73bd47, type: 3}
+    caption: 
+    holdSeconds: 2.6
+    move: 2
+    tint: {r: 1, g: 1, b: 1, a: 1}
+  - name: Despierta
+    image: {fileID: 21300000, guid: bfaba3169b7746f44a7f9d51a68e2521, type: 3}
+    caption: "Andr\xE9s opened his eyes."
+    holdSeconds: 2.4
+    move: 1
+    tint: {r: 1, g: 1, b: 1, a: 1}
+  crossFadeSeconds: 0.7

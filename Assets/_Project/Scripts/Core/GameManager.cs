@@ -228,7 +228,12 @@ public class GameManager : MonoBehaviour
         AudioManager.StartMusic();   // la música ambiente entra con fundido y sigue sonando entre escenas hasta volver al menú
         SetFlag(StoryFlow.FlagIntroDone);
         SetFlag(FlagAgoraDone);   // el accidente ya se contó aquí: el disparador antiguo del Ágora no debe repetirlo
-        TransitionToCaptions(StoryFlow.StartScene, StoryFlow.StartSpawn, StoryFlow.IntroCaptions, StoryFlow.CaptionSeconds);
+        // Si existe la cinemática (Resources/Cinematics/Intro.asset) se reproduce; si no, quedan las pantallas de texto sobre negro
+        var intro = Resources.Load<CinematicAsset>(StoryFlow.IntroCinematicPath);
+        if (intro != null && intro.shots != null && intro.shots.Length > 0)
+            TransitionToCinematic(StoryFlow.StartScene, StoryFlow.StartSpawn, intro);
+        else
+            TransitionToCaptions(StoryFlow.StartScene, StoryFlow.StartSpawn, StoryFlow.IntroCaptions, StoryFlow.CaptionSeconds);
     }
 
     // ───────────── Recuerdos ─────────────
@@ -287,10 +292,20 @@ public class GameManager : MonoBehaviour
         LastSpawnId = spawnId;
         pendingSpawnId = spawnId;
         hasPendingSpawn = !string.IsNullOrEmpty(spawnId);
-        StartCoroutine(TransitionRoutine(sceneName, captions, secondsEach));
+        StartCoroutine(TransitionRoutine(sceneName, captions, secondsEach, null));
     }
 
-    IEnumerator TransitionRoutine(string sceneName, string[] captions, float secondsEach)
+    /// <summary>Como TransitionTo, pero reproduce una cinemática (imágenes + texto) sobre el negro antes de cargar la escena.</summary>
+    public void TransitionToCinematic(string sceneName, string spawnId, CinematicAsset cinematic)
+    {
+        if (IsTransitioning) return;
+        LastSpawnId = spawnId;
+        pendingSpawnId = spawnId;
+        hasPendingSpawn = !string.IsNullOrEmpty(spawnId);
+        StartCoroutine(TransitionRoutine(sceneName, null, 0f, cinematic));
+    }
+
+    IEnumerator TransitionRoutine(string sceneName, string[] captions, float secondsEach, CinematicAsset cinematic)
     {
         IsTransitioning = true;   // bloquea a Andrés desde el primer momento
         if (fader != null) yield return fader.FadeTo(1f, fadeDuration);
@@ -306,6 +321,14 @@ public class GameManager : MonoBehaviour
                 fader.ShowCaption(caption);
                 yield return WaitCaption(secondsEach);
             }
+        }
+
+        if (cinematic != null)
+        {
+            // La cinemática va en su propio canvas, justo encima del fundido negro
+            var faderCanvas = fader != null ? fader.GetComponentInParent<Canvas>() : null;
+            int order = faderCanvas != null ? faderCanvas.sortingOrder + 1 : 32000;
+            yield return CinematicPlayer.Play(cinematic, fader != null && fader.caption != null ? fader.caption.font : null, order);
         }
 
         var op = SceneManager.LoadSceneAsync(sceneName);
