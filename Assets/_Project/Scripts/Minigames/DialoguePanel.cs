@@ -46,7 +46,7 @@ public class DialogueLine
 /// </summary>
 public class DialoguePanel : MonoBehaviour
 {
-    const float CharsPerSecond = 55f;
+    // La velocidad de escritura es la elegida en Settings (slow / normal / fast): SettingsData.CharsPerSecond.
 
     static readonly Color Frame = new Color(0.55f, 0.65f, 1f);
     static readonly Color Fill = new Color(0.05f, 0.07f, 0.15f, 0.97f);
@@ -86,7 +86,11 @@ public class DialoguePanel : MonoBehaviour
     }
 
     // Si el panel desaparece por un cambio de escena, el jugador no puede quedar bloqueado (Release es idempotente).
-    void OnDestroy() => modalLock?.Release();
+    void OnDestroy()
+    {
+        if (typingSound) AudioManager.StopTyping();   // nunca debe quedar sonando el teclado sin diálogo (solo si este panel lo inició: con diálogos encadenados no corta el del siguiente)
+        modalLock?.Release();
+    }
 
     void Build()
     {
@@ -147,6 +151,10 @@ public class DialoguePanel : MonoBehaviour
         shown = 0f;
         lineComplete = false;
         hint.gameObject.SetActive(false);
+
+        // Las letras empiezan a aparecer: WriteText suena en loop hasta que la línea esté completa
+        typingSound = visibleLength > 0;
+        if (typingSound) AudioManager.StartTyping();
     }
 
     static Color SpeakerColor(string speaker)
@@ -160,23 +168,56 @@ public class DialoguePanel : MonoBehaviour
         float dt = Time.unscaledDeltaTime;
         if (group.alpha < 1f) group.alpha = Mathf.Min(1f, group.alpha + dt * 5f);
 
+        // En pausa el texto se congela (y el AudioManager pausa el sonido); no se avanza con los clics del menú de pausa.
+        if (GameManager.Instance.IsPaused)
+        {
+            resumeGuard = true;
+            return;
+        }
+
         if (!lineComplete)
         {
-            shown += CharsPerSecond * dt;
+            shown += SettingsData.CharsPerSecond * dt;
             int visible = Mathf.FloorToInt(shown);
             bodyLabel.maxVisibleCharacters = visible;
             if (visible >= visibleLength) CompleteLine();
         }
 
+        // El clic o la tecla que reanudó el juego no cuenta para avanzar el diálogo
+        if (resumeGuard)
+        {
+            resumeGuard = false;
+            AdvancePressed();
+            return;
+        }
+
         if (Time.frameCount <= startFrame || !AdvancePressed()) return;
 
-        if (!lineComplete) CompleteLine();
-        else if (index + 1 < lines.Length) ShowLine(index + 1);
-        else Close();
+        // Cada clic / tecla: completa la línea o pasa a la siguiente, con un "tic" corto de WriteText
+        if (!lineComplete)
+        {
+            CompleteLine();
+            AudioManager.PlayTextAdvance();
+        }
+        else if (index + 1 < lines.Length)
+        {
+            AudioManager.PlayTextAdvance();
+            ShowLine(index + 1);   // si la nueva línea escribe texto, vuelve el loop normal
+        }
+        else
+        {
+            AudioManager.PlayTextAdvance();
+            Close();
+        }
     }
+
+    bool resumeGuard;
+    bool typingSound;   // este panel tiene el loop de WriteText sonando
 
     void CompleteLine()
     {
+        typingSound = false;
+        AudioManager.StopTyping();   // en el instante en que termina de aparecer la línea completa
         lineComplete = true;
         bodyLabel.maxVisibleCharacters = int.MaxValue;
         hint.gameObject.SetActive(true);

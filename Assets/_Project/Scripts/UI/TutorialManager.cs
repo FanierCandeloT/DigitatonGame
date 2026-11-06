@@ -15,13 +15,18 @@ public class TutorialManager : MonoBehaviour
     Transform player;
     Vector3 lastPos;
     float distanceMoved;
-    bool interacted, notebookOpened, notebookClosed, pausedOnce;
+    [Tooltip("Puerta de salida al menú: solo se abre después de leer el libro de la Profe Dalia.")]
+    public Door exitDoor;
+
+    bool interacted, notebookOpened, notebookClosed, pausedOnce, bookRead;
+    string bookFlag;
 
     void OnEnable()
     {
         NotebookPanel.Opened += OnNotebookOpened;
         NotebookPanel.Closed += OnNotebookClosed;
         GameManager.PauseChanged += OnPauseChanged;
+        TutorialBookPanel.Closed += OnBookClosed;
     }
 
     void OnDisable()
@@ -29,6 +34,7 @@ public class TutorialManager : MonoBehaviour
         NotebookPanel.Opened -= OnNotebookOpened;
         NotebookPanel.Closed -= OnNotebookClosed;
         GameManager.PauseChanged -= OnPauseChanged;
+        TutorialBookPanel.Closed -= OnBookClosed;
     }
 
     void Start()
@@ -36,7 +42,22 @@ public class TutorialManager : MonoBehaviour
         var pc = FindAnyObjectByType<PlayerController>();
         if (pc != null) { player = pc.transform; lastPos = player.position; }
         if (practiceObject != null) practiceObject.onInteract.AddListener(() => interacted = true);
+
+        // La salida pide haber leído el libro en ESTA visita al tutorial: la marca lleva un código único para que
+        // una visita anterior (las marcas viven mientras el juego está abierto) no deje la puerta abierta de entrada.
+        if (exitDoor != null)
+        {
+            bookFlag = exitDoor.requiredFlag + "_" + Guid.NewGuid().ToString("N");
+            exitDoor.requiredFlag = bookFlag;
+            exitDoor.devBypass = false;
+        }
         StartCoroutine(Run());
+    }
+
+    void OnBookClosed()
+    {
+        bookRead = true;
+        if (bookFlag != null) GameManager.Instance.SetFlag(bookFlag);
     }
 
     void Update()
@@ -66,6 +87,8 @@ public class TutorialManager : MonoBehaviour
 
         pausedOnce = false;
         yield return Step("Press Esc to pause the game, then choose Resume.", () => pausedOnce && !GameManager.Instance.IsPaused);
+
+        yield return Step("Talk to Professor Dalia: walk up to her and press E. Read the book she gives you.", () => bookRead);
 
         yield return Type("Great job! Go through the yellow door to return to the main menu.");
     }

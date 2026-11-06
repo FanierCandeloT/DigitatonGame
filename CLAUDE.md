@@ -1,12 +1,13 @@
 # CLAUDE.md — DigitatonGame (Passive Amnesia: UAO Edition)
 
-Juego 2D pixel art (vista top-down 3/4) ambientado en la Universidad Autónoma de Occidente (UAO). Unity 6000.6, URP con Renderer 2D, Input System nuevo, Cinemachine y TextMeshPro. Estado actual: **greybox** (cubos de colores como placeholders) y flujo del guion con textos temporales en inglés.
+Juego 2D pixel art (vista top-down 3/4) ambientado en la Universidad Autónoma de Occidente (UAO). Unity 6000.6, URP con Renderer 2D, Input System nuevo, Cinemachine y TextMeshPro. Estado actual: el **Campus ya usa sprites reales** (suelo isométrico, edificios, Ágora, árboles); los **interiores siguen en greybox** (con algunos muebles/pisos con sprite) y el flujo del guion usa textos temporales en inglés.
 
 ## Reglas del proyecto
-- Todo el código y los assets propios viven en `Assets/_Project`. El plano de referencia está en `Docs/mapa_uao.jpg` (no se importa a Assets).
+- Todo el código y los assets propios viven en `Assets/_Project`. Planos de referencia: `Docs/mapa_uao.jpg` (greybox original) y `Assets/_Project/Docs/mapa_uao_2.png` (distribución real con caminos, base del Campus actual).
+- **Escala: todos los sprites a 48 PPU** (1 casilla = 48x48 px = 1 unidad), Filter Point, Compression None. Andrés mide 1x2 casillas (su prefab lleva `localScale` porque su hoja es de alta resolución).
 - Textos de UI y del juego: **inglés**. Comentarios y nombres de objetos del greybox: español.
 - Input: solo el **nuevo Input System** (`Active Input Handling = Input System Package (New)`). Se lee con `Keyboard.current`/`InputAction` en código. Si se cambia ese ajuste, **hay que reiniciar Unity** (si no, `Keyboard.current` es null y nada responde).
-- Cámara estilo Pokémon Esmeralda: Pixel Perfect, 480x270 de referencia (30 casillas de ancho), 16 PPU, `PixelSnapping`, fija sobre Andrés (sin suavizado) y fondo negro fuera del mapa (las salas más chicas que la vista quedan centradas). **El zoom se cambia solo en `PixelCameraSettings`** (más resolución = más mapa visible, p. ej. 384x216 = zoom intermedio); `CameraRigBinder` lo aplica al iniciar cada escena. Orden de dibujo por eje Y (`Transparency Sort Mode = Custom Axis (0,1,0)`).
+- Cámara: Pixel Perfect, **640x360 de referencia a 48 PPU** (se ven 13,3 x 7,5 casillas), `PixelSnapping`, fija sobre Andrés (sin suavizado) y fondo negro fuera del mapa (las salas más chicas que la vista quedan centradas). **El zoom se cambia solo en `PixelCameraSettings`** (más resolución = más mapa visible); `CameraRigBinder` lo aplica al iniciar cada escena. Orden de dibujo por eje Y (`Transparency Sort Mode = Custom Axis (0,1,0)`).
 - Saltos de línea: LF (`.gitattributes`).
 
 ## Leyenda de colores (fija, ver `PlaceholderPalette`)
@@ -27,6 +28,7 @@ Toda cosa del greybox lleva un `PlaceholderInfo` (nombre, descripción del asset
 - **Interactable / PlayerInteractor**: "Press E" cerca de objetos con `Collider2D`. Subclases: `Door`, `ToastInteractable` (NPC con mensaje), `ChallengeInteractable` (retos del guion: suma recuerdos, no se repite, muestra "(pending)"), `DebugInteractable`.
 - **UI** (prefab del GameManager): fundido y texto sobre negro (`ScreenFader`), `ToastMessage`, `PauseMenu` (Esc), `NotebookPanel` (C), `MemoryHud` ("Memories: X/12", solo en gameplay), `ResultsPanel`.
 - **Minijuegos y diálogos** (`Scripts/Minigames`, toda la UI se arma por código con `PixelUi`; bloquean al jugador con `GameManager.MinigameOpen` / `DialogueOpen`):
+  - **Diálogos como asset (escribirlos sin tocar código):** `DialogueAsset` (ScriptableObject con `DialogueLine[]`, varias líneas y personajes distintos, incluidas las 3 versiones del habla de Andrés). Se crea con Assets ▸ Create ▸ DigitatonGame ▸ Dialogue, se guarda en `Assets/_Project/Data/Dialogues` y se arrastra al campo **Dialogue** del NPC (`ToastInteractable`; en Lucía, `doneDialogue` de `NpcChallengeInteractable`, para cuando ya terminó su reto). Con E se abre en `DialoguePanel`; Andrés queda quieto. Pruebas incluidas: `Lucia_Test`, `DonJairo_Test`, `DonaMarta_Test`. La velocidad de escritura es la de Settings (`SettingsData.CharsPerSecond`: slow 20 / normal 45 / fast 90). Se avanza con clic izquierdo, E, Enter o Espacio (completa la línea o pasa a la siguiente). Con el juego en pausa el diálogo se congela.
   - `DialoguePanel` (diálogo con máquina de escribir; `DialogueLine(speaker, text)`), `NpcChallengeInteractable` (Lucía: diálogo → `MemoryReconstructionGame` de neuronas → diálogo de cierre con repaso de errores).
   - `ClassErrorHunt` = lección **"Atrapa el error"** en el atril de `Aulas2` (`ClassLessonInteractable`, marca `done:class1`). 8 frases de estudiantes (5 con error): STOP o dejar pasar con tiempo límite → ubicar la pieza mala → elegir la corrección. Puntaje 18; se aprueba con el 70 % (`passFraction`). Si no aprueba: guía por tipo de error (sin dar la respuesta; nivel 2 de la guía y +25 % de tiempo en cada reintento) y reintento con frases nuevas que refuerzan lo que falló. Frases, tipos de error y guías: `ErrorHuntContent`. Puntaje y intentos quedan en `GameManager.SetStat("class1:score" ...)`.
   - **Habla de Andrés** (`SpeechRecovery`): con 0–3 recuerdos habla un español entrecortado, con 4–7 mezcla (palabras en inglés resaltadas en cian) y con 8+ habla inglés fluido (`MixedAt` / `FluentAt`). Las líneas de Andrés se escriben en 3 versiones con `new DialogueLine("Andrés", inglés, mezcla con {palabras recuperadas}, español)`; `fluent = true` lo deja siempre fluido (clase antes del accidente). El HUD muestra "SPEECH x% - etapa" y avisa cuando mejora (`MemoryHud`). Las líneas por defecto de Lucía viven en código (`NpcChallengeInteractable.DefaultIntro`), no en la escena, para que un merge no las pise.
@@ -48,13 +50,49 @@ Play (menú → `GameManager.StartStory()`) → introducción del accidente (6 p
 - **Sprites de personajes** (`Art/Sprites Personajes`): `NpcSpriteSlicer` (menú `Recortar sprites de NPC`) corta las 40 hojas en 3 columnas x 4 filas de 20x32 px (filas abajo/izquierda/derecha/arriba; columna 1 = quieto), pivote en los pies, 16 PPU (mide 2 u, igual que Andrés), Point y sin compresión; `NpcSpriteSlicer.Load(n)` devuelve los 12 cuadros. `NpcSpriteSetup` (menú `Poner sprites a los NPC`) los asigna a Valentina, Santiago, Estudiante (Aulas2), Don Jairo (Campus) y Doña Marta (Cafetería). Lucía usa `Enfermera.png` con `NpcSpriteAnimator` (idle y hablar).
 - **Peatones de ambiente** (`AmbientCrowd` + `AmbientWalker`, prefab `Peatones_Campus`, 11 en el Campus, rutas al 60 %, con sprites que miran hacia donde caminan): solo están activos los que caen en cámara. Menú `Agregar peatones al Campus`.
 
+## Escena Tutorial (Profe Dalia y su libro)
+- El salón usa los sprites de los interiores (piso `A5`, muros `A4`, `Inside_C/D/E`) y tiene una **extensión al norte** (abertura de 3 casillas en el muro central) con tablero, escritorio de la profesora y pupitres. `TutorialSetup` (`Editor`, sin menú, repetible) la arma; solo toca la escena Tutorial.
+- **Profe Dalia** (`ProfessorDalia`, un `Interactable`): collider solo en los pies en la raíz; el dibujo (hijo `Dibujo`) lleva el Animator `Art/SpriteDalia/Animacion/Dalia.controller`, que alterna `DaliaIdle` (2 vueltas) y `DaliaPoint` (1 vuelta). Cada clip fija su propia escala porque las dos hojas traen el personaje a distinto tamaño. Con E dice `Data/Dialogues/Dalia_Tutorial.asset` (WriteText) y al terminar abre el libro.
+- **Libro** (`TutorialBookPanel`, contenido en `Data/TutorialBook.asset` = `TutorialBookAsset`): cada elemento de `pages` es una hoja doble (título y texto izquierda | derecha; acepta etiquetas TMP). Para cambiar texto, se edita el asset, sin código. Botones y flechas ← → pasan hoja (con `LibroTutoDrch`/`LibroTutoIzq`), X o Esc cierran; OpenBook al abrir/cerrar/pasar. Andrés queda bloqueado (`LockInput`); el cierre se aplica en `LateUpdate` para que el Esc no abra la pausa.
+- `TutorialManager` tiene el paso "Talk to Professor Dalia" antes de la salida. La puerta de salida (`Door.requiredFlag`) exige haber cerrado el libro **en esa visita** (la marca lleva un código único generado al iniciar la escena).
+
+## Audio
+Todo el sonido pasa por `AudioManager` (`Scripts/Core/AudioManager.cs`), que vive dentro de `Resources/GameManager.prefab` (no se destruye entre escenas) y usa el AudioMixer `Audio/GameMixer.mixer` con los grupos **Music** y **SFX**. Los sliders de Settings (`SettingsData.MusicVolume` / `SfxVolume`) mueven los volúmenes expuestos `MusicVolume` / `SfxVolume` del mixer al instante (también desde el menú de pausa). Todos los métodos son estáticos y no hacen nada si el `AudioManager` no existe: **no hay que referenciarlo en las escenas**.
+
+| Qué pasa | Qué llamar | Quién lo llama hoy |
+|---|---|---|
+| Clic en un botón (o Enter sobre él) | **Nada**: suena solo en TODOS los `Button` (menús, pausa, minijuegos y botones nuevos) | `AudioManager` (agrega el sonido a cada botón que aparece) |
+| Acierto en un minijuego / reto | `AudioManager.PlayCorrect()` | `ChallengeInteractable` (al sumar el recuerdo), `ClassErrorHunt`, `MemoryReconstructionGame`, `ExamChallenge`, `LitterChallenge` |
+| Fallo en un minijuego / reto | `AudioManager.PlayIncorrect()` | los mismos |
+| Andrés se acerca a algo interactivo ("Press E") | `AudioManager.PlayInteraction()` (una sola vez; vuelve a sonar solo si se aleja y se acerca) | `PlayerInteractor` |
+| Presionar C (abrir/cerrar el Cuaderno) | `AudioManager.PlayOpenBook()` | `NotebookPanel` |
+| Andrés camina | `AudioManager.NotifyWalking()` cada frame que realmente se mueve (loop con tono variable; para solo al dejar de llamarse: pausa, fundido, cuaderno o diálogo no lo llaman) | `PlayerController` |
+| Música ambiente | `AudioManager.StartMusic()` (fundido de entrada) / `StopMusic()` (fundido de salida) | `GameManager.StartStory()` al presionar Play; se detiene sola al cargar `MainMenu` o `Tutorial` (ahí no suena) |
+| Clic "a mano" en algo que no es `Button` | `AudioManager.PlayClick()` | — |
+| Diálogo: letras apareciendo | `AudioManager.StartTyping()` al empezar a escribir cada línea (loop de `WriteText`) | `DialoguePanel` |
+| Diálogo: la línea terminó de aparecer | `AudioManager.StopTyping()` en ese mismo instante | `DialoguePanel` |
+| Diálogo: el jugador avanza o salta (clic izquierdo, E, Enter o Espacio) | `AudioManager.PlayTextAdvance()` (un "tic" corto de `WriteText`; cada clic lo reinicia, nunca se acumula) | `DialoguePanel` |
+
+- **Reglas del sonido de diálogos (`WriteText`):** (1) loop mientras se escribe y corte inmediato al completar la línea; (2) cada clic/tecla de avanzar suena un "tic" corto, y si la siguiente línea empieza a escribirse vuelve el loop; (3) un solo canal para loop y tic, así que no se superponen ni se acumulan; (4) con el juego en pausa el texto y el sonido se detienen y continúan al reanudar (el clic que reanuda no avanza el diálogo); (5) el tono varía un poco; (6) aplica a TODO diálogo, incluidas las líneas de Andrés. **Todo sistema nuevo de texto con máquina de escribir debe llamar `StartTyping` / `StopTyping` / `PlayTextAdvance` igual que `DialoguePanel`**, y quien cierre un panel solo debe apagar el sonido si él lo inició (para que un diálogo encadenado no corte al siguiente).
+
+- **Regla para todo minijuego o reto nuevo (obligatoria):** llamar `AudioManager.PlayCorrect()` al acertar y `AudioManager.PlayIncorrect()` al fallar, en el mismo momento en que aparece el feedback. No usar `AudioSource` propios para eso.
+- Los audios están en `Assets/_Project/Audio` (`Ambient`, `Click`, `Correct`, `Incorrect`, `Interaction`, `OpenBook`, `Steps`, `WriteText`). Importación: `Ambient` como música (comprimida en memoria, el loop lo hace el `AudioSource`); efectos cortos descomprimidos al cargar y precargados (sin retraso); `Steps` comprimido en memoria y mono. Para cambiar un audio se reemplaza el archivo con el mismo nombre; los niveles relativos (`ambientLevel`, `stepsLevel`) y los fundidos se ajustan en el componente `AudioManager` del prefab.
+- Herramienta de un solo uso (sin menú): `AudioSetup` (importación de clips, creación del mixer y alta del `AudioManager` en el prefab); es repetible.
+
 ## Rendimiento y WebGL
 - Ajustes aplicados (`optimize-web`): build target WebGL, Gzip + Decompression Fallback (GitHub Pages no manda `Content-Encoding`), Managed Stripping High, IL2CPP Optimize Size, Quality Low sin vSync/MSAA, Input solo nuevo (`activeInputHandler = 1`). Compilación de prueba: 13 MB, carga y se mueve en el navegador. `Builds/` está ignorada por git.
 - `PlaceholderInfo` solo crea rótulos en Editor/Development build y se apaga en la versión final.
 - Pruebas automáticas: `DialoguePanel.SimulatedAdvance = true` avanza un diálogo; `PlayerController.SimulatedInput` simula movimiento (el teclado real no llega al juego si el Editor no tiene foco).
 
-## Constructores de greybox (menú `DigitatonGame`)
-Las escenas del greybox se generan por código para que sean reproducibles; **volver a ejecutarlas pisa las ediciones a mano** de esas escenas.
+## Campus con sprites reales (isométrico)
+- **No usar los menús "Construir ..." de `DigitatonGame`**: regenerarían el greybox y borrarían el Campus con sprites y los interiores reescalados (y las ediciones de todo el equipo). Para cambios en esas escenas, editarlas directamente.
+- Suelo: pasto repetible generado con los verdes del TILE SET (`Art/Terreno/GrassTile.png`) + un **Tilemap isométrico** (Grid `Isometric`, celda ~5 x 2,5 u) con los rombos de `TILE SET` (assets `Art/Tiles/TILE_f_c.asset`) para los caminos.
+- Edificios (`Aulas1–4`, `CAF y BIENESTAR`): sprites isométricos con **pivote en la base** (en Aulas, 3 cortes para ordenar bien a Andrés a lo largo de la fachada) y `PolygonCollider2D` solo en la huella del suelo, así que se puede pasar por detrás. `ARCO UAO` (Edificio Central) es una vista cenital: va como decorado de suelo con colisión en sus bloques. El Ágora es decorado de suelo con colisión solo en los troncos de las palmas. Árboles de `Outside` con colisión solo en el tronco.
+- Las puertas amarillas, spawns, NPC, retos y el trigger del Ágora son los mismos objetos del greybox, recolocados en la entrada visible de cada edificio.
+- Herramientas (sin menú, se llaman desde código; son de un solo uso): `SpriteSetup` (importación a 48 PPU, corte de hojas, tiles, pasto, cámara), `IsoCampusBuilder` (rearma el Campus en su lugar; repetible) e `InteriorRescale` (**no repetir**: escala los interiores una vez, 0,65). `EscuelaDecorator` (A4/A5/Inside) sigue siendo independiente.
+
+## Constructores de greybox (menú `DigitatonGame`) — OBSOLETOS para Campus e interiores
+Las escenas del greybox se generaban por código para que fueran reproducibles; **volver a ejecutarlas pisa las ediciones a mano** de esas escenas (y ya no reproducen el estado actual).
 - `Construir campus completo` → `CampusBuilder` (escena Campus según el plano; 0,25 u por píxel del plano).
 - `Construir interiores` → `InteriorsBuilder` (Aulas1–4, EdificioCentral, Sotanos, Bienestar, Cafeteria, SalaProfesores, TechoAulas3, MuseoLili).
 - `Construir flujo de menús` → `MenuFlowBuilder` (prefabs de UI, MainMenu y Tutorial). `Agregar UI de historia al GameManager` → `StoryUiBuilder` (solo agrega lo que falta al prefab).

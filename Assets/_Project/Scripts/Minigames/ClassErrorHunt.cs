@@ -590,6 +590,8 @@ public class ClassErrorHunt : MonoBehaviour
             score = Mathf.Max(0, score + points);
             Popup(points > 0 ? $"+{points}" : points.ToString(), color, new Vector2(-520f, 210f));
         }
+        if (color == Good) AudioManager.PlayCorrect();
+        else if (color == Bad) AudioManager.PlayIncorrect();
         attention = Mathf.Clamp(attention + attentionDelta, 0f, 100f);
         feedbackLabel.text = message;
         feedbackLabel.color = color;

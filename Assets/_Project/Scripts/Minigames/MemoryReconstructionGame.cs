@@ -528,6 +528,7 @@ public class MemoryReconstructionGame : MonoBehaviour
 
     void AcceptSentence(Wire left, Wire right)
     {
+        AudioManager.PlayCorrect();
         HideError();
         foreach (var wire in new[] { left, right })
         {
@@ -567,6 +568,7 @@ public class MemoryReconstructionGame : MonoBehaviour
     IEnumerator RejectSentence(Wire left, Wire right, MemoryNeuron subject, MemoryNeuron verb, MemoryNeuron complement)
     {
         busy = true;
+        AudioManager.PlayIncorrect();
         RecordMistake(subject, verb, complement);
 
         // Solo se marca en rojo la pieza que hay que cambiar (el verbo si no concuerda; el final si no tiene sentido).

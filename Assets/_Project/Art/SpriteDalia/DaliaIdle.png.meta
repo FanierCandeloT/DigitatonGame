@@ -1,0 +1,446 @@
+fileFormatVersion: 2
+guid: 4f6fa335fed9b694b9bb044db9bd4be9
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 4271281499298948694
+    second: DaliaIdle_0
+  - first:
+      213: 4921529075727729646
+    second: DaliaIdle_1
+  - first:
+      213: -8352948068860840735
+    second: DaliaIdle_2
+  - first:
+      213: 5256288174559695206
+    second: DaliaIdle_3
+  - first:
+      213: -5436452325081072482
+    second: DaliaIdle_4
+  - first:
+      213: 7420009676193867922
+    second: DaliaIdle_5
+  - first:
+      213: -5159748366822234593
+    second: DaliaIdle_6
+  - first:
+      213: 4574093890227681337
+    second: DaliaIdle_7
+  - first:
+      213: 1018153945183225825
+    second: DaliaIdle_8
+  - first:
+      213: -1087901143794859039
+    second: DaliaIdle_9
+  - first:
+      213: -1862917213587761564
+    second: DaliaIdle_10
+  - first:
+      213: 272441116459351753
+    second: DaliaIdle_11
+  - first:
+      213: -1625933010858013161
+    second: DaliaIdle_12
+  - first:
+      213: 7252298898407881681
+    second: DaliaIdle_13
+  - first:
+      213: -5560287840193609409
+    second: DaliaIdle_14
+  - first:
+      213: 3521001901947434618
+    second: DaliaIdle_15
+  - first:
+      213: -2553888452850774961
+    second: DaliaIdle_16
+  - first:
+      213: 1856119246980333168
+    second: DaliaIdle_17
+  - first:
+      213: 832018196315351966
+    second: DaliaIdle_18
+  - first:
+      213: 4818237799914349090
+    second: DaliaIdle_19
+  - first:
+      213: 2458918866524638763
+    second: DaliaIdle_20
+  - first:
+      213: 8206158664592963887
+    second: DaliaIdle_21
+  - first:
+      213: 6865401358159908636
+    second: DaliaIdle_22
+  - first:
+      213: 3852110672250006084
+    second: DaliaIdle_23
+  - first:
+      213: 8332644109528617760
+    second: DaliaIdle_24
+  - first:
+      213: -1573793197452096493
+    second: DaliaIdle_25
+  - first:
+      213: -1342924820744988822
+    second: DaliaIdle_26
+  - first:
+      213: -6566618561363009036
+    second: DaliaIdle_27
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 48
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationMethod: 0
+  spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: DaliaIdle_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 192
+        height: 1024
+      alignment: 9
+      pivot: {x: 0.5, y: 0.32910156}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 02452a8c5c7ebb84d9dad5d2a1ed60e9
+      internalID: 4271281499298948694
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DaliaIdle_1
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 192
+        height: 1024
+      alignment: 9
+      pivot: {x: 0.5, y: 0.32910156}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a304da8e57549a468f0d1b287e25017
+      internalID: 4921529075727729646
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DaliaIdle_2
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 192
+        height: 1024
+      alignment: 9
+      pivot: {x: 0.5, y: 0.32910156}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7215aa993ce1a9242a6d02b496ecebe9
+      internalID: -8352948068860840735
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DaliaIdle_3
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 0
+        width: 192
+        height: 1024
+      alignment: 9
+      pivot: {x: 0.5, y: 0.32910156}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a1897a90ed57d234fbf6bdf17d185fd9
+      internalID: 5256288174559695206
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DaliaIdle_4
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 0
+        width: 192
+        height: 1024
+      alignment: 9
+      pivot: {x: 0.5, y: 0.32910156}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d0ab229f1de55af4db115d36b2a635db
+      internalID: -5436452325081072482
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DaliaIdle_5
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 0
+        width: 192
+        height: 1024
+      alignment: 9
+      pivot: {x: 0.5, y: 0.32910156}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e424698df1e9a3e40949f75778fb7013
+      internalID: 7420009676193867922
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DaliaIdle_6
+      rect:
+        serializedVersion: 2
+        x: 1152
+        y: 0
+        width: 192
+        height: 1024
+      alignment: 9
+      pivot: {x: 0.5, y: 0.32910156}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1dfe649e21a297c48a30c2a39c376110
+      internalID: -5159748366822234593
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DaliaIdle_7
+      rect:
+        serializedVersion: 2
+        x: 1344
+        y: 0
+        width: 192
+        height: 1024
+      alignment: 9
+      pivot: {x: 0.5, y: 0.32910156}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d922bff2b2534d4096974eb29a0f5dd
+      internalID: 4574093890227681337
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: c8377da87c16493449918c6765f0cd11
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      DaliaIdle_0: 4271281499298948694
+      DaliaIdle_1: 4921529075727729646
+      DaliaIdle_10: -1862917213587761564
+      DaliaIdle_11: 272441116459351753
+      DaliaIdle_12: -1625933010858013161
+      DaliaIdle_13: 7252298898407881681
+      DaliaIdle_14: -5560287840193609409
+      DaliaIdle_15: 3521001901947434618
+      DaliaIdle_16: -2553888452850774961
+      DaliaIdle_17: 1856119246980333168
+      DaliaIdle_18: 832018196315351966
+      DaliaIdle_19: 4818237799914349090
+      DaliaIdle_2: -8352948068860840735
+      DaliaIdle_20: 2458918866524638763
+      DaliaIdle_21: 8206158664592963887
+      DaliaIdle_22: 6865401358159908636
+      DaliaIdle_23: 3852110672250006084
+      DaliaIdle_24: 8332644109528617760
+      DaliaIdle_25: -1573793197452096493
+      DaliaIdle_26: -1342924820744988822
+      DaliaIdle_27: -6566618561363009036
+      DaliaIdle_3: 5256288174559695206
+      DaliaIdle_4: -5436452325081072482
+      DaliaIdle_5: 7420009676193867922
+      DaliaIdle_6: -5159748366822234593
+      DaliaIdle_7: 4574093890227681337
+      DaliaIdle_8: 1018153945183225825
+      DaliaIdle_9: -1087901143794859039
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

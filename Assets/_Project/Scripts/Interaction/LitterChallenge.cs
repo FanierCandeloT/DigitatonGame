@@ -149,12 +149,14 @@ public class LitterChallenge : Interactable
         }
 
         errors++;
+        AudioManager.PlayIncorrect();
         builder.Show();
         builder.SetFeedback(Guidance(outcome), Warn);
     }
 
     IEnumerator Finish()
     {
+        AudioManager.PlayCorrect();
         builder.Close();
         var gm = GameManager.Instance;
         gm.CompleteChallenge(challengeId, memoryReward);

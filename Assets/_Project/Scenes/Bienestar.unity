@@ -2344,6 +2344,7 @@ MonoBehaviour:
   introOverride: []
   skipIntro: 0
   doneMessage: "Luc\xEDa: Take your time."
+  doneDialogue: {fileID: 11400000, guid: b9c776d9562edbe45b170b972aa10cb0, type: 2}
 --- !u!114 &828714596
 MonoBehaviour:
   m_ObjectHideFlags: 0

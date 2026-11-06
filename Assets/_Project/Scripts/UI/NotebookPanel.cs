@@ -26,8 +26,9 @@ public class NotebookPanel : MonoBehaviour
         var kb = Keyboard.current;
         if (kb == null || !kb.cKey.wasPressedThisFrame) return;
 
-        if (IsOpen) Close();
-        else if (CanOpen()) Open();
+        // Suena cada vez que se presiona C para abrir o cerrar el cuaderno
+        if (IsOpen) { Close(); AudioManager.PlayOpenBook(); }
+        else if (CanOpen()) { Open(); AudioManager.PlayOpenBook(); }
     }
 
     static bool CanOpen()
