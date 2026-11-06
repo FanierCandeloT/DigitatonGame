@@ -1067,7 +1067,6 @@ MonoBehaviour:
   requiredMemories: 0
   lockedMessage: Something is still missing...
   endsGame: 0
-  useMemoryReconstruction: 0
 --- !u!114 &502436541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2881,17 +2880,17 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: -0.5}
+  m_Offset: {x: 0, y: 0.35}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 1, y: 1}
     newSize: {x: 1, y: 2}
     adaptiveTilingThreshold: 0.5
-    drawMode: 1
+    drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.9, y: 0.7}
   m_EdgeRadius: 0
 --- !u!114 &1440661928
 MonoBehaviour:
@@ -2910,8 +2909,8 @@ MonoBehaviour:
   suggestedSizePx: {x: 16, y: 32}
   owner: 0
   kind: 10
-  applyKindColor: 1
-  showLabel: 1
+  applyKindColor: 0
+  showLabel: 0
   labelFontSize: 5
   labelOffset: 0.15
 --- !u!212 &1440661929
@@ -2963,11 +2962,11 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: 818f6d643a76d8e40983dd8002a3eb56, type: 3}
-  m_Color: {r: 1, g: 0.55, b: 0.8, a: 1}
+  m_Sprite: {fileID: -2107430126, guid: d2eaf1e13ed8149478b77ec0476f8837, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 1
+  m_DrawMode: 0
   m_Size: {x: 1, y: 2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
@@ -2983,7 +2982,7 @@ Transform:
   m_GameObject: {fileID: 1440661925}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 3.8400002, z: 0}
+  m_LocalPosition: {x: 0, y: 2.8400002, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

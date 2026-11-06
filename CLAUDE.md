@@ -15,7 +15,8 @@ Toda cosa del greybox lleva un `PlaceholderInfo` (nombre, descripción del asset
 
 ## Escenas (todas en el Build Profile, en `Assets/_Project/Scenes`)
 `MainMenu`, `Campus`, `Aulas1`–`Aulas4`, `EdificioCentral`, `Sotanos`, `Bienestar`, `Cafeteria`, `SalaProfesores`, `TechoAulas3`, `MuseoLili`, `Tutorial`.
-- No existen `Intro` ni `Agora`: el Intro ocurre en el "Intro classroom" de `Aulas2` y la Escena 5 en el Ágora del `Campus`.
+- No existen `Intro` ni `Agora`: la introducción (el accidente) son pantallas de texto sobre negro (`StoryFlow.IntroCaptions`, saltables con una tecla) y el juego empieza en `Bienestar`. El atril de `Aulas2` es el reto 4. El antiguo `AgoraTrigger` quedó obsoleto (`StartStory` marca `agora_done`).
+- El campus quedó al **60 %** del tamaño original: las coordenadas viejas se multiplican por 0,6.
 - Cada interior tiene su puerta de salida que devuelve a Andrés al `Campus` frente a la puerta por la que entró.
 
 ## Arquitectura (scripts en `Assets/_Project/Scripts`)
@@ -29,12 +30,28 @@ Toda cosa del greybox lleva un `PlaceholderInfo` (nombre, descripción del asset
   - `DialoguePanel` (diálogo con máquina de escribir; `DialogueLine(speaker, text)`), `NpcChallengeInteractable` (Lucía: diálogo → `MemoryReconstructionGame` de neuronas → diálogo de cierre con repaso de errores).
   - `ClassErrorHunt` = lección **"Atrapa el error"** en el atril de `Aulas2` (`ClassLessonInteractable`, marca `done:class1`). 8 frases de estudiantes (5 con error): STOP o dejar pasar con tiempo límite → ubicar la pieza mala → elegir la corrección. Puntaje 18; se aprueba con el 70 % (`passFraction`). Si no aprueba: guía por tipo de error (sin dar la respuesta; nivel 2 de la guía y +25 % de tiempo en cada reintento) y reintento con frases nuevas que refuerzan lo que falló. Frases, tipos de error y guías: `ErrorHuntContent`. Puntaje y intentos quedan en `GameManager.SetStat("class1:score" ...)`.
   - **Habla de Andrés** (`SpeechRecovery`): con 0–3 recuerdos habla un español entrecortado, con 4–7 mezcla (palabras en inglés resaltadas en cian) y con 8+ habla inglés fluido (`MixedAt` / `FluentAt`). Las líneas de Andrés se escriben en 3 versiones con `new DialogueLine("Andrés", inglés, mezcla con {palabras recuperadas}, español)`; `fluent = true` lo deja siempre fluido (clase antes del accidente). El HUD muestra "SPEECH x% - etapa" y avisa cuando mejora (`MemoryHud`). Las líneas por defecto de Lucía viven en código (`NpcChallengeInteractable.DefaultIntro`), no en la escena, para que un merge no las pise.
+  - **Bloques de palabras** (`SentenceBuilder`): panel inferior reutilizable (`SentenceBuilder.Open(instrucción, new[]{ new BuilderSlot(...) }, onSubmit)`; `Hide()/Show()/Reload()/SetFeedback()/Close()`); solo puede haber uno abierto. `CameraRigBinder` sube la cámara mientras está abierto.
+  - **Reto 2 – la frase mueve el mundo** (`LitterChallenge`, prefab `Prefabs/Reto2_Basura.prefab`, marca `done:r2_litter`, +2): Valentina (con "!") junto a Aulas 1; la frase decide qué pasa (sin agente nadie se mueve). Menú `DigitatonGame ▸ Agregar reto 2 (basura) al Campus` (reemplaza la caneca provisional).
+  - **Reto 3 – los exámenes** (`ExamChallenge` en la pila de exámenes de `SalaProfesores`, marca `done:r3_exams`, +2): 3 frases activas → pasiva con bloques; el "libro de consulta" (arriba a la izquierda) se va aclarando con cada examen aprobado. Si falla: mensaje rojo + guía (`ErrorHuntContent.Hint`; al 3.er fallo explica la regla). El atril del reto 4 pide `done:r3_exams` (`ClassLessonInteractable.requiredChallenge`; no bloquea en modo desarrollo). Menú `DigitatonGame ▸ Agregar reto 3 (exámenes) a SalaProfesores`.
   - Para agregar el atril sin reconstruir la escena: menú `DigitatonGame ▸ Agregar lección a Aulas2 (sin reconstruir)`.
 - **CameraRig** (prefab): Cinemachine + Pixel Perfect + Confiner 2D; se conecta solo a Andrés y a `MapBounds`.
 - **Colisiones**: el jugador y los NPC colisionan solo en los pies; edificios y palmas del campus, solo en su base (se puede pasar por detrás).
 
-## Flujo del juego (guion, versión temporal)
-Play → `Aulas2` "Intro classroom" ("Scene 1: Intro – class dialogue pending") → salir y caminar al Ágora → al entrar al círculo: fundido, "Your memory has been lost." (3 s) → `Bienestar` junto a la camilla → Lucía (preguntas 1–4, +4 recuerdos; antes la puerta dice "Lucía: You must rest a little more.") → campus abierto → retos 5 (candado, portería este), 6 (banda, Cafetería), 7 (canecas, junto a Aulas 1), 8 (puzzle, TechoAulas3), 9–11 (exámenes, SalaProfesores, +3), 12 (palmas del Ágora, solo con 11 recuerdos) → "Results screen (pending)" → volver al menú; Play vuelve a empezar de cero.
+## Estándar de TODO reto (obligatorio)
+1. **Andrés queda congelado mientras se juega**: `var lock = GameManager.Instance.LockInput();` al abrir y `lock.Release()` al cerrar **y** en `OnDestroy` (idempotente; cada reto tiene su propio bloqueo, nada de bools compartidos; `ResetProgress` invalida los anteriores). Se toma **antes** de armar la UI.
+2. **Feedback cuando se equivoca**: (a) visible al instante y dice **qué** pasó, (b) **guía** sin la respuesta (`ErrorHuntContent.Hint(tipo, nivel)`; el nivel sube desde el 3.er intento), (c) permite **reintentar** sin perder lo hecho.
+
+## Flujo del juego (la historia completa está en `Docs/HISTORIA.md`)
+Idea central: en este país todos hablan en pasiva y nadie nombra al responsable; Andrés recupera su identidad al **recuperar al agente** (`by + agent`) y termina diciendo *"The workers will be heard by me."*
+Play (menú → `GameManager.StartStory()`) → introducción del accidente (6 pantallas) → despierta en `Bienestar` → **R1** Lucía (neuronas, +4) → campus abierto (`done:q1_4`) → **R2** Valentina con "!" junto a Aulas 1 (+2) → **R3** exámenes en `SalaProfesores` (por Aulas 3, +2) → **R4** recuerdo de clase en `Aulas2` (+2) → **R5** confrontación en la obra (pendiente) → resultados (pendiente).
+- Orden, introducción y **objetivo en pantalla**: `Scripts/Core/StoryFlow.cs` (`Steps`; `Built = true` al construir un reto). `GameManager.ProgressChanged` actualiza el HUD. Habla de Andrés: `SpeechRecovery` (0–3 confusa, 4–7 mezcla, 8+ fluida).
+- **Sprites de personajes** (`Art/Sprites Personajes`): `NpcSpriteSlicer` (menú `Recortar sprites de NPC`) corta las 40 hojas en 3 columnas x 4 filas de 20x32 px (filas abajo/izquierda/derecha/arriba; columna 1 = quieto), pivote en los pies, 16 PPU (mide 2 u, igual que Andrés), Point y sin compresión; `NpcSpriteSlicer.Load(n)` devuelve los 12 cuadros. `NpcSpriteSetup` (menú `Poner sprites a los NPC`) los asigna a Valentina, Santiago, Estudiante (Aulas2), Don Jairo (Campus) y Doña Marta (Cafetería). Lucía usa `Enfermera.png` con `NpcSpriteAnimator` (idle y hablar).
+- **Peatones de ambiente** (`AmbientCrowd` + `AmbientWalker`, prefab `Peatones_Campus`, 11 en el Campus, rutas al 60 %, con sprites que miran hacia donde caminan): solo están activos los que caen en cámara. Menú `Agregar peatones al Campus`.
+
+## Rendimiento y WebGL
+- Ajustes aplicados (`optimize-web`): build target WebGL, Gzip + Decompression Fallback (GitHub Pages no manda `Content-Encoding`), Managed Stripping High, IL2CPP Optimize Size, Quality Low sin vSync/MSAA, Input solo nuevo (`activeInputHandler = 1`). Compilación de prueba: 13 MB, carga y se mueve en el navegador. `Builds/` está ignorada por git.
+- `PlaceholderInfo` solo crea rótulos en Editor/Development build y se apaga en la versión final.
+- Pruebas automáticas: `DialoguePanel.SimulatedAdvance = true` avanza un diálogo; `PlayerController.SimulatedInput` simula movimiento (el teclado real no llega al juego si el Editor no tiene foco).
 
 ## Constructores de greybox (menú `DigitatonGame`)
 Las escenas del greybox se generan por código para que sean reproducibles; **volver a ejecutarlas pisa las ediciones a mano** de esas escenas.

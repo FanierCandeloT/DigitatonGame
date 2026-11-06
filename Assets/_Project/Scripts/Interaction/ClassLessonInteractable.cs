@@ -13,6 +13,12 @@ public class ClassLessonInteractable : Interactable
     [Tooltip("Fracción del puntaje máximo que hay que alcanzar para aprobar.")]
     [Range(0.4f, 1f)] public float passFraction = 0.7f;
 
+    [Tooltip("Recuerdos que da la lección al aprobarla (recuerdo de clase: el reto 4 de la historia).")]
+    [Min(0)] public int memoryReward = 2;
+
+    [Tooltip("Reto que debe estar completo antes de dar la lección (vacío = ninguno). En modo desarrollo no bloquea.")]
+    public string requiredChallenge = "r3_exams";
+
     public DialogueLine[] intro =
     {
         new DialogueLine("Andrés", "Good morning, class! Today we are practicing the passive voice."),
@@ -37,6 +43,12 @@ public class ClassLessonInteractable : Interactable
             return;
         }
 
+        if (!string.IsNullOrEmpty(requiredChallenge) && !gm.IsChallengeDone(requiredChallenge) && !gm.HasFlag(GameManager.FlagDevOpen))
+        {
+            ToastMessage.Show("The podium feels empty... Your students' exams are waiting in the Teachers' Room (Aulas 3).", 3.5f);
+            return;
+        }
+
         DialoguePanel.Show(intro, () => ClassErrorHunt.Open(result => OnFinished(interactor, result), passFraction));
     }
 
@@ -49,7 +61,7 @@ public class ClassLessonInteractable : Interactable
         }
 
         var gm = GameManager.Instance;
-        gm.CompleteChallenge(challengeId, 0);
+        gm.CompleteChallenge(challengeId, memoryReward);
         gm.SetStat(challengeId + ":score", result.Score);
         gm.SetStat(challengeId + ":max", result.MaxScore);
         gm.SetStat(challengeId + ":attempts", result.Attempts);

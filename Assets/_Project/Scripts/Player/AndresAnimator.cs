@@ -37,12 +37,24 @@ public class AndresAnimator : MonoBehaviour
             facing = FacingFrom(velocity);
 
         // Hablar / pensar solo cuando Andrés está quieto.
-        string state;
-        if (!moving && emote == Emote.Talk) state = "Talk";
-        else if (!moving && emote == Emote.Think) state = "Think";
-        else state = (moving ? "Walk_" : "Idle_") + facing;
+        int hash;
+        if (!moving && emote == Emote.Talk) hash = TalkHash;
+        else if (!moving && emote == Emote.Think) hash = ThinkHash;
+        else hash = (moving ? WalkHashes : IdleHashes)[(int)facing];   // sin crear strings por frame (basura en WebGL)
 
-        Play(state);
+        Play(hash);
+    }
+
+    static readonly int TalkHash = Animator.StringToHash("Talk");
+    static readonly int ThinkHash = Animator.StringToHash("Think");
+    static readonly int[] WalkHashes = BuildHashes("Walk_");
+    static readonly int[] IdleHashes = BuildHashes("Idle_");
+
+    static int[] BuildHashes(string prefix)
+    {
+        var hashes = new int[4];
+        for (int i = 0; i < hashes.Length; i++) hashes[i] = Animator.StringToHash(prefix + (Facing)i);
+        return hashes;
     }
 
     static Facing FacingFrom(Vector2 v)
@@ -53,9 +65,8 @@ public class AndresAnimator : MonoBehaviour
         return v.x > 0f ? Facing.Right : Facing.Left;
     }
 
-    void Play(string state)
+    void Play(int hash)
     {
-        int hash = Animator.StringToHash(state);
         if (hash == currentHash) return;
         currentHash = hash;
         animator.Play(hash);
