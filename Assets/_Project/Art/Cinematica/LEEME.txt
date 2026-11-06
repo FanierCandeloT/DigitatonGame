@@ -1,0 +1,1 @@
+Carpeta de las imágenes de la cinemática de introducción. Ver Docs/CINEMATICA_PROMPTS.md para los nombres de archivo (C01_clase.png ... C10_despertar.png) y los ajustes de importación (48 PPU, Point, sin compresión).

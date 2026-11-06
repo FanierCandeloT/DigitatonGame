@@ -18,6 +18,9 @@ public static class StoryFlow
     /// <summary>Segundos que dura cada pantalla de la introducción (se puede saltar con cualquier tecla o clic).</summary>
     public const float CaptionSeconds = 4.6f;
 
+    /// <summary>Cinemática de introducción (asset en Resources). Si no existe, se usan IntroCaptions.</summary>
+    public const string IntroCinematicPath = "Cinematics/Intro";
+
     public static readonly string[] IntroCaptions =
     {
         "Andrés taught English at the Universidad Autónoma de Occidente.",
